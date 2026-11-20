@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The decompiled code does not show any operations that write to the out parameter.", "seconds": 0.8}

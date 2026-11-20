@@ -1,0 +1,137 @@
+{
+ "fn": "fn_14",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'.",
+   "asserted_values": [
+    "4166686d644c457233474d586732532f613931555a6e546c484f49354b597a65764643774e512b503474575637635052624475796b6a4a736f693671383042"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "4166686d644c457233474d586732532f613931555a6e546c484f49354b59"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when out_cap < (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes to out[o..o+3] when len - i == 1.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes to out[o..o+3] when len - i == 2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes to out[o..o+4] when len - i == 1.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes to out[o..o+4] when len - i == 2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Loops while i + 3 <= len.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements Base64 encoding.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "source": "algorithm_field",
+   "raw_algorithm": "Base64 encoding",
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "unsupported",
+     "method": "V3",
+     "reason": "thiếu hằng đặc trưng của Base64"
+    },
+    "label": "contradicted",
+    "method": "V1b",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "expected_ret": "0x0000000000000004",
+     "oracle_ret": "0x0000000000000004"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 4,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 8,
+ "explanation_clean": false
+}

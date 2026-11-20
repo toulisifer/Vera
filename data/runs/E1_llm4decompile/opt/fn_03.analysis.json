@@ -1,0 +1,30 @@
+{
+ "fn": "fn_03",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: uint32_t fn_03(const uint8_t *buf, size_t len) ← chữ ký chung",
+ "raw": "uint32_t fn_03(const uint8_t *buf, size_t len)\n{\n uint32_t a = 1, b = 0;\n size_t i;\n\n for (i = 0; i < len; i++) {\n  a = (a + buf[i]) % 65553;\n  b = (b + a) % 65553;\n }\n\n return (b << 16) | a;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 5.1,
+   "cached": false,
+   "eval_count": 114,
+   "cache_key": "372860ae7da6c71a35e692182c3e69e218c2b59f9c0803a7a2ebbcffe55e591e"
+  }
+ ],
+ "output": {
+  "recovered_c": "uint32_t vera_inner(const uint8_t *buf, size_t len)\n{\n uint32_t a = 1, b = 0;\n size_t i;\n\n for (i = 0; i < len; i++) {\n  a = (a + buf[i]) % 65553;\n  b = (b + a) % 65553;\n }\n\n return (b << 16) | a;\n}\nuint64_t fn_03(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

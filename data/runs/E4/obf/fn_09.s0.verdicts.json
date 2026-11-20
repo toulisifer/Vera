@@ -1,0 +1,85 @@
+{
+ "fn": "fn_09",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "Initializes uVar2 with the constant 0xcbf29ce484222325.",
+   "asserted_values": [
+    "cbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns uVar2 when param_2 is 0.",
+   "asserted_values": [
+    "0000000000000000"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Loops over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes the result to uVar2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "NAME",
+   "type": "NAME",
+   "text": "Purpose: Custom hash function.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

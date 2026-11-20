@@ -1,0 +1,143 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.7,
+   "cached": false,
+   "eval_count": 651,
+   "cache_key": "f2e448b7c90236ae5fcb929716eee15d43935bd881ade7f1afe48edc2614253a"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_15 appears to be a simple string comparison and encoding function. It compares a string (in) of length len with a pattern and encodes the result into out.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function returns -1 when the input length is 0.",
+    "asserted_values": [
+     "-1"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "The function returns the number of encoded characters when the output capacity is sufficient.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "The function returns -1 when the output capacity is insufficient.",
+    "asserted_values": [
+     "-1"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function writes the encoded characters to the output buffer out.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function uses a loop to compare characters in the input string.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function uses a loop to encode characters into the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "NAME",
+    "text": "The function appears to be a custom string comparison and encoding function.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return -1;\n  }\n\n  size_t encoded_len = 0;\n\n  for (size_t i = 0; i < len; i++) {\n    if (out_cap < encoded_len + 2) {\n      return -1;\n    }\n\n    uint8_t count = 1;\n    while (i + 1 < len && in[i] == in[i + 1]) {\n      count++;\n      i++;\n    }\n\n    out[encoded_len++] = count;\n    out[encoded_len++] = in[i];\n  }\n\n  return encoded_len;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function returns -1 when the input length is 0.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function returns the number of encoded characters when the output capacity is sufficient.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function returns -1 when the output capacity is insufficient.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function writes the encoded characters to the output buffer out.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function uses a loop to compare characters in the input string.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function uses a loop to encode characters into the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "7",
+   "type": "NAME",
+   "text": "The function appears to be a custom string comparison and encoding function.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

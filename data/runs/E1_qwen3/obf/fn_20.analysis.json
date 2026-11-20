@@ -1,0 +1,35 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": false,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting property name enclosed in double quotes: line 378 column 6 (char 8916)"
+   ],
+   "seconds": 74.1,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "2cae314a3ad003ed4c75c090be09c053551a6ee22ce06644760e7ad1cabbd185"
+  },
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 366 column 7 (char 10080)"
+   ],
+   "seconds": 73.5,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "5866679309fd02f7f7cb77fefd63b5049ec33bb56449ca1980ad94d692130887"
+  }
+ ],
+ "output": null,
+ "config": "obf"
+}

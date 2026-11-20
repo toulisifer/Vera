@@ -1,0 +1,14 @@
+{
+ "fn": "fn_20",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 0,
+  "contradicted": 0
+ },
+ "n_claims": 0,
+ "explanation_clean": true
+}

@@ -1,0 +1,155 @@
+{
+ "fn": "fn_16",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.0,
+   "cached": false,
+   "eval_count": 739,
+   "cache_key": "eab2ecd7b2b5c179fbfe8de807bacfe6262cc1625c115606e13285a6adbf6f36"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_16 computes a checksum using a custom algorithm.",
+  "proposed_name": "fn_16",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x9d in the checksum calculation.",
+    "asserted_values": [
+     "0x9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3b9d in the final step of the checksum calculation.",
+    "asserted_values": [
+     "0x3b9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function reads from the input buffer pointed to by param_1.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function writes the checksum to the output buffer pointed to by param_3.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function uses a loop to process each byte of the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "NAME",
+    "text": "The function appears to be implementing a custom checksum algorithm.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar2;\n  int iVar3;\n  long lVar4;\n\n  uVar2 = (uint)((ulong)arg >> 0x20) ^ (uint)arg;\n  if (len != 0) {\n    lVar4 = 0;\n    do {\n      uint8_t *pbVar1 = (uint8_t *)(in + lVar4);\n      iVar3 = (int)lVar4;\n      lVar4 = lVar4 + 1;\n      uVar2 = (uint)*pbVar1 * 0x9d + iVar3 + (uVar2 << 7 | uVar2 >> 0x19);\n    } while (len != lVar4);\n  }\n  uVar2 = (uVar2 >> 0xf ^ uVar2) * 0x3b9d;\n  return uVar2 >> 0xd ^ uVar2;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x9d in the checksum calculation.",
+   "asserted_values": [
+    "0x9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3b9d in the final step of the checksum calculation.",
+   "asserted_values": [
+    "0x3b9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function reads from the input buffer pointed to by param_1.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function writes the checksum to the output buffer pointed to by param_3.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "7",
+   "type": "NAME",
+   "text": "The function appears to be implementing a custom checksum algorithm.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

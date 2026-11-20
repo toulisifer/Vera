@@ -1,0 +1,177 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.2,
+   "cached": false,
+   "eval_count": 679,
+   "cache_key": "6bd8fd28ac910806cc70f74e1fb7616102acd4b56750d046bd302455c438fbfe"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_20 appears to be a custom permutation function that rearranges elements from the input array based on the provided parameters and outputs the result. It does not use a known algorithm like CRC or hash.",
+  "proposed_name": "custom_permutation",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "claim_1",
+    "type": "IO",
+    "text": "Returns VERA_ERR when param_2 > param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "claim_2",
+    "type": "SIDE",
+    "text": "Writes to out[0..<param_2>].",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim_3",
+    "type": "CF",
+    "text": "Performs a loop that iterates from param_2 to 0.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim_4",
+    "type": "CF",
+    "text": "Performs a nested loop that iterates from 8 to param_2.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.7
+   },
+   {
+    "id": "claim_5",
+    "type": "CONST",
+    "text": "Uses the constant 0x706050403020100.",
+    "asserted_values": [
+     "0x706050403020100"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim_6",
+    "type": "CONST",
+    "text": "Uses the constant 0x2D6B.",
+    "asserted_values": [
+     "0x2D6B"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim_7",
+    "type": "CONST",
+    "text": "Uses the constant 0x3C71.",
+    "asserted_values": [
+     "0x3C71"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len <= arg) {\n        for (size_t i = len; i > 0; i--) {\n            out[i-1] = in[i-1];\n        }\n        return len;\n    } else {\n        return VERA_ERR;\n    }\n}\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_2 > param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "CF",
+   "text": "Performs a loop that iterates from param_2 to 0.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim_4",
+   "type": "CF",
+   "text": "Performs a nested loop that iterates from 8 to param_2.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.7
+  },
+  {
+   "id": "claim_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x706050403020100.",
+   "asserted_values": [
+    "0x706050403020100"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim_6",
+   "type": "CONST",
+   "text": "Uses the constant 0x2D6B.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim_7",
+   "type": "CONST",
+   "text": "Uses the constant 0x3C71.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "claim_2",
+   "type": "SIDE",
+   "text": "Writes to out[0..<param_2>].",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   },
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+{
+ "fn": "fn_13",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CF",
+   "text": "The function uses a loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes data to out.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 is greater than param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Writes data to out when param_2 is not greater than param_5.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes data to local_128.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Reads data from local_130.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes data to local_128 using data from local_130 and local_128.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "Writes data to out using data from local_128.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

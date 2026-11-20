@@ -1,0 +1,200 @@
+{
+ "fn": "fn_06",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_2 > param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns len when param_2 <= param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= param_5",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the transformed data to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Contains a do-while loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Contains a nested do-while loop that iterates over the input data again.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51E3"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "9",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1F9"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "10",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "11",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of DAT_00104018.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 4,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 11,
+ "explanation_clean": true
+}

@@ -1,0 +1,402 @@
+{
+ "fn_01": {
+  "plain": {
+   "insns": 40,
+   "jcc": 2,
+   "blocks": 7,
+   "bytes": 133
+  },
+  "opt": {
+   "insns": 25,
+   "jcc": 3,
+   "blocks": 7,
+   "bytes": 76
+  },
+  "obf": {
+   "insns": 82,
+   "jcc": 11,
+   "blocks": 18,
+   "bytes": 290
+  }
+ },
+ "fn_02": {
+  "plain": {
+   "insns": 29,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 116
+  },
+  "opt": {
+   "insns": 13,
+   "jcc": 2,
+   "blocks": 4,
+   "bytes": 52
+  },
+  "obf": {
+   "insns": 64,
+   "jcc": 8,
+   "blocks": 15,
+   "bytes": 244
+  }
+ },
+ "fn_03": {
+  "plain": {
+   "insns": 53,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 185
+  },
+  "opt": {
+   "insns": 33,
+   "jcc": 2,
+   "blocks": 6,
+   "bytes": 118
+  },
+  "obf": {
+   "insns": 86,
+   "jcc": 8,
+   "blocks": 19,
+   "bytes": 295
+  }
+ },
+ "fn_04": {
+  "plain": {
+   "insns": 30,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 101
+  },
+  "opt": {
+   "insns": 18,
+   "jcc": 2,
+   "blocks": 6,
+   "bytes": 54
+  },
+  "obf": {
+   "insns": 63,
+   "jcc": 8,
+   "blocks": 17,
+   "bytes": 226
+  }
+ },
+ "fn_05": {
+  "plain": {
+   "insns": 239,
+   "jcc": 3,
+   "blocks": 8,
+   "bytes": 754
+  },
+  "opt": {
+   "insns": 75,
+   "jcc": 3,
+   "blocks": 7,
+   "bytes": 240
+  },
+  "obf": {
+   "insns": 114,
+   "jcc": 8,
+   "blocks": 13,
+   "bytes": 392
+  }
+ },
+ "fn_06": {
+  "plain": {
+   "insns": 126,
+   "jcc": 6,
+   "blocks": 18,
+   "bytes": 697
+  },
+  "opt": {
+   "insns": 113,
+   "jcc": 7,
+   "blocks": 14,
+   "bytes": 456
+  },
+  "obf": {
+   "insns": 151,
+   "jcc": 11,
+   "blocks": 21,
+   "bytes": 592
+  }
+ },
+ "fn_07": {
+  "plain": {
+   "insns": 220,
+   "jcc": 4,
+   "blocks": 10,
+   "bytes": 791
+  },
+  "opt": {
+   "insns": 113,
+   "jcc": 5,
+   "blocks": 16,
+   "bytes": 394
+  },
+  "obf": {
+   "insns": 155,
+   "jcc": 9,
+   "blocks": 24,
+   "bytes": 553
+  }
+ },
+ "fn_08": {
+  "plain": {
+   "insns": 40,
+   "jcc": 2,
+   "blocks": 7,
+   "bytes": 133
+  },
+  "opt": {
+   "insns": 25,
+   "jcc": 3,
+   "blocks": 7,
+   "bytes": 76
+  },
+  "obf": {
+   "insns": 82,
+   "jcc": 11,
+   "blocks": 18,
+   "bytes": 290
+  }
+ },
+ "fn_09": {
+  "plain": {
+   "insns": 29,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 116
+  },
+  "opt": {
+   "insns": 13,
+   "jcc": 2,
+   "blocks": 4,
+   "bytes": 52
+  },
+  "obf": {
+   "insns": 64,
+   "jcc": 8,
+   "blocks": 15,
+   "bytes": 244
+  }
+ },
+ "fn_10": {
+  "plain": {
+   "insns": 53,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 185
+  },
+  "opt": {
+   "insns": 33,
+   "jcc": 2,
+   "blocks": 6,
+   "bytes": 118
+  },
+  "obf": {
+   "insns": 86,
+   "jcc": 8,
+   "blocks": 19,
+   "bytes": 295
+  }
+ },
+ "fn_11": {
+  "plain": {
+   "insns": 31,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 103
+  },
+  "opt": {
+   "insns": 17,
+   "jcc": 2,
+   "blocks": 6,
+   "bytes": 54
+  },
+  "obf": {
+   "insns": 63,
+   "jcc": 8,
+   "blocks": 18,
+   "bytes": 226
+  }
+ },
+ "fn_12": {
+  "plain": {
+   "insns": 239,
+   "jcc": 3,
+   "blocks": 8,
+   "bytes": 754
+  },
+  "opt": {
+   "insns": 75,
+   "jcc": 3,
+   "blocks": 7,
+   "bytes": 240
+  },
+  "obf": {
+   "insns": 114,
+   "jcc": 8,
+   "blocks": 13,
+   "bytes": 392
+  }
+ },
+ "fn_13": {
+  "plain": {
+   "insns": 127,
+   "jcc": 6,
+   "blocks": 18,
+   "bytes": 703
+  },
+  "opt": {
+   "insns": 113,
+   "jcc": 7,
+   "blocks": 13,
+   "bytes": 471
+  },
+  "obf": {
+   "insns": 152,
+   "jcc": 11,
+   "blocks": 21,
+   "bytes": 592
+  }
+ },
+ "fn_14": {
+  "plain": {
+   "insns": 220,
+   "jcc": 4,
+   "blocks": 10,
+   "bytes": 791
+  },
+  "opt": {
+   "insns": 113,
+   "jcc": 5,
+   "blocks": 16,
+   "bytes": 394
+  },
+  "obf": {
+   "insns": 155,
+   "jcc": 9,
+   "blocks": 24,
+   "bytes": 553
+  }
+ },
+ "fn_15": {
+  "plain": {
+   "insns": 94,
+   "jcc": 9,
+   "blocks": 20,
+   "bytes": 363
+  },
+  "opt": {
+   "insns": 87,
+   "jcc": 13,
+   "blocks": 28,
+   "bytes": 296
+  },
+  "obf": {
+   "insns": 117,
+   "jcc": 18,
+   "blocks": 30,
+   "bytes": 406
+  }
+ },
+ "fn_16": {
+  "plain": {
+   "insns": 42,
+   "jcc": 1,
+   "blocks": 4,
+   "bytes": 143
+  },
+  "opt": {
+   "insns": 25,
+   "jcc": 2,
+   "blocks": 4,
+   "bytes": 73
+  },
+  "obf": {
+   "insns": 73,
+   "jcc": 9,
+   "blocks": 14,
+   "bytes": 256
+  }
+ },
+ "fn_17": {
+  "plain": {
+   "insns": 91,
+   "jcc": 6,
+   "blocks": 14,
+   "bytes": 348
+  },
+  "opt": {
+   "insns": 44,
+   "jcc": 8,
+   "blocks": 15,
+   "bytes": 144
+  },
+  "obf": {
+   "insns": 84,
+   "jcc": 12,
+   "blocks": 24,
+   "bytes": 303
+  }
+ },
+ "fn_18": {
+  "plain": {
+   "insns": 96,
+   "jcc": 19,
+   "blocks": 35,
+   "bytes": 389
+  },
+  "opt": {
+   "insns": 90,
+   "jcc": 24,
+   "blocks": 44,
+   "bytes": 327
+  },
+  "obf": {
+   "insns": 187,
+   "jcc": 34,
+   "blocks": 66,
+   "bytes": 807
+  }
+ },
+ "fn_19": {
+  "plain": {
+   "insns": 62,
+   "jcc": 2,
+   "blocks": 7,
+   "bytes": 202
+  },
+  "opt": {
+   "insns": 30,
+   "jcc": 3,
+   "blocks": 7,
+   "bytes": 99
+  },
+  "obf": {
+   "insns": 61,
+   "jcc": 8,
+   "blocks": 14,
+   "bytes": 203
+  }
+ },
+ "fn_20": {
+  "plain": {
+   "insns": 113,
+   "jcc": 7,
+   "blocks": 21,
+   "bytes": 424
+  },
+  "opt": {
+   "insns": 68,
+   "jcc": 8,
+   "blocks": 17,
+   "bytes": 251
+  },
+  "obf": {
+   "insns": 101,
+   "jcc": 13,
+   "blocks": 22,
+   "bytes": 384
+  }
+ }
+}

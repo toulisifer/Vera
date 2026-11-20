@@ -1,0 +1,85 @@
+{
+ "fn": "fn_02",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function multiplies the hash value by 0x100000001b3 in each iteration.",
+   "asserted_values": [
+    "0x100000001b3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function XORs the hash value with the current byte in each iteration.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "The function returns the computed hash value.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

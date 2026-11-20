@@ -1,0 +1,137 @@
+{
+ "fn": "fn_17",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffffffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFFFFFFFFFF (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len <= i or in[i] == '\\0'.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len <= i or in[i] == '\\0'",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns cnt << 0x20 | total when out_cap >= cnt.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= cnt",
+    "returns": "cnt << 0x20 | total"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len < i + 2 or len < i + in[i + 1] + 2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < i + 2 or len < i + in[i + 1] + 2",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes in[i] to out[cnt] when out_cap >= cnt.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes total to out[cnt + 1] when out_cap >= cnt.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Loops until len <= i or in[i] == '\\0'.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Breaks the loop when len < i + 2 or len < i + in[i + 1] + 2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 1,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

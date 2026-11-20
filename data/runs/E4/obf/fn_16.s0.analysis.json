@@ -1,0 +1,213 @@
+{
+ "fn": "fn_16",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 21.2,
+   "cached": false,
+   "eval_count": 1037,
+   "cache_key": "49b3c452ec92b2cef6410101ef2be375dbae767a66d3eb2176a8213b166d5915"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_16` appears to implement a custom hash function.",
+  "proposed_name": "fn_16",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "Implements a custom hash function.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function contains loops and conditional branches.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not modify the input buffer in-place.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "Uses the constant 0x3b9d.",
+    "asserted_values": [
+     "0x3b9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "Uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "Uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "CONST",
+    "text": "Uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "9",
+    "type": "CONST",
+    "text": "Uses the constant 0x9d.",
+    "asserted_values": [
+     "0x9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "10",
+    "type": "CONST",
+    "text": "Uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "11",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when an error occurs.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar4 = (uint)((uint64_t)arg >> 0x20) ^ (uint)arg;\n  if (len != 0) {\n    uint uVar8 = 0;\n    for (size_t lVar5 = 0; lVar5 < len; lVar5++) {\n      uVar4 = DAT_00104008 + (uVar4 ^ (uint)(lVar5 << 7)) * 0x2d6b;\n      uVar4 = uVar4 >> 0xb ^ uVar4;\n      uVar4 = uVar4 << 7 | uVar4 >> 0x19;\n      uVar4 = uVar4 + (uint)*in * 0x9d + lVar5;\n      in++;\n      uVar8 += 0x1f9;\n      uVar4 += 0x51e3 ^ uVar8;\n    }\n  }\n  if (DAT_00104010 != 0) {\n    for (size_t uVar8 = 0; uVar8 < DAT_00104010; uVar8++) {\n      uVar4 = uVar4 >> 5 ^ uVar4 * 8 ^ uVar8;\n    }\n  }\n  uVar4 = (uVar4 >> 0xf ^ uVar4) * 0x3b9d;\n  return uVar4 >> 0xd ^ uVar4;\n}\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function contains loops and conditional branches.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer in-place.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "Uses the constant 0x3b9d.",
+   "asserted_values": [
+    "0x3b9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "9",
+   "type": "CONST",
+   "text": "Uses the constant 0x9d.",
+   "asserted_values": [
+    "0x9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "10",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "11",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when an error occurs.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

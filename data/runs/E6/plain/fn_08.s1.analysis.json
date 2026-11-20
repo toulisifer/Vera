@@ -1,0 +1,123 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 11.0,
+   "cached": false,
+   "eval_count": 534,
+   "cache_key": "b1cdc93a7ff36b647c59be8887e449c55516103b136c90a26fd7026dff7e0869"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_08 computes a checksum using a specific algorithm and returns the result.",
+  "proposed_name": "fn_08",
+  "algorithm": "Implements a custom checksum algorithm.",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "ALG",
+    "type": "ALG",
+    "text": "Implements a custom checksum algorithm.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Loops over each byte in the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Loops over each bit in the current byte.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns the computed checksum when len > 0.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns VERA_ERR when len == 0.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return VERA_ERR;\n  }\n\n  uint32_t h = 0xffffffff;\n  for (size_t i = 0; i < len; i++) {\n    h = h ^ in[i];\n    for (uint8_t b = 0; b < 8; b++) {\n      h = -(h & 1) & 0xf7179bf5 ^ h >> 1;\n    }\n  }\n\n  return (uint64_t)~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "ALG",
+   "type": "ALG",
+   "text": "Implements a custom checksum algorithm.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Loops over each byte in the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Loops over each bit in the current byte.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns the computed checksum when len > 0.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns VERA_ERR when len == 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,95 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.2,
+   "cached": false,
+   "eval_count": 425,
+   "cache_key": "840d8db60aa0bc2df3fda4757b306dc6afdd9db902ee8f813f7abb77c853bfbd"
+  }
+ ],
+ "output": {
+  "summary": "The provided decompiler output does not correspond to a function with the given prototype. The decompiled code does not perform any operations related to the parameters `in`, `len`, `arg`, `out`, or `out_cap`. Instead, it contains loops that run a certain number of times based on global variables and function parameters. This suggests that the actual function is not present in the decompiled output or the decompiler has produced incorrect output.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 0.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CF",
+    "text": "The function contains a loop that runs `DAT_00104010` times when `DAT_00104010` is non-zero.",
+    "asserted_values": [
+     "0x00104010"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function contains a loop that runs `param_2` times when `param_2` is non-zero.",
+    "asserted_values": [],
+    "confidence": 0.6
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Does not return any value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not modify any global or input variables.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "void fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CF",
+   "text": "The function contains a loop that runs `DAT_00104010` times when `DAT_00104010` is non-zero.",
+   "asserted_values": [
+    "0x00104010"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function contains a loop that runs `param_2` times when `param_2` is non-zero.",
+   "asserted_values": [],
+   "confidence": 0.6
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Does not return any value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not modify any global or input variables.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

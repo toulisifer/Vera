@@ -1,0 +1,328 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_15",
+ "n_instructions": 117,
+ "immediates": [
+  {
+   "addr": 4359,
+   "insn": "je 0x1293",
+   "value": 4755,
+   "size": 8
+  },
+  {
+   "addr": 4399,
+   "insn": "jae 0x1171",
+   "value": 4465,
+   "size": 8
+  },
+  {
+   "addr": 4408,
+   "insn": "mov eax, 2",
+   "value": 2,
+   "size": 4
+  },
+  {
+   "addr": 4425,
+   "insn": "jne 0x1171",
+   "value": 4465,
+   "size": 8
+  },
+  {
+   "addr": 4439,
+   "insn": "je 0x1171",
+   "value": 4465,
+   "size": 8
+  },
+  {
+   "addr": 4448,
+   "insn": "cmp rax, 0xff",
+   "value": 255,
+   "size": 8
+  },
+  {
+   "addr": 4457,
+   "insn": "add rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4463,
+   "insn": "jne 0x1150",
+   "value": 4432,
+   "size": 8
+  },
+  {
+   "addr": 4473,
+   "insn": "test al, 1",
+   "value": 1,
+   "size": 1
+  },
+  {
+   "addr": 4475,
+   "insn": "jne 0x1187",
+   "value": 4487,
+   "size": 8
+  },
+  {
+   "addr": 4485,
+   "insn": "je 0x11ab",
+   "value": 4523,
+   "size": 8
+  },
+  {
+   "addr": 4496,
+   "insn": "shl rdx, 7",
+   "value": 7,
+   "size": 1
+  },
+  {
+   "addr": 4503,
+   "insn": "imul rdx, rdx, 0x2d6b",
+   "value": 11627,
+   "size": 8
+  },
+  {
+   "addr": 4516,
+   "insn": "shr r12, 0xb",
+   "value": 11,
+   "size": 1
+  },
+  {
+   "addr": 4523,
+   "insn": "add r12, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4530,
+   "insn": "jae 0x11bc",
+   "value": 4540,
+   "size": 8
+  },
+  {
+   "addr": 4535,
+   "insn": "jmp 0x1128",
+   "value": 4392,
+   "size": 8
+  },
+  {
+   "addr": 4540,
+   "insn": "mov rsi, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4550,
+   "insn": "jb 0x127f",
+   "value": 4735,
+   "size": 8
+  },
+  {
+   "addr": 4567,
+   "insn": "jae 0x1250",
+   "value": 4688,
+   "size": 8
+  },
+  {
+   "addr": 4580,
+   "insn": "mov edx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4585,
+   "insn": "jmp 0x120a",
+   "value": 4618,
+   "size": 8
+  },
+  {
+   "addr": 4592,
+   "insn": "cmp rdx, 0xff",
+   "value": 255,
+   "size": 8
+  },
+  {
+   "addr": 4599,
+   "insn": "je 0x1289",
+   "value": 4745,
+   "size": 8
+  },
+  {
+   "addr": 4605,
+   "insn": "add rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4609,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4616,
+   "insn": "jae 0x120f",
+   "value": 4623,
+   "size": 8
+  },
+  {
+   "addr": 4621,
+   "insn": "je 0x11f0",
+   "value": 4592,
+   "size": 8
+  },
+  {
+   "addr": 4630,
+   "insn": "or rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4638,
+   "insn": "and edx, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4641,
+   "insn": "cmp rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4645,
+   "insn": "je 0x1260",
+   "value": 4704,
+   "size": 8
+  },
+  {
+   "addr": 4650,
+   "insn": "add rsi, 0x51e4",
+   "value": 20964,
+   "size": 8
+  },
+  {
+   "addr": 4657,
+   "insn": "shl rdx, 6",
+   "value": 6,
+   "size": 1
+  },
+  {
+   "addr": 4674,
+   "insn": "jae 0x127f",
+   "value": 4735,
+   "size": 8
+  },
+  {
+   "addr": 4686,
+   "insn": "jb 0x11e0",
+   "value": 4576,
+   "size": 8
+  },
+  {
+   "addr": 4688,
+   "insn": "mov edx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4693,
+   "insn": "jmp 0x120f",
+   "value": 4623,
+   "size": 8
+  },
+  {
+   "addr": 4710,
+   "insn": "cmp edx, 0x3c71",
+   "value": 15473,
+   "size": 4
+  },
+  {
+   "addr": 4716,
+   "insn": "jne 0x1227",
+   "value": 4647,
+   "size": 8
+  },
+  {
+   "addr": 4726,
+   "insn": "add rsi, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4733,
+   "insn": "jb 0x1244",
+   "value": 4676,
+   "size": 8
+  },
+  {
+   "addr": 4745,
+   "insn": "mov edx, 0xffffffff",
+   "value": 4294967295,
+   "size": 4
+  },
+  {
+   "addr": 4750,
+   "insn": "jmp 0x120f",
+   "value": 4623,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4392,
+   "value": 1
+  },
+  {
+   "addr": 4420,
+   "value": 1
+  },
+  {
+   "addr": 4465,
+   "value": 1
+  },
+  {
+   "addr": 4560,
+   "value": 1
+  },
+  {
+   "addr": 4679,
+   "value": 1
+  },
+  {
+   "addr": 4722,
+   "value": 1
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4477,
+   "target": 16400,
+   "section": null
+  },
+  {
+   "addr": 4490,
+   "target": 16392,
+   "section": ".data"
+  },
+  {
+   "addr": 4704,
+   "target": 16392,
+   "section": ".data"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000713c0000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

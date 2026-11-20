@@ -1,0 +1,113 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 17.3,
+   "cached": false,
+   "eval_count": 641,
+   "cache_key": "8ea537faf3a38f1cf26d512e54b7e7aa9b13444cfa9c5f1ed1a0854f0672c76a"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_15 processes an input buffer 'in' of length 'len' and writes the result to 'out'. It counts the number of consecutive identical bytes in 'in' and writes the count and the byte to 'out'. If 'out_cap' is insufficient, it returns VERA_ERR.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xff.",
+    "asserted_values": [
+     "0xff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns VERA_ERR when 'out_cap' is less than the required output size.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the count of consecutive identical bytes and the byte to 'out'.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Uses nested loops to iterate through 'in' and count consecutive identical bytes.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "Counts consecutive identical bytes in 'in' and writes the count and the byte to 'out'.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_15(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t need = 0;\n  size_t o = 0;\n  for (size_t i = 0; i < len; i++) {\n    size_t r = 1;\n    while ((i + r < len) && (in[i + r] == in[i]) && (r < 0xff)) {\n      r++;\n    }\n    need += 2;\n  }\n  if (out_cap < need) {\n    return VERA_ERR;\n  }\n  for (size_t i = 0; i < len; i++) {\n    size_t r = 1;\n    while ((i + r < len) && (in[i + r] == in[i]) && (r < 0xff)) {\n      r++;\n    }\n    out[o++] = (uint8_t)r;\n    out[o++] = in[i];\n  }\n  return o;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xff.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns VERA_ERR when 'out_cap' is less than the required output size.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the count of consecutive identical bytes and the byte to 'out'.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Uses nested loops to iterate through 'in' and count consecutive identical bytes.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "Counts consecutive identical bytes in 'in' and writes the count and the byte to 'out'.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

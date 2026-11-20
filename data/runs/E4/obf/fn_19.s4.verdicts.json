@@ -1,0 +1,91 @@
+{
+ "fn": "fn_19",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "input_check",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_5 is less than param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < param_2",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "zero_length",
+   "type": "IO",
+   "text": "Returns param_2 when param_2 is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "param_2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "processing_loop",
+   "type": "CF",
+   "text": "A loop iterates over each byte of the input data.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "data_modification",
+   "type": "SIDE",
+   "text": "Writes the processed data to out.",
+   "asserted_values": [
+    "param_4"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "custom_algorithm",
+   "type": "ALG",
+   "text": "Implements a custom algorithm.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

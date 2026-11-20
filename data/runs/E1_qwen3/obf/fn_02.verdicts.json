@@ -1,0 +1,306 @@
+{
+ "fn": "fn_02",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "io_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0xcbf29ce484222325"
+    }
+   }
+  },
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns len when len < 16.",
+   "asserted_values": [
+    "16"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len < 16",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 16",
+     "returns": "len",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0xcbf29ce484222325"
+    }
+   }
+  },
+  {
+   "id": "io_2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v09",
+     "tag": "cap0",
+     "observed": "ret 0x4f3dd8abed6d3167"
+    }
+   }
+  },
+  {
+   "id": "cf_0",
+   "type": "CF",
+   "text": "Uses a loop to process each byte of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Uses a loop to process additional data after the initial input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "side_0",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "const_0",
+   "type": "CONST",
+   "text": "Uses the constant 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "Uses the constant 0x100000001b3.",
+   "asserted_values": [
+    "0x100000001b3"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x100000001b3",
+      "form": "imm",
+      "detail": "0x100000001B3 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_2",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_3",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_4",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_6",
+   "type": "CONST",
+   "text": "Uses the constant 0xb.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_7",
+   "type": "CONST",
+   "text": "Uses the constant 0x8.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_8",
+   "type": "CONST",
+   "text": "Uses the constant 0x5.",
+   "asserted_values": [
+    "0x5"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "name_0",
+   "type": "NAME",
+   "text": "Processes input data using a custom algorithm involving bitwise operations and transformations on a 64-bit value.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 6,
+  "unsupported": 6,
+  "contradicted": 3
+ },
+ "n_claims": 16,
+ "explanation_clean": false
+}

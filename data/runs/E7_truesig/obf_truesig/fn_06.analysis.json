@@ -1,0 +1,241 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.8,
+   "cached": false,
+   "eval_count": 974,
+   "cache_key": "80d33e730abdec4541f2831124637929d2a060201f98139228ebeb06c6e78771"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be implementing a custom encryption algorithm. It takes an input buffer, a length, an argument, and an output buffer. The function performs several bitwise operations and swaps elements in the input and output buffers.",
+  "proposed_name": "fn_06",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len > out_cap.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len > out_cap",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns len when len <= out_cap.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len <= out_cap",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes to out[0..len-1].",
+    "asserted_values": [
+     "out[0..len-1]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not write to out when len == 0.",
+    "asserted_values": [
+     "out"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 0",
+     "writes_out": false
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the input buffer.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Contains a loop that swaps elements in the input and output buffers.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "Uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "8",
+    "type": "CONST",
+    "text": "Uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "9",
+    "type": "CONST",
+    "text": "Uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "10",
+    "type": "CONST",
+    "text": "Uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len > out_cap) {\n    return VERA_ERR;\n  }\n\n  uint8_t local_130[8];\n  uint8_t local_128[264];\n\n  for (size_t i = 0; i < len; i++) {\n    local_130[i % 8] = (arg >> (i * 8)) & 0x3f;\n  }\n\n  for (size_t i = 0; i < len; i++) {\n    uint8_t b = local_128[i];\n    uint8_t b2 = local_128[(uint)b + local_128[i]] ^ in[i];\n    out[i] = b2;\n    local_128[i] = b;\n    local_128[(uint)b + local_128[i]] = b2;\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len > out_cap.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len > out_cap",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns len when len <= out_cap.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len <= out_cap",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to out when len == 0.",
+   "asserted_values": [
+    "out"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 0",
+    "writes_out": false
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input buffer.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Contains a loop that swaps elements in the input and output buffers.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "9",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "10",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1].",
+   "asserted_values": [
+    "out[0..len-1]"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

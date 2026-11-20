@@ -1,0 +1,85 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns -1 when the input length is less than 3.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is a multiple of 3.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "(param_2 + 2) / 3 << 2 <= param_5",
+    "returns": "param_2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes encoded data to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Uses a loop to process the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Handles the case when the input length is 1 or 2 bytes separately.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

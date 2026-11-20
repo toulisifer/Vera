@@ -1,0 +1,63 @@
+{
+ "fn": "fn_18",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the index of the first unbalanced character or the length of the input if all characters are balanced.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Does not modify the input or output buffers.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Uses a loop to iterate through the input string.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "Purpose is to check for balanced parentheses, square brackets, and curly braces in the input string.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

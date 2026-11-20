@@ -1,0 +1,128 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_17",
+ "n_instructions": 44,
+ "immediates": [
+  {
+   "addr": 4370,
+   "insn": "jne 0x113c",
+   "value": 4412,
+   "size": 8
+  },
+  {
+   "addr": 4383,
+   "insn": "jb 0x1188",
+   "value": 4488,
+   "size": 8
+  },
+  {
+   "addr": 4398,
+   "insn": "jb 0x1188",
+   "value": 4488,
+   "size": 8
+  },
+  {
+   "addr": 4403,
+   "insn": "add r10, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4410,
+   "insn": "jae 0x1142",
+   "value": 4418,
+   "size": 8
+  },
+  {
+   "addr": 4412,
+   "insn": "cmp byte ptr [rdx + rax], 0",
+   "value": 0,
+   "size": 1
+  },
+  {
+   "addr": 4416,
+   "insn": "jne 0x1118",
+   "value": 4376,
+   "size": 8
+  },
+  {
+   "addr": 4418,
+   "insn": "mov rax, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4428,
+   "insn": "jb 0x118f",
+   "value": 4495,
+   "size": 8
+  },
+  {
+   "addr": 4433,
+   "insn": "shl rax, 0x20",
+   "value": 32,
+   "size": 1
+  },
+  {
+   "addr": 4443,
+   "insn": "je 0x118f",
+   "value": 4495,
+   "size": 8
+  },
+  {
+   "addr": 4460,
+   "insn": "add rcx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4481,
+   "insn": "jne 0x1168",
+   "value": 4456,
+   "size": 8
+  },
+  {
+   "addr": 4488,
+   "insn": "mov rax, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4376,
+   "value": 2
+  },
+  {
+   "addr": 4385,
+   "value": 1
+  },
+  {
+   "addr": 4464,
+   "value": 18446744073709551615
+  },
+  {
+   "addr": 4468,
+   "value": 1
+  },
+  {
+   "addr": 4473,
+   "value": 2
+  }
+ ],
+ "data_refs": [],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

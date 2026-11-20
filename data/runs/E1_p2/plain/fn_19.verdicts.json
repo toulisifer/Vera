@@ -1,0 +1,57 @@
+{
+ "fn": "fn_19",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when out_cap is less than len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes the transformed bytes of the input buffer to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Iterates over each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 2,
+  "contradicted": 0
+ },
+ "n_claims": 3,
+ "explanation_clean": true
+}

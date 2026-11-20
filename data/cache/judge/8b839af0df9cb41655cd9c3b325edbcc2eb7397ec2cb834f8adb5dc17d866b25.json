@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly uses the constant 0xfff1 in the modulo operations.", "seconds": 0.8}

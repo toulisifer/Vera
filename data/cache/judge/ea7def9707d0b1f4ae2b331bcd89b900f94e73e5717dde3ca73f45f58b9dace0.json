@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code returns ~h, and when len == 0, the loop is not executed, so h remains 0xffffffff, and ~h is 0xFFFFFFFFFFFFFFFF.", "seconds": 1.3}

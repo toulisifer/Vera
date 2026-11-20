@@ -1,0 +1,137 @@
+{
+ "fn": "fn_05",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "CF",
+   "text": "The function contains a loop that runs until iVar3 equals -0x3910c8e0.",
+   "asserted_values": [
+    "-0x3910c8e0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0002",
+   "type": "CF",
+   "text": "The loop body performs arithmetic operations on uVar1 and uVar2 using constants and input data.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0003",
+   "type": "IO",
+   "text": "Returns 8 when the input length is greater than 0x17 and the output capacity is greater than 7.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 < param_2 && 7 < param_5",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than or equal to 0x17 or the output capacity is less than or equal to 7.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 >= param_2 || 7 >= param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "SIDE",
+   "text": "Writes a 64-bit value to the output buffer based on uVar1 and uVar2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_0006",
+   "type": "CONST",
+   "text": "The function uses the constant -0x61c88647 in its calculations.",
+   "asserted_values": [
+    "-0x61c88647"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "-0x61C88647",
+      "form": "neg",
+      "detail": "-0x9E3779B9 xuất hiện dạng 0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0007",
+   "type": "CONST",
+   "text": "The function uses the constant 0x10 in its calculations.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "The function uses the constant 0x18 in its calculations.",
+   "asserted_values": [
+    "0x18"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

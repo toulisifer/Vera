@@ -1,0 +1,1 @@
+{"key": "e234f65e4fcac99b0bd90eab2d510b22235ed4cea8205452fb3fd375d5972fab", "content": "uint32_t fn_04(const uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap)\n{\n    uint32_t h = 5381;\n    for (size_t i = 0; i < len; i++)\n        h = (h << 5) + h + in[i];\n    return h;\n}", "seconds": 4.6, "eval_count": 102}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function writes 8 bytes to the output buffer starting from out[0] to out[7].", "seconds": 1.1}

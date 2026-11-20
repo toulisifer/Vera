@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a loop that iterates over the input data using the parameter 'param_1' and 'param_2'.", "seconds": 1.1}

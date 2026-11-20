@@ -1,0 +1,149 @@
+{
+ "fn": "fn_16",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 4,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 16.5,
+   "cached": false,
+   "eval_count": 807,
+   "cache_key": "89f7bc59a2bc347b4ca97a49eed423d61a4a6b555b77c64e7fb37d4d8af6c7d2"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to implement a custom checksum algorithm.",
+  "proposed_name": "fn_16",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3C71.",
+    "asserted_values": [
+     "0x3C71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2D6B.",
+    "asserted_values": [
+     "0x2D6B"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function contains a nested loop structure.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function includes a conditional check for DAT_00104010.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function includes a conditional check for DAT_00104008.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "VERA_ERR"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar4 = (uint)((ulong)arg >> 0x20) ^ (uint)arg;\n  if (len != 0) {\n    uint uVar8 = 0;\n    for (size_t i = 0; i < len; i++) {\n      uVar4 = DAT_00104008 + (uVar4 ^ (uint)(i << 7)) * 0x2d6b;\n      uVar4 = uVar4 >> 0xb ^ uVar4;\n      uVar4 = uVar4 << 7 | uVar4 >> 0x19;\n      uVar4 = uVar4 + (uint)*in * 0x9d + (uint)i;\n      in++;\n    }\n    uVar4 = uVar4 + 0x51e3 ^ uVar8;\n    for (size_t i = 0; i < DAT_00104010; i++) {\n      uVar4 = uVar4 >> 5 ^ uVar4 * 8 ^ (uint)i;\n    }\n  }\n  uVar4 = (uVar4 >> 0xf ^ uVar4) * 0x3b9d;\n  return uVar4 >> 0xd ^ uVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3C71.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2D6B.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function contains a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function includes a conditional check for DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function includes a conditional check for DAT_00104008.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "VERA_ERR"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

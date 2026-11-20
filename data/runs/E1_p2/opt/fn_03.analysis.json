@@ -1,0 +1,107 @@
+{
+ "fn": "fn_03",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.2,
+   "cached": false,
+   "eval_count": 516,
+   "cache_key": "a8fd07fa1522df7704c3eb765ae483dff047ffbaaa29695e01ecbef79a92ebc0"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_03 computes a checksum using a custom algorithm and returns it.",
+  "proposed_name": "fn_03",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The algorithm uses a modulo operation with the value 0xfff1.",
+    "asserted_values": [
+     "0xfff1"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 1 when the input length is 0.",
+    "asserted_values": [
+     "1"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len == 0",
+     "returns": "1"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the computed checksum to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function uses a do-while loop to iterate over the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_03(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len != 0) {\n    uint uVar2 = 0;\n    uint uVar3 = 1;\n    for (size_t i = 0; i < len; i++) {\n      uint8_t bVar1 = in[i];\n      uVar3 = (uVar3 + bVar1) % 0xfff1;\n      uVar2 = (uVar2 + uVar3) % 0xfff1;\n    }\n    out[0] = (uVar2 >> 8) & 0xFF;\n    out[1] = uVar2 & 0xFF;\n    return uVar2 << 0x10 | uVar3;\n  }\n  return 1;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The algorithm uses a modulo operation with the value 0xfff1.",
+   "asserted_values": [
+    "0xfff1"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 1 when the input length is 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "1"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the computed checksum to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function uses a do-while loop to iterate over the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

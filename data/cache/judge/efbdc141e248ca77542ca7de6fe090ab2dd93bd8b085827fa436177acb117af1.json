@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if param_2 is greater than param_5 and returns 0xffffffffffffffff if true.", "seconds": 0.9}

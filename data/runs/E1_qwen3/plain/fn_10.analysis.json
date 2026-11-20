@@ -1,0 +1,146 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 353 column 15 (char 10520)"
+   ],
+   "seconds": 72.5,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "7a44b27e88787ec24b384be4f6230f3416dff4c9f29715ba9b03f623ec57a089"
+  },
+  {
+   "errors": [],
+   "seconds": 15.2,
+   "cached": false,
+   "eval_count": 651,
+   "cache_key": "7e7209823655014346a7075fea1715a8269e133d3f5f46e30ef92dcdb6b3d614"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input buffer and computes a 64-bit value based on a custom algorithm involving two 32-bit variables, a and b, which are updated in a loop over the input bytes. The result is a combination of a and b, with b shifted left by 16 bits.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Iterates over the input buffer using a for loop.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_2",
+    "type": "CF",
+    "text": "Updates the variable a using the formula a = (in[i] + a) % 0xffef.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_3",
+    "type": "CF",
+    "text": "Updates the variable b using the formula b = (b + a) % 0xffef.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_4",
+    "type": "CF",
+    "text": "Returns the result of combining a and b, with b shifted left by 16 bits.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_5",
+    "type": "IO",
+    "text": "Returns a 64-bit value when the input length is greater than zero.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_6",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_7",
+    "type": "CONST",
+    "text": "Uses the constant 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t a = 1;\n  uint32_t b = 0;\n  size_t i;\n\n  for (i = 0; i < len; i++) {\n    a = (in[i] + a) % 0xffef;\n    b = (b + a) % 0xffef;\n  }\n\n  return (uint64_t)a | (uint64_t)b << 16;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Iterates over the input buffer using a for loop.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Updates the variable a using the formula a = (in[i] + a) % 0xffef.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Updates the variable b using the formula b = (b + a) % 0xffef.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "Returns the result of combining a and b, with b shifted left by 16 bits.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns a 64-bit value when the input length is greater than zero.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_6",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

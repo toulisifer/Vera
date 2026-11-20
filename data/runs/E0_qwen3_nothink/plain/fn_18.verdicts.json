@@ -1,0 +1,213 @@
+{
+ "fn": "fn_18",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte in the input.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "The loop terminates when the input length is exhausted or an error is detected.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_2",
+   "type": "CF",
+   "text": "The function uses a state machine to track the current parsing mode (e.g., inside a string, inside a bracket, etc.).",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_3",
+   "type": "CF",
+   "text": "The function uses a stack-like structure to track opening brackets, parentheses, and braces.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_4",
+   "type": "CF",
+   "text": "The function skips processing if the current byte is a quote (\"), and enters a string mode.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_5",
+   "type": "CF",
+   "text": "The function processes opening brackets, parentheses, and braces by pushing them onto the stack.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_6",
+   "type": "CF",
+   "text": "The function processes closing brackets, parentheses, and braces by popping from the stack and checking for a match.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_7",
+   "type": "CF",
+   "text": "The function returns an error code if the stack is empty when a closing bracket is encountered.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_8",
+   "type": "CF",
+   "text": "The function returns an error code if the closing bracket does not match the corresponding opening bracket.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_9",
+   "type": "CF",
+   "text": "The function returns an error code if the input length is zero and the stack is not empty.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_11",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when a mismatch is detected.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_12",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is zero and the stack is not empty.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_13",
+   "type": "IO",
+   "text": "Returns the current index + 1 when a mismatch is detected.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_14",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "_15",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "_16",
+   "type": "CONST",
+   "text": "The maximum depth of the stack is 0x40 (64).",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 14,
+  "contradicted": 0
+ },
+ "n_claims": 16,
+ "explanation_clean": true
+}

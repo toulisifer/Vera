@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function uses a loop to generate the RC4 keystream and encrypt the input data.", "seconds": 0.7}

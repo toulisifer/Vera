@@ -1,0 +1,181 @@
+{
+ "fn": "fn_06",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len > out_cap.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len > out_cap",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns len when len <= out_cap.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len <= out_cap",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to out when len == 0.",
+   "asserted_values": [
+    "out"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 0",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "hàm có ghi out"
+    }
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input buffer.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Contains a loop that swaps elements in the input and output buffers.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "9",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "10",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 4,
+  "unsupported": 4,
+  "contradicted": 1
+ },
+ "n_claims": 9,
+ "explanation_clean": false
+}

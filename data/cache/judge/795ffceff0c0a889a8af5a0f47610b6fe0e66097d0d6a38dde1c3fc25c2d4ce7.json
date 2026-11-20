@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code processes input bytes into Base64-encoded output by using the standard Base64 encoding table and constructs the output string in the out buffer.", "seconds": 1.6}

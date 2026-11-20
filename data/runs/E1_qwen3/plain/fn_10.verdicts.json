@@ -1,0 +1,107 @@
+{
+ "fn": "fn_10",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Iterates over the input buffer using a for loop.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Updates the variable a using the formula a = (in[i] + a) % 0xffef.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Updates the variable b using the formula b = (b + a) % 0xffef.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "Returns the result of combining a and b, with b shifted left by 16 bits.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns a 64-bit value when the input length is greater than zero.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffef",
+      "form": "imm",
+      "detail": "0xFFEF (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_13",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_13(const unsigned char *in, size_t inlen, uint64_t seed, unsigned char *out, size_t outlen) ← chữ ký chung",
+ "raw": "size_t fn_13(const unsigned char *in, size_t inlen, uint64_t seed, unsigned char *out, size_t outlen)\n{\n    unsigned char S[256], *sp;\n    uint64_t j;\n    size_t i;\n    uint8_t k;\n\n    if (outlen < inlen)\n        return -1;\n\n    sp = S;\n    for (i = 0; i < 256; i++)\n        *sp++ = i;\n\n    sp = S;\n    for (i = 0; i < 256; i++) {\n        j = (j + sp[i] + ((uint8_t)(seed >> (8 * (i & 7))))) & 0xff;\n        k = sp[i];\n        sp[i] = sp[j];\n        sp[j] = k;\n    }\n\n    j = i = k = 0;\n    for (i = 0; i < inlen; i++) {\n        j = (j + S[i]) & 0xff;\n        k = (k + S[j]) & 0xff;\n        S[j] = S[k];\n        S[k] = S[i];\n        out[i] = S[(S[i] + S[j]) & 0xff] ^ in[i];\n    }\n\n    return inlen;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 35.4,
+   "cached": false,
+   "eval_count": 344,
+   "cache_key": "45c9c5034822088fbf4fbb24759ad919bb64d79c06cc7d31aa9d32596a570d1f"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const unsigned char *in, size_t inlen, uint64_t seed, unsigned char *out, size_t outlen)\n{\n    unsigned char S[256], *sp;\n    uint64_t j;\n    size_t i;\n    uint8_t k;\n\n    if (outlen < inlen)\n        return -1;\n\n    sp = S;\n    for (i = 0; i < 256; i++)\n        *sp++ = i;\n\n    sp = S;\n    for (i = 0; i < 256; i++) {\n        j = (j + sp[i] + ((uint8_t)(seed >> (8 * (i & 7))))) & 0xff;\n        k = sp[i];\n        sp[i] = sp[j];\n        sp[j] = k;\n    }\n\n    j = i = k = 0;\n    for (i = 0; i < inlen; i++) {\n        j = (j + S[i]) & 0xff;\n        k = (k + S[j]) & 0xff;\n        S[j] = S[k];\n        S[k] = S[i];\n        out[i] = S[(S[i] + S[j]) & 0xff] ^ in[i];\n    }\n\n    return inlen;\n}\nuint64_t fn_13(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (size_t)(len), (uint64_t)(arg), (unsigned char *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

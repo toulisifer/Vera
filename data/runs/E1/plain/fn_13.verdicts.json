@@ -1,0 +1,127 @@
+{
+ "fn": "fn_13",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The RC4 state table 's' is initialized with values from 0 to 255.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the length of the input data when the output capacity is sufficient.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the output capacity is insufficient.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "detail": "đúng trên 3 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes the encrypted data to the output buffer 'out'.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Uses a loop to initialize the RC4 state table 's'.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Uses a loop to generate the RC4 keystream and encrypt the input data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements RC4.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "source": "algorithm_field",
+   "raw_algorithm": "RC4",
+   "verdict": {
+    "algorithm": "RC4",
+    "v3": {
+     "label": "unsupported",
+     "method": "V3",
+     "reason": "RC4 không có hằng đặc trưng"
+    },
+    "label": "contradicted",
+    "method": "V1b",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "expected_ret": "0x0000000000000001",
+     "oracle_ret": "0x0000000000000001"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 1
+ },
+ "n_claims": 7,
+ "explanation_clean": false
+}

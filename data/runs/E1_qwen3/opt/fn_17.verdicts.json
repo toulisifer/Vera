@@ -1,0 +1,149 @@
+{
+ "fn": "fn_17",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len < uVar1 + 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len < uVar1 + 2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len < uVar1.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len < uVar1",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns uVar1 when uVar6 <= out_cap and uVar6 != 0.",
+   "asserted_values": [
+    "uVar1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "uVar6 <= out_cap && uVar6 != 0",
+    "returns": "uVar1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Writes input data to out[0..uVar6 - 1].",
+   "asserted_values": [
+    "uVar6"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CF",
+   "text": "Uses a loop to process input data and write to output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CF",
+   "text": "Uses a loop to process input data and skip bytes based on input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant 0x20.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "CONST",
+   "text": "Uses the constant 0x01.",
+   "asserted_values": [
+    "0x01"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "CONST",
+   "text": "Uses the constant 0x00.",
+   "asserted_values": [
+    "0x00"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 8,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

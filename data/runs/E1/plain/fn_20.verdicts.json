@@ -1,0 +1,116 @@
+{
+ "fn": "fn_20",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "detail": "đúng trên 3 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes the first 8 bytes of in to out in a specific order.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the remaining bytes of in to out in the same order.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Performs a loop to shuffle the first 8 bytes of in based on the value of arg.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Performs a loop to copy the shuffled bytes to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Performs a loop to copy the remaining bytes to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Checks the stack canary at the end of the function.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 3,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

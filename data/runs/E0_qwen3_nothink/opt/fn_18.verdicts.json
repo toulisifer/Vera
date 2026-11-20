@@ -1,0 +1,265 @@
+{
+ "fn": "fn_18",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0",
+   "type": "IO",
+   "text": "Returns the length of the processed input data.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "always",
+    "returns": "param_2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0x0000000000000000"
+    }
+   }
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns the length of the processed input data when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "len != 0",
+    "returns": "param_2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_3",
+   "type": "SIDE",
+   "text": "Writes 40 bytes of ASCII characters to the local buffer local_58.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "_4",
+   "type": "CF",
+   "text": "Processes the input data in a loop, checking for specific byte values and updating the state accordingly.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_5",
+   "type": "CONST",
+   "text": "The function processes up to 40 bytes of data.",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x29 (')') in the input.",
+   "asserted_values": [
+    "0x29"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_7",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x22 (\") in the input.",
+   "asserted_values": [
+    "0x22"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_8",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x28 (()) in the input.",
+   "asserted_values": [
+    "0x28"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_9",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x5b ([) in the input.",
+   "asserted_values": [
+    "0x5b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_10",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x5d (]) in the input.",
+   "asserted_values": [
+    "0x5d"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_11",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x5c (\\) in the input.",
+   "asserted_values": [
+    "0x5c"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_12",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x7b ({) in the input.",
+   "asserted_values": [
+    "0x7b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_13",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x7d (}) in the input.",
+   "asserted_values": [
+    "0x7d"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_14",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "_15",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "_16",
+   "type": "CF",
+   "text": "The function has a stack overflow check and will terminate the program if the stack is corrupted.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 14,
+  "contradicted": 1
+ },
+ "n_claims": 17,
+ "explanation_clean": false
+}

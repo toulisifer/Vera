@@ -1,0 +1,222 @@
+{
+ "fn": "fn_01",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "io_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0x0000000000000000"
+    }
+   }
+  },
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns ~uVar2 when len == param_2.",
+   "asserted_values": [
+    "~uVar2"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == param_2",
+    "returns": "~uVar2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "cf_0",
+   "type": "CF",
+   "text": "Implements a loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Implements a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "side_0",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "const_0",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_2",
+   "type": "CONST",
+   "text": "Uses the constant 0xedb88320.",
+   "asserted_values": [
+    "0xedb88320"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xedb88320",
+      "form": "imm",
+      "detail": "0xEDB88320 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_3",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_4",
+   "type": "CONST",
+   "text": "Uses the constant 0x80.",
+   "asserted_values": [
+    "0x80"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "name_0",
+   "type": "NAME",
+   "text": "Processes input data using a custom algorithm involving bitwise operations and a loop structure.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 5,
+  "unsupported": 5,
+  "contradicted": 1
+ },
+ "n_claims": 12,
+ "explanation_clean": false
+}

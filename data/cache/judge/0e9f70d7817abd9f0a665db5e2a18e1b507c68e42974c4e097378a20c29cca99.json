@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly writes 8 bytes to out[0..7] as part of its execution.", "seconds": 1.1}

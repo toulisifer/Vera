@@ -1,0 +1,172 @@
+{
+ "fn": "fn_07",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x5eb.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x5eb",
+      "form": "imm",
+      "detail": "0x5EB (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d3d.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3d3d",
+      "form": "imm",
+      "detail": "0x3D3D (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "ERR"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 3",
+     "returns": "ERR",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0x0000000000000000"
+    }
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "A loop that iterates over the input array in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Early exit when the input length is 1 or 2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "10",
+   "type": "NAME",
+   "text": "Encodes a byte array using Base64 encoding.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 4,
+  "unsupported": 4,
+  "contradicted": 1
+ },
+ "n_claims": 9,
+ "explanation_clean": false
+}

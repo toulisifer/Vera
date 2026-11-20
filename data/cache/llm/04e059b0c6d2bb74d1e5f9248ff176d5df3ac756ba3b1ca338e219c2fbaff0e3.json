@@ -1,0 +1,1 @@
+{"key": "04e059b0c6d2bb74d1e5f9248ff176d5df3ac756ba3b1ca338e219c2fbaff0e3", "content": "void fn_04(void) {\n  unsigned int i;\n  for (i = 0; i < 10; i++) {\n    ;\n  }\n  for (i = 0; i < 10; i++) {\n    ;\n  }\n}", "seconds": 3.4, "eval_count": 64}

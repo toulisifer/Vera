@@ -1,0 +1,123 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.2,
+   "cached": false,
+   "eval_count": 1181,
+   "cache_key": "8b742595416ed17bc06344b2729a265babfa27b44480d9d18729562f567d20c0"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_20 appears to be implementing a permutation algorithm, possibly a custom encryption or scrambling algorithm.",
+  "proposed_name": "fn_20_permutation",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "claim_1",
+    "type": "CF",
+    "text": "A do-while loop is used to iterate until param_2 is not equal to uVar6.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim_2",
+    "type": "CF",
+    "text": "A nested loop is used to iterate over uVar5 and uVar3.",
+    "asserted_values": [],
+    "confidence": 0.7
+   },
+   {
+    "id": "claim_3",
+    "type": "SIDE",
+    "text": "Writes to out[0..uVar6] based on the values of param_1 and param_3.",
+    "asserted_values": [],
+    "confidence": 0.6
+   },
+   {
+    "id": "claim_4",
+    "type": "IO",
+    "text": "Returns uVar6 when param_2 is greater than param_5.",
+    "asserted_values": [],
+    "confidence": 0.5
+   },
+   {
+    "id": "claim_5",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 is not less than or equal to param_5.",
+    "asserted_values": [],
+    "confidence": 0.5
+   },
+   {
+    "id": "claim_6",
+    "type": "CONST",
+    "text": "The constant 0x706050403020100 is used.",
+    "asserted_values": [
+     "706050403020100"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint64_t uVar6 = 0xffffffffffffffff;\n    if (len <= out_cap) {\n        uVar6 = len + 7;\n        uint8_t local_18[80] = {0x70, 0x60, 0x50, 0x40, 0x30, 0x20, 0x10, 0x00};\n        do {\n            uint64_t uVar5 = (1 - len) + uVar6;\n            uint64_t uVar4 = arg / uVar5;\n            arg = arg % uVar5;\n            if ((((int)uVar6 + 1) * (int)uVar6 & 1U) != 0) || (DAT_00104018 != 0)) {\n                uVar4 = (uint64_t)DAT_00104010 + (uVar6 << 7 ^ uVar4) * 0x2d6b;\n                uVar4 = uVar4 >> 0xb ^ uVar4;\n            }\n            uint8_t uVar1 = local_18[uVar6 + (-8 - len) + 8];\n            local_18[uVar6 + (-8 - len) + 8] = local_18[param_3];\n            local_18[param_3] = uVar1;\n            param_3 = uVar4;\n        } while (len != uVar6);\n        uint64_t uVar5 = 8;\n        uint64_t uVar4 = 0;\n        if (7 < uVar6) {\n            do {\n                uint64_t uVar3 = uVar5 - 8;\n                do {\n                    uVar3 = uVar4;\n                    uint32_t uVar2 = (uint)uVar3 | 1;\n                    if ((uVar2 * uVar2 & 7) != 1 || (DAT_00104010 != 0x3c71)) {\n                        uVar3 = uVar4 + 1;\n                        if (uVar5 == uVar4 + 1) break;\n                    }\n                    out[uVar4] = in[(uVar5 - 8) + (uVar3 - uVar5)];\n                    uVar3 = uVar4 + 1;\n                } while (uVar5 != uVar4 + 1);\n                uVar4 = uVar3;\n                uVar5 = uVar5 + 8;\n            } while (uVar5 <= uVar6);\n        }\n        if (uVar4 < uVar6) {\n            do {\n                out[uVar4] = in[uVar4];\n                uVar4 = uVar4 + 1;\n            } while (uVar4 != uVar6);\n        }\n    }\n    return uVar6;\n}\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "CF",
+   "text": "A do-while loop is used to iterate until param_2 is not equal to uVar6.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim_2",
+   "type": "CF",
+   "text": "A nested loop is used to iterate over uVar5 and uVar3.",
+   "asserted_values": [],
+   "confidence": 0.7
+  },
+  {
+   "id": "claim_3",
+   "type": "SIDE",
+   "text": "Writes to out[0..uVar6] based on the values of param_1 and param_3.",
+   "asserted_values": [],
+   "confidence": 0.6
+  },
+  {
+   "id": "claim_4",
+   "type": "IO",
+   "text": "Returns uVar6 when param_2 is greater than param_5.",
+   "asserted_values": [],
+   "confidence": 0.5
+  },
+  {
+   "id": "claim_5",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 is not less than or equal to param_5.",
+   "asserted_values": [],
+   "confidence": 0.5
+  },
+  {
+   "id": "claim_6",
+   "type": "CONST",
+   "text": "The constant 0x706050403020100 is used.",
+   "asserted_values": [
+    "706050403020100"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": []
+}

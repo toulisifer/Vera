@@ -1,0 +1,161 @@
+{
+ "fn": "fn_07",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+   "asserted_values": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "4142434445464748494a4b4c4d4e4f505152535455565758595a61626364"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "FFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns len when len < 3.",
+   "asserted_values": [
+    "0000000000000003"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "0000000000000003"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 3",
+     "returns": "0000000000000003",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0x0000000000000000"
+    }
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns len when len == 1.",
+   "asserted_values": [
+    "0000000000000001"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 1",
+    "returns": "0000000000000001"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len == 1",
+     "returns": "0000000000000001",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "ret 0x0000000000000004"
+    }
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns len when len == 2.",
+   "asserted_values": [
+    "0000000000000002"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 2",
+    "returns": "0000000000000002"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không vector nào thỏa 'len == 2'"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Loops over the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements Base64 encoding.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "source": "algorithm_field",
+   "raw_algorithm": "Base64 encoding",
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "supported",
+     "method": "V3",
+     "fingerprint": [
+      {
+       "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+       "form": "string"
+      }
+     ]
+    },
+    "label": "verified",
+    "method": "V1b",
+    "detail": "oracle Base64 khớp 50/50 vector"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 2
+ },
+ "n_claims": 7,
+ "explanation_clean": false
+}

@@ -1,0 +1,5 @@
+{
+  "backend": "ghidra",
+  "version": "12.1.4",
+  "binaries": "data/binaries"
+}

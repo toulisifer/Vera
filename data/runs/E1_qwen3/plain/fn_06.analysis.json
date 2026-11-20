@@ -1,0 +1,211 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 27.0,
+   "cached": false,
+   "eval_count": 1141,
+   "cache_key": "b0a5ffd57687bb78a0fcde1cbcbd965a15f598ee7c285bf2de9c95c530d7e273"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_06 processes input data using a custom algorithm involving permutation and XOR operations, and returns the length of the processed data or an error code if the output capacity is insufficient.",
+  "proposed_name": "fn_06",
+  "algorithm": "custom permutation-based transformation",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "io_0",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "io_1",
+    "type": "IO",
+    "text": "Returns len when out_cap >= len.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap >= len",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "cf_0",
+    "type": "CF",
+    "text": "Uses a loop to initialize an array k from the arg parameter.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "cf_1",
+    "type": "CF",
+    "text": "Uses a loop to initialize an array s with values from 0 to 0xff.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "cf_2",
+    "type": "CF",
+    "text": "Uses a loop to perform a permutation on the array s using values from k and s.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "cf_3",
+    "type": "CF",
+    "text": "Uses a loop to process each byte of the input data and write to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "side_0",
+    "type": "SIDE",
+    "text": "Writes transformed data to out[0..len-1].",
+    "asserted_values": [
+     "out[0..len-1]"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "alg_0",
+    "type": "ALG",
+    "text": "Implements a custom permutation-based transformation using XOR and array permutation.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "const_0",
+    "type": "CONST",
+    "text": "Uses the constant 0xff in bitwise operations.",
+    "asserted_values": [
+     "0xff"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "const_1",
+    "type": "CONST",
+    "text": "Uses the constant 0x100 in loop bounds.",
+    "asserted_values": [
+     "0x100"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint8_t k[8];\n  uint8_t s[256];\n  uint8_t t;\n  uint i;\n  uint j;\n  size_t n;\n\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n\n  for (i = 0; i < 8; i++) {\n    k[i] = (uint8_t)(arg >> ((byte)(i << 3) & 0x3f));\n  }\n\n  for (i = 0; i < 0x100; i++) {\n    s[i] = (uint8_t)i;\n  }\n\n  j = 0;\n  for (i = 0; i < 0x100; i++) {\n    j = (uint)k[i & 7] + s[i] + j & 0xff;\n    t = s[i];\n    s[i] = s[j];\n    s[j] = t;\n  }\n\n  j = 0;\n  for (n = 0; n < len; n++) {\n    i = (n + 1) & 0xff;\n    j = (j + s[i]) & 0xff;\n    t = s[i];\n    s[i] = s[j];\n    s[j] = t;\n    out[n] = in[n] ^ s[(uint)s[j] + (uint)s[i] & 0xff];\n  }\n\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "io_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns len when out_cap >= len.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "cf_0",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array k from the arg parameter.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array s with values from 0 to 0xff.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "cf_2",
+   "type": "CF",
+   "text": "Uses a loop to perform a permutation on the array s using values from k and s.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "cf_3",
+   "type": "CF",
+   "text": "Uses a loop to process each byte of the input data and write to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "side_0",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [
+    "out[0..len-1]"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "alg_0",
+   "type": "ALG",
+   "text": "Implements a custom permutation-based transformation using XOR and array permutation.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "const_0",
+   "type": "CONST",
+   "text": "Uses the constant 0xff in bitwise operations.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "Uses the constant 0x100 in loop bounds.",
+   "asserted_values": [
+    "0x100"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

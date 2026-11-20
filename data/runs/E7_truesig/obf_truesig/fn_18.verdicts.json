@@ -1,0 +1,162 @@
+{
+ "fn": "fn_18",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0 when len is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns len + 2 when uVar9 is not 0 or uVar7 is not 0.",
+   "asserted_values": [
+    "len + 2"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "(uVar9 != 0) || (uVar7 != 0)",
+    "returns": "len + 2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns len when len is not 0.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len != 0",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input data.",
+   "asserted_values": [
+    "loop"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Contains conditional branches based on the input data.",
+   "asserted_values": [
+    "conditional branches"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 3,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

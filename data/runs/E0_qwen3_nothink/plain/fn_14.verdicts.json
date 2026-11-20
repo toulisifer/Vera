@@ -1,0 +1,141 @@
+{
+ "fn": "fn_14",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap is less than (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns the number of bytes written to out when out_cap is sufficient.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= (len + 2) / 3 << 2",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for each 3-byte chunk of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for a single byte of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for two bytes of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "SIDE",
+   "text": "Writes '=' to out[o + 2] and out[lVar1] in some cases.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "The string used for encoding is \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\".",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "CF",
+   "text": "Processes input in chunks of 3 bytes, then handles remaining bytes (1 or 2) separately.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 4,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

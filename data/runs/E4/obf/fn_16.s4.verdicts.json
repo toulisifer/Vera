@@ -1,0 +1,119 @@
+{
+ "fn": "fn_16",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3C71.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2D6B.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function contains a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function includes a conditional check for DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function includes a conditional check for DAT_00104008.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 2,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

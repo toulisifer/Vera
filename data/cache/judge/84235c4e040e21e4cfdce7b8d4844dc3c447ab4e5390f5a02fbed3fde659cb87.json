@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if param_5 (out_cap) is less than uVar5 (calculated length) and returns 0xffffffffffffffff if true.", "seconds": 1.1}

@@ -1,0 +1,91 @@
+{
+ "fn": "fn_15",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function returns -1 when the input length is 0.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function returns the number of encoded characters when the output capacity is sufficient.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function returns -1 when the output capacity is insufficient.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function writes the encoded characters to the output buffer out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function uses a loop to compare characters in the input string.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function uses a loop to encode characters into the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

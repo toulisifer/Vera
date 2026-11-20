@@ -1,0 +1,123 @@
+{
+ "fn": "fn_01",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.9,
+   "cached": false,
+   "eval_count": 526,
+   "cache_key": "5994d1f6d34b34bfff5b634d246196b9efb91a25d32885c29d22a5f722eb9d50"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_01 computes a CRC-32 checksum of the input data.",
+  "proposed_name": "fn_01",
+  "algorithm": "Implements CRC-32.",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "ALG",
+    "type": "ALG",
+    "text": "Implements CRC-32.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0 when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns the computed CRC-32 checksum when len > 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len > 0",
+     "returns": "computed CRC-32 checksum"
+    }
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Iterates over each byte in the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 0;\n  }\n\n  uint32_t crc = 0xFFFFFFFF;\n  for (size_t i = 0; i < len; i++) {\n    crc ^= in[i];\n    for (int j = 0; j < 8; j++) {\n      crc = -(crc & 1) & 0xEDB88320 ^ crc >> 1;\n    }\n  }\n\n  return ~crc;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0 when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns the computed CRC-32 checksum when len > 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len > 0",
+    "returns": "computed CRC-32 checksum"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Iterates over each byte in the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "ALG",
+   "type": "ALG",
+   "text": "Implements CRC-32.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

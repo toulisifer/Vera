@@ -1,0 +1,18 @@
+{
+  "id": "fn_18",
+  "group": "custom",
+  "algorithm_label": "tự thiết kế: máy trạng thái kiểm tra ngoặc",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": null,
+  "source": "corpus/src/fn_18.c",
+  "description": "Kiểm tra ngoặc (), [], {} cân bằng bằng ngăn xếp sâu tối đa 64, bỏ qua nội dung trong chuỗi \"...\" (có ký tự thoát \\). Trả 0 nếu hợp lệ; vị trí tính từ 1 của byte lỗi đầu tiên (ngoặc đóng sai, hoặc mở quá 64 tầng); len + 1 nếu hết input khi còn ngoặc mở hay chuỗi chưa đóng. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "0 | vị trí lỗi (1-based) | len + 1",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "brackets",
+  "characteristic_constants": [],
+  "characteristic_strings": []
+}

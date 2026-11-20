@@ -1,0 +1,79 @@
+{
+ "fn": "fn_04",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "CF",
+   "text": "Contains a loop that increments a variable until it reaches a constant value.",
+   "asserted_values": [
+    "DAT_00104010"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Contains a loop that increments a variable until it reaches the value of the second parameter.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns nothing (void) regardless of input.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "NAME",
+   "text": "A dummy function with no meaningful computation.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

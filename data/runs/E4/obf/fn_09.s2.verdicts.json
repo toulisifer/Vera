@@ -1,0 +1,102 @@
+{
+ "fn": "fn_09",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST1",
+   "type": "CONST",
+   "text": "The constant 0xcbf29ce484222325 is used.",
+   "asserted_values": [
+    "cbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO1",
+   "type": "IO",
+   "text": "Returns the hash value when len is not zero.",
+   "asserted_values": [
+    "len",
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len != 0",
+    "returns": "uVar2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "IO2",
+   "type": "IO",
+   "text": "Returns VERA_ERR when len is zero.",
+   "asserted_values": [
+    "VERA_ERR"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "CF1",
+   "type": "CF",
+   "text": "The function has a loop that iterates over the input buffer.",
+   "asserted_values": [
+    "param_1",
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "SIDE1",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [
+    "out",
+    "out_cap"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

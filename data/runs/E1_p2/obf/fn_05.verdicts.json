@@ -1,0 +1,157 @@
+{
+ "fn": "fn_05",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x61c88647.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x61c88647",
+      "form": "imm",
+      "detail": "0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 0x18 or the output buffer capacity is less than 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 0x18 || param_5 < 8",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes the computed hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "The function contains a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 5,
+  "unsupported": 2,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

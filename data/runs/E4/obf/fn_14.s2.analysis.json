@@ -1,0 +1,217 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 37.6,
+   "cached": false,
+   "eval_count": 1800,
+   "cache_key": "698074fa08dcc6602e0c19a30a3ca8437b6ef5c4360d7f9b54d61e3d4561bc06"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input buffer and generates an output buffer according to a specific algorithm. It appears to be a custom encoding or transformation function.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns VERA_ERR when param_5 is less than (param_2 + 2) / 3 << 2.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "Iterates over the input buffer in chunks of 3 bytes.",
+    "asserted_values": [
+     "3"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len >= 3",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "3",
+    "type": "ALG",
+    "text": "Applies a transformation to each chunk of the input buffer.",
+    "asserted_values": [
+     "unknown"
+    ],
+    "confidence": 0.8,
+    "io": {
+     "when": "len >= 3",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes 4 bytes to out for each chunk of the input buffer.",
+    "asserted_values": [
+     "4"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len >= 3",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "5",
+    "type": "ALG",
+    "text": "Handles the case when the input length is 1 or 2.",
+    "asserted_values": [
+     "unknown"
+    ],
+    "confidence": 0.8,
+    "io": {
+     "when": "len == 1 or len == 2",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns VERA_ERR when the input length is 1 and out_cap is less than 4.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 1 and out_cap < 4",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "Returns VERA_ERR when the input length is 2 and out_cap is less than 4.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 2 and out_cap < 4",
+     "returns": "VERA_ERR"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len + 2) / 3 << 2 > out_cap) {\n    return VERA_ERR;\n  }\n  size_t lVar4 = 0;\n  if (len >= 3) {\n    for (size_t uVar6 = 0; uVar6 + 3 <= len; uVar6 += 3) {\n      uint uVar2 = (uint)in[uVar6] << 16 | (uint)in[uVar6 + 1] << 8 | (uint)in[uVar6 + 2];\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n        uVar2 = ((uint)(len << 7) ^ uVar2) * 0x2d6b + DAT_00104008;\n        uVar2 = uVar2 >> 0xb ^ uVar2;\n      }\n      out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 >> 0xc) & 0x3f];\n      out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 >> 0x12) & 0x3f];\n      if ((((lVar4 & 7) == 1) && (DAT_00104008 == 0x3c71)) || out_cap < lVar4 + 1) {\n        out[lVar4++] = 0x3d;\n      }\n      out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 & 0x3f];\n    }\n  }\n  if (len == 1) {\n    if (out_cap < 4) {\n      return VERA_ERR;\n    }\n    out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(in[0] & 3) << 4];\n    out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[in[0] >> 2];\n    out[lVar4++] = 0x3d;\n  } else if (len == 2) {\n    if (out_cap < 4) {\n      return VERA_ERR;\n    }\n    uint uVar2 = (uint)in[1] << 8;\n    out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 | (uint)in[0] << 16) >> 0xc];\n    out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[in[0] >> 2];\n    out[lVar4++] = (uint16_t)\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 & 0xf00) >> 6];\n    out[lVar4++] = 0x3d;\n  }\n  return lVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_5 is less than (param_2 + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Iterates over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len >= 3",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "3",
+   "type": "ALG",
+   "text": "Applies a transformation to each chunk of the input buffer.",
+   "asserted_values": [
+    "unknown"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "len >= 3",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for each chunk of the input buffer.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len >= 3",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "5",
+   "type": "ALG",
+   "text": "Handles the case when the input length is 1 or 2.",
+   "asserted_values": [
+    "unknown"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 1 or len == 2",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the input length is 1 and out_cap is less than 4.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 1 and out_cap < 4",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the input length is 2 and out_cap is less than 4.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 2 and out_cap < 4",
+    "returns": "VERA_ERR"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

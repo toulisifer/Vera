@@ -1,0 +1,153 @@
+{
+ "fn": "fn_11",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.4,
+   "cached": false,
+   "eval_count": 601,
+   "cache_key": "8168dd150818bfd6ae6540f01cb6cd16a06d25490548797d33aa9f9b5c6e6005"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_11 is a placeholder or dummy function that does not perform any meaningful computation. It contains no logic that affects the return value or output, and it does not modify any input or output parameters.",
+  "proposed_name": "fn_11",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Contains a loop that increments a variable until it reaches a constant value.",
+    "asserted_values": [
+     "0x104010"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_2",
+    "type": "CF",
+    "text": "Contains a loop that increments a variable until it reaches the value of the input parameter.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_3",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_5",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_6",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when arg == 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_7",
+    "type": "CONST",
+    "text": "Uses the constant 0x104010.",
+    "asserted_values": [
+     "0x104010"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return VERA_ERR;\n  }\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n  if (arg == 0) {\n    return VERA_ERR;\n  }\n  return 0;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Contains a loop that increments a variable until it reaches a constant value.",
+   "asserted_values": [
+    "0x104010"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Contains a loop that increments a variable until it reaches the value of the input parameter.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when arg == 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant 0x104010.",
+   "asserted_values": [
+    "0x104010"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

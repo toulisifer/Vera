@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The code does not check out_cap against len directly, and the return -1 condition is based on a different condition involving param_5 and param_2.", "seconds": 1.8}

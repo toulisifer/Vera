@@ -1,0 +1,141 @@
+{
+ "fn": "fn_09",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.3,
+   "cached": false,
+   "eval_count": 591,
+   "cache_key": "5cc98845f4a10ce363d909c00696e048e19b01692df4b93bab7f13a6f52e8297"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_09 computes a CRC-32 checksum.",
+  "proposed_name": "fn_09",
+  "algorithm": "CRC-32",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "ALG",
+    "type": "ALG",
+    "text": "Implements CRC-32.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The initial CRC-32 value uses the constant 0xcbf29ce484222325.",
+    "asserted_values": [
+     "cbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns the computed CRC-32 value when the input length is not zero.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 != 0",
+     "returns": "uVar2"
+    }
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is zero.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return VERA_ERR;\n  }\n  uint64_t crc = 0xcbf29ce484222325;\n  for (size_t i = 0; i < len; i++) {\n    crc = (crc ^ in[i]) * 0x100000001b5;\n  }\n  return crc;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The initial CRC-32 value uses the constant 0xcbf29ce484222325.",
+   "asserted_values": [
+    "cbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns the computed CRC-32 value when the input length is not zero.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 != 0",
+    "returns": "uVar2"
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is zero.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "ALG",
+   "type": "ALG",
+   "text": "Implements CRC-32.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

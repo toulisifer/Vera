@@ -1,0 +1,58 @@
+{
+  "run": "E1_qwen3",
+  "started": "2026-09-24 13:48:05",
+  "backend": {
+    "backend": "ghidra",
+    "version": "12.1.4",
+    "binaries": "data/binaries"
+  },
+  "model": {
+    "model": "qwen3:8b",
+    "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "8.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 4096
+    },
+    "ollama": "0.34.3"
+  },
+  "temperature": 0.0,
+  "samples": 1,
+  "think": false,
+  "num_predict": 3072,
+  "num_ctx": 8192,
+  "fns": [
+    "fn_01",
+    "fn_02",
+    "fn_03",
+    "fn_04",
+    "fn_05",
+    "fn_06",
+    "fn_07",
+    "fn_08",
+    "fn_09",
+    "fn_10",
+    "fn_11",
+    "fn_12",
+    "fn_13",
+    "fn_14",
+    "fn_15",
+    "fn_16",
+    "fn_17",
+    "fn_18",
+    "fn_19",
+    "fn_20"
+  ],
+  "configs": [
+    "plain",
+    "opt",
+    "obf"
+  ]
+}

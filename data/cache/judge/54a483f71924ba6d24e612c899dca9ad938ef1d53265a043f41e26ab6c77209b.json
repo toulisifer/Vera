@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function uses the constant 0x290a3a20 in the comparison `if (iVar5 == -0x290a3a20)`.", "seconds": 1.1}

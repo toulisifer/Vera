@@ -1,0 +1,185 @@
+{
+ "fn": "fn_14",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns -1 when the out_cap is less than (in_len + 2) / 3 << 2.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_5 < (param_2 + 2) / 3 << 2",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns the length of the output data when the input length is not 1 or 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 != 1 && param_2 != 2",
+    "returns": "lVar7"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when the input length is 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 == 1",
+    "returns": "lVar7 + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when the input length is 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 == 2",
+    "returns": "lVar7 + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Writes transformed data to the output buffer based on the input bytes and a fixed string.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "The fixed string used for transformation is 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'.",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CF",
+   "text": "The function uses a loop to process input bytes in chunks of 3.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "CF",
+   "text": "The function uses conditional branches to handle different input lengths (1, 2, or other).",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to the output buffer for each chunk of 3 input bytes.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_10",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_11",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 4,
+  "supported": 1,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 11,
+ "explanation_clean": true
+}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code shows a loop that processes each byte of the input parameter param_1.", "seconds": 0.7}

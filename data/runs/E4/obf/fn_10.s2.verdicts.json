@@ -1,0 +1,202 @@
+{
+ "fn": "fn_10",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffef",
+      "form": "imm",
+      "detail": "0xFFEF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns 1 when len == 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "1"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "1",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input data causes an overflow.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v09",
+     "tag": "cap0",
+     "observed": "ret 0x0000000033bd05d4"
+    }
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes the computed hash value to out[0..7].",
+   "asserted_values": [
+    "out[0..7]"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Loops over each byte in the input data.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Applies a series of bitwise operations and conditional logic inside the loop.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "10",
+   "type": "NAME",
+   "text": "The function implements a custom hash algorithm based on bitwise operations and conditional logic.",
+   "asserted_values": [
+    "custom hash"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 4,
+  "unsupported": 3,
+  "contradicted": 2
+ },
+ "n_claims": 10,
+ "explanation_clean": false
+}

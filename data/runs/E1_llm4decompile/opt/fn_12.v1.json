@@ -1,0 +1,11 @@
+{
+ "fn": "fn_12",
+ "config": "opt",
+ "compiled": false,
+ "fepr": 0.0,
+ "n_vectors": 50,
+ "n_match": 0,
+ "failures": [],
+ "sandbox_image": "python:3.12-slim",
+ "compile_error": "recovered.c:114:1: error: expected expression before ‘uint64_t’"
+}

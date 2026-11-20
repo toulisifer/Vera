@@ -1,0 +1,125 @@
+{
+ "fn": "fn_16",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 11.8,
+   "cached": false,
+   "eval_count": 574,
+   "cache_key": "acc44ffd7257a2c528d81f0e2ac3e725dbc43c2f62927e3066423824f8e2df1d"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_16 computes a hash value based on the input data and an initial argument.",
+  "proposed_name": "fn_16",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x9d.",
+    "asserted_values": [
+     "0x9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function uses a loop to iterate over the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "The function does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 0",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns a non-zero value when the input length is greater than 0.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "when": "len > 0",
+     "returns": "non-zero"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return VERA_ERR;\n  }\n\n  uint32_t h = (uint)(arg >> 0x20) ^ (uint)arg;\n  for (size_t i = 0; i < len; i++) {\n    h = (h << 7 | h >> 0x19) + (uint)in[i] * 0x9d + (int)i;\n  }\n\n  uint64_t uVar1 = (h ^ h >> 0xf) * 0x3b9d;\n  return (uint64_t)(uVar1 ^ uVar1 >> 0xd);\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x9d.",
+   "asserted_values": [
+    "0x9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function uses a loop to iterate over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 0",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns a non-zero value when the input length is greater than 0.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "len > 0",
+    "returns": "non-zero"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

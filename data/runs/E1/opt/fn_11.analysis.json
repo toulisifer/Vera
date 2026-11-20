@@ -1,0 +1,143 @@
+{
+ "fn": "fn_11",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.9,
+   "cached": false,
+   "eval_count": 573,
+   "cache_key": "3a05ee92958de1e89aacac7136149adef1b74c0892d7bdd30dd84b95fe93c73e"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_11 computes a hash value using a simple polynomial hash algorithm.",
+  "proposed_name": "fn_11",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "Implements a simple polynomial hash algorithm.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The initial hash value is 0x1d35.",
+    "asserted_values": [
+     "0x1d35"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0x1d35 when the input length is 0.",
+    "asserted_values": [
+     "0x1d35"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0x1d35"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns the computed hash value when the input length is greater than 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 > 0",
+     "returns": "computed hash value"
+    }
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Uses a loop to iterate over the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len != 0) {\n    uint64_t hash = 0x1d35;\n    for (size_t i = 0; i < len; i++) {\n      hash = (uint64_t)in[i] + hash * 0x29;\n    }\n    return hash;\n  }\n  return 0x1d35;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements a simple polynomial hash algorithm.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The initial hash value is 0x1d35.",
+   "asserted_values": [
+    "0x1d35"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0x1d35 when the input length is 0.",
+   "asserted_values": [
+    "0x1d35"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0x1d35"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns the computed hash value when the input length is greater than 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > 0",
+    "returns": "computed hash value"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Uses a loop to iterate over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

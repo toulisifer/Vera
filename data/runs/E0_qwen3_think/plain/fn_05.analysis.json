@@ -1,0 +1,144 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": true,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting value: line 1 column 1 (char 0)"
+   ],
+   "seconds": 95.3,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "7c7336bfc55a6af48487d6f41ed499a055ce12a79f7fe9a8a9bb612c725da1eb"
+  },
+  {
+   "errors": [],
+   "seconds": 64.5,
+   "cached": false,
+   "eval_count": 2062,
+   "cache_key": "1789c9aba0901bc455e4553db551500f656afdbe708f753b585454db3a67618a"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input bytes using a 32-round hashing algorithm, writes 8 bytes to output, and returns success or error based on input size constraints.",
+  "proposed_name": "fn_05",
+  "algorithm": "MurmurHash3 32-bit",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0001",
+    "type": "IO",
+    "text": "Returns 0x10000000000000000 when len < 0x18 or out_cap < 8.",
+    "asserted_values": [
+     "0x10000000000000000"
+    ],
+    "confidence": 0.99
+   },
+   {
+    "id": "_0002",
+    "type": "IO",
+    "text": "Returns 8 when len >= 0x18 and out_cap >= 8.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.99
+   },
+   {
+    "id": "_0003",
+    "type": "SIDE",
+    "text": "Writes 8 bytes to out[0..7] from 32-bit values v0 and v1.",
+    "asserted_values": [],
+    "confidence": 0.99
+   },
+   {
+    "id": "_0004",
+    "type": "CONST",
+    "text": "Uses the constant 0x9e3779b9 in the hash calculation.",
+    "asserted_values": [
+     "0x9e3779b9"
+    ],
+    "confidence": 0.99
+   },
+   {
+    "id": "_0005",
+    "type": "CF",
+    "text": "Executes a 32-round loop with fixed iteration count.",
+    "asserted_values": [
+     "0x20"
+    ],
+    "confidence": 0.99
+   },
+   {
+    "id": "_0006",
+    "type": "ALG",
+    "text": "Computes a 32-bit hash using a variant of MurmurHash3 algorithm.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t v0, v1;\n  uint32_t s = 0;\n  uint32_t r;\n\n  if (len < 0x18 || out_cap < 8) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  v0 = *(const uint32_t *)(in);\n  v1 = *(const uint32_t *)(in + 4);\n\n  for (r = 0; r < 0x20; r++) {\n    s += 0x9e3779b9;\n    v0 = v0 + ( *(const int *)(in + 0xc) + (v1 >> 5) ^ v1 * 0x10 + *(const int *)(in + 8) ^ s + v1 );\n    v1 = v1 + ( *(const int *)(in + 0x14) + (v0 >> 5) ^ v0 * 0x10 + *(const int *)(in + 0x10) ^ s + v0 );\n  }\n\n  out[0] = (uint8_t)v0;\n  out[1] = (uint8_t)(v0 >> 8);\n  out[2] = (uint8_t)(v0 >> 0x10);\n  out[3] = (uint8_t)(v0 >> 0x18);\n  out[4] = (uint8_t)v1;\n  out[5] = (uint8_t)(v1 >> 8);\n  out[6] = (uint8_t)(v1 >> 0x10);\n  out[7] = (uint8_t)(v1 >> 0x18);\n\n  return 8;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "IO",
+   "text": "Returns 0x10000000000000000 when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0x10000000000000000"
+   ],
+   "confidence": 0.99
+  },
+  {
+   "id": "_0002",
+   "type": "IO",
+   "text": "Returns 8 when len >= 0x18 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.99
+  },
+  {
+   "id": "_0003",
+   "type": "SIDE",
+   "text": "Writes 8 bytes to out[0..7] from 32-bit values v0 and v1.",
+   "asserted_values": [],
+   "confidence": 0.99
+  },
+  {
+   "id": "_0004",
+   "type": "CONST",
+   "text": "Uses the constant 0x9e3779b9 in the hash calculation.",
+   "asserted_values": [
+    "0x9e3779b9"
+   ],
+   "confidence": 0.99
+  },
+  {
+   "id": "_0005",
+   "type": "CF",
+   "text": "Executes a 32-round loop with fixed iteration count.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 0.99
+  },
+  {
+   "id": "_0006",
+   "type": "ALG",
+   "text": "Computes a 32-bit hash using a variant of MurmurHash3 algorithm.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,66 @@
+{
+ "fn": "fn_11",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CF",
+   "text": "Does not execute any useful algorithm or computation.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0 when called with any parameters.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "always",
+     "returns": "0",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0x0000000000001d35"
+    }
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 1,
+  "contradicted": 1
+ },
+ "n_claims": 3,
+ "explanation_clean": false
+}

@@ -1,0 +1,115 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p1",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "recovered_c không định nghĩa fn_18"
+   ],
+   "seconds": 17.2,
+   "cached": false,
+   "eval_count": 827,
+   "cache_key": "fe108c7bc9070e41d5ebce93f02b28a9998675bed2c913641145053a80e05c16"
+  },
+  {
+   "errors": [],
+   "seconds": 12.4,
+   "cached": false,
+   "eval_count": 612,
+   "cache_key": "ade4aab1c62083eda966b72830cf853e1cc48c550b53230d529dbb97413843aa"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_18 appears to be a parser that checks if the input string is a valid C-style string literal. It returns the length of the input if it is a valid string literal, otherwise, it returns an error code.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function checks if the input string is a valid C-style string literal.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns the length of the input if it is a valid string literal.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns VERA_ERR when the input is not a valid string literal.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not modify the input or output.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Uses a loop to iterate through the input string.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n  for (size_t i = 0; i < len; i++) {\n    if (in[i] == '\\\"') {\n      if (i == 0 || in[i - 1] != '\\\\') {\n        return VERA_ERR;\n      }\n    } else if (in[i] == '\\\\') {\n      if (i == 0) {\n        return VERA_ERR;\n      }\n    } else if (in[i] == '(' || in[i] == '[' || in[i] == '{') {\n      if (i == 0) {\n        return VERA_ERR;\n      }\n    } else if (in[i] == ')' || in[i] == ']' || in[i] == '}') {\n      if (i == 0) {\n        return VERA_ERR;\n      }\n    }\n  }\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the length of the input if it is a valid string literal.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the input is not a valid string literal.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not modify the input or output.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Uses a loop to iterate through the input string.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function checks if the input string is a valid C-style string literal.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

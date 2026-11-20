@@ -1,0 +1,18 @@
+{
+  "id": "fn_20",
+  "group": "custom",
+  "algorithm_label": "tự thiết kế: hoán vị byte theo khóa",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": null,
+  "source": "corpus/src/fn_20.c",
+  "description": "Tạo hoán vị p của 8 vị trí từ arg (khai triển arg theo hệ cơ số giai thừa, hoán đổi từ vị trí 7 về 1). Với mỗi khối 8 byte đầy đủ: out[b+n] = in[b+p[n]]; phần đuôi dưới 8 byte được chép nguyên. Trả len; VERA_ERR và không ghi nếu out_cap < len.",
+  "io_semantics": {
+    "returns": "len, hoặc VERA_ERR khi out_cap < len",
+    "writes_out": true,
+    "uses_arg": true
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [],
+  "characteristic_strings": []
+}

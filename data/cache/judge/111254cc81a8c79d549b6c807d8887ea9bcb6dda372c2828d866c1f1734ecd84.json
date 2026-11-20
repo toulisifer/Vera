@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function computes a hash value using the MurmurHash3 algorithm and returns it.", "seconds": 0.7}

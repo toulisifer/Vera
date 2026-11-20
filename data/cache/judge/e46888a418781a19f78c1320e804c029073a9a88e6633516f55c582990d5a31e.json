@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly uses the constant 0x3c71 in the condition check (DAT_00104008 == 0x3c71).", "seconds": 2.4}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly uses the constant 0xffffffff in the condition check for lVar4.", "seconds": 0.8}

@@ -1,0 +1,72 @@
+{
+ "fn": "fn_04",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0 when param_2 == 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Loops until uVar2 equals DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Loops until lVar1 equals param_2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

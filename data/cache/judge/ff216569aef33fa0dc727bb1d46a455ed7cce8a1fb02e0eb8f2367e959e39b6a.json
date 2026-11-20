@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function always returns a non-zero value when the input length is greater than 0.", "seconds": 0.7}

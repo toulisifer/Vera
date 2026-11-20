@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function initializes the return value to 0xcbf29ce484222325 and does not modify it if len is 0.", "seconds": 1.1}

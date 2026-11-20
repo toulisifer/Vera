@@ -1,0 +1,107 @@
+{
+ "fn": "fn_09",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The loop increments the index by 1 in each iteration.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The loop continues until all bytes in the input buffer have been processed.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "The function returns the computed hash value.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 1,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

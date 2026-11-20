@@ -1,0 +1,198 @@
+{
+ "fn": "fn_08",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9 in its calculations.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b in its calculations.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71 in its calculations.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3 in its calculations.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x80 in its calculations.",
+   "asserted_values": [
+    "0x80"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "The function uses the constant 0xf7179bf5 in its calculations.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xf7179bf5",
+      "form": "imm",
+      "detail": "0xF7179BF5 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFF when the input length is 0.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "9",
+   "type": "SIDE",
+   "text": "The function writes the hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "10",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "11",
+   "type": "CF",
+   "text": "The function contains conditional branches based on the input length and the value of DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 5,
+  "unsupported": 4,
+  "contradicted": 1
+ },
+ "n_claims": 11,
+ "explanation_clean": false
+}

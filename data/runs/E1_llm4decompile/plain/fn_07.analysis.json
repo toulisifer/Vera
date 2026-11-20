@@ -1,0 +1,30 @@
+{
+ "fn": "fn_07",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "size_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t o = 0;\n  size_t i = 0;\n  if (out_cap < (len + 2) / 3 * 4) return -1;\n  while (i + 3 <= len) {\n    uint32_t w = (in[i] << 16) | (in[i + 1] << 8) | in[i + 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[in[i] >> 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0x3f000) >> 12];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0xfc0) >> 6];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[w & 0x3f];\n    i += 3;\n  }\n  if (len - i == 1) {\n    uint8_t b = in[i];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[b >> 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(b & 3) << 4];\n    out[o++] = '=';\n    out[o++] = '=';\n  } else if (len - i == 2) {\n    uint32_t w = (in[i] << 16) | (in[i + 1] << 8);\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[in[i] >> 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0x3f000) >> 12];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0xfc0) >> 6];\n    out[o++] = '=';\n  }\n  return o;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 50.1,
+   "cached": false,
+   "eval_count": 820,
+   "cache_key": "97af10cd9536d7974305459b74d3153ec2ece4aaabce3d536a86f73665aa2dea"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t o = 0;\n  size_t i = 0;\n  if (out_cap < (len + 2) / 3 * 4) return -1;\n  while (i + 3 <= len) {\n    uint32_t w = (in[i] << 16) | (in[i + 1] << 8) | in[i + 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[in[i] >> 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0x3f000) >> 12];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0xfc0) >> 6];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[w & 0x3f];\n    i += 3;\n  }\n  if (len - i == 1) {\n    uint8_t b = in[i];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[b >> 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(b & 3) << 4];\n    out[o++] = '=';\n    out[o++] = '=';\n  } else if (len - i == 2) {\n    uint32_t w = (in[i] << 16) | (in[i + 1] << 8);\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[in[i] >> 2];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0x3f000) >> 12];\n    out[o++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w & 0xfc0) >> 6];\n    out[o++] = '=';\n  }\n  return o;\n}\nuint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len), (uint64_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

@@ -1,0 +1,155 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 34.7,
+   "cached": false,
+   "eval_count": 1617,
+   "cache_key": "6f25ece0f8881fa91b4e5fda2bd1bf1aa2be043ab63d20f745551054b39ffd68"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom encoding function that processes input data and outputs encoded data. It uses a series of bitwise operations and table lookups to transform the input.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses a specific constant string for encoding.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns -1 when the input length is less than 3.",
+    "asserted_values": [
+     "-1"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 < 3",
+     "returns": "-1"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns the length of the output when the input length is a multiple of 3.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "(param_2 + 2) / 3 << 2 <= param_5",
+     "returns": "param_2"
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes encoded data to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Uses a loop to process the input data in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Handles the case when the input length is 1 or 2 bytes separately.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "The function uses a specific constant for the encoding transformation.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len + 2) / 3 << 2 > out_cap) {\n    return VERA_ERR;\n  }\n\n  if (len < 3) {\n    return 0;\n  }\n\n  size_t i = 0;\n  while (i < len) {\n    uint32_t value = 0;\n    if (i + 2 < len) {\n      value = (uint32_t)in[i + 2] << 16 | (uint32_t)in[i + 1] << 8 | (uint32_t)in[i];\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (arg != 0)) {\n        value = ((uint)(len << 7) ^ value) * 0x2d6b + arg;\n        value = value >> 0xb ^ value;\n      }\n      out[i / 3 * 2] = (uint16_t)(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[value >> 0xc & 0x3f] << 8 | \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[value >> 0x12 & 0x3f]);\n      if (((i / 3 * 2 + 1) * (i / 3 * 2 + 1) & 7) == 1 && (arg == 0x3c71)) {\n        out[i / 3 * 2 + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[value >> 6 & 0x3f];\n      } else {\n        out[i / 3 * 2 + 2] = out[i / 3 * 2 + 2] ^ (i / 3 * 2 + 2) ^ (i / 3 * 2 + 2);\n      }\n    } else if (i + 1 < len) {\n      value = (uint32_t)in[i + 1] << 8;\n      out[i / 3 * 2] = (uint16_t)(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value | (uint32_t)in[i] << 0x10) >> 0xc & 0x3f] << 8 | \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[in[i] >> 2]);\n      out[i / 3 * 2 + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value & 0xf00) >> 6];\n      out[i / 3 * 2 + 3] = 0x3d;\n    } else {\n      out[i / 3 * 2] = (uint16_t)(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uint32_t)in[i] & 3] << 8 | \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[in[i] >> 2]);\n      out[i / 3 * 2 + 2] = 0x3d3d;\n    }\n    i += 3;\n  }\n\n  return i / 3 * 2;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns -1 when the input length is less than 3.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "-1"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is a multiple of 3.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "(param_2 + 2) / 3 << 2 <= param_5",
+    "returns": "param_2"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes encoded data to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Uses a loop to process the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Handles the case when the input length is 1 or 2 bytes separately.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses a specific constant string for encoding.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "CONST không nêu giá trị"
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "The function uses a specific constant for the encoding transformation.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

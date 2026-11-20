@@ -1,0 +1,237 @@
+{
+ "fn": "fn_05",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 < 0x18 or param_5 < 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 0x18 or param_5 < 8",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0002",
+   "type": "IO",
+   "text": "Returns 8 when all conditions are met.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 >= 0x18 and param_5 >= 8",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0003",
+   "type": "CF",
+   "text": "Implements a loop that runs until iVar5 == -0x3910c8e0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "CF",
+   "text": "Implements a loop that runs while ((uVar1 * uVar1 & 7) != 1) or (DAT_00104008 != 0x3c71).",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "SIDE",
+   "text": "Writes to out[0..7] based on the final value of uVar2 and uVar3.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_0006",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0007",
+   "type": "CONST",
+   "text": "Uses the constant 0x61c88647.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x61c88647",
+      "form": "imm",
+      "detail": "0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "Uses the constant 0x3910c8e0.",
+   "asserted_values": [
+    "0x3910c8e0"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3910c8e0",
+      "form": "neg",
+      "detail": "-0x3910C8E0 xuất hiện dạng 0xC6EF3720 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0009",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0010",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0011",
+   "type": "CONST",
+   "text": "Uses the constant 0x104008.",
+   "asserted_values": [
+    "0x104008"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x104008"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0012",
+   "type": "CONST",
+   "text": "Uses the constant 0x104010.",
+   "asserted_values": [
+    "0x104010"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x104010"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0013",
+   "type": "NAME",
+   "text": "Processes input data and produces an output value based on bitwise operations and arithmetic calculations.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 5,
+  "unsupported": 7,
+  "contradicted": 0
+ },
+ "n_claims": 13,
+ "explanation_clean": true
+}

@@ -1,0 +1,159 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 4,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 37.6,
+   "cached": false,
+   "eval_count": 1805,
+   "cache_key": "b896adf59d45f99ad0db56b8845f96f7987cd838401be08c1c17c52751fcf513"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom encoding algorithm. It processes input bytes and generates output based on a set of predefined mappings and transformations.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "CONST1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length (param_2) is less than 3.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < 3",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "IO2",
+    "type": "IO",
+    "text": "Writes to out based on the input length and data.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "CF1",
+    "type": "CF",
+    "text": "The function has a loop that processes input bytes in groups of three.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "SIDE1",
+    "type": "SIDE",
+    "text": "Writes two bytes to out for each group of three input bytes.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "SIDE2",
+    "type": "SIDE",
+    "text": "Writes additional bytes to out based on the input length.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len + 2) / 3 << 2 <= out_cap) {\n    if (len < 3) {\n      out[0] = 0;\n      return 0;\n    }\n    for (size_t i = 0; i < len; i += 3) {\n      uint32_t value = (in[i] << 16) | (in[i + 1] << 8) | in[i + 2];\n      if (((i + 1) * (i + 2) & 1) != 0 || arg != 0) {\n        value = ((uint)((i + 2) << 7) ^ value) * 0x2d6b + 0x3c71;\n        value = value >> 11 ^ value;\n      }\n      out[i / 3 * 4 + 0] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value >> 20 & 0x3f] << 8 | 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value >> 12 & 0x3f];\n      if (((i / 3 * 4 + 1) * (i / 3 * 4 + 1) & 7) == 1 && arg == 0x3c71) {\n        out[i / 3 * 4 + 2] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value >> 16 & 0x3f];\n      } else {\n        out[i / 3 * 4 + 2] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value >> 12 & 0x3f];\n      }\n      out[i / 3 * 4 + 3] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value >> 8 & 0x3f];\n    }\n    if (len % 3 == 1) {\n      out[len / 3 * 4] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(in[len - 1] & 3) << 4];\n      out[len / 3 * 4 + 1] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[in[len - 1] >> 2];\n      out[len / 3 * 4 + 2] = 0x3d;\n      return len / 3 * 4 + 3;\n    } else if (len % 3 == 2) {\n      uint32_t value = (in[len - 2] << 8) | in[len - 1];\n      out[len / 3 * 4] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(value | (in[len - 2] << 16)) >> 20 & 0x3f] << 8 | 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[in[len - 2] >> 2];\n      out[len / 3 * 4 + 1] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value >> 16 & 0x3f];\n      out[len / 3 * 4 + 2] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(value & 0xf00) >> 12];\n      out[len / 3 * 4 + 3] = 0x3d;\n      return len / 3 * 4 + 4;\n    }\n  }\n  return VERA_ERR;\n}\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "CONST1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length (param_2) is less than 3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "IO2",
+   "type": "IO",
+   "text": "Writes to out based on the input length and data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "CF1",
+   "type": "CF",
+   "text": "The function has a loop that processes input bytes in groups of three.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "SIDE1",
+   "type": "SIDE",
+   "text": "Writes two bytes to out for each group of three input bytes.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "SIDE2",
+   "type": "SIDE",
+   "text": "Writes additional bytes to out based on the input length.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

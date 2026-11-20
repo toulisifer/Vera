@@ -1,0 +1,222 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 30.7,
+   "cached": false,
+   "eval_count": 1296,
+   "cache_key": "45b680acf08acb4d7ebf89bcb536d363aac7b843e2bb79c37c782f0d96683527"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 processes input data and produces an output of 8 bytes. It returns 0xFFFFFFFFFFFFFFFF if the input length is less than 0x18 or the output capacity is less than 8. Otherwise, it performs a series of operations on the input data and writes the result to the output buffer.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "_0001",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len < 0x18 or out_cap < 8.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0002",
+    "type": "IO",
+    "text": "Returns 8 when len >= 0x18 and out_cap >= 8.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0003",
+    "type": "SIDE",
+    "text": "Writes 8 bytes to out[0..7].",
+    "asserted_values": [
+     "0",
+     "7"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0004",
+    "type": "CF",
+    "text": "Contains a loop that runs 0x20 times.",
+    "asserted_values": [
+     "0x20"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0005",
+    "type": "CF",
+    "text": "Contains a conditional branch based on len and out_cap.",
+    "asserted_values": [
+     "len",
+     "out_cap"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0006",
+    "type": "CONST",
+    "text": "Uses the constant 0x9e3779b9.",
+    "asserted_values": [
+     "0x9e3779b9"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0007",
+    "type": "CONST",
+    "text": "Uses the constant 0x18.",
+    "asserted_values": [
+     "0x18"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0008",
+    "type": "CONST",
+    "text": "Uses the constant 0x10.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0009",
+    "type": "CONST",
+    "text": "Uses the constant 0x18.",
+    "asserted_values": [
+     "0x18"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0010",
+    "type": "CONST",
+    "text": "Uses the constant 0x18.",
+    "asserted_values": [
+     "0x18"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar1;\n  size_t out_cap_local;\n  uint8_t *out_local;\n  uint64_t arg_local;\n  size_t len_local;\n  uint8_t *in_local;\n  uint32_t v0;\n  uint32_t v1;\n  uint32_t s;\n  uint r;\n  uint32_t k0;\n  uint32_t k1;\n  uint32_t k2;\n  uint32_t k3;\n\n  s = 0;\n  if ((len < 0x18) || (out_cap < 8)) {\n    uVar1 = VERA_ERR;\n  }\n  else {\n    v0 = *(uint32_t *)in;\n    v1 = *(uint32_t *)(in + 4);\n    for (r = 0; r < 0x20; r = r + 1) {\n      s = s + 0x9e3779b9;\n      v0 = v0 + ( *(int *)(in + 0xc) + (v1 >> 5) ^ v1 * 0x10 + *(int *)(in + 8) ^ s + v1 );\n      v1 = v1 + ( *(int *)(in + 0x14) + (v0 >> 5) ^ v0 * 0x10 + *(int *)(in + 0x10) ^ s + v0 );\n    }\n    out[0] = (uint8_t)v0;\n    out[1] = (uint8_t)(v0 >> 8);\n    out[2] = (uint8_t)(v0 >> 0x10);\n    out[3] = (uint8_t)(v0 >> 0x18);\n    out[4] = (uint8_t)v1;\n    out[5] = (uint8_t)(v1 >> 8);\n    out[6] = (uint8_t)(v1 >> 0x10);\n    out[7] = (uint8_t)(v1 >> 0x18);\n    uVar1 = 8;\n  }\n  return uVar1;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0002",
+   "type": "IO",
+   "text": "Returns 8 when len >= 0x18 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0003",
+   "type": "SIDE",
+   "text": "Writes 8 bytes to out[0..7].",
+   "asserted_values": [
+    "0",
+    "7"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0004",
+   "type": "CF",
+   "text": "Contains a loop that runs 0x20 times.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0005",
+   "type": "CF",
+   "text": "Contains a conditional branch based on len and out_cap.",
+   "asserted_values": [
+    "len",
+    "out_cap"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0006",
+   "type": "CONST",
+   "text": "Uses the constant 0x9e3779b9.",
+   "asserted_values": [
+    "0x9e3779b9"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0007",
+   "type": "CONST",
+   "text": "Uses the constant 0x18.",
+   "asserted_values": [
+    "0x18"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "Uses the constant 0x10.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "_0009",
+   "type": "CONST",
+   "text": "Uses the constant 0x18.",
+   "asserted_values": [
+    "0x18"
+   ],
+   "confidence": 1.0,
+   "drop_reason": "trùng claim khác"
+  },
+  {
+   "id": "_0010",
+   "type": "CONST",
+   "text": "Uses the constant 0x18.",
+   "asserted_values": [
+    "0x18"
+   ],
+   "confidence": 1.0,
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

@@ -1,0 +1,287 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_20",
+ "n_instructions": 101,
+ "immediates": [
+  {
+   "addr": 4392,
+   "insn": "mov rsi, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4399,
+   "insn": "sub rsp, 0x10",
+   "value": 16,
+   "size": 8
+  },
+  {
+   "addr": 4422,
+   "insn": "jb 0x1282",
+   "value": 4738,
+   "size": 8
+  },
+  {
+   "addr": 4428,
+   "insn": "mov ebx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4500,
+   "insn": "and ecx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4506,
+   "insn": "jne 0x11a6",
+   "value": 4518,
+   "size": 8
+  },
+  {
+   "addr": 4516,
+   "insn": "je 0x11ca",
+   "value": 4554,
+   "size": 8
+  },
+  {
+   "addr": 4521,
+   "insn": "shl rcx, 7",
+   "value": 7,
+   "size": 1
+  },
+  {
+   "addr": 4534,
+   "insn": "imul rcx, rcx, 0x2d6b",
+   "value": 11627,
+   "size": 8
+  },
+  {
+   "addr": 4547,
+   "insn": "shr rdi, 0xb",
+   "value": 11,
+   "size": 1
+  },
+  {
+   "addr": 4567,
+   "insn": "sub rsi, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4577,
+   "insn": "jne 0x1180",
+   "value": 4480,
+   "size": 8
+  },
+  {
+   "addr": 4579,
+   "insn": "mov ecx, 8",
+   "value": 8,
+   "size": 4
+  },
+  {
+   "addr": 4591,
+   "insn": "cmp rsi, 7",
+   "value": 7,
+   "size": 8
+  },
+  {
+   "addr": 4595,
+   "insn": "jbe 0x1261",
+   "value": 4705,
+   "size": 8
+  },
+  {
+   "addr": 4607,
+   "insn": "jmp 0x1211",
+   "value": 4625,
+   "size": 8
+  },
+  {
+   "addr": 4616,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4623,
+   "insn": "je 0x1258",
+   "value": 4696,
+   "size": 8
+  },
+  {
+   "addr": 4628,
+   "insn": "or rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4636,
+   "insn": "and eax, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4639,
+   "insn": "cmp rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4643,
+   "insn": "jne 0x1208",
+   "value": 4616,
+   "size": 8
+  },
+  {
+   "addr": 4651,
+   "insn": "cmp eax, 0x3c71",
+   "value": 15473,
+   "size": 4
+  },
+  {
+   "addr": 4656,
+   "insn": "jne 0x1208",
+   "value": 4616,
+   "size": 8
+  },
+  {
+   "addr": 4681,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4688,
+   "insn": "jne 0x1211",
+   "value": 4625,
+   "size": 8
+  },
+  {
+   "addr": 4696,
+   "insn": "add rcx, 8",
+   "value": 8,
+   "size": 8
+  },
+  {
+   "addr": 4703,
+   "insn": "jae 0x11f8",
+   "value": 4600,
+   "size": 8
+  },
+  {
+   "addr": 4708,
+   "insn": "jae 0x1282",
+   "value": 4738,
+   "size": 8
+  },
+  {
+   "addr": 4729,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4736,
+   "insn": "jne 0x1270",
+   "value": 4720,
+   "size": 8
+  },
+  {
+   "addr": 4752,
+   "insn": "jne 0x129b",
+   "value": 4763,
+   "size": 8
+  },
+  {
+   "addr": 4754,
+   "insn": "add rsp, 0x10",
+   "value": 16,
+   "size": 8
+  },
+  {
+   "addr": 4763,
+   "insn": "call 0x1050",
+   "value": 4176,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4403,
+   "value": 40
+  },
+  {
+   "addr": 4412,
+   "value": 8
+  },
+  {
+   "addr": 4449,
+   "value": 7
+  },
+  {
+   "addr": 4492,
+   "value": 1
+  },
+  {
+   "addr": 4584,
+   "value": 8
+  },
+  {
+   "addr": 4600,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4738,
+   "value": 8
+  },
+  {
+   "addr": 4743,
+   "value": 40
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4442,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4508,
+   "target": 16408,
+   "section": null
+  },
+  {
+   "addr": 4528,
+   "target": 16400,
+   "section": ".data"
+  },
+  {
+   "addr": 4645,
+   "target": 16400,
+   "section": ".data"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".rodata",
+   "addr": 8192,
+   "hex": "0001020304050607"
+  },
+  {
+   "name": ".data",
+   "addr": 16392,
+   "hex": "0840000000000000713c0000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__",
+  "__stack_chk_fail"
+ ]
+}

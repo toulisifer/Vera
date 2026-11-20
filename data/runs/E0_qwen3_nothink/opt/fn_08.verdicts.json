@@ -1,0 +1,111 @@
+{
+ "fn": "fn_08",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "The function performs a bitwise transformation on the input bytes using a series of operations involving XOR, bit shifting, and masking.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFF when the input length is non-zero.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns 0 when the input length is zero.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Processes each byte in the input array sequentially.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "Applies a bitwise transformation to each byte using a fixed mask and a series of operations.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Does not modify the input array.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "The function uses the mask 0xf7179bf5 in its bitwise operations.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xf7179bf5",
+      "form": "imm",
+      "detail": "0xF7179BF5 (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

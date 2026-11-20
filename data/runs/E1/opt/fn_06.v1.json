@@ -1,0 +1,11 @@
+{
+ "fn": "fn_06",
+ "config": "opt",
+ "compiled": false,
+ "fepr": 0.0,
+ "n_vectors": 50,
+ "n_match": 0,
+ "failures": [],
+ "sandbox_image": "python:3.12-slim",
+ "compile_error": "recovered.c:7:7: error: ‘uVar27’ undeclared (first use in this function); did you mean ‘uVar26’?"
+}

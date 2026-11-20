@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a loop that processes input in chunks of 3 bytes, as indicated by the increment of uVar5 by 3 in each iteration.", "seconds": 1.1}

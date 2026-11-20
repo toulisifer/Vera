@@ -1,0 +1,30 @@
+{
+ "fn": "fn_18",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "size_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n size_t i = 0, d = 0, q = 0;\n uint8_t st[64];\n\n while (i < len) {\n  uint8_t c = in[i];\n\n  if (q == 2)\n   q = 1;\n  else if (q == 1) {\n   if (c == '\\\\')\n    q = 2;\n   else if (c == '\"')\n    q = 0;\n  } else if (c == '\"')\n   q = 1;\n  else if (c == '(' || c == '[' || c == '{') {\n   if (d == 64)\n    return i + 1;\n   if (c == '(')\n    c = ')';\n   else\n    c += 2;\n   st[d++] = c;\n  } else if (c == ')' || c == ']' || c == '}') {\n   if (d == 0 || c != st[d - 1])\n    return i + 1;\n   d--;\n  }\n  i++;\n }\n\n if (d == 0 && q == 0)\n  return 0;\n return len + 1;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 16.4,
+   "cached": false,
+   "eval_count": 324,
+   "cache_key": "ed861fd8395838ec2727ba103e24338a88956f9c91a53b07ef2e6b783aa222c8"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n size_t i = 0, d = 0, q = 0;\n uint8_t st[64];\n\n while (i < len) {\n  uint8_t c = in[i];\n\n  if (q == 2)\n   q = 1;\n  else if (q == 1) {\n   if (c == '\\\\')\n    q = 2;\n   else if (c == '\"')\n    q = 0;\n  } else if (c == '\"')\n   q = 1;\n  else if (c == '(' || c == '[' || c == '{') {\n   if (d == 64)\n    return i + 1;\n   if (c == '(')\n    c = ')';\n   else\n    c += 2;\n   st[d++] = c;\n  } else if (c == ')' || c == ']' || c == '}') {\n   if (d == 0 || c != st[d - 1])\n    return i + 1;\n   d--;\n  }\n  i++;\n }\n\n if (d == 0 && q == 0)\n  return 0;\n return len + 1;\n}\nuint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len), (uint64_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

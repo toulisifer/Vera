@@ -1,0 +1,305 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 51.0,
+   "cached": false,
+   "eval_count": 2443,
+   "cache_key": "3726945d7f08ba46ab576de6d0bddb97522b62cec04cf9f3e7319b60b2c4d3c5"
+  }
+ ],
+ "output": {
+  "summary": "fn_14 processes input data using a custom transformation and writes the result to output. It handles different input lengths and applies specific transformations based on the input length and a constant.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns -1 when (param_2 + 2) / 3 << 2 > param_5.",
+    "asserted_values": [
+     "-1"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "(param_2 + 2) / 3 << 2 > param_5",
+     "returns": "-1"
+    }
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0 when param_2 < 3.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 < 3",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes two bytes to out[0..1] when param_2 == 2.",
+    "asserted_values": [
+     "out[0..1]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes three bytes to out[0..2] when param_2 == 1.",
+    "asserted_values": [
+     "out[0..2]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Loops until uVar6 + 3 <= param_2, incrementing uVar6 by 3 each iteration.",
+    "asserted_values": [
+     "uVar6 + 3 <= param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes two bytes to out[lVar4] and out[lVar4 + 2] for each iteration of the loop.",
+    "asserted_values": [
+     "out[lVar4]",
+     "out[lVar4 + 2]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Writes one byte to out[lVar4 + 3] when param_2 == 2.",
+    "asserted_values": [
+     "out[lVar4 + 3]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "8",
+    "type": "SIDE",
+    "text": "Writes one byte to out[lVar4 + 2] when param_2 == 1.",
+    "asserted_values": [
+     "out[lVar4 + 2]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "9",
+    "type": "SIDE",
+    "text": "Writes one byte to out[lVar4 + 1] when param_2 == 1.",
+    "asserted_values": [
+     "out[lVar4 + 1]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "10",
+    "type": "CONST",
+    "text": "Uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "11",
+    "type": "CONST",
+    "text": "Uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "12",
+    "type": "CONST",
+    "text": "Uses the constant 0x5eb.",
+    "asserted_values": [
+     "0x5eb"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "13",
+    "type": "CONST",
+    "text": "Uses the constant 0x3d3d.",
+    "asserted_values": [
+     "0x3d3d"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "14",
+    "type": "CONST",
+    "text": "Uses the constant 0x3d.",
+    "asserted_values": [
+     "0x3d"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1, uVar2;\n  ulong uVar3, uVar5, uVar6, uVar7;\n  long lVar4;\n\n  lVar4 = -1;\n  if ((len + 2) / 3 << 2 <= out_cap) {\n    if (len < 3) {\n      uVar6 = 0;\n      lVar4 = 0;\n    } else {\n      uVar5 = 0;\n      lVar4 = 0;\n      uVar3 = 3;\n      uVar7 = len;\n      do {\n        uVar6 = uVar3;\n        uVar2 = (uint)*(byte *)(in + -3 + uVar6) << 0x10 | (uint)*(byte *)(in + -2 + uVar6) << 8 | (uint)*(byte *)(in + -1 + uVar6);\n        if (((((int)uVar7 + 1) * (int)uVar7 & 1U) != 0) || (DAT_00104010 != 0)) {\n          uVar2 = ((uint)(uVar7 << 7) ^ uVar2) * 0x2d6b + DAT_00104008;\n          uVar2 = uVar2 >> 0xb ^ uVar2;\n        }\n        uVar1 = (int)uVar6 - 3U | 1;\n        *(ushort *)(out + lVar4) = CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 >> 0xc & 0x3f], \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 >> 0x12 & 0x3f]);\n        if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n          uVar3 = lVar4 + 3;\n          *(char *)(out + 2 + lVar4) = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 >> 6 & 0x3f];\n        } else {\n          uVar3 = lVar4 + 0x51e5U ^ uVar5;\n        }\n        lVar4 = uVar3 + 1;\n        uVar7 = uVar7 + 3;\n        uVar5 = uVar5 + 0x5eb;\n        *(char *)(out + uVar3) = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 & 0x3f];\n        uVar3 = uVar6 + 3;\n      } while (uVar6 + 3 <= len);\n      len = len - uVar6;\n    }\n    if (len == 1) {\n      *(ushort *)(out + lVar4) = CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(*(byte *)(in + uVar6) & 3) << 4], \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[*(byte *)(in + uVar6) >> 2]);\n      *(undefined2 *)(out + 2 + lVar4) = 0x3d3d;\n      return lVar4 + 4;\n    }\n    if (len == 2) {\n      uVar2 = (uint)*(byte *)(in + 1 + uVar6) << 8;\n      *(ushort *)(out + lVar4) = CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 | (uint)*(byte *)(in + uVar6) << 0x10) >> 0xc & 0x3f], \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[*(byte *)(in + uVar6) >> 2]);\n      *(char *)(out + 2 + lVar4) = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 & 0xf00) >> 6];\n      *(undefined1 *)(out + lVar4 + 3) = 0x3d;\n      return lVar4 + 4;\n    }\n  }\n  return lVar4;\n}\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns -1 when (param_2 + 2) / 3 << 2 > param_5.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "(param_2 + 2) / 3 << 2 > param_5",
+    "returns": "-1"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0 when param_2 < 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes two bytes to out[0..1] when param_2 == 2.",
+   "asserted_values": [
+    "out[0..1]"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes three bytes to out[0..2] when param_2 == 1.",
+   "asserted_values": [
+    "out[0..2]"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Loops until uVar6 + 3 <= param_2, incrementing uVar6 by 3 each iteration.",
+   "asserted_values": [
+    "uVar6 + 3 <= param_2"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes two bytes to out[lVar4] and out[lVar4 + 2] for each iteration of the loop.",
+   "asserted_values": [
+    "out[lVar4]",
+    "out[lVar4 + 2]"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes one byte to out[lVar4 + 3] when param_2 == 2.",
+   "asserted_values": [
+    "out[lVar4 + 3]"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "Writes one byte to out[lVar4 + 2] when param_2 == 1.",
+   "asserted_values": [
+    "out[lVar4 + 2]"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "9",
+   "type": "SIDE",
+   "text": "Writes one byte to out[lVar4 + 1] when param_2 == 1.",
+   "asserted_values": [
+    "out[lVar4 + 1]"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "10",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "11",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "12",
+   "type": "CONST",
+   "text": "Uses the constant 0x5eb.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "13",
+   "type": "CONST",
+   "text": "Uses the constant 0x3d3d.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "14",
+   "type": "CONST",
+   "text": "Uses the constant 0x3d.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": []
+}

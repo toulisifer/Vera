@@ -1,0 +1,11 @@
+{
+ "fn": "fn_03",
+ "config": "obf",
+ "compiled": false,
+ "fepr": 0.0,
+ "n_vectors": 50,
+ "n_match": 0,
+ "failures": [],
+ "sandbox_image": "python:3.12-slim",
+ "compile_error": "recovered.c:21:42: error: \u2018DAT_00104008\u2019 undeclared (first use in this function)"
+}

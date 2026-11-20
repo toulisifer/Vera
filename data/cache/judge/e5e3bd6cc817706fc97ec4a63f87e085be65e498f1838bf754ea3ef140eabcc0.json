@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code performs a series of operations on the input buffer 'in' using a key derived from 'arg' and a state array 's', then XORs the input data with a derived value from 's' to produce the output buffer 'out'.", "seconds": 1.8}

@@ -1,0 +1,1 @@
+{"key": "4bc456a94f97b231ef6e5ff3f49164dcc7df7b18f8c7acf16b4cad505a8cd526", "content": "uint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t h = 14695981039346656037ULL;\n  for (size_t i = 0; i < len; i++) {\n    h ^= in[i];\n    h *= 14695981039346656037ULL;\n  }\n  return h;\n}", "seconds": 6.3, "eval_count": 142}

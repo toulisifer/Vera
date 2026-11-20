@@ -1,0 +1,73 @@
+{
+ "fn": "fn_19",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is greater than the output capacity.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function returns the input length when the input length is less than or equal to the output capacity.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= param_5",
+    "returns": "param_2"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function writes the transformed data to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

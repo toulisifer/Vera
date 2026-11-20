@@ -1,0 +1,151 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p1",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "recovered_c không định nghĩa fn_05"
+   ],
+   "seconds": 18.1,
+   "cached": false,
+   "eval_count": 891,
+   "cache_key": "1d63ff39e236e8ba08a2a06989d2dd01d98e829701ed6313ae331233e4835dea"
+  },
+  {
+   "errors": [],
+   "seconds": 17.5,
+   "cached": false,
+   "eval_count": 869,
+   "cache_key": "c08202f9a55b210c3efaeaa1e7e38f7906b6135d4e0e8fc7e80599d2b39b8ae6"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 appears to be a custom hash function that processes an input buffer and produces a 64-bit hash value. It uses a specific algorithm involving bitwise operations and arithmetic.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x61c88647 in its calculations.",
+    "asserted_values": [
+     "0x61c88647"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3910c8e0 in its calculations.",
+    "asserted_values": [
+     "0x3910c8e0"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function contains a loop that iterates until a specific condition is met.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function writes the computed hash value to the output parameter.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "The function returns VERA_ERR when the input length is less than 0x17 or the output capacity is less than 8.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < 0x17 || param_5 < 8",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "The function returns 8 when the input length is at least 0x17 and the output capacity is at least 8.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 >= 0x17 && param_5 >= 8",
+     "returns": "8"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len < 0x17 || out_cap < 8) {\n    return 0xffffffffffffffff;\n  }\n  uint32_t state1 = arg;\n  uint32_t state2 = arg;\n  for (size_t i = 0; i < len; i++) {\n    state1 += in[i] * 0x10 + (state2 >> 5) + (state2 & 0xff);\n    state2 += state1 * 0x10 + (state1 >> 5) + (state1 & 0xff);\n  }\n  out[0] = (state1 >> 24) & 0xff;\n  out[1] = (state1 >> 16) & 0xff;\n  out[2] = (state1 >> 8) & 0xff;\n  out[3] = state1 & 0xff;\n  out[4] = (state2 >> 24) & 0xff;\n  out[5] = (state2 >> 16) & 0xff;\n  out[6] = (state2 >> 8) & 0xff;\n  out[7] = state2 & 0xff;\n  return 8;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x61c88647 in its calculations.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3910c8e0 in its calculations.",
+   "asserted_values": [
+    "0x3910c8e0"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function contains a loop that iterates until a specific condition is met.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function writes the computed hash value to the output parameter.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "The function returns VERA_ERR when the input length is less than 0x17 or the output capacity is less than 8.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 0x17 || param_5 < 8",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "The function returns 8 when the input length is at least 0x17 and the output capacity is at least 8.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 >= 0x17 && param_5 >= 8",
+    "returns": "8"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

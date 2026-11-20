@@ -1,0 +1,107 @@
+{
+ "fn": "fn_11",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 8.0,
+   "cached": false,
+   "eval_count": 389,
+   "cache_key": "a189216880ee722c1529235415bef7e568b5015cc8f28f78d285caf32be76454"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_11` does not perform any meaningful operations and always returns immediately.",
+  "proposed_name": "fn_11",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "DAT_00104010 uses the constant 0x00000000.",
+    "asserted_values": [
+     "0x00000000"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "Loops based on the value of DAT_00104010, which is always 0.",
+    "asserted_values": [
+     "0x00000000"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "Loops based on the value of param_2, which is always 0.",
+    "asserted_values": [
+     "0x00000000"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns immediately without performing any operations.",
+    "asserted_values": [
+     "0x00000000"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "DAT_00104010 uses the constant 0x00000000.",
+   "asserted_values": [
+    "0x00000000"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Loops based on the value of DAT_00104010, which is always 0.",
+   "asserted_values": [
+    "0x00000000"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Loops based on the value of param_2, which is always 0.",
+   "asserted_values": [
+    "0x00000000"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns immediately without performing any operations.",
+   "asserted_values": [
+    "0x00000000"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

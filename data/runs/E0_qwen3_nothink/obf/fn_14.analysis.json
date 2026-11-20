@@ -1,0 +1,388 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 318 column 15 (char 9666)"
+   ],
+   "seconds": 76.0,
+   "cached": true,
+   "eval_count": 3072,
+   "cache_key": "23cee7349d1be59c3f5aee0905b5140cafc1736c56eb6b030daea1482dcd8292"
+  },
+  {
+   "errors": [],
+   "seconds": 72.4,
+   "cached": true,
+   "eval_count": 2962,
+   "cache_key": "b2407e636f28bb48b77c4c8b74480690ef23e26181c507fdb9fb52f90f6394f0"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input bytes and writes transformed data to the output buffer based on a fixed string and arithmetic operations. It returns the number of bytes written or an error code.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "The function uses a loop that iterates over the input data in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "CF",
+    "text": "The loop condition checks if the current chunk index plus 3 is less than or equal to the input length.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "CF",
+    "text": "The loop body processes each chunk of 3 bytes and writes 2 bytes to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "CF",
+    "text": "The function handles the case where the remaining input length is 1 byte separately.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "CF",
+    "text": "The function handles the case where the remaining input length is 2 bytes separately.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "IO",
+    "text": "Writes 2 bytes to the output buffer for each 3-byte chunk processed.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "always",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_7",
+    "type": "IO",
+    "text": "Returns the number of bytes written to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "always",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "user_8",
+    "type": "SIDE",
+    "text": "Modifies the input buffer by reading bytes from it.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_9",
+    "type": "CONST",
+    "text": "The function uses a fixed string for lookup operations.",
+    "asserted_values": [
+     "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_10",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x5eb in an arithmetic operation.",
+    "asserted_values": [
+     "0x5eb"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_11",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x3d3d in an output operation.",
+    "asserted_values": [
+     "0x3d3d"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_12",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x3d in an output operation.",
+    "asserted_values": [
+     "0x3d"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_13",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x51e5 in an arithmetic operation.",
+    "asserted_values": [
+     "0x51e5"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_14",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x2d6b in an arithmetic operation.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_15",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x3c71 in a conditional check.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_16",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0xb in a bitwise operation.",
+    "asserted_values": [
+     "0xb"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_17",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x10 in a bitwise operation.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_18",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x8 in a bitwise operation.",
+    "asserted_values": [
+     "0x8"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_19",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x3f in a bitwise operation.",
+    "asserted_values": [
+     "0x3f"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_20",
+    "type": "CONST",
+    "text": "The function uses a fixed value of 0x12 in a bitwise operation.",
+    "asserted_values": [
+     "0x12"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t lVar4 = 0;\n  size_t uVar6 = 0;\n  size_t uVar5 = 0;\n  size_t uVar3 = 0;\n  size_t uVar7 = 0;\n  size_t uVar2 = 0;\n  size_t uVar1 = 0;\n\n  lVar4 = 0;\n  if ((len + 2) / 3 << 2 <= out_cap) {\n    if (len < 3) {\n      uVar6 = 0;\n      lVar4 = 0;\n    }\n    else {\n      uVar5 = 0;\n      lVar4 = 0;\n      uVar3 = 3;\n      uVar7 = len;\n      do {\n        uVar6 = uVar3;\n        uVar2 = (uint)*(uint8_t *)(in + -3 + uVar6) << 0x10 |\n                (uint)*(uint8_t *)(in + -2 + uVar6) << 8 |\n                (uint)*(uint8_t *)(in + -1 + uVar6);\n        if (((((int)uVar7 + 1) * (int)uVar7 & 1U) != 0) || (0x104010 != 0)) {\n          uVar2 = ((uint)(uVar7 << 7) ^ uVar2) * 0x2d6b + 0x104008;\n          uVar2 = uVar2 >> 0xb ^ uVar2;\n        }\n        uVar1 = (int)uVar6 - 3U | 1;\n        *(uint16_t *)(out + lVar4) = \n          CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                   [(uVar2 >> 0xc) & 0x3f],\n                   \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                   [(uVar2 >> 0x12) & 0x3f]);\n        if (((uVar1 * uVar1 & 7) == 1) && (0x104008 == 0x3c71)) {\n          uVar3 = lVar4 + 3;\n          *(uint8_t *)(out + 2 + lVar4) = \n            \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n            [(uVar2 >> 6) & 0x3f];\n        }\n        else {\n          uVar3 = lVar4 + 0x51e5 ^ uVar5;\n        }\n        lVar4 = uVar3 + 1;\n        uVar7 = uVar7 + 3;\n        uVar5 = uVar5 + 0x5eb;\n        *(uint8_t *)(out + uVar3) = \n          \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n          [(uVar2) & 0x3f];\n        uVar3 = uVar6 + 3;\n      } while (uVar6 + 3 <= len);\n      len = len - uVar6;\n    }\n    if (len == 1) {\n      *(uint16_t *)(out + lVar4) = \n        CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                 [((*(uint8_t *)(in + uVar6) & 3) << 4)],\n                 \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                 [*(uint8_t *)(in + uVar6) >> 2]);\n      *(uint16_t *)(out + 2 + lVar4) = 0x3d3d;\n      return lVar4 + 4;\n    }\n    if (len == 2) {\n      uVar2 = (uint)*(uint8_t *)(in + 1 + uVar6) << 8;\n      *(uint16_t *)(out + lVar4) = \n        CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                 [(uVar2 | (uint)*(uint8_t *)(in + uVar6) << 0x10) >> 0xc & 0x3f],\n                 \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                 [*(uint8_t *)(in + uVar6) >> 2]);\n      *(uint8_t *)(out + 2 + lVar4) = \n        \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n        [(uVar2 & 0xf00) >> 6];\n      *(uint8_t *)(out + lVar4 + 3) = 0x3d;\n      return lVar4 + 4;\n    }\n  }\n  return lVar4;\n}\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "The function uses a loop that iterates over the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "The loop condition checks if the current chunk index plus 3 is less than or equal to the input length.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "The loop body processes each chunk of 3 bytes and writes 2 bytes to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "The function handles the case where the remaining input length is 1 byte separately.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "CF",
+   "text": "The function handles the case where the remaining input length is 2 bytes separately.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Writes 2 bytes to the output buffer for each 3-byte chunk processed.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "always",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "IO",
+   "text": "Returns the number of bytes written to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "SIDE",
+   "text": "Modifies the input buffer by reading bytes from it.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_9",
+   "type": "CONST",
+   "text": "The function uses a fixed string for lookup operations.",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_10",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x5eb in an arithmetic operation.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_11",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3d3d in an output operation.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_12",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3d in an output operation.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_13",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x51e5 in an arithmetic operation.",
+   "asserted_values": [
+    "0x51e5"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_14",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x2d6b in an arithmetic operation.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_15",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3c71 in a conditional check.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_16",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0xb in a bitwise operation.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_17",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x10 in a bitwise operation.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_18",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x8 in a bitwise operation.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_19",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3f in a bitwise operation.",
+   "asserted_values": [
+    "0x3f"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_20",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x12 in a bitwise operation.",
+   "asserted_values": [
+    "0x12"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

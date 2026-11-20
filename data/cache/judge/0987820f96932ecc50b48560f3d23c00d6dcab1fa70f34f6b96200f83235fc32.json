@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly uses the constant 0x2d6b in the expression uVar2 = (uVar2 ^ uVar8) * 0x2d6b + DAT_00104008.", "seconds": 1.9}

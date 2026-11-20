@@ -1,0 +1,195 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 43.4,
+   "cached": true,
+   "eval_count": 1811,
+   "cache_key": "0a6ad9c62b23741bb4129f933b8c72dd3c34558ae474b9cafa1c5911f8adfc57"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input bytes and writes a transformed version to the output buffer, returning the number of bytes written or an error code if the output buffer is too small.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap is less than (len + 2) / 3 << 2.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < (len + 2) / 3 << 2",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "user_2",
+    "type": "IO",
+    "text": "Returns the number of bytes written to out when out_cap is sufficient.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap >= (len + 2) / 3 << 2",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "user_3",
+    "type": "SIDE",
+    "text": "Writes 4 bytes to out for each 3-byte chunk of input.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_4",
+    "type": "SIDE",
+    "text": "Writes 4 bytes to out for a single byte of input.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_5",
+    "type": "SIDE",
+    "text": "Writes 4 bytes to out for two bytes of input.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_6",
+    "type": "SIDE",
+    "text": "Writes '=' to out[o + 2] and out[lVar1] in some cases.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_7",
+    "type": "CONST",
+    "text": "The string used for encoding is \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\".",
+    "asserted_values": [
+     "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_8",
+    "type": "CF",
+    "text": "Processes input in chunks of 3 bytes, then handles remaining bytes (1 or 2) separately.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t o = 0;\n  size_t i = 0;\n\n  if (out_cap < (len + 2) / 3 << 2) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  for (; i + 3 <= len; i += 3) {\n    uint32_t uVar4 = (uint32_t)in[i] << 16 | (uint32_t)in[i + 1] << 8;\n    uint8_t bVar2 = in[i + 2];\n    \n    out[o] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[in[i] >> 2];\n    out[o + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[ (uVar4 & 0x3f000) >> 12 ];\n    out[o + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[ (bVar2 | uVar4) >> 6 & 0x3f ];\n    out[o + 3] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[ bVar2 & 0x3f ];\n    \n    o += 4;\n  }\n\n  if (len - i == 1) {\n    uint8_t bVar2 = in[i];\n    out[o] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[bVar2 >> 2];\n    out[o + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[ (bVar2 & 3) << 4 ];\n    out[o + 2] = '=';\n    out[o + 3] = '=';\n    o += 4;\n  }\n  else if (len - i == 2) {\n    uint8_t bVar2 = in[i];\n    uint8_t bVar3 = in[i + 1];\n    out[o] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[bVar2 >> 2];\n    out[o + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[ ( ( (uint32_t)bVar3 << 8 | (uint32_t)bVar2 << 16 ) >> 12 ) & 0x3f ];\n    out[o + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\")[ ( ( (uint32_t)bVar3 << 8 ) & 0xfc0 ) >> 6 ];\n    out[o + 3] = '=';\n    o += 4;\n  }\n\n  return o;\n}\n"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap is less than (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns the number of bytes written to out when out_cap is sufficient.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= (len + 2) / 3 << 2",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for each 3-byte chunk of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for a single byte of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for two bytes of input.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "SIDE",
+   "text": "Writes '=' to out[o + 2] and out[lVar1] in some cases.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "The string used for encoding is \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\".",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_8",
+   "type": "CF",
+   "text": "Processes input in chunks of 3 bytes, then handles remaining bytes (1 or 2) separately.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

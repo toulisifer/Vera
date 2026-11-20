@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function can return 0xFFFFFFFFFFFFFFFF (VERA_ERR) when the input length is greater than 0, as the return value depends on the computed hash value which may be zero.", "seconds": 1.2}

@@ -1,0 +1,100 @@
+{
+ "fn": "fn_20",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "CF",
+   "text": "A do-while loop is used to iterate until param_2 is not equal to uVar6.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_2",
+   "type": "CF",
+   "text": "A nested loop is used to iterate over uVar5 and uVar3.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "SIDE",
+   "text": "Writes to out[0..uVar6] based on the values of param_1 and param_3.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "claim_4",
+   "type": "IO",
+   "text": "Returns uVar6 when param_2 is greater than param_5.",
+   "asserted_values": [],
+   "confidence": 0.5,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_5",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 is not less than or equal to param_5.",
+   "asserted_values": [],
+   "confidence": 0.5,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_6",
+   "type": "CONST",
+   "text": "The constant 0x706050403020100 is used.",
+   "asserted_values": [
+    "706050403020100"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x706050403020100",
+      "form": "table",
+      "detail": "byte LE 0001020304050607 trong section dữ liệu"
+     }
+    ],
+    "missing": [
+     {
+      "value": "0x282262b772d44"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

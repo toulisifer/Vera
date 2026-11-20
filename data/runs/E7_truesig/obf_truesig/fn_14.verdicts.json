@@ -1,0 +1,162 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffffffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFFFFFFFFFF (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when (len + 2) / 3 << 2 > out_cap.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "(len + 2) / 3 << 2 > out_cap",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0 when len < 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 3",
+     "returns": "0",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "ret 0x0000000000000004"
+    }
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Writes 2 bytes to out[0..1] when len == 1.",
+   "asserted_values": [
+    "2"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 1",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 1",
+     "returns": null,
+     "writes_out": true
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Writes 3 bytes to out[0..2] when len == 2.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 2",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 2",
+     "returns": null,
+     "writes_out": true
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Iterates over the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1] based on the input data.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "8",
+   "type": "NAME",
+   "text": "Encodes input data into a specific format.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 3,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 8,
+ "explanation_clean": false
+}

@@ -1,0 +1,1 @@
+{"verdict": "UNCLEAR", "reason": "The code does not clearly show whether the function writes to out[0..3] as the output buffer is not referenced in the provided decompiler output.", "seconds": 1.5}

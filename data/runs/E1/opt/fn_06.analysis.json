@@ -1,0 +1,154 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 358 column 7 (char 8601)"
+   ],
+   "seconds": 84.2,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "01c6d2a804f4925e47555efe0e49deef7f9ef83b98d4fa118e489fdc330b255c"
+  },
+  {
+   "errors": [],
+   "seconds": 26.1,
+   "cached": false,
+   "eval_count": 903,
+   "cache_key": "aa8381ace77a4f2540619076c415f8498d50ccb6a6d9f521314b9a348ebfd42a"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_06 appears to be implementing a custom encryption algorithm. It takes an input buffer, a length, an argument, and an output buffer. The function performs a series of bitwise operations and swaps on the input buffer, and then XORs the result with the output buffer.",
+  "proposed_name": "fn_06",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x0000000000000000.",
+    "asserted_values": [
+     "0x0000000000000000"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes to out[0..15].",
+    "asserted_values": [
+     "out[0..15]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Loops over the input buffer.",
+    "asserted_values": [
+     "input buffer"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Loops over the output buffer.",
+    "asserted_values": [
+     "output buffer"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "NAME",
+    "text": "Implements a custom encryption algorithm.",
+    "asserted_values": [
+     "custom encryption algorithm"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len < out_cap) {\n    uint64_t uVar24 = 0;\n    uint64_t uVar26 = 0;\n    do {\n      uint8_t bVar25 = in[uVar26];\n      uVar27 = uVar26 + 1;\n      uVar24 = (uint64_t)((int)uVar24 + (uint)out[uVar26 & 7] + (uint)bVar25 & 0xff);\n      out[uVar26] = in[uVar24];\n      in[uVar24] = bVar25;\n      uVar26 = uVar27;\n    } while (uVar27 != 0x100);\n    if (len != 0) {\n      uint64_t uVar30 = 0;\n      uint64_t uVar24 = 0;\n      uint64_t uVar29 = 0;\n      do {\n        uVar29 = (uint64_t)((int)uVar29 + 1U & 0xff);\n        uint8_t bVar25 = in[uVar29];\n        uVar24 = (uint64_t)((int)uVar24 + (uint)bVar25 & 0xff);\n        in[uVar29] = in[uVar24];\n        in[uVar24] = bVar25;\n        out[uVar30] = in[(uint)bVar25 + in[uVar29]] ^ out[uVar30];\n        uVar30 = uVar30 + 1;\n      } while (len != uVar30);\n    }\n  }\n  return len;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x0000000000000000.",
+   "asserted_values": [
+    "0x0000000000000000"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Loops over the input buffer.",
+   "asserted_values": [
+    "input buffer"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Loops over the output buffer.",
+   "asserted_values": [
+    "output buffer"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "NAME",
+   "text": "Implements a custom encryption algorithm.",
+   "asserted_values": [
+    "custom encryption algorithm"
+   ],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes to out[0..15].",
+   "asserted_values": [
+    "out[0..15]"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

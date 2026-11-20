@@ -1,0 +1,105 @@
+{
+ "fn": "fn_01",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the polynomial 0xEDB88320.",
+   "asserted_values": [
+    "0xEDB88320"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xedb88320",
+      "form": "imm",
+      "detail": "0xEDB88320 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFF when the input length is 0.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the 4-byte CRC-32 checksum to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function uses a nested loop to compute the CRC-32 checksum.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements CRC-32.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "source": "algorithm_field",
+   "raw_algorithm": "CRC-32",
+   "verdict": {
+    "algorithm": "CRC-32",
+    "v3": {
+     "label": "supported",
+     "method": "V3",
+     "fingerprint": [
+      {
+       "value": "0xedb88320",
+       "form": "imm"
+      }
+     ]
+    },
+    "label": "verified",
+    "method": "V1b",
+    "detail": "oracle CRC-32 khớp 50/50 vector"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 2,
+  "contradicted": 1
+ },
+ "n_claims": 5,
+ "explanation_clean": false
+}

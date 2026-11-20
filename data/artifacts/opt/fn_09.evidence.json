@@ -1,0 +1,53 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_09",
+ "n_instructions": 13,
+ "immediates": [
+  {
+   "addr": 4356,
+   "insn": "movabs rax, 0xcbf29ce484222325",
+   "value": 14695981039346656037,
+   "size": 8
+  },
+  {
+   "addr": 4369,
+   "insn": "je 0x1133",
+   "value": 4403,
+   "size": 8
+  },
+  {
+   "addr": 4371,
+   "insn": "movabs rcx, 0x100000001b5",
+   "value": 1099511628213,
+   "size": 8
+  },
+  {
+   "addr": 4387,
+   "insn": "add rdi, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4401,
+   "insn": "jne 0x1120",
+   "value": 4384,
+   "size": 8
+  }
+ ],
+ "displacements": [],
+ "data_refs": [],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

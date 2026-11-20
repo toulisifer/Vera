@@ -1,0 +1,75 @@
+{
+ "fn": "fn_07",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns -1 when out_cap is less than (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < (param_2 + 2) / 3 << 2",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0 when len is less than 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes the encoded Base64 string to out.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Handles len equal to 1, 2, and greater than 2 separately.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

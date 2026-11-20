@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function appears to implement a custom checksum algorithm by iterating through the input data and updating two hash values based on the input bytes.", "seconds": 1.0}

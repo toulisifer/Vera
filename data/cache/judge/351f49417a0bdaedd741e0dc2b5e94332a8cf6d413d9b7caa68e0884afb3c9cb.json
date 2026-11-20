@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code returns 'len' when the output capacity is sufficient, which matches the claim.", "seconds": 0.8}

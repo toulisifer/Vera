@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function iterates over the input data and writes transformed data to the output buffer.", "seconds": 0.8}

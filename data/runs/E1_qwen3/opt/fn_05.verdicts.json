@@ -1,0 +1,153 @@
+{
+ "fn": "fn_05",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "CF",
+   "text": "Executes a loop with a fixed number of iterations.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Exits the loop when iVar3 equals -0x3910c8e0.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Uses a fixed constant -0x61c88647 in the loop.",
+   "asserted_values": [
+    "-0x61c88647"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Uses a fixed constant -0x3910c8e0 as the loop condition.",
+   "asserted_values": [
+    "-0x3910c8e0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "CONST",
+   "text": "Uses the constant 0x10 in bitwise operations.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns 8 when 0x17 < param_2 and 7 < param_5.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 < param_2 && 7 < param_5",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when 0x17 >= param_2 or 7 >= param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 >= param_2 || 7 >= param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "SIDE",
+   "text": "Writes to param_4 based on the computed values of uVar1 and uVar2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "SIDE",
+   "text": "Does not modify the input data pointed to by param_1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "NAME",
+   "text": "Processes input data using a custom algorithm involving bitwise operations and a loop.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 9,
+  "contradicted": 0
+ },
+ "n_claims": 10,
+ "explanation_clean": true
+}

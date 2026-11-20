@@ -1,0 +1,139 @@
+{
+ "fn": "fn_13",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim2",
+   "type": "SIDE",
+   "text": "Writes data to out[0..15] and out[16..255].",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "claim3",
+   "type": "CF",
+   "text": "Contains nested loops and conditional branches.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim4",
+   "type": "SIDE",
+   "text": "Modifies the contents of in[0..15].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "claim5",
+   "type": "IO",
+   "text": "Writes a value to out[0..15] when param_2 <= param_5.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "when": "param_2 <= param_5",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim6",
+   "type": "IO",
+   "text": "Writes a value to out[16..255] when param_2 <= param_5.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "when": "param_2 <= param_5",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim7",
+   "type": "IO",
+   "text": "Writes a value to out[16..255] when param_2 != 0.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "param_2 != 0",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim8",
+   "type": "IO",
+   "text": "Writes a value to out[0..15] when param_2 != 0.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "param_2 != 0",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 7,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

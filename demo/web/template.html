@@ -1,0 +1,832 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Phòng demo VeRA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Bố cục: thanh đầu cố định với 3 thẻ (Kịch bản · Kết quả · Tra cứu); nội dung một cột rộng tối đa 1180px,
+   khối mã dạng "listing" của disassembler; nhãn kiểm chứng là chip có biểu tượng + chữ, màu chỉ là kênh phụ. */
+:root {
+  --bg: #eef2f1;          /* nền: xám lạnh nghiêng về teal */
+  --surface: #ffffff;
+  --sunken: #e4eae9;      /* nền khối mã */
+  --ink: #12202a;
+  --muted: #566a73;
+  --line: #cdd8d8;
+  --accent: #0b6b78;      /* teal sâu — màu chủ đạo */
+  --accent-soft: #d4ebed;
+  --ok: #0a7f0a;  --ok-bg: #dff2dc;            /* verified */
+  --sup: #127a62; --sup-bg: #e2f2ec;           /* supported */
+  --warn: #8a6100; --warn-bg: #fbefc9;         /* unsupported */
+  --bad: #b42d2d; --bad-bg: #f8dddb;           /* contradicted */
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; /* chuỗi dữ liệu: 3 model */
+  --grid: #dbe3e3;
+  --f-display: "Archivo", "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Be Vietnam Pro", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1518; --surface: #152126; --sunken: #0b1214; --ink: #e4eef0; --muted: #93a8ae; --line: #29393f;
+  --accent: #46b4c2; --accent-soft: #163a40;
+  --ok: #4fcf4f; --ok-bg: #143318; --sup: #4fc4a5; --sup-bg: #12312a; --warn: #f1bf3d; --warn-bg: #3a2f0e;
+  --bad: #f07272; --bad-bg: #3d1a1a; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --grid: #22323a;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0e1518; --surface: #152126; --sunken: #0b1214; --ink: #e4eef0; --muted: #93a8ae; --line: #29393f;
+  --accent: #46b4c2; --accent-soft: #163a40;
+  --ok: #4fcf4f; --ok-bg: #143318; --sup: #4fc4a5; --sup-bg: #12312a; --warn: #f1bf3d; --warn-bg: #3a2f0e;
+  --bad: #f07272; --bad-bg: #3d1a1a; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --grid: #22323a;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+p, dd, .what, .ev, .meta, .lead, .point, .mono { overflow-wrap: anywhere; }
+section[role="tabpanel"] > *, .stage > *, .panel > *, .two > *, .charts > * { min-width: 0; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--f-body); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 0 64px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h2 { font-size: 1.45rem; font-weight: 750; font-stretch: 90%; }
+h3 { font-size: 1.05rem; font-weight: 700; }
+p { margin: 0; }
+code, pre, .mono { font-family: var(--f-mono); }
+a { color: var(--accent); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Thanh đầu */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-block: 12px; }
+.brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.brand b { font-family: var(--f-display); font-size: 1.5rem; font-weight: 800; font-stretch: 80%; letter-spacing: .02em; }
+.brand span { color: var(--muted); font-size: .85rem; }
+.tabs { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; min-width: 0; max-width: 100%; }
+.tabs button { border: 1px solid transparent; background: none; padding: 6px 14px; border-radius: 999px; font-weight: 600; color: var(--muted); }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.tabs button:hover { border-color: var(--line); }
+
+section[role="tabpanel"] { padding-top: 28px; display: grid; gap: 24px; }
+.lead { color: var(--muted); max-width: 70ch; }
+.eyebrow { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; min-width: 0; }
+
+/* Chip nhãn kiểm chứng */
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 8px; border-radius: 999px;
+  font-size: .78rem; font-weight: 600; white-space: nowrap; border: 1px solid currentColor; }
+.chip i { font-style: normal; font-weight: 800; }
+.l-verified { color: var(--ok); background: var(--ok-bg); }
+.l-supported { color: var(--sup); background: var(--sup-bg); border-style: dashed; }
+.l-unsupported { color: var(--warn); background: var(--warn-bg); }
+.l-contradicted { color: var(--bad); background: var(--bad-bg); }
+.tag { display: inline-block; font-size: .72rem; font-weight: 600; padding: 1px 8px; border-radius: 4px;
+  background: var(--sunken); color: var(--muted); font-family: var(--f-mono); }
+
+/* Khối mã */
+.code { background: var(--sunken); border-radius: var(--r); overflow: auto; max-height: 420px; font-size: .8rem;
+  line-height: 1.5; padding: 12px 0; counter-reset: ln; }
+.code div { padding-inline: 12px 16px; white-space: pre; }
+.code div::before { counter-increment: ln; content: counter(ln); display: inline-block; width: 2.4em; margin-right: 12px;
+  text-align: right; color: var(--muted); opacity: .6; }
+.code mark { background: var(--accent-soft); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+/* Kịch bản */
+.cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 10px; }
+.case { text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px;
+  display: grid; gap: 4px; }
+.case[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.case b { font-family: var(--f-display); font-size: 1rem; }
+.case small { color: var(--muted); }
+.stepper { display: flex; flex-wrap: wrap; gap: 6px; }
+.stepper button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px;
+  font-size: .82rem; display: flex; gap: 8px; align-items: center; }
+.stepper button b { font-family: var(--f-mono); color: var(--muted); }
+.stepper button[aria-current="step"] { border-color: var(--accent); background: var(--accent-soft); }
+.stepper button[aria-current="step"] b { color: var(--accent); }
+.stage { display: grid; gap: 16px; }
+.stage-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: end; }
+.stage-head p { color: var(--muted); max-width: 72ch; }
+.nav { display: flex; gap: 8px; }
+.nav button { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 6px 14px; font-weight: 600; }
+.nav button.primary { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.nav button:disabled { opacity: .4; cursor: default; }
+.ask { border: 1px dashed var(--accent); border-radius: var(--r); padding: 12px 16px; background: var(--accent-soft); }
+.claims { display: grid; gap: 0; }
+.claim { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 4px 14px; padding: 10px 0; border-top: 1px solid var(--line); }
+.claim:first-child { border-top: 0; }
+.claim .what { min-width: 0; }
+.claim .ev { grid-column: 2; color: var(--muted); font-size: .84rem; }
+.claim .ev b { color: var(--ink); font-weight: 600; }
+.claim .meta { font-size: .75rem; color: var(--muted); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; align-items: start; }
+.two > * { min-width: 0; }
+.say { display: grid; gap: 8px; }
+.say dl { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: 4px 12px; margin: 0; }
+.say dt { color: var(--muted); font-size: .85rem; }
+.say dd { margin: 0; font-weight: 600; }
+.meter { display: grid; grid-template-columns: repeat(50, 1fr); gap: 2px; }
+.meter span { height: 18px; border-radius: 2px; background: var(--bad); }
+.meter span.ok { background: var(--ok); }
+.bignum { font-family: var(--f-display); font-size: 2.2rem; font-weight: 800; font-stretch: 85%; font-variant-numeric: tabular-nums; }
+.point { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; font-size: 1.02rem; }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* Kết quả */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 12px; }
+.kpi { display: grid; gap: 2px; align-content: start; }
+.kpi .bignum { font-size: 2rem; }
+.kpi small { color: var(--muted); }
+.hyp { width: 100%; min-width: 560px; border-collapse: collapse; font-size: .9rem; }
+.hyp td:first-child { white-space: nowrap; }
+.hyp th, .hyp td { text-align: left; padding: 10px 12px 10px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.hyp th { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; border-top: 0; }
+.tw { overflow-x: auto; }
+.verdict { font-weight: 700; white-space: nowrap; }
+.v-yes { color: var(--ok); } .v-part { color: var(--warn); } .v-no { color: var(--bad); }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 16px; align-items: start; }
+.chart { display: grid; gap: 10px; align-content: start; }
+.chart p.note { color: var(--muted); font-size: .82rem; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart svg text { fill: var(--muted); font-family: var(--f-body); font-size: 12px; }
+.chart svg text.val { fill: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.chart svg text.lab { fill: var(--ink); font-size: 13px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .8rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.mx { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.mx th, .mx td { padding: 8px 12px; border: 1px solid var(--line); text-align: center; }
+.mx th { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.mx td.big { font-family: var(--f-display); font-size: 1.4rem; font-weight: 750; }
+.mx td.hl { background: var(--accent-soft); }
+
+/* Tra cứu */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.filters button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px; font-size: .82rem; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.grid60 { border-collapse: separate; border-spacing: 4px; font-size: .82rem; }
+.grid60 th { font-weight: 600; color: var(--muted); text-align: left; padding: 2px 6px; white-space: nowrap; }
+.grid60 td button { width: 100%; min-width: 7.5rem; border: 1px solid var(--line); background: var(--surface); border-radius: 4px;
+  padding: 6px 8px; display: grid; gap: 4px; text-align: left; }
+.grid60 td button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.grid60 .row1 { display: flex; justify-content: space-between; gap: 6px; font-variant-numeric: tabular-nums; }
+.grid60 .bar { height: 4px; background: var(--grid); border-radius: 2px; overflow: hidden; }
+.grid60 .bar i { display: block; height: 100%; background: var(--ok); }
+.grid60 .bad { color: var(--bad); font-weight: 700; }
+.grid60 .ok0 { color: var(--muted); }
+.gbadge { font-size: .68rem; padding: 0 6px; border-radius: 3px; background: var(--sunken); color: var(--muted); }
+.detail { display: grid; gap: 18px; }
+.detail-head { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.seg button { border: 0; background: var(--surface); padding: 4px 12px; font-size: .82rem; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.reveal { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 6px 14px; font-weight: 600; }
+.mrow { display: grid; grid-template-columns: 9rem minmax(0,1fr) 3.5rem; gap: 10px; align-items: center; font-size: .85rem; }
+.mrow .track { height: 8px; background: var(--grid); border-radius: 4px; overflow: hidden; }
+.mrow .track i { display: block; height: 100%; border-radius: 4px; }
+.tip { position: fixed; pointer-events: none; z-index: 20; background: var(--ink); color: var(--bg); font-size: .78rem;
+  padding: 6px 10px; border-radius: 4px; max-width: 280px; line-height: 1.4; }
+/* Câu của AI: bản dịch + giải thích */
+.claim .vi { color: var(--ink); font-size: .92rem; }
+.claim .en { color: var(--muted); font-size: .82rem; font-style: italic; }
+.claim .why { grid-column: 2; font-size: .9rem; background: var(--bg); border-radius: var(--r); padding: 8px 12px; }
+.claim .why.l-contradicted, .claim .why.l-verified, .claim .why.l-supported, .claim .why.l-unsupported { border: 0; }
+.claim .why.l-contradicted { background: var(--bad-bg); color: var(--ink); }
+.claim .why.l-verified, .claim .why.l-supported { background: var(--ok-bg); color: var(--ink); }
+.claim .why.l-unsupported { background: var(--warn-bg); color: var(--ink); }
+.claim .why b { font-weight: 700; }
+/* Chú thích dòng code */
+.code div.n-key { background: var(--accent-soft); }
+.code div.n-contradicted { background: var(--bad-bg); }
+.code div.n-verified, .code div.n-supported { background: var(--ok-bg); }
+.code div.n-unsupported { background: var(--warn-bg); }
+.code .note { font-family: var(--f-body); font-size: .74rem; font-weight: 700; margin-left: 14px; padding: 1px 8px;
+  border-radius: 999px; background: var(--surface); border: 1px solid currentColor; white-space: nowrap; }
+.code div.n-key .note { color: var(--accent); } .code div.n-contradicted .note { color: var(--bad); }
+.code div.n-verified .note, .code div.n-supported .note { color: var(--ok); } .code div.n-unsupported .note { color: var(--warn); }
+.v1why { font-size: .95rem; border-left: 3px solid var(--line); padding-left: 12px; }
+/* Chạy trực tiếp */
+.lv-status { display: flex; flex-wrap: wrap; gap: 8px; font-size: .82rem; }
+.lv-status span { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.lv-status .on { color: var(--ok); border-color: currentColor; } .lv-status .off { color: var(--bad); border-color: currentColor; }
+.lv-form { display: grid; gap: 14px; }
+.lv-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.lv-row label { display: grid; gap: 4px; font-size: .82rem; color: var(--muted); font-weight: 600; min-width: 0; }
+.lv-row select, .lv-row input, .lv-form textarea { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 7px 10px; min-width: 0; }
+.lv-row input { font-family: var(--f-mono); width: 12rem; max-width: 100%; }
+.lv-form textarea { font-family: var(--f-mono); font-size: .82rem; width: 100%; min-height: 220px; }
+.run { border: 0; background: var(--accent); color: var(--surface); border-radius: var(--r); padding: 10px 22px; font-weight: 700; font-size: 1rem; }
+.run:disabled { opacity: .5; cursor: default; }
+.ghost-btn { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 7px 12px; font-weight: 600; }
+.prog { display: grid; gap: 6px; }
+.prog div { display: grid; grid-template-columns: 1.6rem minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 6px 10px; border-radius: var(--r); }
+.prog .run-st { background: var(--accent-soft); font-weight: 700; }
+.prog .done-st i { color: var(--ok); } .prog .fail-st { background: var(--bad-bg); } .prog .fail-st i { color: var(--bad); }
+.prog .wait-st, .prog .skip-st { color: var(--muted); }
+.prog i { font-style: normal; font-weight: 800; text-align: center; }
+.prog small { color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: no-preference) { .prog .run-st i { animation: spin 1s linear infinite; display: inline-block; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.lv-error { background: var(--bad-bg); border-radius: var(--r); padding: 12px 16px; }
+/* Giới thiệu + giải thích */
+.explain { border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); }
+.explain summary { cursor: pointer; padding: 10px 14px; font-weight: 600; color: var(--accent); list-style: none; }
+.explain summary::-webkit-details-marker { display: none; }
+.explain summary::before { content: "▸ "; } .explain[open] summary::before { content: "▾ "; }
+.explain .in { padding: 0 14px 14px; display: grid; gap: 10px; }
+.explain .look { border-left: 3px solid var(--accent); padding-left: 12px; }
+.explain .food { color: var(--muted); font-size: .9rem; }
+.intro { display: grid; gap: 20px; }
+.intro h3 { font-size: 1.15rem; }
+.intro .sec { display: grid; gap: 10px; }
+.intro ol, .intro ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 8px; }
+.flow div { border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; background: var(--bg); display: grid; gap: 2px; }
+.flow b { font-family: var(--f-mono); color: var(--accent); }
+.flow small { color: var(--muted); }
+.tbl { width: 100%; min-width: 520px; border-collapse: collapse; font-size: .9rem; }
+.tbl th, .tbl td { text-align: left; padding: 8px 12px 8px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.tbl th { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; border-top: 0; }
+.cta { display: flex; flex-wrap: wrap; gap: 8px; }
+.cta button { border: 1px solid var(--accent); background: var(--accent); color: var(--surface); border-radius: var(--r); padding: 8px 16px; font-weight: 600; }
+.cta button.ghost { background: var(--surface); color: var(--accent); }
+.foot { color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (max-width: 640px) {
+  .claim { grid-template-columns: 1fr; } .claim .ev { grid-column: 1; }
+  .brand span { display: none; } .bignum { font-size: 1.7rem; }
+}
+@media (prefers-reduced-motion: no-preference) { .stage { animation: in .25s ease-out; } }
+@keyframes in { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>VeRA</b><span>Kiểm chứng lời giải thích của LLM cho hàm nhị phân · Đồ án môn học · Đại học FPT</span></div>
+    <nav class="tabs" role="tablist" aria-label="Phần của demo">
+      <button role="tab" id="t-intro" aria-controls="p-intro" aria-selected="true">Giới thiệu</button>
+      <button role="tab" id="t-story" aria-controls="p-story" aria-selected="false">Kịch bản demo</button>
+      <button role="tab" id="t-results" aria-controls="p-results" aria-selected="false">Kết quả</button>
+      <button role="tab" id="t-explore" aria-controls="p-explore" aria-selected="false">Tra cứu 60 item</button>
+      <button role="tab" id="t-live" aria-controls="p-live" aria-selected="false" hidden>▶ Chạy trực tiếp</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section role="tabpanel" id="p-intro" aria-labelledby="t-intro">
+    <div style="display:grid;gap:8px">
+      <p class="eyebrow">Đồ án môn học · Đại học FPT</p>
+      <h2>VeRA kiểm tra từng câu AI nói khi giải thích mã nhị phân, bằng bằng chứng lấy từ chính chương trình</h2>
+      <p class="lead">Người phân tích malware thường chỉ có file nhị phân, không có mã nguồn. Họ nhờ AI đọc và giải thích. AI trả lời rất trôi chảy, nhưng câu đúng và câu sai nghe tự tin như nhau. VeRA cho biết câu nào tin được, câu nào sai, câu nào chưa kiểm được.</p>
+    </div>
+    <div class="intro">
+      <div class="panel sec"><h3>Vấn đề</h3>
+        <ul>
+          <li>Malware thật đã bị <b>xóa tên hàm</b> và thường bị <b>làm rối code</b> (obfuscation). Một mẫu có hàng nghìn hàm không tên.</li>
+          <li>Ghidra dịch mã máy ra <b>pseudocode</b> (gần giống C) nhưng rất khó đọc. Người ta dán đoạn đó cho AI và nhận lại lời giải thích sau vài giây.</li>
+          <li>AI có thể nói “hàm này là AES-128” trong khi nó chỉ là phép XOR. Câu sai đó nghe chắc chắn y như câu đúng.</li>
+          <li>Nếu tên sai được ghi vào Ghidra, các bước phân tích sau dựa trên tên đó và <b>sai theo</b>.</li>
+        </ul></div>
+      <div class="panel sec"><h3>VeRA làm 3 việc</h3>
+        <ol>
+          <li><b>Tách lời giải thích thành câu nhỏ (claim)</b>, mỗi câu một sự kiện kiểm được. Ví dụ: “dùng hằng 0xEDB88320”, “trả 0 khi đầu vào rỗng”, “đây là CRC-32”.</li>
+          <li><b>Kiểm từng câu bằng bằng chứng</b>: tìm hằng số trong binary; chạy thuật toán chuẩn mà AI nêu tên rồi so kết quả; chạy thử hàm với 50 bộ đầu vào đã biết đáp án; chạy cả đoạn code AI viết lại.</li>
+          <li><b>Đo luôn độ chính xác của chính VeRA</b>: 2 người chấm tay 120 câu độc lập rồi so với VeRA. Nếu bộ chấm sai thì con số “AI sai bao nhiêu” không có nghĩa.</li>
+        </ol></div>
+      <div class="panel sec"><h3>Bốn nhãn VeRA gán cho mỗi câu</h3><div class="tw">
+        <table class="tbl"><thead><tr><th>Nhãn</th><th>Nghĩa</th><th>Ví dụ</th></tr></thead><tbody>
+          <tr><td><span class="chip l-verified"><i>✓</i>Đã kiểm chứng</span></td><td>Chạy thử thấy đúng</td><td>“Trả 0 khi đầu vào rỗng”: đưa đầu vào rỗng vào, hàm trả 0</td></tr>
+          <tr><td><span class="chip l-supported"><i>◆</i>Có bằng chứng</span></td><td>Tìm thấy trong binary</td><td>“Dùng hằng 0xEDB88320”: hằng đó có trong mã máy</td></tr>
+          <tr><td><span class="chip l-unsupported"><i>?</i>Chưa kiểm được</span></td><td>Không đủ bằng chứng. <b>Không có nghĩa là sai</b></td><td>“Có vòng lặp qua từng byte”: VeRA chưa có cách kiểm tự động</td></tr>
+          <tr><td><span class="chip l-contradicted"><i>✕</i>Sai</span></td><td>Có đầu vào cụ thể cho kết quả trái với câu đó. Chỉ nhãn này mới gọi là <b>hallucination</b></td><td>“Đây là CRC-16/XMODEM”: XMODEM chuẩn và hàm thật cho kết quả khác nhau</td></tr>
+        </tbody></table></div></div>
+      <div class="panel sec"><h3>Ví dụ dễ hiểu: phòng thí nghiệm món ăn</h3>
+        <p class="lead">Nhóm tự nấu 20 món nên biết công thức. Đưa món (không kèm công thức) cho một đầu bếp AI nếm và hỏi đây là món gì. VeRA là phòng thí nghiệm kiểm từng câu đầu bếp nói.</p>
+        <div class="tw"><table class="tbl"><thead><tr><th>Ví dụ món ăn</th><th>Trong đề tài</th></tr></thead><tbody>
+          <tr><td>Món ăn đã nấu, không có công thức</td><td>File nhị phân (mã máy) của một hàm</td></tr>
+          <tr><td>Nhìn món qua kính lúp</td><td>Pseudocode do Ghidra dịch ngược</td></tr>
+          <tr><td>Đầu bếp nếm: “phở bò, có hoa hồi…”</td><td>AI đọc pseudocode, nói tên thuật toán và các câu nhận định</td></tr>
+          <tr><td>Xét nghiệm xem có hoa hồi không</td><td>Tìm hằng số trong binary (V3)</td></tr>
+          <tr><td>Nấu một tô phở bò chuẩn để so vị</td><td>Chạy thuật toán chuẩn AI nêu tên, so kết quả (V1b)</td></tr>
+          <tr><td>Bảo đầu bếp nấu lại, nếm so 50 lần</td><td>Chạy code AI viết lại với 50 đầu vào (V1)</td></tr>
+          <tr><td>“Món bẫy”: phở thay một gia vị</td><td>Hàm near-miss: thuật toán nổi tiếng bị đổi một hằng số</td></tr>
+          <tr><td>Công thức gốc của nhóm</td><td>Mã nguồn C (ground truth), VeRA không được xem khi chấm</td></tr>
+        </tbody></table></div></div>
+      <div class="panel sec"><h3>Năm lớp của hệ thống</h3>
+        <div class="flow">
+          <div><b>L0</b><span>Dữ liệu</span><small>20 hàm C tự viết × 3 cách biên dịch = 60 binary, mỗi hàm 50 đầu vào có đáp án</small></div>
+          <div><b>L1</b><span>Trích xuất</span><small>Ghidra ra pseudocode cho AI; lấy hằng, chuỗi từ binary làm bằng chứng</small></div>
+          <div><b>L2</b><span>AI phân tích</span><small>Qwen 7B chạy trên máy, trả JSON: tên thuật toán, các câu, code viết lại</small></div>
+          <div><b>L3</b><span>Kiểm chứng</span><small>Gán 1 trong 4 nhãn cho từng câu; chạy code AI trong Docker</small></div>
+          <div><b>L4</b><span>Báo cáo</span><small>Tỉ lệ câu sai kèm khoảng tin cậy, biểu đồ, case study</small></div>
+        </div></div>
+      <div class="panel sec"><h3>Dữ liệu và vì sao chọn như vậy</h3><div class="tw">
+        <table class="tbl"><thead><tr><th>Lựa chọn</th><th>Lý do</th></tr></thead><tbody>
+          <tr><td>Nhóm tự viết 20 hàm C</td><td>Biết chắc đáp án đúng để chấm; không có rủi ro malware thật</td></tr>
+          <tr><td>7 hàm kinh điển (CRC-32, TEA, Base64…)</td><td>Xem AI có nhận ra thuật toán nổi tiếng không</td></tr>
+          <tr><td>7 hàm near-miss (đổi một hằng số)</td><td>Cái bẫy: AI có “thấy quen là gọi tên” không. Malware thật hay dùng chiêu này</td></tr>
+          <tr><td>6 hàm tự thiết kế</td><td>Không có tên để nhận diện: AI mô tả hành vi ra sao</td></tr>
+          <tr><td>3 cách biên dịch: plain, opt, obf</td><td>Code càng khó đọc (tối ưu, xóa tên, làm rối) thì AI có sai nhiều hơn không</td></tr>
+          <tr><td>Thiếu bằng chứng ≠ sai</td><td>Compiler có thể biến đổi hằng số; chỉ khi chạy thử ra kết quả trái ngược mới gọi là sai</td></tr>
+        </tbody></table></div></div>
+      <div class="cta"><button data-go="story">Xem kịch bản demo →</button><button class="ghost" data-go="results">Xem kết quả</button></div>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="p-story" aria-labelledby="t-story" hidden>
+    <div style="display:grid;gap:8px">
+      <p class="eyebrow">Mỗi ca đi qua 5 lớp của pipeline</p>
+      <h2>Một hàm nhị phân, một lời giải thích của AI, và bằng chứng cho từng câu</h2>
+      <p class="lead">Chọn một ca, rồi bấm “Tiếp” hoặc phím →. Ở bước 2, hỏi người xem câu nào sai trước khi lật nhãn ở bước 3.</p>
+    </div>
+    <div class="cases" id="cases"></div>
+    <div class="stepper" id="stepper" aria-label="Các bước"></div>
+    <div class="panel stage" id="stage"></div>
+  </section>
+
+  <section role="tabpanel" id="p-results" aria-labelledby="t-results" hidden></section>
+  <section role="tabpanel" id="p-explore" aria-labelledby="t-explore" hidden></section>
+  <section role="tabpanel" id="p-live" aria-labelledby="t-live" hidden>
+    <div style="display:grid;gap:8px">
+      <p class="eyebrow">Không có gì chuẩn bị trước</p>
+      <h2>Tạo một hàm mới ngay bây giờ và để VeRA kiểm tra AI</h2>
+      <p class="lead">Chọn cách tạo hàm, bấm “Chạy”. Máy biên dịch hàm, Ghidra dịch ngược, AI phân tích, VeRA chấm từng câu và chạy thử code AI viết lại. Mất khoảng 30–60 giây.</p>
+    </div>
+    <div class="lv-status" id="lv-status"></div>
+    <div class="panel lv-form" id="lv-form"></div>
+    <div class="panel" id="lv-progress" hidden></div>
+    <div id="lv-result" hidden style="display:grid;gap:16px">
+      <div class="stepper" id="lv-stepper" aria-label="Các bước"></div>
+      <div class="panel stage" id="lv-stage"></div>
+    </div>
+  </section>
+
+  <p class="foot" id="foot"></p>
+</main>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA = /*__VERA_DATA__*/null;
+const LIVE = /*__VERA_LIVE__*/false;
+const S = DATA.summary;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct = (x, d = 1) => x == null ? "—" : (x * 100).toFixed(d).replace(".", ",") + "%";
+const num = (x, d = 2) => x == null ? "—" : Number(x).toFixed(d).replace(".", ",");
+const store = { get(k) { try { return localStorage.getItem("vera:" + k); } catch { return null; } },
+                set(k, v) { try { localStorage.setItem("vera:" + k, v); } catch {} } };
+
+const LABEL = {
+  verified: { vi: "Đã kiểm chứng", icon: "✓", hint: "Đúng khi chạy thử hàm" },
+  supported: { vi: "Có bằng chứng", icon: "◆", hint: "Tìm thấy trong binary" },
+  unsupported: { vi: "Chưa kiểm được", icon: "?", hint: "Không đủ bằng chứng — không có nghĩa là sai" },
+  contradicted: { vi: "Sai", icon: "✕", hint: "Có vector phản ví dụ — hallucination" },
+};
+const TYPE = { ALG: "Thuật toán", CONST: "Hằng số", IO: "Vào / ra", CF: "Luồng điều khiển", SIDE: "Tác dụng phụ", NAME: "Mục đích" };
+const GROUP = { classic: "Kinh điển", near_miss: "Near-miss", custom: "Tự thiết kế" };
+const CFG = { plain: "plain (-O0 -g)", opt: "opt (-O2, strip)", obf: "obf (-O2, strip, obfuscate)" };
+const chip = l => `<span class="chip l-${l}" title="${esc(LABEL[l].hint)}"><i aria-hidden="true">${LABEL[l].icon}</i>${LABEL[l].vi}</span>`;
+const item = (fn, cfg) => DATA.items.find(x => x.fn === fn && x.cfg === cfg);
+const codeBlock = (txt, marks = [], notes = []) => {
+  const lines = String(txt || "").replace(/^\s*\n/, "").replace(/\s+$/, "").split("\n");
+  const by = {}; for (const n of notes || []) by[n.line] = n;
+  return `<div class="code" tabindex="0">${lines.map((l, i) => {
+    let h = esc(l);
+    for (const m of marks) if (m) h = h.split(esc(m)).join(`<mark>${esc(m)}</mark>`);
+    const n = by[i];
+    return `<div${n ? ` class="n-${n.kind}"` : ""}>${h || " "}${n ? `<span class="note">← ${esc(n.note)}</span>` : ""}</div>`;
+  }).join("")}</div>`;
+};
+const hexMarks = it => {
+  const out = new Set();
+  for (const c of it.claims) for (const m of (c.text.match(/0x[0-9a-fA-F]{3,}/g) || [])) out.add(m.toLowerCase());
+  return [...out];
+};
+const counts = it => { const n = { verified: 0, supported: 0, unsupported: 0, contradicted: 0 }; it.claims.forEach(c => n[c.label]++); return n; };
+
+/* ------------------------------------------------------------ Tooltip */
+const tip = $("#tip");
+document.addEventListener("pointermove", e => {
+  const t = e.target.closest?.("[data-tip]");
+  if (!t) { tip.hidden = true; return; }
+  tip.textContent = t.dataset.tip; tip.hidden = false;
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + "px"; tip.style.top = (e.clientY + 16) + "px";
+});
+
+/* ------------------------------------------------------------ Thẻ */
+const tabs = [["intro", "gioithieu"], ["story", "kichban"], ["results", "ketqua"], ["explore", "tracuu"]];
+function showTab(name) {
+  for (const [t] of tabs) {
+    $("#t-" + t).setAttribute("aria-selected", t === name);
+    $("#p-" + t).hidden = t !== name;
+  }
+  store.set("tab", name);
+  const h = tabs.find(x => x[0] === name)[1];
+  if (location.hash !== "#" + h) history.replaceState(null, "", "#" + h);
+}
+for (const [t] of tabs) $("#t-" + t).addEventListener("click", () => showTab(t));
+
+/* ------------------------------------------------------------ Kịch bản */
+const CASES = [
+  { fn: "fn_01", cfg: "opt", title: "AI gọi đúng tên", sub: "CRC-32 chuẩn · bản -O2",
+    look: ["Hằng 0xedb88320: “chữ ký” nổi tiếng của CRC-32.", "AI nói đây là CRC-32. Mọi câu đều tự tin 1,0.", "Câu “implements CRC-32” được Đã kiểm chứng: VeRA chạy CRC-32 chuẩn, khớp cả 50 đầu vào.", "50/50 ô xanh: code AI viết lại chạy giống hệt hàm gốc.", "Đúng là CRC-32 chuẩn: AI đúng và VeRA xác nhận được."],
+    point: "Model nhận ra CRC-32 từ hằng 0xEDB88320. VeRA không tin lời model: nó chạy cài đặt CRC-32 chuẩn trên 50 vector của binary, khớp cả 50, nên claim được đánh dấu đã kiểm chứng. VeRA xác nhận được câu đúng, không chỉ bắt câu sai." },
+  { fn: "fn_08", cfg: "opt", title: "AI bị bẫy near-miss", sub: "CRC-32 đổi đa thức · bản -O2",
+    look: ["Gần như y hệt Ca 1, chỉ khác hằng 0xf7179bf5. Đây là cái bẫy.", "AI gọi là CRC-16/XMODEM và vẫn tự tin 1,0. Hỏi người xem: câu nào sai?", "Câu cuối bị Sai: với đầu vào 1 byte, XMODEM chuẩn ra 0x9f59 (16-bit) còn hàm thật ra 0xa22615fe (32-bit).", "Vẫn 50/50 ô xanh: AI hiểu đúng hàm làm gì, chỉ gọi sai tên.", "CRC-32 bị đổi đa thức, không phải thuật toán nào có tên."],
+    point: "Hàm là CRC-32 bị đổi đa thức. Model viết lại mã đúng trên cả 50 vector, nhưng lại gọi tên CRC-16/XMODEM. Cài đặt XMODEM chuẩn trả giá trị 16-bit, còn binary trả 32-bit, nên claim bị bác bỏ kèm vector làm bằng chứng. Hiểu đúng code nhưng gọi sai tên: đúng loại lỗi RQ5 đo." },
+  { fn: "fn_02", cfg: "plain", title: "Gọi nhầm tên quen", sub: "FNV-1a 64-bit · bản -O0",
+    look: ["Hằng 0xcbf29ce484222325: “chữ ký” của FNV-1a.", "AI vẫn gọi là CRC-32, tự tin cao.", "Câu “implements CRC-32” bị Sai: CRC-32 chuẩn cho kết quả khác ngay ở đầu vào đầu tiên.", "Code AI viết lại vẫn chạy đúng.", "FNV-1a 64-bit chuẩn."],
+    point: "fn_02 là FNV-1a chuẩn, hằng 0xcbf29ce484222325 nằm ngay trong pseudocode. Model vẫn gọi nó là CRC-32 với độ tự tin cao. Oracle CRC-32 bác bỏ ngay. Độ tự tin của model không cho biết câu nào sai." },
+  { fn: "fn_01", cfg: "obf", title: "Obfuscation làm hỏng mã", sub: "CRC-32 · bản obfuscate",
+    look: ["Cùng CRC-32 nhưng bị làm rối: thêm điều kiện giả và biến DAT_…, code dài hơn hẳn.", "AI liệt kê nhiều hằng “rác” do obfuscation sinh ra.", "Các hằng rác Có bằng chứng (chúng có thật trong binary); câu “ghi vào out” bị Sai vì hàm CRC không ghi out.", "Không biên dịch được: AI chép biến DAT_00104010 của obfuscation vào code.", "CRC-32 chuẩn; các macro OBF_* là phần làm rối do nhóm thêm vào."],
+    point: "Ở bản obfuscate, model liệt kê đúng các hằng rác (có bằng chứng trong binary), nhưng chép biến của opaque predicate (DAT_…) sang mã khôi phục, nên mã không biên dịch được. Claim “ghi vào out” bị bác bỏ vì hàm CRC không ghi out." },
+];
+const STEPS = ["Binary → pseudocode", "AI giải thích", "VeRA chấm từng câu", "Chạy mã khôi phục", "Đáp án"];
+const EXPLAIN = [
+  { what: "Mã máy của hàm, được Ghidra dịch ra dạng gần giống C. Tên hàm và tên biến đã bị xóa nên chỉ còn uVar1, param_1… Đây là thứ duy nhất AI được xem.",
+    food: "Như nhìn món ăn qua kính lúp: thấy nguyên liệu lờ mờ, không có công thức." },
+  { what: "AI (Qwen 7B, chạy trên máy) đọc đoạn code và trả lời: đây là thuật toán gì, kèm một danh sách câu nhận định ngắn. Ô bên trái mỗi câu chỉ là loại câu (hằng số, vào/ra…), chưa phải kết quả chấm. “Tự tin” là điểm AI tự chấm cho mình.",
+    food: "Như đầu bếp nếm món rồi nói: “đây là phở bò, có hoa hồi…”." },
+  { what: "VeRA gắn một trong 4 nhãn cho từng câu. Ô màu “Vì sao” dưới mỗi câu nói VeRA đã làm gì để kết luận: tìm con số trong mã máy, chạy thuật toán chuẩn để so, hoặc chạy chính hàm với dữ liệu thật. “Chưa kiểm được” không có nghĩa là sai.",
+    food: "Như phòng thí nghiệm: xét nghiệm nguyên liệu, nấu món chuẩn để so vị." },
+  { what: "Ngoài lời giải thích, AI còn viết lại hàm bằng C. VeRA chạy bản viết lại và hàm gốc với cùng 50 đầu vào. Mỗi ô vuông là một đầu vào: xanh là hai bên ra cùng kết quả, đỏ là khác.",
+    food: "Như bảo đầu bếp tự nấu lại món, rồi nếm so với món gốc 50 lần." },
+  { what: "Mã nguồn thật do nhóm viết (ground truth). VeRA không được xem phần này khi chấm; mở ra chỉ để mọi người đối chiếu.",
+    food: "Như mở công thức gốc của nhóm ra so." },
+];
+let caseIdx = Math.min(+(store.get("case") || 0), CASES.length - 1), stepIdx = 0;
+
+function renderCases() {
+  $("#cases").innerHTML = CASES.map((c, i) => `<button class="case" aria-pressed="${i === caseIdx}" data-i="${i}">
+      <span class="eyebrow">Ca ${i + 1} · ${c.fn} · ${c.cfg}</span><b>${esc(c.title)}</b><small>${esc(c.sub)}</small></button>`).join("");
+  $("#cases").querySelectorAll("button").forEach(b => b.onclick = () => { caseIdx = +b.dataset.i; stepIdx = 0; store.set("case", caseIdx); renderStory(); });
+  $("#stepper").innerHTML = STEPS.map((s, i) => `<button data-i="${i}" ${i === stepIdx ? 'aria-current="step"' : ""}><b>${i + 1}</b>${s}</button>`).join("");
+  $("#stepper").querySelectorAll("button").forEach(b => b.onclick = () => { stepIdx = +b.dataset.i; renderStory(); });
+}
+
+function claimRows(it, reveal) {
+  return `<div class="claims">${it.claims.map(c => `<div class="claim">
+      <div>${reveal ? chip(c.label) : `<span class="tag">${esc(TYPE[c.type] || c.type)}</span>`}</div>
+      <div class="what">${c.vi ? `<div class="vi">${esc(c.vi)}</div><div class="en">${esc(c.text)}</div>` : `<div>${esc(c.text)}</div>`}
+        <div class="meta">${esc(TYPE[c.type] || c.type)}${c.conf != null ? ` · AI tự tin ${num(c.conf, 1)}` : ""}${c.fromField ? " · lấy từ tên thuật toán AI nêu" : ""}</div></div>
+      ${reveal && c.why ? `<div class="why l-${c.label}" title="${esc((c.method || "") + ": " + (c.ev || ""))}"><b>Vì sao:</b> ${esc(c.why)}</div>` : ""}
+    </div>`).join("")}</div>`;
+}
+
+function v1Block(it) {
+  const v = it.v1;
+  if (!it.valid) return `<p>AI trả lời sai định dạng nên không có code để chạy.</p>`;
+  if (!v.compiled) return `<div class="say"><p><span class="chip l-contradicted"><i>✕</i>Không biên dịch được</span></p>
+      <p class="v1why">${esc(v.why || "")}</p>
+      <p class="mono" style="font-size:.8rem;color:var(--muted)">${esc(v.err || "")}</p></div>`;
+  const ok = v.match ?? 0, n = v.n || 50;
+  return `<div class="say"><div style="display:flex;gap:14px;align-items:baseline;flex-wrap:wrap">
+      <span class="bignum" style="color:${ok === n ? "var(--ok)" : "var(--bad)"}">${ok}/${n}</span>
+      <span>bộ dữ liệu cho kết quả giống hệt hàm thật</span></div>
+    <div class="meter" role="img" aria-label="${ok} trên ${n} bộ dữ liệu khớp">${Array.from({ length: n }, (_, i) => `<span class="${i < ok ? "ok" : ""}"></span>`).join("")}</div>
+    <p class="v1why">${esc(v.why || "")}</p>
+    ${v.fails.length ? `<p style="color:var(--muted);font-size:.84rem">Ví dụ lệch: ${v.fails.slice(0, 2).map(f => `${esc(f.tag)}: đúng là <span class="mono">${esc(f.exp)}</span>, code AI trả <span class="mono">${esc(f.got)}</span>`).join("; ")}</p>` : ""}
+    <p style="color:var(--muted);font-size:.8rem">Chạy trong Docker: không mạng, chỉ đọc, giới hạn bộ nhớ/CPU, tối đa 2 giây mỗi lần. Khớp 50/50 nghĩa là chưa thấy phản ví dụ, chưa phải chứng minh đúng hoàn toàn.</p></div>`;
+}
+
+/* Khung 5 bước dùng chung cho kịch bản có sẵn và chạy trực tiếp. ctx = {look[], point, label} */
+function stageHTML(it, step, ctx) {
+  const n = counts(it);
+  let head = "", body = "";
+  if (step === 0) {
+    head = `<p>Người phân tích chỉ có file nhị phân đã xóa tên. Ghidra dịch ngược thành đoạn code dưới đây. Đây là thứ duy nhất AI được xem.</p>`;
+    body = codeBlock(it.pseudo, hexMarks(it), it.notes?.pseudo);
+  } else if (step === 1) {
+    head = `<p>AI (${esc(S.model.name)}, chạy trên máy) trả lời: tên thuật toán, các câu nhận định, và code C viết lại.</p>`;
+    body = `<div class="two"><div class="say"><dl>
+        <dt>Thuật toán AI nêu</dt><dd>${esc(it.model.alg)}</dd></dl>
+        ${it.model.summaryVi ? `<p>${esc(it.model.summaryVi)}</p>` : ""}<p style="color:var(--muted);font-style:italic;font-size:.88rem">${esc(it.model.summary)}</p></div>
+        <div class="ask"><b>Hỏi người xem:</b> trong các câu dưới, câu nào AI nói sai? AI tự chấm độ tự tin gần như 1,0 cho mọi câu.</div></div>
+      ${claimRows(it, false)}`;
+  } else if (step === 2) {
+    head = `<p>VeRA kiểm từng câu bằng bằng chứng: tìm con số trong mã máy, chạy thuật toán chuẩn để so, hoặc chạy chính hàm với 50 bộ dữ liệu. Ô màu dưới mỗi câu nói rõ VeRA đã làm gì.</p>`;
+    body = `<div class="counts">${["verified", "supported", "unsupported", "contradicted"].map(l => `${chip(l)}<b style="margin-right:10px">${n[l]}</b>`).join("")}</div>
+      ${claimRows(it, true)}`;
+  } else if (step === 3) {
+    head = `<p>AI còn viết lại hàm bằng C. VeRA biên dịch code đó, chạy trên cùng 50 bộ dữ liệu, và so với hàm thật.</p>`;
+    body = `<div class="two"><div>${codeBlock(it.rc, [], it.notes?.rc)}</div>${v1Block(it)}</div>`;
+  } else {
+    head = `<p>Đáp án do nhóm biết trước. VeRA không dùng phần này khi chấm; mở ra chỉ để đối chiếu.</p>`;
+    body = `<div class="two"><div class="say"><dl>
+        <dt>Nhóm hàm</dt><dd>${esc(GROUP[it.group] || it.group)}</dd><dt>Thật ra là</dt><dd>${esc(it.algLabel)}</dd>
+        ${it.diff ? `<dt>Khác chuẩn ở</dt><dd style="font-weight:500">${esc(it.diff)}</dd>` : ""}</dl>
+        <p style="color:var(--muted)">${esc(it.desc)}</p></div><div>${codeBlock(it.src, hexMarks(it), it.notes?.src)}</div></div>
+      ${ctx.point ? `<p class="point">${esc(ctx.point)}</p>` : ""}`;
+  }
+  return `<div class="stage-head"><div style="display:grid;gap:6px"><p class="eyebrow">Bước ${step + 1} / ${STEPS.length} · ${esc(ctx.label)}</p>
+      <h2>${STEPS[step]}</h2>${head}</div>
+      <div class="nav"><button data-nav="-1" ${step === 0 ? "disabled" : ""}>← Trước</button>
+      <button data-nav="1" class="primary" ${step === STEPS.length - 1 ? "disabled" : ""}>Tiếp →</button></div></div>
+    <details class="explain" ${store.get("explain") === "0" ? "" : "open"}><summary>Giải thích dễ hiểu</summary><div class="in">
+      <p>${esc(EXPLAIN[step].what)}</p>
+      ${ctx.look?.[step] ? `<p class="look"><b>Nhìn vào đâu:</b> ${esc(ctx.look[step])}</p>` : ""}
+      <p class="food">${esc(EXPLAIN[step].food)}</p></div></details>${body}`;
+}
+function mountStage(el, html, onNav) {
+  el.innerHTML = html;
+  el.querySelector(".explain").ontoggle = e => store.set("explain", e.target.open ? "1" : "0");
+  el.querySelectorAll("[data-nav]").forEach(b => b.onclick = () => onNav(+b.dataset.nav));
+}
+
+function renderStory() {
+  renderCases();
+  const c = CASES[caseIdx];
+  mountStage($("#stage"), stageHTML(item(c.fn, c.cfg), stepIdx, { look: c.look, point: c.point, label: `${c.fn} · ${CFG[c.cfg]}` }),
+             d => { stepIdx += d; renderStory(); });
+}
+document.addEventListener("keydown", e => {
+  if (e.target.closest("input,textarea,select")) return;
+  if (LIVE && !$("#p-live").hidden && LV.item) {
+    if (e.key === "ArrowRight" && LV.step < STEPS.length - 1) { LV.step++; lvShow(); }
+    if (e.key === "ArrowLeft" && LV.step > 0) { LV.step--; lvShow(); }
+    return;
+  }
+  if ($("#p-story").hidden) return;
+  if (e.key === "ArrowRight" && stepIdx < STEPS.length - 1) { stepIdx++; renderStory(); }
+  if (e.key === "ArrowLeft" && stepIdx > 0) { stepIdx--; renderStory(); }
+});
+
+/* ------------------------------------------------------------ Biểu đồ (SVG tự vẽ, một thang đo mỗi biểu đồ) */
+function dotWhisker(rows, { max = 1, color = "var(--accent)", ref = null, refLabel = "" } = {}) {
+  const W = 460, L = 118, R = 62, rowH = 32, top = 20, H = top + rows.length * rowH + 26;
+  const x = v => L + (v / max) * (W - L - R);
+  const ticks = [0, .25, .5, .75, 1].map(t => t * max);
+  let g = ticks.map(t => `<line x1="${x(t)}" x2="${x(t)}" y1="${top - 6}" y2="${H - 22}" stroke="var(--grid)"/>
+      <text x="${x(t)}" y="${H - 6}" text-anchor="middle">${max <= 1 ? pct(t, 0) : t}</text>`).join("");
+  if (ref != null) g += `<line x1="${x(ref)}" x2="${x(ref)}" y1="${top - 10}" y2="${H - 22}" stroke="var(--muted)" stroke-dasharray="4 3"/>
+      <text x="${x(ref) + 4}" y="${top - 2}">${esc(refLabel)}</text>`;
+  rows.forEach((r, i) => {
+    const y = top + i * rowH + rowH / 2;
+    const fmt = max <= 1 && !r.raw ? pct(r.v) : num(r.v);
+    const tipText = `${r.label}: ${fmt}${r.lo != null ? ` (khoảng tin cậy 95%: ${max <= 1 && !r.raw ? pct(r.lo) : num(r.lo)} – ${max <= 1 && !r.raw ? pct(r.hi) : num(r.hi)})` : ""}${r.n ? ` · ${r.n}` : ""}`;
+    g += `<text class="lab" x="${L - 10}" y="${y + 4}" text-anchor="end">${esc(r.label)}</text>`;
+    if (r.lo != null) g += `<line x1="${x(r.lo)}" x2="${x(r.hi)}" y1="${y}" y2="${y}" stroke="${r.color || color}" stroke-width="2" stroke-linecap="round"/>
+        <line x1="${x(r.lo)}" x2="${x(r.lo)}" y1="${y - 5}" y2="${y + 5}" stroke="${r.color || color}" stroke-width="2"/>
+        <line x1="${x(r.hi)}" x2="${x(r.hi)}" y1="${y - 5}" y2="${y + 5}" stroke="${r.color || color}" stroke-width="2"/>`;
+    if (r.v != null) g += `<circle cx="${x(r.v)}" cy="${y}" r="5.5" fill="${r.color || color}" stroke="var(--surface)" stroke-width="2"/>
+        <text class="val" x="${W - R + 10}" y="${y + 4}">${fmt}</text>`;
+    else g += `<text x="${W - R + 10}" y="${y + 4}">không có</text>`;
+    g += `<rect x="0" y="${y - rowH / 2}" width="${W}" height="${rowH}" fill="transparent" data-tip="${esc(tipText)}"/>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg>`;
+}
+function groupedBars(cats, series) {
+  const W = 460, L = 40, R = 10, top = 16, H = 230, base = H - 28, inner = W - L - R;
+  const y = v => base - v * (base - top);
+  let g = [0, .25, .5, .75, 1].map(t => `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/>
+      <text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${pct(t, 0)}</text>`).join("");
+  const band = inner / cats.length, bw = Math.min(28, (band - 24) / series.length);
+  cats.forEach((c, ci) => {
+    const x0 = L + ci * band + (band - bw * series.length - 2 * (series.length - 1)) / 2;
+    series.forEach((s, si) => {
+      const r = s.values[ci]; if (!r) return;
+      const v = r.rate ?? 0, bx = x0 + si * (bw + 2), by = y(v), h = Math.max(base - by, 0);
+      g += `<path d="M${bx},${base} V${by + Math.min(4, h)} q0,-4 4,-4 h${bw - 8} q4,0 4,4 V${base} Z" fill="${s.color}"
+          data-tip="${esc(`${s.name} · ${c}: ${pct(v)} (${r.k}/${r.n} hàm khớp 50/50 vector)`)}"/>
+        <text class="val" x="${bx + bw / 2}" y="${by - 5}" text-anchor="middle">${Math.round(v * 100)}</text>`;
+    });
+    g += `<text class="lab" x="${L + ci * band + band / 2}" y="${H - 8}" text-anchor="middle">${esc(c)}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg>`;
+}
+const R = (r, label, extra = {}) => r && r.n ? { label, v: r.rate, lo: r.ci95?.[0], hi: r.ci95?.[1], n: `${r.k}/${r.n} claim`, ...extra } : { label, v: null };
+
+function renderResults() {
+  const e1 = S.runs.E1, g = S.gold, e4 = S.e4, p2 = S.runs.E1_p2;
+  const hrs = e1.overall.HR_strict;
+  const kpis = [
+    [pct(hrs.rate), "claim bị bằng chứng bác bỏ", "HR_strict thô ở E1 — cận dưới"],
+    [g ? pct(g.hr_corrected) : "—", "claim sai thật sau hiệu chỉnh", g ? `khoảng tin cậy ${pct(g.hr_corrected_ci[0])}–${pct(g.hr_corrected_ci[1])}` : ""],
+    [g ? pct(g.precision_contradicted, 0) : "—", "khi VeRA nói “sai”, đúng là sai", `precision · gold set ${S.goldN} claim`],
+    [g ? pct(g.recall_contradicted, 0) : "—", "số claim sai thật mà VeRA bắt được", "recall · nửa còn lại nằm ngoài vùng phủ"],
+    [g ? num(g.kappa) : "—", "đồng thuận giữa 2 người gán nhãn", "Cohen’s kappa, mục tiêu ≥ 0,70"],
+  ];
+  const mx = e1.e2_matrix || {};
+  const tc = t => ["plain", "opt", "obf"].map(cfg => R(e1.by_type_config[`${t}/${cfg}`]?.HR_strict, cfg));
+  const models = [["qwen2.5-coder:7b (chính)", "E1", "var(--s1)"], ["qwen3:8b", "E1_qwen3", "var(--s2)"], ["LLM4Decompile 6.7B", "E1_llm4decompile", "var(--s3)"]];
+  const H = [
+    ["H1", "HR tăng dần plain → opt → obf", "Không được ủng hộ ở mức tổng (7,7% / 5,1% / 6,5%, McNemar p ≥ 0,6). Trong claim tác dụng phụ (SIDE) có xu hướng 0% → 18% → 44%, mẫu nhỏ.", "v-no", "Không"],
+    ["H2", "V1 và V3 bổ sung cho nhau", `${mx["clean/v1_fail"] || 0} hàm giải thích sạch nhưng mã sai; ${mx["contradicted/v1_pass"] || 0} hàm mã đúng nhưng giải thích sai.`, "v-yes", "Ủng hộ"],
+    ["H3", "Độ tự tin tương quan yếu; self-consistency tốt hơn ngẫu nhiên", `AUROC độ tự tin ${num(e1.rq3_confidence_auroc)} ở temperature 0; ở E4: độ tự tin ${num(e4.auroc_confidence)}, self-consistency ${num(e4.auroc_self_consistency)}.`, "v-part", "Một phần"],
+    ["H4", "V3 precision ≥ 85%, bỏ sót ≤ 5%", `Precision nhãn sai ${g ? pct(g.precision_contradicted, 0) : "—"}; self-test bỏ sót ${pct(S.selftest.rate?.["-O2"], 0)}, ủng hộ nhầm ${S.selftest.falseSupport}/${S.selftest.trials}. Nhưng recall chỉ ${g ? pct(g.recall_contradicted, 0) : "—"}.`, "v-part", "Một phần"],
+    ["H5", "Model gán tên nổi tiếng cho hàm near-miss", `Gán nhầm ${pct(e1.e3.near_miss.misattribution.rate)} ở near-miss so với ${pct(e1.e3.classic.misattribution.rate)} ở kinh điển (mẫu nhỏ: ${e1.e3.near_miss.alg_claims} claim).`, "v-yes", "Ủng hộ"],
+  ];
+  $("#p-results").innerHTML = `
+    <div style="display:grid;gap:8px"><p class="eyebrow">Lượt chính E1 · ${esc(S.model.name)} · 20 hàm × 3 cấu hình · ${e1.n_schema_valid}/${e1.n_items} item hợp lệ</p>
+      <h2>Một phần tư số claim của model là sai, và độ tự tin của model không báo trước được câu nào</h2>
+      <p class="lead">Mọi tỉ lệ kèm khoảng tin cậy 95% (Wilson hoặc bootstrap). Di chuột lên điểm để xem số đếm.</p></div>
+    <div class="kpis">${kpis.map(([v, t, s]) => `<div class="panel kpi"><span class="bignum">${v}</span><b>${t}</b><small>${s}</small></div>`).join("")}</div>
+    <div class="panel tw"><h3 style="margin-bottom:8px">Giả thuyết</h3><table class="hyp"><thead><tr><th></th><th>Giả thuyết</th><th>Số liệu</th><th>Kết luận</th></tr></thead>
+      <tbody>${H.map(h => `<tr><td class="mono">${h[0]}</td><td>${h[1]}</td><td>${h[2]}</td><td class="verdict ${h[3]}">${h[4]}</td></tr>`).join("")}</tbody></table></div>
+    <div class="charts">
+      <div class="panel chart"><h3>RQ1 · Claim bị bác bỏ theo cấu hình</h3>
+        ${dotWhisker(["plain", "opt", "obf"].map(c => R(e1.by_config[c].HR_strict, CFG[c].split(" ")[0])), { max: .4 })}
+        <p class="note">Khoảng tin cậy chồng nhau: không có khác biệt có ý nghĩa giữa ba cấu hình ở mức tổng.</p></div>
+      <div class="panel chart"><h3>RQ1 · Theo nhóm hàm</h3>
+        ${dotWhisker(["classic", "near_miss", "custom"].map(k => R(e1.by_group[k].HR_strict, GROUP[k])), { max: .4 })}
+        <p class="note">Near-miss có tỉ lệ cao nhất: hàm giống thuật toán nổi tiếng dễ bị giải thích sai.</p></div>
+      <div class="panel chart"><h3>RQ1 · Trong từng loại claim</h3>
+        <p class="note">Mật độ claim khác nhau giữa cấu hình (obf có nhiều claim hằng số hơn), nên so trong từng loại.</p>
+        ${["SIDE", "IO", "ALG"].map(t => `<p class="eyebrow" style="margin-top:4px">${TYPE[t]} (${t})</p>${dotWhisker(tc(t), { max: 1 })}`).join("")}</div>
+      <div class="panel chart"><h3>RQ5 · Gọi sai tên thuật toán</h3>
+        ${dotWhisker([R(e1.e3.classic.misattribution, "Kinh điển"), R(e1.e3.near_miss.misattribution, "Near-miss")], { max: 1, color: "var(--bad)" })}
+        <p class="note">Tỉ lệ claim gọi tên thuật toán bị cài đặt chuẩn (oracle) bác bỏ. Hàm tự thiết kế không có claim gọi tên.</p></div>
+      <div class="panel chart"><h3>RQ2 · Giải thích và mã khôi phục bắt lỗi khác nhau</h3>
+        <div class="tw"><table class="mx"><thead><tr><th></th><th>Mã khớp 50/50</th><th>Mã không khớp</th></tr></thead><tbody>
+          <tr><th>Giải thích không có câu sai</th><td class="big">${mx["clean/v1_pass"] || 0}</td><td class="big hl">${mx["clean/v1_fail"] || 0}</td></tr>
+          <tr><th>Giải thích có câu sai</th><td class="big hl">${mx["contradicted/v1_pass"] || 0}</td><td class="big">${mx["contradicted/v1_fail"] || 0}</td></tr></tbody></table></div>
+        <p class="note">Hai ô tô màu là chỗ một bộ kiểm chứng bắt được lỗi mà bộ kia bỏ qua, nên cần cả hai.</p></div>
+      <div class="panel chart"><h3>V1 · Mã khôi phục khớp 50/50 vector</h3>
+        <div class="legend">${models.map(m => `<span><i style="background:${m[2]}"></i>${m[0]}</span>`).join("")}</div>
+        ${groupedBars(["plain", "opt", "obf"], models.map(m => ({ name: m[0], color: m[2], values: ["plain", "opt", "obf"].map(c => S.runs[m[1]]?.v1?.[c]?.fepr_1) })))}
+        <p class="note">Obfuscation phá mã khôi phục: model chép biến opaque predicate (DAT_…) nên phần lớn không biên dịch được.</p></div>
+      <div class="panel chart"><h3>RQ3 · Tín hiệu nào báo trước câu sai?</h3>
+        ${dotWhisker([{ label: "Tự tin, temp 0", v: e1.rq3_confidence_auroc, raw: 1 },
+                      { label: "Tự tin, temp 0,7", v: e4.auroc_confidence, lo: e4.auroc_confidence_ci?.[0], hi: e4.auroc_confidence_ci?.[1], raw: 1 },
+                      { label: "Self-consistency", v: e4.auroc_self_consistency, lo: e4.auroc_self_consistency_ci?.[0], hi: e4.auroc_self_consistency_ci?.[1], raw: 1 }],
+                     { max: 1, ref: .5, refLabel: "ngẫu nhiên" })}
+        <p class="note">AUROC: 0,5 là đoán ngẫu nhiên, 1 là phân biệt hoàn hảo câu sai với câu đúng.</p></div>
+      <div class="panel chart"><h3>RQ4 · Tỉ lệ claim sai sau khi tính sai số của VeRA</h3>
+        ${g ? dotWhisker([{ label: "Thô", v: g.hr_strict_raw, lo: e1.overall.HR_strict.ci95[0], hi: e1.overall.HR_strict.ci95[1] },
+                          { label: "Đã hiệu chỉnh", v: g.hr_corrected, lo: g.hr_corrected_ci[0], hi: g.hr_corrected_ci[1], color: "var(--bad)" }], { max: .4 }) : ""}
+        <p class="note">Hiệu chỉnh bằng gold set ${S.goldN} claim do 2 người gán nhãn độc lập: nhiều claim sai nằm ở nhóm “chưa kiểm được”.</p></div>
+    </div>
+    <div class="two">
+      <div class="panel chart"><h3>Ablation prompt</h3>
+        <p>Prompt có câu ví dụ (p2): model chép câu mẫu ở <b>${p2.prompt_echo.claims.k}</b> claim, và <b>${p2.prompt_echo.contradicted_among_echo.k}/${p2.prompt_echo.contradicted_among_echo.n}</b> trong số đó là sai. Prompt khuôn mẫu (p3, dùng cho E1): ${e1.prompt_echo.contradicted_among_echo.k} claim chép sai.</p>
+        <p class="note">Chính cách hỏi có thể sinh ra hallucination giả; phép đo phải kiểm soát cả prompt.</p></div>
+      <div class="panel chart"><h3>Bộ kiểm chứng tự kiểm tra</h3>
+        <p>Self-test 20 hằng × 2 mức tối ưu: bỏ sót ${pct(S.selftest.rate?.["-O0"], 0)} ở -O0, ${pct(S.selftest.rate?.["-O2"], 0)} ở -O2. Thử ${S.selftest.trials} claim tên thuật toán sai: ủng hộ nhầm ${S.selftest.falseSupport}.</p>
+        <p class="note">Obfuscation kiểm trên binary: cả 20 hàm có số lệnh rẽ nhánh ở bản obf ≥ 1,3 lần bản opt (nhỏ nhất ${num(Math.min(...Object.values(S.obf)))}×).</p></div>
+    </div>`;
+}
+
+/* ------------------------------------------------------------ Tra cứu */
+let selFn = store.get("fn") || "fn_08", selCfg = store.get("cfg") || "opt", groupFilter = "all", revealed = false, codeView = "pseudo";
+function renderExplore() {
+  const fns = [...new Set(DATA.items.map(x => x.fn))];
+  const rows = fns.filter(fn => groupFilter === "all" || item(fn, "plain").group === groupFilter);
+  const cell = (fn, cfg) => {
+    const it = item(fn, cfg), n = counts(it), f = it.v1.fepr ?? 0;
+    const tipT = `${fn} · ${cfg}: ${n.contradicted} claim sai, ${n.verified + n.supported} claim có bằng chứng, mã khớp ${it.v1.match ?? 0}/50`;
+    return `<td><button data-fn="${fn}" data-cfg="${cfg}" aria-pressed="${fn === selFn && cfg === selCfg}" data-tip="${esc(tipT)}">
+      <span class="row1"><span class="${n.contradicted ? "bad" : "ok0"}">${n.contradicted ? "✕ " + n.contradicted + " sai" : "0 sai"}</span><span class="mono">${it.valid ? Math.round(f * 50) + "/50" : "—"}</span></span>
+      <span class="bar"><i style="width:${f * 100}%"></i></span></button></td>`;
+  };
+  const it = item(selFn, selCfg), n = counts(it);
+  $("#p-explore").innerHTML = `
+    <div style="display:grid;gap:8px"><p class="eyebrow">Lượt E1 · bấm một ô để xem chi tiết</p>
+      <h2>Tra cứu 20 hàm × 3 cấu hình</h2>
+      <p class="lead">Mỗi ô: số claim bị bác bỏ, và số vector mà mã model viết lại cho kết quả giống binary (vạch xanh).</p></div>
+    <div class="filters" role="group" aria-label="Lọc theo nhóm hàm">${[["all", "Tất cả"], ["classic", GROUP.classic], ["near_miss", GROUP.near_miss], ["custom", GROUP.custom]]
+      .map(([k, v]) => `<button data-g="${k}" aria-pressed="${groupFilter === k}">${v}</button>`).join("")}</div>
+    <div class="two" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:start">
+      <div class="panel tw"><table class="grid60"><thead><tr><th>Hàm</th><th>plain</th><th>opt</th><th>obf</th></tr></thead><tbody>
+        ${rows.map(fn => `<tr><th class="mono">${fn} <span class="gbadge">${GROUP[item(fn, "plain").group]}</span></th>${["plain", "opt", "obf"].map(c => cell(fn, c)).join("")}</tr>`).join("")}
+      </tbody></table></div>
+      <div class="panel detail">
+        <div class="detail-head"><h3 class="mono">${selFn} · ${selCfg}</h3>
+          <span class="gbadge">${GROUP[it.group]}</span>
+          <button class="reveal" id="rev">${revealed ? "Ẩn đáp án" : "Hiện đáp án"}</button></div>
+        ${revealed ? `<div class="say"><dl><dt>Nhãn thật</dt><dd>${esc(it.algLabel)}</dd>${it.diff ? `<dt>Khác chuẩn ở</dt><dd style="font-weight:500">${esc(it.diff)}</dd>` : ""}</dl></div>` : ""}
+        ${it.valid ? `<div class="say"><dl><dt>Model nói</dt><dd>${esc(it.model.alg)}</dd></dl><p style="color:var(--muted);font-size:.9rem">${esc(it.model.summary)}</p></div>
+          <div class="counts">${["verified", "supported", "unsupported", "contradicted"].map(l => `${chip(l)}<b style="margin-right:8px">${n[l]}</b>`).join("")}</div>
+          ${claimRows(it, true)}` : `<p><span class="chip l-unsupported"><i>?</i>Output của model sai định dạng sau 2 lần thử</span></p>`}
+        <div style="display:grid;gap:8px"><h3>Mã khôi phục so với binary gốc</h3>
+          ${[["qwen2.5-coder:7b", it.v1.fepr, "var(--s1)"], ["qwen3:8b", it.others.qwen3, "var(--s2)"], ["LLM4Decompile", it.others.l4d, "var(--s3)"]]
+            .map(([m, f, c]) => `<div class="mrow"><span>${m}</span><span class="track"><i style="width:${(f ?? 0) * 100}%;background:${c}"></i></span><span class="mono">${f == null ? "—" : Math.round(f * 50) + "/50"}</span></div>`).join("")}
+          ${!it.v1.compiled && it.valid ? `<p class="mono" style="font-size:.8rem;color:var(--muted)">${esc(it.v1.err || "")}</p>` : ""}</div>
+        <div style="display:grid;gap:8px"><div class="seg" role="group" aria-label="Chọn mã hiển thị">
+            ${[["pseudo", "Pseudocode Ghidra"], ["rc", "Mã model viết lại"], ["src", "Mã nguồn gốc"]].filter(x => x[0] !== "src" || revealed)
+              .map(([k, v]) => `<button data-v="${k}" aria-pressed="${codeView === k}">${v}</button>`).join("")}</div>
+          ${codeBlock(codeView === "pseudo" ? it.pseudo : codeView === "rc" ? it.rc : it.src, hexMarks(it),
+                      codeView === "pseudo" ? it.notes?.pseudo : codeView === "rc" ? it.notes?.rc : it.notes?.src)}
+          ${codeView === "rc" && it.v1?.why ? `<p class="v1why">${esc(it.v1.why)}</p>` : ""}</div>
+      </div></div>`;
+  $("#p-explore").querySelectorAll("[data-g]").forEach(b => b.onclick = () => { groupFilter = b.dataset.g; renderExplore(); });
+  $("#p-explore").querySelectorAll("[data-fn]").forEach(b => b.onclick = () => {
+    selFn = b.dataset.fn; selCfg = b.dataset.cfg; revealed = false; if (codeView === "src") codeView = "pseudo";
+    store.set("fn", selFn); store.set("cfg", selCfg); renderExplore(); });
+  $("#rev").onclick = () => { revealed = !revealed; if (!revealed && codeView === "src") codeView = "pseudo"; renderExplore(); };
+  $("#p-explore").querySelectorAll("[data-v]").forEach(b => b.onclick = () => { codeView = b.dataset.v; renderExplore(); });
+}
+
+
+/* ------------------------------------------------------------ Chạy trực tiếp (chỉ khi phục vụ qua vera.webapp) */
+const LV = { mode: "mutate", fn: "fn_01", cfg: "opt", consts: [], const: "", to: "", code: "", job: null, item: null, step: 0, busy: false };
+const fnOpts = () => [...new Set(DATA.items.map(x => x.fn))].map(fn => {
+  const it = item(fn, "plain"); return `<option value="${fn}" ${fn === LV.fn ? "selected" : ""}>${fn} · ${esc(it.algLabel)}</option>`; }).join("");
+const cfgOpts = () => ["plain", "opt", "obf"].map(c => `<option value="${c}" ${c === LV.cfg ? "selected" : ""}>${CFG[c]}</option>`).join("");
+async function lvStatus() {
+  try {
+    const s = await (await fetch("/api/status")).json();
+    $("#lv-status").innerHTML = [["AI (Ollama)", s.ollama], ["Docker", s.docker], ["Ghidra", s.ghidra]]
+      .map(([k, ok]) => `<span class="${ok ? "on" : "off"}">${ok ? "✓" : "✕"} ${k}</span>`).join("") +
+      (s.ollama ? "" : `<span class="off">Chưa kết nối được AI ở ${esc(s.ollamaUrl)}: bật Ollama trên Windows</span>`);
+  } catch { $("#lv-status").innerHTML = `<span class="off">Không liên lạc được máy chủ demo</span>`; }
+}
+async function lvConsts() {
+  try { LV.consts = await (await fetch("/api/constants?fn=" + LV.fn)).json(); } catch { LV.consts = []; }
+  LV.const = LV.consts[0] || ""; lvForm();
+}
+function lvForm() {
+  const seg = [["mutate", "Đổi một con số"], ["fn", "Hàm có sẵn"], ["code", "Tự viết code C"]]
+    .map(([k, v]) => `<button data-m="${k}" aria-pressed="${LV.mode === k}">${v}</button>`).join("");
+  let fields = "";
+  if (LV.mode === "mutate") fields = `<p class="lead">Lấy một hàm có sẵn, thay con số đặc trưng bằng số khác: thành một hàm “bẫy” mới mà AI chưa từng thấy.</p>
+    <div class="lv-row"><label>Hàm gốc<select id="lv-fn">${fnOpts()}</select></label>
+      <label>Con số cần đổi<select id="lv-const">${LV.consts.map(c => `<option ${c === LV.const ? "selected" : ""}>${c}</option>`).join("")}</select></label>
+      <label>Đổi thành (hex)<input id="lv-to" value="${esc(LV.to)}" placeholder="vd. 1234ABCD" autocomplete="off"></label>
+      <button class="ghost-btn" id="lv-rand" type="button">Số ngẫu nhiên</button>
+      <label>Cách biên dịch<select id="lv-cfg">${cfgOpts()}</select></label></div>`;
+  else if (LV.mode === "fn") fields = `<p class="lead">Dùng một hàm có sẵn, nhưng hỏi AI trực tiếp ngay bây giờ (không dùng kết quả lưu sẵn). Mỗi lần AI có thể trả lời khác.</p>
+    <div class="lv-row"><label>Hàm<select id="lv-fn">${fnOpts()}</select></label><label>Cách biên dịch<select id="lv-cfg">${cfgOpts()}</select></label></div>`;
+  else fields = `<p class="lead">Gõ một hàm C bất kỳ (giữ dòng #include và tên VERA_FN(fn_99)), hoặc chọn một tình huống thực tế.</p>
+    <div class="lv-row"><label>Mẫu có sẵn<select id="lv-ex"><option value="">— chọn để nạp code —</option>${(LV.examples || []).map((e, i) => `<option value="${i}">${esc(e.title)}</option>`).join("")}</select></label></div>
+    <textarea id="lv-code" spellcheck="false">${esc(LV.code)}</textarea>
+    <div class="lv-row"><label>Cách biên dịch<select id="lv-cfg">${cfgOpts()}</select></label></div>`;
+  $("#lv-form").innerHTML = `<div class="seg" role="group" aria-label="Cách tạo hàm">${seg}</div>${fields}
+    <div class="lv-row"><button class="run" id="lv-run" ${LV.busy ? "disabled" : ""}>${LV.busy ? "Đang chạy…" : "▶ Chạy"}</button></div>`;
+  $("#lv-form").querySelectorAll("[data-m]").forEach(b => b.onclick = async () => {
+    LV.mode = b.dataset.m;
+    if (LV.mode === "code" && !LV.examples) { try { LV.examples = await (await fetch("/api/examples")).json(); } catch { LV.examples = []; } }
+    if (LV.mode === "code" && !LV.code) LV.code = LV.examples?.[0]?.code || "";
+    lvForm(); });
+  const ex = $("#lv-ex"); if (ex) ex.onchange = () => { if (ex.value !== "") { LV.code = LV.examples[+ex.value].code; lvForm(); } };
+  const f = $("#lv-fn"); if (f) f.onchange = () => { LV.fn = f.value; LV.mode === "mutate" ? lvConsts() : null; };
+  const k = $("#lv-const"); if (k) k.onchange = () => LV.const = k.value;
+  const t = $("#lv-to"); if (t) t.oninput = () => LV.to = t.value.trim();
+  const r = $("#lv-rand"); if (r) r.onclick = () => { LV.to = Array.from({ length: 8 }, () => "0123456789ABCDEF"[Math.random() * 16 | 0]).join(""); lvForm(); };
+  const c = $("#lv-cfg"); if (c) c.onchange = () => LV.cfg = c.value;
+  const code = $("#lv-code"); if (code) code.oninput = () => LV.code = code.value;
+  $("#lv-run").onclick = lvRun;
+}
+const ICON = { wait: "·", run: "◐", done: "✓", fail: "✕", skip: "↷" };
+function lvProgress(j) {
+  const el = $("#lv-progress"); el.hidden = false;
+  const sec = ((Date.now() / 1000) - j.t0).toFixed(0);
+  el.innerHTML = `<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><h3>${esc(j.title || "Đang chạy")}</h3>
+      <span class="mono" style="color:var(--muted)">${j.done ? j.total : sec} giây</span></div>
+    <div class="prog">${j.steps.map(s => `<div class="${s.state}-st"><i>${ICON[s.state]}</i><span>${esc(s.label)}${s.note ? ` <small>(${esc(s.note)})</small>` : ""}</span>
+      <small>${s.sec != null ? s.sec + " s" : ""}</small></div>`).join("")}</div>
+    ${j.error ? `<div class="lv-error"><b>Lỗi:</b> ${esc(j.error)}</div>` : ""}`;
+}
+async function lvRun() {
+  const body = { mode: LV.mode, fn: LV.fn, config: LV.cfg, const: LV.const, to: LV.to, code: LV.code };
+  LV.busy = true; lvForm(); $("#lv-result").hidden = true;
+  try {
+    const r = await (await fetch("/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })).json();
+    if (!r.job) throw new Error(r.error || "Không bắt đầu được");
+    LV.job = r.job;
+    for (;;) {
+      const j = await (await fetch("/api/job?id=" + LV.job)).json();
+      lvProgress(j);
+      if (j.done) { if (j.item) { LV.item = j.item; LV.step = 0; lvShow(); } break; }
+      await new Promise(res => setTimeout(res, 800));
+    }
+  } catch (e) {
+    $("#lv-progress").hidden = false; $("#lv-progress").innerHTML = `<div class="lv-error"><b>Lỗi:</b> ${esc(e.message)}</div>`;
+  }
+  LV.busy = false; lvForm();
+}
+function lvLook(it) {
+  const n = counts(it), changed = it.notes?.pseudo?.find(x => x.note === "con số vừa đổi");
+  return [changed ? "Dòng tô màu chứa con số vừa đổi. Đây là thứ duy nhất AI được xem." : "Đây là thứ duy nhất AI được xem.",
+          `AI nói thuật toán là “${it.model.alg}”. Hỏi người xem: câu nào sai?`,
+          n.contradicted ? `Có ${n.contradicted} câu bị Sai. Đọc ô “Vì sao” dưới mỗi câu.` : "Lần này không câu nào bị bác bỏ. Xem các câu “Chưa kiểm được”: đó là chỗ người phân tích phải tự kiểm.",
+          it.v1.why || "", it.diff || ""];
+}
+function lvShow() {
+  const it = LV.item, n = counts(it);
+  $("#lv-result").hidden = false;
+  $("#lv-stepper").innerHTML = STEPS.map((s, i) => `<button data-i="${i}" ${i === LV.step ? 'aria-current="step"' : ""}><b>${i + 1}</b>${s}</button>`).join("");
+  $("#lv-stepper").querySelectorAll("button").forEach(b => b.onclick = () => { LV.step = +b.dataset.i; lvShow(); });
+  const point = `AI nói ${it.claims.length} câu với độ tự tin cao. VeRA xác nhận ${n.verified + n.supported} câu, bác bỏ ${n.contradicted} câu, ${n.unsupported} câu chưa kiểm được. ` +
+    (it.v1.compiled ? `Code AI viết lại đúng ${it.v1.match}/${it.v1.n} bộ dữ liệu.` : "Code AI viết lại không biên dịch được.");
+  mountStage($("#lv-stage"), stageHTML(it, LV.step, { look: lvLook(it), point, label: `chạy trực tiếp · ${CFG[it.cfg]} · AI trả lời trong ${it.aiSeconds} s` }),
+             d => { LV.step += d; lvShow(); });
+}
+if (LIVE) {
+  $("#t-live").hidden = false;
+  tabs.push(["live", "tructiep"]);
+  $("#t-live").addEventListener("click", () => showTab("live"));
+  lvConsts(); lvStatus(); setInterval(lvStatus, 15000);
+}
+
+/* ------------------------------------------------------------ Khởi động */
+$("#foot").innerHTML = `Dữ liệu thật từ repo VeRA: corpus 20 hàm C, GCC 13.3.0, Ghidra ${esc(S.model.backend)}, model ${esc(S.model.name)} (${esc(S.model.quant)}), temperature 0.
+  Nhãn: ${Object.keys(LABEL).map(chip).join(" ")}. Chỉ nhãn “Sai” được gọi là hallucination; “Chưa kiểm được” không có nghĩa là sai.`;
+renderStory(); renderResults(); renderExplore();
+const deep = location.hash.match(/^#kichban\.(\d)\.(\d)$/);  // #kichban.<ca>.<bước>, vd. #kichban.1.2
+if (deep) { caseIdx = Math.min(+deep[1], CASES.length - 1); stepIdx = Math.min(+deep[2], STEPS.length - 1); renderStory(); }
+const fromHash = deep ? tabs[1] : tabs.find(t => "#" + t[1] === location.hash);
+showTab(fromHash ? fromHash[0] : (store.get("tab") || "intro"));
+document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { showTab(b.dataset.go); scrollTo(0, 0); });
+</script>

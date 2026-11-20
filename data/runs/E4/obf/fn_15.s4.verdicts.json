@@ -1,0 +1,176 @@
+{
+ "fn": "fn_15",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "io1",
+   "type": "IO",
+   "text": "Returns 0 when param_2 == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io2",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_5 < uVar5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < uVar5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "cf1",
+   "type": "CF",
+   "text": "Loops over input string to find repeated patterns.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf2",
+   "type": "CF",
+   "text": "Nested loop to compare characters and update out array.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg1",
+   "type": "ALG",
+   "text": "Uses bitwise operations and XOR for some calculations.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "alg2",
+   "type": "ALG",
+   "text": "Implements a custom hash or checksum mechanism based on pattern matching and bitwise operations.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "const1",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const2",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x1f9"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const3",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e4.",
+   "asserted_values": [
+    "0x51e4"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e4",
+      "form": "imm",
+      "detail": "0x51E4 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const4",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 3,
+  "unsupported": 7,
+  "contradicted": 0
+ },
+ "n_claims": 10,
+ "explanation_clean": true
+}

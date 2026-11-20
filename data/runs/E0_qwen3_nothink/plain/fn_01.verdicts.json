@@ -1,0 +1,127 @@
+{
+ "fn": "fn_01",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "The function applies a bitwise transformation to each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "The function uses a nested loop structure: an outer loop iterates over each byte of the input buffer, and an inner loop processes each bit of the byte.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "The function returns a 64-bit value computed from the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "The function uses the constant 0xedb88320 in its bitwise transformation.",
+   "asserted_values": [
+    "0xedb88320"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xedb88320",
+      "form": "imm",
+      "detail": "0xEDB88320 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffff as the initial value for the hash.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "IO",
+   "text": "The function returns the bitwise complement of the computed hash value.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 2,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

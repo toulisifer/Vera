@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The decompiled code shows that the variable `h` is initialized to 0xffffffff and used in the algorithm.", "seconds": 0.9}

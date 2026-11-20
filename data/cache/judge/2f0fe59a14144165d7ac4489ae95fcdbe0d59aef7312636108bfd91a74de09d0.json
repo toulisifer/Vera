@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code sets len to 0xFFFFFFFFFFFFFFFF if out_cap < len, which is VERA_ERR.", "seconds": 0.9}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_03",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: unsigned long fn_03(unsigned char *buf, unsigned long len) ← chữ ký chung",
+ "raw": "unsigned long fn_03(unsigned char *buf, unsigned long len)\n{\n unsigned long a, b, x, y;\n unsigned int i;\n\n a = 1;\n b = 0;\n for (i = 0; i < len; i++) {\n  x = (a + b) % 65521;\n  a = b;\n  b = x;\n  if (((i & 1) == 0) || ((i & 1) == 1 && (i & 7) == 1 && buf[i] == 0x3c71))\n   a = (a + buf[i]) % 65521;\n  else\n   a = (a ^ 0x51e3) ^ 0x1f9;\n  if (((len & 1) == 0) || ((len & 1) == 1 && (i & 1) == 0)) {\n   a = (a + 0x51e3) % 65521;\n   b = (b + 0x1f9) % 65521;\n  }\n }\n x = a;\n y = b;\n for (i = 0; i < 10000; i++) {\n  x = (x >> 5) ^ (x << 3) ^ 0x1f9;\n  y = (y >> 5) ^ (y << 3) ^ 0x1f9;\n }\n return (x << 16) | y;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.0,
+   "cached": false,
+   "eval_count": 352,
+   "cache_key": "7da0bf7e434f16b00fc41cd25c952fe8c64da584d040db848d68c9db026bf99a"
+  }
+ ],
+ "output": {
+  "recovered_c": "unsigned long vera_inner(unsigned char *buf, unsigned long len)\n{\n unsigned long a, b, x, y;\n unsigned int i;\n\n a = 1;\n b = 0;\n for (i = 0; i < len; i++) {\n  x = (a + b) % 65521;\n  a = b;\n  b = x;\n  if (((i & 1) == 0) || ((i & 1) == 1 && (i & 7) == 1 && buf[i] == 0x3c71))\n   a = (a + buf[i]) % 65521;\n  else\n   a = (a ^ 0x51e3) ^ 0x1f9;\n  if (((len & 1) == 0) || ((len & 1) == 1 && (i & 1) == 0)) {\n   a = (a + 0x51e3) % 65521;\n   b = (b + 0x1f9) % 65521;\n  }\n }\n x = a;\n y = b;\n for (i = 0; i < 10000; i++) {\n  x = (x >> 5) ^ (x << 3) ^ 0x1f9;\n  y = (y >> 5) ^ (y << 3) ^ 0x1f9;\n }\n return (x << 16) | y;\n}\nuint64_t fn_03(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((unsigned char *)(in), (unsigned long)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

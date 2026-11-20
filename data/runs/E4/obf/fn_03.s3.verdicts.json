@@ -1,0 +1,170 @@
+{
+ "fn": "fn_03",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "c1",
+   "type": "CONST",
+   "text": "The constant 0xfff1 is used.",
+   "asserted_values": [
+    "0xfff1"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xfff1",
+      "form": "imm",
+      "detail": "0xFFF1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "c2",
+   "type": "CONST",
+   "text": "The constant 0x51e3 is used.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "c3",
+   "type": "CONST",
+   "text": "The constant 0x2d6b is used.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "c4",
+   "type": "CONST",
+   "text": "The constant 0xb is used.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "i1",
+   "type": "IO",
+   "text": "Returns 1 when len is 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "1"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "1",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "s1",
+   "type": "SIDE",
+   "text": "Writes the result of the hash function to out.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "s2",
+   "type": "SIDE",
+   "text": "Does not write to out when len is 0.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 0",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "cf1",
+   "type": "CF",
+   "text": "A do-while loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf2",
+   "type": "CF",
+   "text": "Another do-while loop that modifies the hash value based on a constant.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 3,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 9,
+ "explanation_clean": false
+}

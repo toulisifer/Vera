@@ -1,0 +1,109 @@
+{
+ "fn": "fn_05",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x9e3779b9.",
+   "asserted_values": [
+    "0x9e3779b9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x9e3779b9",
+      "form": "neg",
+      "detail": "-0x9E3779B9 xuất hiện dạng 0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x18 or out_cap < 8",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Writes 8 bytes to out when len >= 0x18 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 0x18 and out_cap >= 8",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes the first 4 bytes of the input to v0 and v1.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Iterates 0x20 times to update v0 and v1.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes the values of v0 and v1 to the first 8 bytes of out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

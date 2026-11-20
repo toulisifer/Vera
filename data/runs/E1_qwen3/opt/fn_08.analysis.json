@@ -1,0 +1,141 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.0,
+   "cached": false,
+   "eval_count": 628,
+   "cache_key": "0c7346ec3d489a118ea2698619d2cbf4af49ad19b025151bc0c223fb7e207ece"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input byte array and returns a 32-bit value based on a bitwise transformation of the input bytes.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "CF",
+    "text": "A loop iterates over the input bytes.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "A nested loop processes each byte with bitwise operations.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "IO",
+    "text": "Returns 0 when the input length is 0.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "IO",
+    "text": "Returns the bitwise complement of a 32-bit value when the input length is non-zero.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "CONST",
+    "text": "Uses the constant 0xf7179bf5.",
+    "asserted_values": [
+     "0xf7179bf5"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "Uses the constant 0xffffffff.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint32_t fn_08(const uint8_t *in, size_t len) {\n  uint32_t result = 0xffffffff;\n  if (len != 0) {\n    const uint8_t *ptr = in;\n    while (ptr != in + len) {\n      result ^= *ptr;\n      uint32_t temp = result;\n      for (int i = 8; i != 0; i--) {\n        temp = -(temp & 1) & 0xf7179bf5 ^ temp >> 1;\n      }\n      ptr++;\n    }\n    return ~result;\n  }\n  return 0;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "CF",
+   "text": "A loop iterates over the input bytes.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "A nested loop processes each byte with bitwise operations.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns the bitwise complement of a 32-bit value when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0xf7179bf5.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

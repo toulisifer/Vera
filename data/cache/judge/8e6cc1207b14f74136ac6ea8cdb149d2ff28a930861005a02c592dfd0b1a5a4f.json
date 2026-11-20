@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a loop that iterates based on the value of param_2, as indicated by the loop condition and the use of param_2 in the loop body.", "seconds": 1.3}

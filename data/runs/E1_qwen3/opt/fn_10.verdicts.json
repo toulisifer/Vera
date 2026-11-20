@@ -1,0 +1,109 @@
+{
+ "fn": "fn_10",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "A loop is executed when param_2 is not zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "The loop continues until param_1 reaches pbVar4.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns 1 when param_2 is zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_3",
+   "type": "IO",
+   "text": "Returns uVar2 << 0x10 | uVar3 when param_2 is not zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "_5",
+   "type": "CONST",
+   "text": "The code uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffef",
+      "form": "imm",
+      "detail": "0xFFEF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The code uses the constant 0x10.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

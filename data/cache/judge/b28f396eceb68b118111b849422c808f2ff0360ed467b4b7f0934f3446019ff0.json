@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code returns 0xcbf29ce484222325 when len == 0, as the initial value of uVar2 is set to this value and the loop is skipped if param_2 is 0.", "seconds": 1.7}

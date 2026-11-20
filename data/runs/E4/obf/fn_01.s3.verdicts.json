@@ -1,0 +1,116 @@
+{
+ "fn": "fn_01",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const_2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 == 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "side_1",
+   "type": "SIDE",
+   "text": "Writes to out[0] if out_cap >= 1.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "when": "out_cap >= 1",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Contains a do-while loop that iterates param_2 times.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf_2",
+   "type": "CF",
+   "text": "Contains a nested while loop inside the outer do-while loop.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 2,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 6,
+ "explanation_clean": false
+}

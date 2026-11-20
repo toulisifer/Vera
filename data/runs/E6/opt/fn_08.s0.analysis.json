@@ -1,0 +1,123 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.8,
+   "cached": true,
+   "eval_count": 520,
+   "cache_key": "4e9f68be9fa3c55d2abfbcd2142453dae39f219dedfc20cdee67fb81deaf74e2"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_08 computes a checksum using a specific algorithm.",
+  "proposed_name": "fn_08",
+  "algorithm": "Implements CRC-16/XMODEM.",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "Implements CRC-16/XMODEM.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0 when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len != 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len != 0",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "A loop iterates over each byte in the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len != 0) {\n    uint32_t crc = 0xFFFFFFFF;\n    for (size_t i = 0; i < len; i++) {\n      crc ^= in[i];\n      for (int j = 0; j < 8; j++) {\n        crc = -(crc & 1) & 0xf7179bf5 ^ crc >> 1;\n      }\n    }\n    return ~crc;\n  }\n  return 0;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0 when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len != 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len != 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "A loop iterates over each byte in the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements CRC-16/XMODEM.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_19",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_19(const unsigned char *src, size_t n, unsigned long key, unsigned char *dst, size_t m) ← chữ ký chung",
+ "raw": "size_t fn_19(const unsigned char *src, size_t n, unsigned long key, unsigned char *dst, size_t m) {\n  size_t i;\n  unsigned char k;\n  if (m < n)\n    return -1;\n  for (i = 0; i < n; i++) {\n    k = (key >> (i & 7) * 8) & 0xff;\n    if (((i + 1) * (i + 1) & 7) == 1 && k == 0x3c71)\n      dst[i] = src[i] ^ k ^ (((k << (i & 7)) | (k >> (8 - (i & 7)))) ^ i);\n    else\n      dst[i] = src[i] ^ k ^ (k << 7);\n  }\n  return n;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 12.5,
+   "cached": false,
+   "eval_count": 208,
+   "cache_key": "475d729377d731a3c5d9b0bc05d039781e99229269a68678b82839f396b7b193"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const unsigned char *src, size_t n, unsigned long key, unsigned char *dst, size_t m) {\n  size_t i;\n  unsigned char k;\n  if (m < n)\n    return -1;\n  for (i = 0; i < n; i++) {\n    k = (key >> (i & 7) * 8) & 0xff;\n    if (((i + 1) * (i + 1) & 7) == 1 && k == 0x3c71)\n      dst[i] = src[i] ^ k ^ (((k << (i & 7)) | (k >> (8 - (i & 7)))) ^ i);\n    else\n      dst[i] = src[i] ^ k ^ (k << 7);\n  }\n  return n;\n}\nuint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (size_t)(len), (unsigned long)(arg), (unsigned char *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

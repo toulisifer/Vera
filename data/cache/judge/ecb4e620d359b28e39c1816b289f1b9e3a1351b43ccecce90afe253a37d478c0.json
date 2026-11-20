@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains conditional branches based on the values of uVar1 and DAT_00104008.", "seconds": 1.4}

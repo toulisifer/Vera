@@ -1,0 +1,206 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting ',' delimiter: line 445 column 6 (char 9530)"
+   ],
+   "seconds": 73.9,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "4786de1aa328a8cae6dcb2d6ffe4f97539f802189f819f39115c0c0d2cffadc2"
+  },
+  {
+   "errors": [],
+   "seconds": 32.8,
+   "cached": false,
+   "eval_count": 1390,
+   "cache_key": "879a98c475bd3016720a8f2738bc7e5284657b0243ef803cd61db0e37e6bdf07"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input data to find matching patterns and writes results to output memory.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Uses a loop to iterate over input data.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "CF",
+    "text": "Uses a nested loop to compare consecutive bytes in input data.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "CF",
+    "text": "Uses a loop to write data to output memory.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "Returns 0 when input length is zero.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "IO",
+    "text": "Returns -1 when input length is greater than output capacity.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "IO",
+    "text": "Returns the number of bytes written to output when successful.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_7",
+    "type": "SIDE",
+    "text": "Writes two bytes to output for each matching pattern found.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_8",
+    "type": "SIDE",
+    "text": "Does not modify input data.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_9",
+    "type": "CONST",
+    "text": "Uses the constant 0xff as a maximum value for a counter.",
+    "asserted_values": [
+     "0xff"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_10",
+    "type": "CONST",
+    "text": "Uses the constant 0xffffffff as a maximum value for a counter.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_11",
+    "type": "NAME",
+    "text": "Processes input data to find matching patterns and writes results to output memory.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t lVar5 = 0;\n  size_t lVar4 = 0;\n  size_t uVar7 = 0;\n  size_t lVar6 = 0;\n  size_t uVar3 = 0;\n  char *pcVar1;\n  char cVar2;\n\n  if (len != 0) {\n    while (lVar6 = lVar4, uVar7 + 1 < len) {\n      cVar2 = in[uVar7];\n      lVar4 = 2;\n      if (in[uVar7 + 1] == cVar2) {\n        do {\n          lVar5 = lVar4;\n          if (lVar5 == len - uVar7) {\n            goto LAB_00101171;\n          }\n        } while ((in[uVar7 + lVar5] == cVar2) && (lVar4 = lVar5 + 1, lVar5 != 0xff));\n        uVar7 = uVar7 + lVar5;\n        lVar4 = lVar6 + 2;\n        if (len <= uVar7) break;\n      }\n      else {\n        lVar4 = lVar6 + 2;\n        uVar7 = uVar7 + 1;\n      }\n    }\n    LAB_00101171:\n    lVar5 = -1;\n    if (lVar6 + 2U <= out_cap) {\n      lVar5 = 0;\n      uVar7 = 0;\n      do {\n        uVar3 = uVar7 + 1;\n        pcVar1 = (char *)(in + uVar7);\n        if (len <= uVar3) {\n          lVar4 = 1;\n          LAB_00101204:\n          out[lVar5] = (uint8_t)lVar4;\n          out[lVar5 + 1] = *pcVar1;\n          return (uint64_t)(lVar5 + 2);\n        }\n        lVar4 = 1;\n        while (in[uVar3] == *pcVar1) {\n          if (lVar4 == 0xff) {\n            lVar4 = 0xffffffff;\n            break;\n          }\n          uVar3 = uVar3 + 1;\n          lVar4 = lVar4 + 1;\n          if (len <= uVar3) goto LAB_00101204;\n        }\n        out[lVar5] = (uint8_t)lVar4;\n        lVar5 = lVar5 + 2;\n        out[lVar5 - 1] = *pcVar1;\n        uVar7 = uVar3;\n      } while (uVar3 < len);\n    }\n  }\n  return (uint64_t)lVar5;\n}\n"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Uses a loop to iterate over input data.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Uses a nested loop to compare consecutive bytes in input data.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Uses a loop to write data to output memory.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns 0 when input length is zero.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns -1 when input length is greater than output capacity.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Returns the number of bytes written to output when successful.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_7",
+   "type": "SIDE",
+   "text": "Writes two bytes to output for each matching pattern found.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_8",
+   "type": "SIDE",
+   "text": "Does not modify input data.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_9",
+   "type": "CONST",
+   "text": "Uses the constant 0xff as a maximum value for a counter.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_10",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff as a maximum value for a counter.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_11",
+   "type": "NAME",
+   "text": "Processes input data to find matching patterns and writes results to output memory.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

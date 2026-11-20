@@ -1,0 +1,201 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 21.5,
+   "cached": false,
+   "eval_count": 1048,
+   "cache_key": "b0556ad7340bd926a736dcd410ebbd77a50933dd6d694bf308420b6e7ae01d3f"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_18 appears to be a parser that checks if the input string is a valid JSON-like structure. It returns the length of the input if it is valid, otherwise it returns an error code.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x00.",
+    "asserted_values": [
+     "0x00"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x01.",
+    "asserted_values": [
+     "0x01"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x02.",
+    "asserted_values": [
+     "0x02"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the constant 0x40.",
+    "asserted_values": [
+     "0x40"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns the length of the input when the input is a valid JSON-like structure.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == N",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns an error code when the input is not a valid JSON-like structure.",
+    "asserted_values": [
+     "VERA_ERR"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len != N",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "CF",
+    "text": "Uses a loop to iterate over the input string.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "9",
+    "type": "CF",
+    "text": "Uses conditional statements to check the validity of the input string.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t d = 0;\n  uint q = 0;\n  size_t i = 0;\n  uint8_t st[64];\n\n  while (i < len) {\n    uint8_t uVar3 = in[i];\n    if (q == 2) {\n      q = 1;\n    } else if (q == 1) {\n      if (uVar3 == '\\') {\n        q = 2;\n      } else if (uVar3 == '\"') {\n        q = 0;\n      }\n    } else if (uVar3 == '\"') {\n      q = 1;\n    } else if (((uVar3 == '(') || (uVar3 == '[')) || (uVar3 == '{')) {\n      if (d == 0x40) {\n        return i + 1;\n      }\n      if (uVar3 == '(') {\n        uVar3 = ')';\n      } else {\n        uVar3 = uVar3 + '\n      }\n      st[d] = uVar3;\n      d = d + 1;\n    } else if (((uVar3 == ')') || (uVar3 == ']')) || (uVar3 == '}')) {\n      if ((d == 0) || (uVar3 != st[d - 1])) {\n        return i + 1;\n      }\n      d = d - 1;\n    }\n    i = i + 1;\n  }\n\n  if (d == 0 && q == 0) {\n    return 0;\n  } else {\n    return len + 1;\n  }\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x00.",
+   "asserted_values": [
+    "0x00"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x01.",
+   "asserted_values": [
+    "0x01"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x02.",
+   "asserted_values": [
+    "0x02"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x40.",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the length of the input when the input is a valid JSON-like structure.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == N",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns an error code when the input is not a valid JSON-like structure.",
+   "asserted_values": [
+    "VERA_ERR"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len != N",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Uses a loop to iterate over the input string.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Uses conditional statements to check the validity of the input string.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,44 @@
+{
+ "truesig": {
+  "items": 20,
+  "schema_valid": 19,
+  "compiled": 2,
+  "fepr_1": 0,
+  "claims": 144,
+  "contradicted": 13
+ },
+ "control": {
+  "items": 20,
+  "schema_valid": 18,
+  "compiled": 3,
+  "fepr_1": 0,
+  "claims": 137,
+  "contradicted": 12
+ },
+ "E1": {
+  "items": 20,
+  "schema_valid": 19,
+  "compiled": 3,
+  "fepr_1": 0,
+  "claims": 154,
+  "contradicted": 10
+ },
+ "model": {
+  "model": "qwen2.5-coder:7b",
+  "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen2",
+   "families": [
+    "qwen2"
+   ],
+   "parameter_size": "7.6B",
+   "quantization_level": "Q4_K_M",
+   "context_length": 32768,
+   "embedding_length": 3584,
+   "runner": "ggml"
+  },
+  "ollama": "0.40.13"
+ }
+}

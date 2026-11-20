@@ -1,0 +1,48 @@
+{
+  "id": "fn_09",
+  "group": "near_miss",
+  "algorithm_label": "near-miss của FNV-1a (64-bit)",
+  "pair_of": "fn_02",
+  "difference_from_standard": "Prime 0x100000001B5 thay cho 0x100000001B3; offset basis giữ nguyên.",
+  "oracle": null,
+  "source": "corpus/src/fn_09.c",
+  "description": "Băm kiểu FNV-1a 64-bit: offset basis chuẩn 0xCBF29CE484222325, mỗi byte XOR vào h rồi nhân với 0x100000001B5 — khác FNV prime chuẩn 2 đơn vị. Trả h. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "text",
+  "characteristic_constants": [
+    {
+      "value": "0xCBF29CE484222325",
+      "width": 64,
+      "role": "offset basis chuẩn",
+      "encodings": {
+        "imm": "0xCBF29CE484222325",
+        "le_bytes": "25232284e49cf2cb",
+        "neg": "0x340D631B7BDDDCDB",
+        "signed": "-3750763034362895579",
+        "hi32": "0xCBF29CE4",
+        "lo32": "0x84222325",
+        "hi16": "0x8422",
+        "lo16": "0x2325"
+      }
+    },
+    {
+      "value": "0x100000001B5",
+      "width": 64,
+      "role": "hệ số nhân tự chọn",
+      "encodings": {
+        "imm": "0x00000100000001B5",
+        "le_bytes": "b501000000010000",
+        "neg": "0xFFFFFEFFFFFFFE4B",
+        "hi32": "0x00000100",
+        "lo32": "0x000001B5",
+        "hi16": "0x0000",
+        "lo16": "0x01B5"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

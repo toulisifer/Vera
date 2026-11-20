@@ -1,0 +1,143 @@
+{
+ "fn": "fn_07",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "0",
+   "type": "CONST",
+   "text": "The Base64 alphabet uses the constant string 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+   "asserted_values": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "4142434445464748494a4b4c4d4e4f505152535455565758595a61626364"
+     }
+    ]
+   }
+  },
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns -1 when the input length is less than 2.",
+   "asserted_values": [
+    "ffffffffffffffff"
+   ],
+   "confidence": 0.85,
+   "io": {
+    "when": "param_2 < 2",
+    "returns": "ffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the input length when the output capacity is less than the input length.",
+   "asserted_values": [
+    "ffffffffffffffff"
+   ],
+   "confidence": 0.85,
+   "io": {
+    "when": "out_cap < param_2",
+    "returns": "ffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the Base64 encoded data to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Iterates over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Handles the last byte of the input buffer separately.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Handles the second last byte of the input buffer separately.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements Base64.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "source": "algorithm_field",
+   "raw_algorithm": "Base64",
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "supported",
+     "method": "V3",
+     "fingerprint": [
+      {
+       "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+       "form": "string"
+      }
+     ]
+    },
+    "label": "verified",
+    "method": "V1b",
+    "detail": "oracle Base64 khớp 50/50 vector"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

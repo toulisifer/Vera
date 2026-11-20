@@ -1,0 +1,123 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.7,
+   "cached": true,
+   "eval_count": 521,
+   "cache_key": "f8f54f0df9e9e4181bbb35cd80d4f7a36ca7eaee6963f44321e05881ff104db4"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_08 computes a checksum using a specific algorithm and returns the result.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xf7179bf5.",
+    "asserted_values": [
+     "0xf7179bf5"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0 when the input length is 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "The function reads from the input buffer and writes the result to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function uses a nested loop to process each byte of the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "The function appears to be implementing a checksum algorithm.",
+    "asserted_values": [],
+    "confidence": 0.7
+   }
+  ],
+  "recovered_c": "uint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len != 0) {\n    uint32_t result = 0xffffffff;\n    for (size_t i = 0; i < len; i++) {\n      result ^= in[i];\n      for (int j = 0; j < 8; j++) {\n        result = -(result & 1) & 0xf7179bf5 ^ result >> 1;\n      }\n    }\n    return ~result;\n  }\n  return 0;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xf7179bf5.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function reads from the input buffer and writes the result to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function uses a nested loop to process each byte of the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "The function appears to be implementing a checksum algorithm.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

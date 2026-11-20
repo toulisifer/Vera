@@ -1,0 +1,35 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": false,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting value: line 389 column 4 (char 10488)"
+   ],
+   "seconds": 83.0,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "b5fcf904c6913fa6e5a40b4b11fc275bda73681913484ce75c36e869234d19cd"
+  },
+  {
+   "errors": [
+    "JSON lỗi: Expecting property name enclosed in double quotes: line 378 column 1 (char 10057)"
+   ],
+   "seconds": 83.3,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "a7259799fd55ac6780eb936b3f5468155ca8b94a19079a29da330eeb81ac785d"
+  }
+ ],
+ "output": null,
+ "config": "opt"
+}

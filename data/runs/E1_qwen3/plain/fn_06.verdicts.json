@@ -1,0 +1,177 @@
+{
+ "fn": "fn_06",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "io_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "detail": "đúng trên 3 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns len when out_cap >= len.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "cf_0",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array k from the arg parameter.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array s with values from 0 to 0xff.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf_2",
+   "type": "CF",
+   "text": "Uses a loop to perform a permutation on the array s using values from k and s.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf_3",
+   "type": "CF",
+   "text": "Uses a loop to process each byte of the input data and write to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "side_0",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [
+    "out[0..len-1]"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "alg_0",
+   "type": "ALG",
+   "text": "Implements a custom permutation-based transformation using XOR and array permutation.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "const_0",
+   "type": "CONST",
+   "text": "Uses the constant 0xff in bitwise operations.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "Uses the constant 0x100 in loop bounds.",
+   "asserted_values": [
+    "0x100"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x100"
+     }
+    ]
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements custom permutation-based transformation.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "source": "algorithm_field",
+   "raw_algorithm": "custom permutation-based transformation",
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 9,
+  "contradicted": 0
+ },
+ "n_claims": 11,
+ "explanation_clean": true
+}

@@ -1,0 +1,115 @@
+{
+ "fn": "fn_12",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x714851d1 in its computation.",
+   "asserted_values": [
+    "0x714851d1"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x714851d1",
+      "form": "imm",
+      "detail": "0x714851D1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x290a3a20 in its computation.",
+   "asserted_values": [
+    "0x290a3a20"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x290a3a20",
+      "form": "neg",
+      "detail": "-0x290A3A20 xuất hiện dạng 0xD6F5C5E0 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when the input length is less than 0x17 or the output capacity is less than 7.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x17 or out_cap < 7",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 8 when the input length is at least 0x17 and the output capacity is at least 7.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 0x17 and out_cap >= 7",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes the 8-byte hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a loop that iterates until a specific condition is met.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 2,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

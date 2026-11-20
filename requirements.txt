@@ -1,0 +1,6 @@
+pytest>=8
+capstone==5.0.7
+pyelftools>=0.31
+# Chỉ cần cho vera/report/revision_g1.py (GLMM, góp ý G1); pipeline chính không dùng
+numpy
+scipy

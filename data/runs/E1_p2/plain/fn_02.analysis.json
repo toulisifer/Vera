@@ -1,0 +1,113 @@
+{
+ "fn": "fn_02",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 22.3,
+   "cached": false,
+   "eval_count": 495,
+   "cache_key": "f0c985690b79b303a96b7fca34269e6a2519c17b39d37637d22d7e212779c087"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_02 computes a hash value using a polynomial and returns it.",
+  "proposed_name": "fn_02",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0xcbf29ce484222325.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function multiplies the hash value by 0x100000001b3 in each iteration.",
+    "asserted_values": [
+     "0x100000001b3"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function XORs the hash value with the current byte in each iteration.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "The function returns the computed hash value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_02(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t h = 0xcbf29ce484222325;\n  for (size_t i = 0; i < len; i++) {\n    h = (h ^ in[i]) * 0x100000001b3;\n  }\n  return h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function multiplies the hash value by 0x100000001b3 in each iteration.",
+   "asserted_values": [
+    "0x100000001b3"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function XORs the hash value with the current byte in each iteration.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "The function returns the computed hash value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

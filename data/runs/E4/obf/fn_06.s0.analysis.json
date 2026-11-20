@@ -1,0 +1,247 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 26.0,
+   "cached": false,
+   "eval_count": 1152,
+   "cache_key": "7b3d5595fc52e9919681bba75ffed45a8981331f709f949092c38a05aafc5665"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_06 appears to be a custom permutation and XOR-based operation on the input data. It uses a series of bitwise operations and array indexing to transform the input.",
+  "proposed_name": "fn_06",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns VERA_ERR when param_2 > param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns len when param_2 <= param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 <= param_5",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the transformed data to out.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Contains a do-while loop that iterates over the input data.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Contains a nested do-while loop that iterates over the input data again.",
+    "asserted_values": [],
+    "confidence": 0.7,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "Uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3C71"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "Uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51E3"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "8",
+    "type": "CONST",
+    "text": "Uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2D6B"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "9",
+    "type": "CONST",
+    "text": "Uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1F9"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "10",
+    "type": "CF",
+    "text": "Contains a conditional branch based on the value of DAT_00104010.",
+    "asserted_values": [],
+    "confidence": 0.7
+   },
+   {
+    "id": "11",
+    "type": "CF",
+    "text": "Contains a conditional branch based on the value of DAT_00104018.",
+    "asserted_values": [],
+    "confidence": 0.7
+   }
+  ],
+  "recovered_c": "uint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len > arg) {\n    return VERA_ERR;\n  }\n\n  uint8_t local_130[8];\n  uint8_t local_128[264];\n\n  // Initialize local arrays\n  for (size_t i = 0; i < len; i++) {\n    local_130[i % 8] = (uint8_t)(arg >> (i % 6) * 8);\n    local_128[i] = in[i];\n  }\n\n  // Perform transformations\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar1 = local_130[i % 8] & 0x3f;\n    local_128[i] = (uint8_t)((local_128[i] >> bVar1) & 0xff);\n  }\n\n  // Additional transformations\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar24 = local_128[i % 256];\n    local_128[i] = bVar24;\n    out[i] = local_128[(bVar24 + local_128[i % 256]) % 256] ^ in[i];\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_2 > param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns len when param_2 <= param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= param_5",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the transformed data to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Contains a do-while loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Contains a nested do-while loop that iterates over the input data again.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51E3"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "9",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1F9"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "10",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 0.7
+  },
+  {
+   "id": "11",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of DAT_00104018.",
+   "asserted_values": [],
+   "confidence": 0.7
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,165 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.2,
+   "cached": false,
+   "eval_count": 953,
+   "cache_key": "e0524a92e77752ef85b0d7a341bc8295b197023f837c1bf2e1d7f76ad51d55ab"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_06 implements a custom encryption algorithm using a pseudo-random permutation of a lookup table.",
+  "proposed_name": "fn_06",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x0000000000000000.",
+    "asserted_values": [
+     "0x0000000000000000"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when out_cap < len.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the encrypted data to out[0..<len>].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function contains a loop that initializes the permutation table.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function contains a loop that updates the permutation table based on the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "The function contains a loop that encrypts the input data using the permutation table.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "NAME",
+    "text": "The function appears to implement a custom encryption algorithm.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_06(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint8_t k[8];\n  uint8_t s[256];\n  size_t j = 0;\n  if (out_cap < len) {\n    len = 0xffffffffffffffff;\n  } else {\n    for (size_t i = 0; i < 8; i++) {\n      k[i] = (uint8_t)(arg >> ((byte)(i << 3) & 0x3f));\n    }\n    for (size_t i = 0; i < 0x100; i++) {\n      s[i] = (uint8_t)i;\n    }\n    for (size_t i = 0; i < 0x100; i++) {\n      j = (uint)k[i & 7] + s[i] + j & 0xff;\n      uint8_t uVar1 = s[i];\n      s[i] = s[j];\n      s[j] = uVar1;\n    }\n    j = 0;\n    for (size_t n = 0; n < len; n++) {\n      j = (j + s[n % 0x100]) & 0xff;\n      uint8_t uVar2 = s[j];\n      s[j] = s[n % 0x100];\n      s[n % 0x100] = uVar2;\n      out[n] = in[n] ^ s[(s[j] + s[n % 0x100]) & 0xff];\n    }\n  }\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x0000000000000000.",
+   "asserted_values": [
+    "0x0000000000000000"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when out_cap < len.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the encrypted data to out[0..<len>].",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a loop that initializes the permutation table.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a loop that updates the permutation table based on the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "The function contains a loop that encrypts the input data using the permutation table.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "8",
+   "type": "NAME",
+   "text": "The function appears to implement a custom encryption algorithm.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

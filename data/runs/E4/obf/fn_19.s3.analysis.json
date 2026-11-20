@@ -1,0 +1,139 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 13.4,
+   "cached": false,
+   "eval_count": 658,
+   "cache_key": "c25cf177e02f7e9d0800e1330c8584fca6b7125acb699f790d2faf13ea32318c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_19 appears to implement a custom encoding algorithm.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": ":1",
+    "type": "IO",
+    "text": "Returns VERA_ERR (0xffffffffffffffff) when param_5 < param_2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_5 < param_2",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": ":2",
+    "type": "IO",
+    "text": "Does not write to out when param_2 == 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "writes_out": false
+    }
+   },
+   {
+    "id": ":3",
+    "type": "IO",
+    "text": "Writes data to out when param_2 > 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 > 0",
+     "writes_out": true
+    }
+   },
+   {
+    "id": ":4",
+    "type": "CF",
+    "text": "Loops over param_2 times when param_2 > 0.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": ":5",
+    "type": "SIDE",
+    "text": "Writes to out[param_4 + uVar4] based on encoded data.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "writes_out": true
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n\n  if (len > 0) {\n    for (size_t i = 0; i < len; i++) {\n      uint8_t encoded_byte = (arg >> (i % 8 * 8)) & 0xFF;\n      if ((i * (i + 1) & 1) != 0 || 1) {\n        encoded_byte = (encoded_byte ^ (i << 7)) * 0x6B + 0x1000;\n      }\n      out[i] = (encoded_byte << (i % 8) | encoded_byte >> (8 - (i % 8))) ^ in[i] ^ (uint8_t)i;\n    }\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": ":1",
+   "type": "IO",
+   "text": "Returns VERA_ERR (0xffffffffffffffff) when param_5 < param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < param_2",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": ":2",
+   "type": "IO",
+   "text": "Does not write to out when param_2 == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "writes_out": false
+   }
+  },
+  {
+   "id": ":3",
+   "type": "IO",
+   "text": "Writes data to out when param_2 > 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > 0",
+    "writes_out": true
+   }
+  },
+  {
+   "id": ":4",
+   "type": "CF",
+   "text": "Loops over param_2 times when param_2 > 0.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": ":5",
+   "type": "SIDE",
+   "text": "Writes to out[param_4 + uVar4] based on encoded data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "writes_out": true
+   }
+  }
+ ],
+ "dropped_claims": []
+}

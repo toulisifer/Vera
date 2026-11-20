@@ -1,0 +1,61 @@
+{
+ "fn": "fn_05",
+ "config": "plain",
+ "compiled": true,
+ "fepr": 0.32,
+ "n_vectors": 50,
+ "n_match": 16,
+ "failures": [
+  {
+   "vector": "v05",
+   "tag": "len24",
+   "status": "OK",
+   "expected_ret": "0x0000000000000008",
+   "got_ret": "0x0000000000000008",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v06",
+   "tag": "len64",
+   "status": "OK",
+   "expected_ret": "0x0000000000000008",
+   "got_ret": "0x0000000000000008",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v07",
+   "tag": "all00",
+   "status": "OK",
+   "expected_ret": "0x0000000000000008",
+   "got_ret": "0x0000000000000008",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v08",
+   "tag": "allff",
+   "status": "OK",
+   "expected_ret": "0x0000000000000008",
+   "got_ret": "0x0000000000000008",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v12",
+   "tag": "arg0",
+   "status": "OK",
+   "expected_ret": "0x0000000000000008",
+   "got_ret": "0x0000000000000008",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  }
+ ],
+ "sandbox_image": "python:3.12-slim"
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_01",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: unsigned int fn_01(const unsigned char *buf, size_t len) ← chữ ký chung",
+ "raw": "unsigned int fn_01(const unsigned char *buf, size_t len)\n{\n    unsigned int crc = 0xFFFFFFFF;\n    size_t i, j;\n\n    for (j = 0; j < len; j++)\n    {\n        crc ^= buf[j];\n        for (i = 0; i < 8; i++)\n        {\n            crc = (crc >> 1) ^ (0xEDB88320 & -(crc & 1));\n        }\n    }\n    return ~crc;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.4,
+   "cached": true,
+   "eval_count": 136,
+   "cache_key": "b49ff6608f07c86c1af2b0fb2be82bb6e0475c8622b32b298b3127f6c3b56885"
+  }
+ ],
+ "output": {
+  "recovered_c": "unsigned int vera_inner(const unsigned char *buf, size_t len)\n{\n    unsigned int crc = 0xFFFFFFFF;\n    size_t i, j;\n\n    for (j = 0; j < len; j++)\n    {\n        crc ^= buf[j];\n        for (i = 0; i < 8; i++)\n        {\n            crc = (crc >> 1) ^ (0xEDB88320 & -(crc & 1));\n        }\n    }\n    return ~crc;\n}\nuint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (size_t)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

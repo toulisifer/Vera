@@ -1,0 +1,155 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 29.5,
+   "cached": false,
+   "eval_count": 1231,
+   "cache_key": "04af051c42c3e1277504e8e0d2b8dca91f12769c743eefb625dc928686f20d3e"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_07 performs base64 encoding on the input buffer and writes the result to the output buffer. It returns the number of bytes written or VERA_ERR if the output buffer is too small.",
+  "proposed_name": "Base64 Encoder",
+  "algorithm": "Base64",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < (len + 2) / 3 << 2.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < (len + 2) / 3 << 2",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "user_1",
+    "type": "IO",
+    "text": "Returns len when out_cap >= (len + 2) / 3 << 2.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap >= (len + 2) / 3 << 2",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "user_2",
+    "type": "SIDE",
+    "text": "Writes base64 encoded data to out[0..len].",
+    "asserted_values": [],
+    "confidence": 1,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_3",
+    "type": "ALG",
+    "text": "Implements Base64 encoding.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_4",
+    "type": "CONST",
+    "text": "Uses the constant \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\".",
+    "asserted_values": [
+     "\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\""
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_5",
+    "type": "CF",
+    "text": "Processes input in chunks of 3 bytes, then handles remaining bytes (1 or 2) separately.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t o = 0;\n  size_t i = 0;\n\n  if (out_cap < (len + 2) / 3 << 2) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  for (; i + 3 <= len; i += 3) {\n    uint32_t uVar4 = (uint32_t)in[i] << 0x10 | (uint32_t)in[i + 1] << 8;\n    uint8_t bVar2 = in[i + 2];\n    \n    out[o] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uint8_t)(in[i] >> 2)];\n    out[o + 1] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uVar4 & 0x3f000) >> 0xc];\n    out[o + 2] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(bVar2 | uVar4) >> 6 & 0x3f];\n    out[o + 3] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(bVar2 & 0x3f)];\n    o += 4;\n  }\n\n  if (len - i == 1) {\n    uint8_t bVar2 = in[i];\n    out[o] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uint8_t)(bVar2 >> 2)];\n    out[o + 1] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(bVar2 & 3) << 4];\n    out[o + 2] = '=';\n    out[o + 3] = '=';\n    o += 4;\n  }\n  else if (len - i == 2) {\n    uint8_t bVar2 = in[i];\n    uint8_t bVar3 = in[i + 1];\n    out[o] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uint8_t)(bVar2 >> 2)];\n    out[o + 1] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[((uint32_t)bVar3 << 8 | (uint32_t)bVar2 << 0x10) >> 0xc & 0x3f];\n    out[o + 2] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[((uint32_t)bVar3 << 8 & 0xfc0) >> 6];\n    out[o + 3] = '=';\n    o += 4;\n  }\n\n  return o;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns len when out_cap >= (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= (len + 2) / 3 << 2",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "Writes base64 encoded data to out[0..len].",
+   "asserted_values": [],
+   "confidence": 1,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "CONST",
+   "text": "Uses the constant \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\".",
+   "asserted_values": [
+    "\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\""
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_5",
+   "type": "CF",
+   "text": "Processes input in chunks of 3 bytes, then handles remaining bytes (1 or 2) separately.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "user_3",
+   "type": "ALG",
+   "text": "Implements Base64 encoding.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

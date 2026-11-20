@@ -1,0 +1,157 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.8,
+   "cached": false,
+   "eval_count": 790,
+   "cache_key": "944fc80387c585b74682dde9e77e3494ac31e2c8a47ba77418e1d841f6e3ca24"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_20 appears to be implementing a permutation-based data transformation algorithm.",
+  "proposed_name": "fn_20",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "2",
+    "type": "SIDE",
+    "text": "Writes the first 8 bytes of in to out in a specific order.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the remaining bytes of in to out in the same order.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Performs a loop to shuffle the first 8 bytes of in based on the value of arg.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Performs a loop to copy the shuffled bytes to out.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Performs a loop to copy the remaining bytes to out.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "Checks the stack canary at the end of the function.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_20(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n  uint8_t p[8];\n  for (size_t n = 0; n < 8; n++) {\n    p[n] = (uint8_t)n;\n  }\n  uint64_t sd = arg;\n  for (size_t n = 7; n != 0; n--) {\n    size_t uVar3 = sd % (n + 1);\n    sd = sd / (n + 1);\n    uint8_t uVar1 = p[n];\n    p[n] = p[uVar3];\n    p[uVar3] = uVar1;\n  }\n  for (size_t b = 0; b + 8 <= len; b += 8) {\n    for (size_t n = 0; n < 8; n++) {\n      out[b + n] = in[p[n] + b];\n    }\n  }\n  for (; b < len; b++) {\n    out[b] = in[b];\n  }\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes the first 8 bytes of in to out in a specific order.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the remaining bytes of in to out in the same order.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Performs a loop to shuffle the first 8 bytes of in based on the value of arg.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Performs a loop to copy the shuffled bytes to out.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Performs a loop to copy the remaining bytes to out.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Checks the stack canary at the end of the function.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

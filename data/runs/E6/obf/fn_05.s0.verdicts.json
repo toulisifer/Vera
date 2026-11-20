@@ -1,0 +1,187 @@
+{
+ "fn": "fn_05",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x61c88647.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x61c88647",
+      "form": "imm",
+      "detail": "0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 8 when len >= 0x18 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 0x18 and out_cap >= 8",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns VERA_ERR when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x18 or out_cap < 8",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes the hash value to out[0..7].",
+   "asserted_values": [
+    "out[0..7]"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a loop that iterates based on the value of param_2.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of iVar5.",
+   "asserted_values": [
+    "iVar5"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "NAME",
+   "type": "NAME",
+   "text": "Purpose is to compute a hash value based on the input data.",
+   "asserted_values": [
+    "hash"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 4,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 10,
+ "explanation_clean": true
+}

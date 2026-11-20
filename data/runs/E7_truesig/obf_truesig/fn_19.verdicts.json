@@ -1,0 +1,155 @@
+{
+ "fn": "fn_19",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xffffffffffffffff",
+     "writes_out": null
+    },
+    "detail": "đúng trên 3 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns len when len != 0.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len != 0",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..<len>].",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "Uses the constant 'k'.",
+   "asserted_values": [
+    "'k'"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x4008.",
+   "asserted_values": [
+    "0x4008"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x4008"
+     }
+    ]
+   }
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x4010.",
+   "asserted_values": [
+    "0x4010"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x4010"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 1,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

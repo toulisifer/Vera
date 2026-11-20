@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly uses the constant 0x1f9 in the calculation of uVar31.", "seconds": 1.2}

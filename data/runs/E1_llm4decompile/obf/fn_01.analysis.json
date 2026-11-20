@@ -1,0 +1,30 @@
+{
+ "fn": "fn_01",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: unsigned int fn_01(const unsigned char *buf, unsigned int len) ← chữ ký chung",
+ "raw": "unsigned int fn_01(const unsigned char *buf, unsigned int len)\n{\n    unsigned int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;\n    unsigned int crc;\n\n    crc = 0xffffffff;\n    for (i = 0; i < len; i++) {\n        crc = (crc >> 8) ^ crc_table[(crc ^ buf[i]) & 0xff];\n    }\n    return ~crc;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 7.5,
+   "cached": false,
+   "eval_count": 137,
+   "cache_key": "0a70a401d528bccc18a30e0b69ef633656fbc5c58171f4446aaf2618679ba343"
+  }
+ ],
+ "output": {
+  "recovered_c": "unsigned int vera_inner(const unsigned char *buf, unsigned int len)\n{\n    unsigned int i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;\n    unsigned int crc;\n\n    crc = 0xffffffff;\n    for (i = 0; i < len; i++) {\n        crc = (crc >> 8) ^ crc_table[(crc ^ buf[i]) & 0xff];\n    }\n    return ~crc;\n}\nuint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (unsigned int)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

@@ -1,0 +1,129 @@
+{
+ "fn": "fn_09",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.5,
+   "cached": false,
+   "eval_count": 610,
+   "cache_key": "6831f80c38cade6f559a6cf6c1a42b63718ed5f3cc816d7860e12361ec1cebe9"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_09 computes a hash value based on the input buffer using a polynomial multiplication and XOR operation. It does not modify the input buffer and does not write to the output buffer. The function returns the computed hash value or VERA_ERR if the input length is zero.",
+  "proposed_name": "fn_09",
+  "algorithm": "MurmurHash3",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "ALG",
+    "text": "Implements MurmurHash3.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Uses a for loop to iterate over the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_2",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_3",
+    "type": "IO",
+    "text": "Returns 0xcbf29ce484222325 when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_4",
+    "type": "CONST",
+    "text": "Uses the constant 0xcbf29ce484222325.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_5",
+    "type": "CONST",
+    "text": "Uses the constant 0x100000001b5.",
+    "asserted_values": [
+     "0x100000001b5"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t h = 0xcbf29ce484222325;\n  for (size_t i = 0; i < len; i++) {\n    h ^= in[i];\n    h *= 0x100000001b5;\n  }\n  return h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Uses a for loop to iterate over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_4",
+   "type": "CONST",
+   "text": "Uses the constant 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x100000001b5.",
+   "asserted_values": [
+    "0x100000001b5"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "Implements MurmurHash3.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

@@ -1,0 +1,86 @@
+{
+ "fn": "fn_17",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "return_0",
+   "type": "IO",
+   "text": "Returns 0 when param_2 is 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "return_error",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when the input buffer is not long enough.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < uVar3",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "side_effect",
+   "type": "SIDE",
+   "text": "Writes to out[0..3] if the conditions are met.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "loop",
+   "type": "CF",
+   "text": "Contains a do-while loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "control_flow",
+   "type": "CF",
+   "text": "Branches based on conditions related to input buffer and out buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

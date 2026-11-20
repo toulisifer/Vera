@@ -1,0 +1,159 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "io1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when (param_2 + 2) / 3 << 2 <= param_5.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "(param_2 + 2) / 3 << 2 <= param_5",
+    "returns": "FFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io2",
+   "type": "IO",
+   "text": "Returns 0 when param_2 < 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io3",
+   "type": "IO",
+   "text": "Returns (param_2 - uVar6) + 4 when param_2 == 1.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "param_2 == 1",
+    "returns": "(param_2 - uVar6) + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io4",
+   "type": "IO",
+   "text": "Returns (param_2 - uVar6) + 4 when param_2 == 2.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "param_2 == 2",
+    "returns": "(param_2 - uVar6) + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "side1",
+   "type": "SIDE",
+   "text": "Writes a 16-bit value to out[lVar4] using a specific mapping based on uVar2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "side2",
+   "type": "SIDE",
+   "text": "Writes a 8-bit value to out[lVar4 + 2] using a specific mapping based on uVar2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "side3",
+   "type": "SIDE",
+   "text": "Writes a 8-bit value to out[lVar4 + 3] when param_2 == 1.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "side4",
+   "type": "SIDE",
+   "text": "Writes a 8-bit value to out[lVar4 + 3] when param_2 == 2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "cf1",
+   "type": "CF",
+   "text": "Loops while uVar6 + 3 <= param_2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 4,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

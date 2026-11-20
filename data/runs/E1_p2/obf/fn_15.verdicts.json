@@ -1,0 +1,135 @@
+{
+ "fn": "fn_15",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b in its computation.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71 in its computation.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e4 in its computation.",
+   "asserted_values": [
+    "0x51e4"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e4",
+      "form": "imm",
+      "detail": "0x51E4 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the output capacity is less than the computed hash size.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_5 < uVar5",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes the computed hash to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "The function contains nested loops for processing the input data.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 3,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

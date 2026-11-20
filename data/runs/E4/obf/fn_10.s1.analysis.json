@@ -1,0 +1,213 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 25.2,
+   "cached": false,
+   "eval_count": 1226,
+   "cache_key": "81ea41839f2f1a3556b6b3171264f90c01770d47b55c40e36e87016aef86fb50"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom hash function with a specific algorithm. It takes an input buffer, processes it, and returns a 64-bit hash value.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": ".1",
+    "type": "ALG",
+    "text": "Implements a custom hash function.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {}
+   },
+   {
+    "id": ".2",
+    "type": "IO",
+    "text": "Returns 1 when param_2 is 0.",
+    "asserted_values": [
+     "1"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "1"
+    }
+   },
+   {
+    "id": ".3",
+    "type": "IO",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": false
+    }
+   },
+   {
+    "id": ".4",
+    "type": "CF",
+    "text": "Uses a do-while loop.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": ".5",
+    "type": "SIDE",
+    "text": "Writes to out[0..15] with a left-shift operation on uVar2.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": ".6",
+    "type": "CONST",
+    "text": "Uses the constant 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": ".7",
+    "type": "CONST",
+    "text": "Uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": ".8",
+    "type": "CONST",
+    "text": "Uses the constant 8.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": ".9",
+    "type": "CONST",
+    "text": "Uses the constant 5.",
+    "asserted_values": [
+     "5"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1;\n  ulong uVar2;\n  uint uVar3;\n  ulong uVar4;\n  long lVar5;\n  uint uVar6;\n\n  if (len == 0) {\n    uVar2 = 1;\n    uVar4 = 0;\n  }\n  else {\n    uVar4 = 0;\n    uVar6 = 0;\n    lVar5 = 0;\n    uVar2 = 1;\n    do {\n      uVar3 = (uint)uVar4;\n      uVar1 = (uint)lVar5 | 1;\n      if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n        uVar1 = ((int)uVar2 + (uint)*(byte *)(in + lVar5)) % 0xffef;\n      }\n      else {\n        uVar1 = (int)uVar2 + 0x51e3U ^ uVar6;\n      }\n      uVar2 = (ulong)uVar1;\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n        uVar3 = (uVar3 ^ (uint)(len << 7)) * 0x2d6b + DAT_00104008;\n        uVar3 = uVar3 ^ uVar3 >> 0xb;\n      }\n      lVar5 = lVar5 + 1;\n      uVar6 = uVar6 + 0x1f9;\n      uVar4 = (ulong)((uVar3 + uVar1) % 0xffef);\n    } while (len != lVar5);\n    uVar4 = uVar4 << 0x10;\n  }\n  if (DAT_00104010 != 0) {\n    uVar6 = 0;\n    do {\n      uVar2 = (ulong)((uint)(uVar2 >> 5) ^ (int)uVar2 * 8 ^ uVar6);\n      uVar6 = uVar6 + 1;\n    } while (uVar6 < DAT_00104010);\n  }\n  return uVar2 | uVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": ".1",
+   "type": "ALG",
+   "text": "Implements a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {}
+  },
+  {
+   "id": ".2",
+   "type": "IO",
+   "text": "Returns 1 when param_2 is 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "1"
+   }
+  },
+  {
+   "id": ".3",
+   "type": "IO",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": false
+   }
+  },
+  {
+   "id": ".4",
+   "type": "CF",
+   "text": "Uses a do-while loop.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": ".5",
+   "type": "SIDE",
+   "text": "Writes to out[0..15] with a left-shift operation on uVar2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": ".6",
+   "type": "CONST",
+   "text": "Uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": ".7",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": ".8",
+   "type": "CONST",
+   "text": "Uses the constant 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": ".9",
+   "type": "CONST",
+   "text": "Uses the constant 5.",
+   "asserted_values": [
+    "5"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  }
+ ],
+ "dropped_claims": []
+}

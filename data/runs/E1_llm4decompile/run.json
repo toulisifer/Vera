@@ -1,0 +1,57 @@
+{
+  "run": "E1_llm4decompile",
+  "started": "2026-09-24 14:47:46",
+  "model": {
+    "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+    "digest": "811c74b0fbcc659d3b30b871f46d8d1e91c2a605dbc36957ab427cd3ae78aa56",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "6.74B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 8192,
+      "embedding_length": 4096
+    },
+    "ollama": "0.34.3"
+  },
+  "baseline": "LLM4Decompile-Ref v2 6.7B",
+  "options": {
+    "temperature": 0.0,
+    "seed": 0,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "temperature": 0.0,
+  "samples": 1,
+  "fns": [
+    "fn_01",
+    "fn_02",
+    "fn_03",
+    "fn_04",
+    "fn_05",
+    "fn_06",
+    "fn_07",
+    "fn_08",
+    "fn_09",
+    "fn_10",
+    "fn_11",
+    "fn_12",
+    "fn_13",
+    "fn_14",
+    "fn_15",
+    "fn_16",
+    "fn_17",
+    "fn_18",
+    "fn_19",
+    "fn_20"
+  ],
+  "configs": [
+    "plain",
+    "opt",
+    "obf"
+  ]
+}

@@ -1,0 +1,138 @@
+{
+ "fn": "fn_01",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFF when DAT_00104010 == 0.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "DAT_00104010 == 0",
+    "returns": "0xFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the computed hash when DAT_00104010 != 0.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "DAT_00104010 != 0",
+    "returns": "computed hash"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function contains a do-while loop that iterates DAT_00104010 times.",
+   "asserted_values": [
+    "DAT_00104010"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains an inner loop that iterates over the input buffer.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a conditional branch based on the value of lVar6.",
+   "asserted_values": [
+    "lVar6"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a conditional branch based on the value of uVar1.",
+   "asserted_values": [
+    "uVar1"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "The function contains a conditional branch based on the value of param_2 + 8.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "Writes the computed hash to out[0].",
+   "asserted_values": [
+    "out[0]"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 7,
+  "contradicted": 1
+ },
+ "n_claims": 8,
+ "explanation_clean": false
+}

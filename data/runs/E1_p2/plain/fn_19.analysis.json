@@ -1,0 +1,105 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.4,
+   "cached": false,
+   "eval_count": 526,
+   "cache_key": "738f9626ddd4cf32cdfd14b64caee1693ab130c7f431ff3fde983e12e429da0c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_19 takes an input buffer, a length, an argument, and an output buffer. It performs a bitwise operation on each byte of the input buffer and stores the result in the output buffer. If the output buffer capacity is less than the input length, it returns VERA_ERR.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns VERA_ERR when out_cap is less than len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "2",
+    "type": "SIDE",
+    "text": "Writes the transformed bytes of the input buffer to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "Iterates over each byte of the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The bitwise operation uses a mask based on the argument and the index of the byte.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar1 = (uint8_t)(arg >> ((int)i & 7) << 3);\n    uint8_t bVar2 = (uint8_t)i & 7;\n    out[i] = in[i] ^ ((bVar1 >> (-bVar2 & 7)) | (bVar1 << bVar2)) ^ (uint8_t)i;\n  }\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when out_cap is less than len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes the transformed bytes of the input buffer to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Iterates over each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The bitwise operation uses a mask based on the argument and the index of the byte.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

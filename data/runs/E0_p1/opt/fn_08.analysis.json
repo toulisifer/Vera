@@ -1,0 +1,108 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p1",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.7,
+   "cached": false,
+   "eval_count": 526,
+   "cache_key": "5f810c06a8a2992ffbeddb6aca0d2a020c36fe72dc4fb75d577e6ac08bb2db88"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_08 computes a checksum using a specific algorithm and returns the result.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xf7179bf5 in its computation.",
+    "asserted_values": [
+     "0xf7179bf5"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function uses a nested loop to process each byte of the input.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "The function reads from the input buffer 'param_1' and writes to the output buffer 'out'.",
+    "asserted_values": [],
+    "confidence": 0.7
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "The function returns VERA_ERR when the input length 'param_2' is 0.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "The function returns VERA_ERR when the output buffer capacity 'out_cap' is smaller than the input length 'param_2'.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n  uint32_t result = 0xFFFFFFFF;\n  for (size_t i = 0; i < len; i++) {\n    result ^= in[i];\n    for (int j = 0; j < 8; j++) {\n      result = -(result & 1) & 0xf7179bf5 ^ result >> 1;\n    }\n  }\n  return ~result;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xf7179bf5 in its computation.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function uses a nested loop to process each byte of the input.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function reads from the input buffer 'param_1' and writes to the output buffer 'out'.",
+   "asserted_values": [],
+   "confidence": 0.7
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "The function returns VERA_ERR when the input length 'param_2' is 0.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "The function returns VERA_ERR when the output buffer capacity 'out_cap' is smaller than the input length 'param_2'.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

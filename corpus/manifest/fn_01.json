@@ -1,0 +1,47 @@
+{
+  "id": "fn_01",
+  "group": "classic",
+  "algorithm_label": "CRC-32",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": "CRC-32",
+  "source": "corpus/src/fn_01.c",
+  "description": "Tính CRC-32 chuẩn (IEEE 802.3, dạng reflected) trên len byte của in. Thanh ghi khởi tạo 0xFFFFFFFF, mỗi byte được XOR vào byte thấp rồi dịch phải 8 lần, mỗi lần XOR với đa thức đảo bit 0xEDB88320 nếu bit thấp bằng 1. Kết quả được XOR với 0xFFFFFFFF và trả về. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [
+    {
+      "value": "0xEDB88320",
+      "width": 32,
+      "role": "đa thức reflected",
+      "encodings": {
+        "imm": "0xEDB88320",
+        "le_bytes": "2083b8ed",
+        "neg": "0x12477CE0",
+        "signed": "-306674912",
+        "sext64": "0xFFFFFFFFEDB88320",
+        "hi16": "0xEDB8",
+        "lo16": "0x8320"
+      }
+    },
+    {
+      "value": "0xFFFFFFFF",
+      "width": 32,
+      "role": "init và xorout",
+      "encodings": {
+        "imm": "0xFFFFFFFF",
+        "le_bytes": "ffffffff",
+        "neg": "0x00000001",
+        "signed": "-1",
+        "sext64": "0xFFFFFFFFFFFFFFFF",
+        "hi16": "0xFFFF",
+        "lo16": "0xFFFF"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

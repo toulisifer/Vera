@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code writes exactly 8 bytes to out when len >= 0x18 and out_cap >= 8.", "seconds": 1.3}

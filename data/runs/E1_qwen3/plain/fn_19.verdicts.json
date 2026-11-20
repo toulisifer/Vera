@@ -1,0 +1,140 @@
+{
+ "fn": "fn_19",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": null
+    },
+    "detail": "đúng trên 3 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "IO",
+   "text": "Returns len when out_cap >= len.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_2",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [
+    "0",
+    "len-1"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_3",
+   "type": "CF",
+   "text": "Iterates over each byte in the input data.",
+   "asserted_values": [
+    "i"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_4",
+   "type": "CONST",
+   "text": "Uses the constant 7 in bitwise operations.",
+   "asserted_values": [
+    "7"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_5",
+   "type": "CF",
+   "text": "Performs bitwise operations on each byte of the input data.",
+   "asserted_values": [
+    "i",
+    "arg"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_6",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "_7",
+   "type": "CF",
+   "text": "Uses a loop to process each byte of the input data.",
+   "asserted_values": [
+    "i"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 3,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

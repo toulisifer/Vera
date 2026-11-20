@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if len < 0x18 or out_cap < 8 and returns VERA_ERR (0xffffffffffffffff) in that case.", "seconds": 1.0}

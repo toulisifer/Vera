@@ -1,0 +1,127 @@
+{
+ "fn": "fn_01",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "ALG",
+   "text": "Implements a bitwise transformation on the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "_0002",
+   "type": "CF",
+   "text": "Iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0003",
+   "type": "CF",
+   "text": "For each byte, performs an inner loop of 8 iterations.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "CF",
+   "text": "Uses bitwise operations to transform the input data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "_0006",
+   "type": "IO",
+   "text": "Returns a 64-bit value when the input is processed.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0007",
+   "type": "CONST",
+   "text": "Uses the constant 0xedb88320.",
+   "asserted_values": [
+    "0xedb88320"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xedb88320",
+      "form": "imm",
+      "detail": "0xEDB88320 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFF (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 2,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

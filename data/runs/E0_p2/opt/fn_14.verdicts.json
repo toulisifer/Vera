@@ -1,0 +1,116 @@
+{
+ "fn": "fn_14",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses a specific string for encoding.",
+   "asserted_values": [
+    "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns -1 when out_cap is less than (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "out_cap < (param_2 + 2) / 3 << 2",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0 when len is less than 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len < 3",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 3",
+     "returns": "0",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "ret 0x0000000000000004"
+    }
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes encoded data to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Uses a loop to process input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Handles remaining bytes after the loop.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 6,
+ "explanation_clean": false
+}

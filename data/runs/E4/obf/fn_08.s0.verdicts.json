@@ -1,0 +1,86 @@
+{
+ "fn": "fn_08",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns ~uVar2 when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the result to out[0..7].",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Contains a do-while loop that iterates based on the length of the input.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "ALG",
+   "text": "Implements a custom hash algorithm.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 5,
+ "explanation_clean": false
+}

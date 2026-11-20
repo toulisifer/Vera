@@ -1,0 +1,79 @@
+{
+ "fn": "fn_18",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "001",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "002",
+   "type": "IO",
+   "text": "Returns an error when the input length is greater than the output capacity.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "004",
+   "type": "CF",
+   "text": "Uses a loop that iterates over the input length.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "005",
+   "type": "SIDE",
+   "text": "Modifies the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

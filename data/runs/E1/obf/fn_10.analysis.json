@@ -1,0 +1,191 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 27.5,
+   "cached": false,
+   "eval_count": 1133,
+   "cache_key": "8f65c465dd68d74d7dac31a3b6858e02477a4a72c23b7a26b821a1be4777db31"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_10 appears to be implementing a custom hash function.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function contains a nested loop that performs additional operations.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "The function writes to out[0..15].",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "8",
+    "type": "IO",
+    "text": "Returns 1 when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "9",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len < 0.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "10",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when arg != 0.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 1;\n  }\n  if (arg != 0) {\n    return VERA_ERR;\n  }\n  uint uVar1 = 1;\n  uint uVar2 = 0;\n  uint uVar3 = 0;\n  uint uVar4 = 0;\n  for (size_t lVar5 = 0; lVar5 < len; lVar5++) {\n    uVar3 = (uint)uVar2;\n    uVar1 = (uint)lVar5 | 1;\n    if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n      uVar1 = ((int)uVar2 + (uint)*(byte *)(in + lVar5)) % 0xffef;\n    } else {\n      uVar1 = (int)uVar2 + 0x51e3U ^ uVar3;\n    }\n    uVar2 = uVar1;\n    if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n      uVar3 = (uVar3 ^ (uint)(len << 7)) * 0x2d6b + DAT_00104008;\n      uVar3 = uVar3 ^ uVar3 >> 0xb;\n    }\n    uVar4 = (uint)((uVar3 + uVar1) % 0xffef);\n  }\n  uVar4 = uVar4 << 0x10;\n  if (DAT_00104010 != 0) {\n    for (size_t uVar6 = 0; uVar6 < DAT_00104010; uVar6++) {\n      uVar2 = (uint)((uint)(uVar2 >> 5) ^ (int)uVar2 * 8 ^ uVar6);\n    }\n  }\n  return uVar2 | uVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a nested loop that performs additional operations.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "The function writes to out[0..15].",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "8",
+   "type": "IO",
+   "text": "Returns 1 when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "9",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len < 0.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "10",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when arg != 0.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": []
+}

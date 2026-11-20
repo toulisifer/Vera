@@ -1,0 +1,185 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 23.7,
+   "cached": false,
+   "eval_count": 1146,
+   "cache_key": "95d01ae88645d3dac2b999f652fbad31aabca21ef1b0d6c6e833b98c39e4a109"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom encoding function. It takes an input buffer, a length, an argument, and an output buffer, and encodes the input into the output. The encoding seems to involve bitwise operations and table lookups.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns 0 when len < 3.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "when": "len < 3",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 4 when len == 1.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "len == 1",
+     "returns": "4"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 4 when len == 2.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "len == 2",
+     "returns": "4"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Writes to out[0..3] when len == 1.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "len == 1",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Writes to out[0..3] when len == 2.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "len == 2",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Loops over the input buffer in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Writes to out[0..len-1] based on the input data.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len < 3) {\n    return 0;\n  }\n  if (len == 1) {\n    out[0] = 'A' + (in[0] & 3) * 4;\n    out[1] = 'a' + (in[0] & 3) * 4;\n    out[2] = '=';\n    out[3] = '=';\n    return 4;\n  }\n  if (len == 2) {\n    uint16_t value = (in[1] << 8) | in[0];\n    out[0] = 'A' + (value >> 12) * 4;\n    out[1] = 'a' + (value >> 12) * 4;\n    out[2] = 'A' + ((value >> 8) & 0xF) * 4;\n    out[3] = '=';\n    return 4;\n  }\n  for (size_t i = 0; i < len; i += 3) {\n    uint32_t value = (uint32_t)in[i + 2] << 16 | (uint32_t)in[i + 1] << 8 | in[i];\n    if ((i + 1) * (i + 2) & 1) {\n      value = ((i + 2) << 7) ^ value;\n      value = (value * 0x2d6b + 0x4e35) >> 11 ^ value;\n    }\n    out[i / 3 * 4] = 'A' + (value >> 18) * 4;\n    out[i / 3 * 4 + 1] = 'a' + (value >> 18) * 4;\n    out[i / 3 * 4 + 2] = 'A' + ((value >> 12) & 0x3F) * 4;\n    out[i / 3 * 4 + 3] = 'a' + ((value >> 12) & 0x3F) * 4;\n  }\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0 when len < 3.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "len < 3",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 4 when len == 1.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 1",
+    "returns": "4"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 4 when len == 2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 2",
+    "returns": "4"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Writes to out[0..3] when len == 1.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 1",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Writes to out[0..3] when len == 2.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 2",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Loops over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1] based on the input data.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  }
+ ],
+ "dropped_claims": []
+}

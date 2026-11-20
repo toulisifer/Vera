@@ -1,0 +1,125 @@
+{
+ "fn": "fn_02",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Iterates over the input data using a do-while loop.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when len == 0.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns the hash value when len > 0.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0xcbf29ce484222325 as the initial seed.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "Uses the constant 0x100000001b3 as the multiplier.",
+   "asserted_values": [
+    "0x100000001b3"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x100000001b3",
+      "form": "imm",
+      "detail": "0x100000001B3 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements MurmurHash3 64-bit.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "source": "algorithm_field",
+   "raw_algorithm": "MurmurHash3 64-bit",
+   "verdict": {
+    "algorithm": "MurmurHash",
+    "v3": {
+     "label": "unsupported",
+     "method": "V3",
+     "reason": "thiếu hằng đặc trưng của MurmurHash"
+    },
+    "label": "unsupported",
+    "method": "V3",
+    "reason_v1b": "không có oracle cho MurmurHash"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 2,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

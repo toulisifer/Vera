@@ -1,0 +1,115 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 9.8,
+   "cached": false,
+   "eval_count": 415,
+   "cache_key": "0f0fb42d9e6dda530dc8039f74850c0ab762814999a635c737c274bb5713baf0"
+  }
+ ],
+ "output": {
+  "summary": "This function does not perform any useful operations and always returns.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "CONST_1",
+    "type": "CONST",
+    "text": "The code uses the constant 0x0000000000000000.",
+    "asserted_values": [
+     "0x0000000000000000"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO_1",
+    "type": "IO",
+    "text": "Returns VERA_ERR when param_2 is 0.",
+    "asserted_values": [
+     "VERA_ERR"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "CF_1",
+    "type": "CF",
+    "text": "The function has a loop that increments a counter until it reaches DAT_00104010.",
+    "asserted_values": [
+     "DAT_00104010"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF_2",
+    "type": "CF",
+    "text": "The function has a loop that increments a counter until it reaches param_2.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "CONST_1",
+   "type": "CONST",
+   "text": "The code uses the constant 0x0000000000000000.",
+   "asserted_values": [
+    "0x0000000000000000"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO_1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_2 is 0.",
+   "asserted_values": [
+    "VERA_ERR"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "CF_1",
+   "type": "CF",
+   "text": "The function has a loop that increments a counter until it reaches DAT_00104010.",
+   "asserted_values": [
+    "DAT_00104010"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF_2",
+   "type": "CF",
+   "text": "The function has a loop that increments a counter until it reaches param_2.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

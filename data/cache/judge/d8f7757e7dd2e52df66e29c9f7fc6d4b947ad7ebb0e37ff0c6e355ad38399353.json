@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code copies data from input to output in a loop when param_2 >= 8.", "seconds": 1.2}

@@ -1,0 +1,171 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.1,
+   "cached": false,
+   "eval_count": 847,
+   "cache_key": "926d0ffa98f0b7de0e9af5da4fd49d1ec779ff80ee298089f63623e451218d8d"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a complex transformation on an input buffer. It involves a series of bitwise operations, rotations, and swaps. The function also uses a custom lookup table and performs operations based on the values of input parameters.",
+  "proposed_name": "fn_06",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 is greater than param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Writes to out[0..15].",
+    "asserted_values": [
+     "out[0..15]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the range [0..15].",
+    "asserted_values": [
+     "15"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Contains a nested loop that iterates over the range [0..159].",
+    "asserted_values": [
+     "159"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the range [0..param_2 - 1].",
+    "asserted_values": [
+     "param_2 - 1"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the range [0..param_2 * 2 - 1].",
+    "asserted_values": [
+     "param_2 * 2 - 1"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len <= out_cap) {\n    uint8_t local_130[8];\n    uint8_t local_128[264];\n    for (size_t i = 0; i < 16; i++) {\n      local_130[i] = (arg >> (i * 8)) & 0x3f;\n    }\n    for (size_t i = 0; i < 160; i += 16) {\n      // Complex operations involving local_130 and local_128\n    }\n    for (size_t i = 0; i < len; i++) {\n      uint8_t temp = local_128[i];\n      local_128[i] = local_128[(temp + local_128[i]) % len];\n      out[i] = local_128[(temp + local_128[i]) % len] ^ in[i];\n    }\n    return len;\n  } else {\n    return VERA_ERR;\n  }\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 is greater than param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the range [0..15].",
+   "asserted_values": [
+    "15"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a nested loop that iterates over the range [0..159].",
+   "asserted_values": [
+    "159"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the range [0..param_2 - 1].",
+   "asserted_values": [
+    "param_2 - 1"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the range [0..param_2 * 2 - 1].",
+   "asserted_values": [
+    "param_2 * 2 - 1"
+   ],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes to out[0..15].",
+   "asserted_values": [
+    "out[0..15]"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

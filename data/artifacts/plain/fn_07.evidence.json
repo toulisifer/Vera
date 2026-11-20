@@ -1,0 +1,709 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_07",
+ "n_instructions": 220,
+ "immediates": [
+  {
+   "addr": 4377,
+   "insn": "add rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4381,
+   "insn": "movabs rdx, 0xaaaaaaaaaaaaaaab",
+   "value": 12297829382473034411,
+   "size": 8
+  },
+  {
+   "addr": 4397,
+   "insn": "shr rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4400,
+   "insn": "shl rax, 2",
+   "value": 2,
+   "size": 1
+  },
+  {
+   "addr": 4408,
+   "insn": "mov qword ptr [rbp - 0x18], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4416,
+   "insn": "mov qword ptr [rbp - 0x10], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4432,
+   "insn": "jae 0x1262",
+   "value": 4706,
+   "size": 8
+  },
+  {
+   "addr": 4438,
+   "insn": "mov rax, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4445,
+   "insn": "jmp 0x140e",
+   "value": 5134,
+   "size": 8
+  },
+  {
+   "addr": 4467,
+   "insn": "shl eax, 0x10",
+   "value": 16,
+   "size": 1
+  },
+  {
+   "addr": 4493,
+   "insn": "shl eax, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4527,
+   "insn": "shr eax, 0x12",
+   "value": 18,
+   "size": 1
+  },
+  {
+   "addr": 4530,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4572,
+   "insn": "shr eax, 0xc",
+   "value": 12,
+   "size": 1
+  },
+  {
+   "addr": 4575,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4617,
+   "insn": "shr eax, 6",
+   "value": 6,
+   "size": 1
+  },
+  {
+   "addr": 4620,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4662,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4701,
+   "insn": "add qword ptr [rbp - 0x10], 3",
+   "value": 3,
+   "size": 8
+  },
+  {
+   "addr": 4710,
+   "insn": "add rax, 3",
+   "value": 3,
+   "size": 8
+  },
+  {
+   "addr": 4718,
+   "insn": "jae 0x1162",
+   "value": 4450,
+   "size": 8
+  },
+  {
+   "addr": 4732,
+   "insn": "cmp rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4736,
+   "insn": "jne 0x1328",
+   "value": 4904,
+   "size": 8
+  },
+  {
+   "addr": 4759,
+   "insn": "shl eax, 0x10",
+   "value": 16,
+   "size": 1
+  },
+  {
+   "addr": 4768,
+   "insn": "shr eax, 0x12",
+   "value": 18,
+   "size": 1
+  },
+  {
+   "addr": 4771,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4813,
+   "insn": "shr eax, 0xc",
+   "value": 12,
+   "size": 1
+  },
+  {
+   "addr": 4816,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4874,
+   "insn": "mov byte ptr [rax], 0x3d",
+   "value": 61,
+   "size": 1
+  },
+  {
+   "addr": 4896,
+   "insn": "mov byte ptr [rax], 0x3d",
+   "value": 61,
+   "size": 1
+  },
+  {
+   "addr": 4899,
+   "insn": "jmp 0x140a",
+   "value": 5130,
+   "size": 8
+  },
+  {
+   "addr": 4912,
+   "insn": "cmp rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4916,
+   "insn": "jne 0x140a",
+   "value": 5130,
+   "size": 8
+  },
+  {
+   "addr": 4939,
+   "insn": "shl eax, 0x10",
+   "value": 16,
+   "size": 1
+  },
+  {
+   "addr": 4965,
+   "insn": "shl eax, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4976,
+   "insn": "shr eax, 0x12",
+   "value": 18,
+   "size": 1
+  },
+  {
+   "addr": 4979,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 5021,
+   "insn": "shr eax, 0xc",
+   "value": 12,
+   "size": 1
+  },
+  {
+   "addr": 5024,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 5066,
+   "insn": "shr eax, 6",
+   "value": 6,
+   "size": 1
+  },
+  {
+   "addr": 5069,
+   "insn": "and eax, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 5127,
+   "insn": "mov byte ptr [rax], 0x3d",
+   "value": 61,
+   "size": 1
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4353,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4357,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4361,
+   "value": 18446744073709551560
+  },
+  {
+   "addr": 4365,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4369,
+   "value": 18446744073709551544
+  },
+  {
+   "addr": 4373,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4404,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4408,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4416,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4424,
+   "value": 18446744073709551544
+  },
+  {
+   "addr": 4428,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4450,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4454,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4472,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4476,
+   "value": 1
+  },
+  {
+   "addr": 4480,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4498,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4502,
+   "value": 2
+  },
+  {
+   "addr": 4506,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4521,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4524,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4546,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4550,
+   "value": 1
+  },
+  {
+   "addr": 4554,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4558,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4569,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4591,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4595,
+   "value": 1
+  },
+  {
+   "addr": 4599,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4603,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4614,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4636,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4640,
+   "value": 1
+  },
+  {
+   "addr": 4644,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4648,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4659,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4678,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4682,
+   "value": 1
+  },
+  {
+   "addr": 4686,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4690,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4701,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4706,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4714,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4724,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4728,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4742,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4746,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4762,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4765,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4787,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4791,
+   "value": 1
+  },
+  {
+   "addr": 4795,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4799,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4810,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4832,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4836,
+   "value": 1
+  },
+  {
+   "addr": 4840,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4844,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4855,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4859,
+   "value": 1
+  },
+  {
+   "addr": 4863,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4867,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4877,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4881,
+   "value": 1
+  },
+  {
+   "addr": 4885,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4889,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4904,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4908,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4922,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4926,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4944,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4948,
+   "value": 1
+  },
+  {
+   "addr": 4952,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4970,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4973,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 4995,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4999,
+   "value": 1
+  },
+  {
+   "addr": 5003,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5007,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 5018,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 5040,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5044,
+   "value": 1
+  },
+  {
+   "addr": 5048,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5052,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 5063,
+   "value": 18446744073709551588
+  },
+  {
+   "addr": 5085,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5089,
+   "value": 1
+  },
+  {
+   "addr": 5093,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5097,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 5108,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5112,
+   "value": 1
+  },
+  {
+   "addr": 5116,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 5120,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 5130,
+   "value": 18446744073709551592
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4535,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4580,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4625,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4667,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4776,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4821,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4984,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 5029,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 5074,
+   "target": 8192,
+   "section": ".rodata"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".rodata",
+   "addr": 8192,
+   "hex": "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f00"
+  },
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [
+  {
+   "section": ".rodata",
+   "addr": 8192,
+   "text": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+  }
+ ],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

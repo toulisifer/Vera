@@ -1,0 +1,30 @@
+{
+ "fn": "fn_20",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_20(unsigned char *in, size_t in_len, size_t in_pos, unsigned char *out, size_t out_len) ← chữ ký chung",
+ "raw": "size_t fn_20(unsigned char *in, size_t in_len, size_t in_pos, unsigned char *out, size_t out_len)\n{\n    size_t i, j, k;\n    unsigned char tmp;\n    unsigned char idx[8];\n\n    if (in_pos >= in_len)\n        return -1;\n\n    for (i = 0; i < 8; i++)\n        idx[i] = i;\n\n    for (i = 8; i > 0; i--) {\n        k = in_pos % i;\n        tmp = idx[i - 1];\n        idx[i - 1] = idx[k];\n        idx[k] = tmp;\n        in_pos /= i;\n    }\n\n    for (i = 0; i < in_len; i += 8) {\n        for (j = 0; j < 8; j++)\n            out[i + j] = in[i + idx[j]];\n    }\n\n    for (i = in_len; i < out_len; i++)\n        out[i] = in[i];\n\n    return out_len;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.6,
+   "cached": false,
+   "eval_count": 281,
+   "cache_key": "2a509e30b66b6792f0e6bd84a879e8b18dc98dd233e54cc8a91905f2bdf96d2d"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(unsigned char *in, size_t in_len, size_t in_pos, unsigned char *out, size_t out_len)\n{\n    size_t i, j, k;\n    unsigned char tmp;\n    unsigned char idx[8];\n\n    if (in_pos >= in_len)\n        return -1;\n\n    for (i = 0; i < 8; i++)\n        idx[i] = i;\n\n    for (i = 8; i > 0; i--) {\n        k = in_pos % i;\n        tmp = idx[i - 1];\n        idx[i - 1] = idx[k];\n        idx[k] = tmp;\n        in_pos /= i;\n    }\n\n    for (i = 0; i < in_len; i += 8) {\n        for (j = 0; j < 8; j++)\n            out[i + j] = in[i + idx[j]];\n    }\n\n    for (i = in_len; i < out_len; i++)\n        out[i] = in[i];\n\n    return out_len;\n}\nuint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((unsigned char *)(in), (size_t)(len), (size_t)(arg), (unsigned char *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

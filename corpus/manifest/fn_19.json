@@ -1,0 +1,18 @@
+{
+  "id": "fn_19",
+  "group": "custom",
+  "algorithm_label": "tự thiết kế: XOR xoay theo vị trí",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": null,
+  "source": "corpus/src/fn_19.c",
+  "description": "Với byte thứ i: lấy byte khóa k = byte thứ (i mod 8) của arg (little-endian), xoay trái k (i mod 8) bit, rồi out[i] = in[i] XOR k XOR (i mod 256). Trả len; VERA_ERR và không ghi nếu out_cap < len. Đầu ra dài đúng bằng đầu vào và hàm không dùng hằng đặc trưng nào, nên chỉ nhận diện được qua hành vi. Vì phép XOR tự đảo, gọi lại hàm với cùng arg trên đầu ra sẽ khôi phục đầu vào.",
+  "io_semantics": {
+    "returns": "len, hoặc VERA_ERR khi out_cap < len",
+    "writes_out": true,
+    "uses_arg": true
+  },
+  "input_profile": "text",
+  "characteristic_constants": [],
+  "characteristic_strings": []
+}

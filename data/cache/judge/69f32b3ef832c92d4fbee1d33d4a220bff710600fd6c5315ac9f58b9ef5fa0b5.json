@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function uses the constant 0xffffffff in the line `lVar4 = 0xffffffff;`.", "seconds": 0.7}

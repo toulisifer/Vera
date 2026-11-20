@@ -1,0 +1,155 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 4,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.1,
+   "cached": false,
+   "eval_count": 487,
+   "cache_key": "763ecd565611275fcb1b9e351ecd5025c0dcc0d2bd5da1f8c58eb15bfc392d23"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom hash function or checksum algorithm.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "DAT_00104008 uses the constant 0x3c71.",
+    "asserted_values": [
+     "3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "DAT_00104010 uses the constant 0x10101010.",
+    "asserted_values": [
+     "10101010"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0 when param_2 is 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function contains a loop that iterates param_2 times.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Writes to out[0..<len>].",
+    "asserted_values": [
+     "out",
+     "len"
+    ],
+    "confidence": 0.7
+   },
+   {
+    "id": "6",
+    "type": "ALG",
+    "text": "Implements a hash function.",
+    "asserted_values": [
+     "hash function"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "DAT_00104008 uses the constant 0x3c71.",
+   "asserted_values": [
+    "3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "DAT_00104010 uses the constant 0x10101010.",
+   "asserted_values": [
+    "10101010"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0 when param_2 is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains a loop that iterates param_2 times.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "ALG",
+   "text": "Implements a hash function.",
+   "asserted_values": [
+    "hash function"
+   ],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes to out[0..<len>].",
+   "asserted_values": [
+    "out",
+    "len"
+   ],
+   "confidence": 0.7,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

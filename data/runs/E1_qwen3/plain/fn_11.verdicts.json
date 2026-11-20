@@ -1,0 +1,111 @@
+{
+ "fn": "fn_11",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "ALG",
+   "text": "Implements a custom hash algorithm.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "claim_2",
+   "type": "CF",
+   "text": "Uses a for loop to iterate over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "claim_4",
+   "type": "IO",
+   "text": "Returns the hash value when the input length is valid.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x1d35 as the initial hash value.",
+   "asserted_values": [
+    "0x1d35"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1d35",
+      "form": "imm",
+      "detail": "0x1D35 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "claim_6",
+   "type": "CONST",
+   "text": "Uses the constant 0x29 as a multiplier in the hash computation.",
+   "asserted_values": [
+    "0x29"
+   ],
+   "confidence": 1,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements custom hash.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "source": "algorithm_field",
+   "raw_algorithm": "custom hash",
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

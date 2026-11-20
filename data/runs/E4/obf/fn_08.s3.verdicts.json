@@ -1,0 +1,102 @@
+{
+ "fn": "fn_08",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "CONST",
+   "text": "The code uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "claim2",
+   "type": "IO",
+   "text": "Returns 0xffffffff when DAT_00104010 == 0.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "DAT_00104010 == 0",
+    "returns": "0xffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim3",
+   "type": "IO",
+   "text": "Returns the computed hash when param_2 != 0.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 != 0",
+    "returns": "computed hash"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim4",
+   "type": "SIDE",
+   "text": "Writes 0x80 to out[0..7] if param_2 > 0.",
+   "asserted_values": [
+    "0x80",
+    "0x7"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "claim5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates param_2 times.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 5,
+ "explanation_clean": false
+}

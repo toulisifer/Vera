@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code does not process the input when len is 0, and the return value is based on h, which is initialized from arg and not modified, leading to a non-zero value, but the claim specifies 0xFFFFFFFFFFFFFFFF, which is the VERA_ERR value, and the code returns a value based on h, which may or may not be 0xFFFFFFFFFFFFFFFF.", "seconds": 2.2}

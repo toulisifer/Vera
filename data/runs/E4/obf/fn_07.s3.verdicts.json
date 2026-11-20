@@ -1,0 +1,219 @@
+{
+ "fn": "fn_07",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "0",
+   "type": "CONST",
+   "text": "The function uses the constant 0x5eb.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x5eb",
+      "form": "imm",
+      "detail": "0x5EB (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d3d.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3d3d",
+      "form": "imm",
+      "detail": "0x3D3D (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length plus 2 is less than 3 times the capacity of the output buffer.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3 * out_cap",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Loops over the input data in chunks of 3 bytes.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "9",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for each 3 bytes of input.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "10",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is 1.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 1",
+    "returns": "4"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 1",
+     "returns": "4",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "11",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is 2.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 2",
+    "returns": "4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không vector nào thỏa 'len == 2'"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 3,
+  "supported": 4,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 11,
+ "explanation_clean": true
+}

@@ -1,0 +1,167 @@
+{
+ "fn": "fn_01",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 17.9,
+   "cached": false,
+   "eval_count": 772,
+   "cache_key": "c0cdf83028230a1d57b628be82ad6917d9ff23b6d679d528a62c64f6acd05678"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input buffer and computes a 32-bit value based on a bitwise transformation algorithm. It returns the inverse of the computed value if the input length is non-zero, otherwise returns 0.",
+  "proposed_name": "fn_01",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "CF",
+    "text": "A loop runs for 8 iterations.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "A loop runs until the input buffer is fully processed.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "ALG",
+    "text": "Implements a bitwise transformation algorithm with a 32-bit output.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "IO",
+    "text": "Returns 0 when the input length is 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "Returns the inverse of the computed value when the input length is non-zero.",
+    "asserted_values": [
+     "~uVar1"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "Uses the constant 0xedb88320.",
+    "asserted_values": [
+     "0xedb88320"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_7",
+    "type": "CONST",
+    "text": "Uses the constant 0xffffffff.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t uVar1 = 0xffffffff;\n  int iVar2;\n  const uint8_t *pbVar3;\n\n  if (len != 0) {\n    pbVar3 = in + len;\n    uVar1 = 0xffffffff;\n    do {\n      uVar1 = uVar1 ^ *in;\n      iVar2 = 8;\n      do {\n        uVar1 = -(uVar1 & 1) & 0xedb88320 ^ uVar1 >> 1;\n        iVar2 = iVar2 + -1;\n      } while (iVar2 != 0);\n      in = in + 1;\n    } while (in != pbVar3);\n    return ~uVar1;\n  }\n  return 0;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "CF",
+   "text": "A loop runs for 8 iterations.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "A loop runs until the input buffer is fully processed.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "ALG",
+   "text": "Implements a bitwise transformation algorithm with a 32-bit output.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns the inverse of the computed value when the input length is non-zero.",
+   "asserted_values": [
+    "~uVar1"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "Uses the constant 0xedb88320.",
+   "asserted_values": [
+    "0xedb88320"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

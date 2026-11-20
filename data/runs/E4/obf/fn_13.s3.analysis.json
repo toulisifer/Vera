@@ -1,0 +1,203 @@
+{
+ "fn": "fn_13",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 17.5,
+   "cached": false,
+   "eval_count": 802,
+   "cache_key": "c9b779652764ccfeebbe5ae46fa3c4968e9f7b3b0a22a56eaa12da941a4ffa04"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be implementing a complex encryption algorithm, possibly a variant of a block cipher or hash function.",
+  "proposed_name": "fn_13",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "claim1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+    "asserted_values": [
+     "FFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "claim2",
+    "type": "SIDE",
+    "text": "Writes data to out[0..15] and out[16..255].",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim3",
+    "type": "CF",
+    "text": "Contains nested loops and conditional branches.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim4",
+    "type": "SIDE",
+    "text": "Modifies the contents of in[0..15].",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim5",
+    "type": "IO",
+    "text": "Writes a value to out[0..15] when param_2 <= param_5.",
+    "asserted_values": [],
+    "confidence": 0.7,
+    "io": {
+     "when": "param_2 <= param_5",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim6",
+    "type": "IO",
+    "text": "Writes a value to out[16..255] when param_2 <= param_5.",
+    "asserted_values": [],
+    "confidence": 0.7,
+    "io": {
+     "when": "param_2 <= param_5",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim7",
+    "type": "IO",
+    "text": "Writes a value to out[16..255] when param_2 != 0.",
+    "asserted_values": [],
+    "confidence": 0.6,
+    "io": {
+     "when": "param_2 != 0",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim8",
+    "type": "IO",
+    "text": "Writes a value to out[0..15] when param_2 != 0.",
+    "asserted_values": [],
+    "confidence": 0.6,
+    "io": {
+     "when": "param_2 != 0",
+     "writes_out": true
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_13(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar26 = 0xffffffffffffffff;\n  if (len <= out_cap) {\n    for (size_t i = 0; i < len; i++) {\n      out[i] = in[i];\n    }\n  }\n  return uVar26;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "claim2",
+   "type": "SIDE",
+   "text": "Writes data to out[0..15] and out[16..255].",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim3",
+   "type": "CF",
+   "text": "Contains nested loops and conditional branches.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim4",
+   "type": "SIDE",
+   "text": "Modifies the contents of in[0..15].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim5",
+   "type": "IO",
+   "text": "Writes a value to out[0..15] when param_2 <= param_5.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "when": "param_2 <= param_5",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim6",
+   "type": "IO",
+   "text": "Writes a value to out[16..255] when param_2 <= param_5.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "when": "param_2 <= param_5",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim7",
+   "type": "IO",
+   "text": "Writes a value to out[16..255] when param_2 != 0.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "param_2 != 0",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim8",
+   "type": "IO",
+   "text": "Writes a value to out[0..15] when param_2 != 0.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "param_2 != 0",
+    "writes_out": true
+   }
+  }
+ ],
+ "dropped_claims": []
+}

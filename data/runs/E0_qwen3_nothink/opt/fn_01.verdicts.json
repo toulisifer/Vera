@@ -1,0 +1,99 @@
+{
+ "fn": "fn_01",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "Applies a bitwise transformation to each byte in the input array.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Processes each byte in the input array sequentially.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns the bitwise complement of a 32-bit value when the input length is non-zero.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Does not modify the input array.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0xedb88320 in the bitwise transformation.",
+   "asserted_values": [
+    "0xedb88320"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xedb88320",
+      "form": "imm",
+      "detail": "0xEDB88320 (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

@@ -1,0 +1,113 @@
+{
+ "fn": "fn_17",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function checks if the input length is 0 and returns 0 in that case.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function uses a do-while loop to process the input data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function writes to out[<first>..<last>].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function uses an if statement to check the value of DAT_00104010 and DAT_00104008.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when the input length is less than 2.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when the calculated length exceeds the input length.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Writes the calculated value to out[0..31].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "8",
+   "type": "IO",
+   "text": "Writes the remaining input data to out[32..out_cap-1].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 7,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

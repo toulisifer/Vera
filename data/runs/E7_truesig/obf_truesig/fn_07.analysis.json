@@ -1,0 +1,187 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 28.6,
+   "cached": false,
+   "eval_count": 1301,
+   "cache_key": "ff7be29e3e0a2e2f6c380fdcd7135d00752b56d17f4a37cfc800011ce8de4c60"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_07 appears to be implementing Base64 encoding.",
+  "proposed_name": "fn_07",
+  "algorithm": "Implements Base64 encoding.",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+    "asserted_values": [
+     "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "FFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "FFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns len when len < 3.",
+    "asserted_values": [
+     "0000000000000003"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 3",
+     "returns": "0000000000000003"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns len when len == 1.",
+    "asserted_values": [
+     "0000000000000001"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 1",
+     "returns": "0000000000000001"
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns len when len == 2.",
+    "asserted_values": [
+     "0000000000000002"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 2",
+     "returns": "0000000000000002"
+    }
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes to out[0..<len].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "Loops over the input data in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len + 2) / 3 << 2 > out_cap) {\n    return VERA_ERR;\n  }\n\n  const char *base64_chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n\n  size_t i = 0;\n  while (i < len) {\n    uint32_t chunk = 0;\n    if (i + 2 < len) {\n      chunk = ((uint32_t)in[i] << 16) | ((uint32_t)in[i + 1] << 8) | in[i + 2];\n    } else if (i + 1 < len) {\n      chunk = ((uint32_t)in[i] << 16) | ((uint32_t)in[i + 1] << 8);\n    } else {\n      chunk = (uint32_t)in[i] << 16;\n    }\n\n    out[i / 3 * 4] = base64_chars[(chunk >> 18) & 0x3F];\n    out[i / 3 * 4 + 1] = base64_chars[(chunk >> 12) & 0x3F];\n    if (i + 2 < len) {\n      out[i / 3 * 4 + 2] = base64_chars[(chunk >> 6) & 0x3F];\n      out[i / 3 * 4 + 3] = base64_chars[chunk & 0x3F];\n    } else if (i + 1 < len) {\n      out[i / 3 * 4 + 2] = base64_chars[(chunk >> 6) & 0x3F];\n      out[i / 3 * 4 + 3] = '=';\n    } else {\n      out[i / 3 * 4 + 2] = base64_chars[(chunk >> 6) & 0x3F];\n      out[i / 3 * 4 + 3] = '=';\n      out[i / 3 * 4 + 4] = '=';\n    }\n\n    i += 3;\n  }\n\n  return i;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+   "asserted_values": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "FFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns len when len < 3.",
+   "asserted_values": [
+    "0000000000000003"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "0000000000000003"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns len when len == 1.",
+   "asserted_values": [
+    "0000000000000001"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 1",
+    "returns": "0000000000000001"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns len when len == 2.",
+   "asserted_values": [
+    "0000000000000002"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 2",
+    "returns": "0000000000000002"
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Loops over the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes to out[0..<len].",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

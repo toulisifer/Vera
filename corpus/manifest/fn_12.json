@@ -1,0 +1,47 @@
+{
+  "id": "fn_12",
+  "group": "near_miss",
+  "algorithm_label": "near-miss của TEA",
+  "pair_of": "fn_05",
+  "difference_from_standard": "Delta 0x8EB7AE2F thay cho 0x9E3779B9; số vòng, cấu trúc vòng và bố trí khóa giữ nguyên.",
+  "oracle": null,
+  "source": "corpus/src/fn_12.c",
+  "description": "Mạng Feistel 32 vòng có cấu trúc giống hệt TEA (khối từ in[0..8], khóa từ in[8..24]) nhưng hằng cộng vào sum mỗi vòng là 0x8EB7AE2F. Ghi 8 byte vào out, trả 8; VERA_ERR nếu len < 24 hoặc out_cap < 8. Không dùng arg.",
+  "io_semantics": {
+    "returns": "8, hoặc VERA_ERR khi len < 24 hay out_cap < 8",
+    "writes_out": true,
+    "uses_arg": false
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [
+    {
+      "value": "0x8EB7AE2F",
+      "width": 32,
+      "role": "delta tự chọn",
+      "encodings": {
+        "imm": "0x8EB7AE2F",
+        "le_bytes": "2faeb78e",
+        "neg": "0x714851D1",
+        "signed": "-1900564945",
+        "sext64": "0xFFFFFFFF8EB7AE2F",
+        "hi16": "0x8EB7",
+        "lo16": "0xAE2F"
+      }
+    },
+    {
+      "value": "0xD6F5C5E0",
+      "width": 32,
+      "role": "sum sau 32 vòng",
+      "encodings": {
+        "imm": "0xD6F5C5E0",
+        "le_bytes": "e0c5f5d6",
+        "neg": "0x290A3A20",
+        "signed": "-688536096",
+        "sext64": "0xFFFFFFFFD6F5C5E0",
+        "hi16": "0xD6F5",
+        "lo16": "0xC5E0"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

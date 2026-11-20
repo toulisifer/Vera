@@ -1,0 +1,259 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 59.9,
+   "cached": true,
+   "eval_count": 2219,
+   "cache_key": "535aba19072d5374825d1cc6774f67b792eb6dfae97ec4b707ae87dd3c7784fa"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom encoding function that processes input data and outputs encoded data. It uses a specific algorithm and constant values.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x5eb.",
+    "asserted_values": [
+     "0x5eb"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3d3d.",
+    "asserted_values": [
+     "0x3d3d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3d.",
+    "asserted_values": [
+     "0x3d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e5.",
+    "asserted_values": [
+     "0x51e5"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 3.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 3",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "8",
+    "type": "IO",
+    "text": "Returns the length of the output when the input length is 1.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 1",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "9",
+    "type": "IO",
+    "text": "Returns the length of the output when the input length is 2.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 2",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "10",
+    "type": "SIDE",
+    "text": "Writes to out[0..len-1].",
+    "asserted_values": [
+     "out[0..len-1]"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "11",
+    "type": "CF",
+    "text": "Uses a loop to process the input data.",
+    "asserted_values": [
+     "loop"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1;\n  uint uVar2;\n  ulong uVar3;\n  long lVar4;\n  ulong uVar5;\n  ulong uVar6;\n  ulong uVar7;\n\n  lVar4 = -1;\n  if ((len + 2) / 3 << 2 <= out_cap) {\n    if (len < 3) {\n      uVar6 = 0;\n      lVar4 = 0;\n    }\n    else {\n      uVar5 = 0;\n      lVar4 = 0;\n      uVar3 = 3;\n      uVar7 = len;\n      do {\n        uVar6 = uVar3;\n        uVar2 = (uint)*(byte *)(in + -3 + uVar6) << 0x10 |\n                (uint)*(byte *)(in + -2 + uVar6) << 8 | (uint)*(byte *)(in + -1 + uVar6);\n        if (((((int)uVar7 + 1) * (int)uVar7 & 1U) != 0) || (DAT_00104010 != 0)) {\n          uVar2 = ((uint)(uVar7 << 7) ^ uVar2) * 0x2d6b + DAT_00104008;\n          uVar2 = uVar2 >> 0xb ^ uVar2;\n        }\n        uVar1 = (int)uVar6 - 3U | 1;\n        *(ushort *)(out + lVar4) =\n             CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                      [uVar2 >> 0xc & 0x3f],\n                      \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                      [uVar2 >> 0x12 & 0x3f]);\n        if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n          uVar3 = lVar4 + 3;\n          *(char *)(out + 2 + lVar4) =\n               \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 >> 6 & 0x3f]\n          ;\n        }\n        else {\n          uVar3 = lVar4 + 0x51e5U ^ uVar5;\n        }\n        lVar4 = uVar3 + 1;\n        uVar7 = uVar7 + 3;\n        uVar5 = uVar5 + 0x5eb;\n        *(char *)(out + uVar3) =\n             \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[uVar2 & 0x3f];\n        uVar3 = uVar6 + 3;\n      } while (uVar6 + 3 <= len);\n      len = len - uVar6;\n    }\n    if (len == 1) {\n      *(ushort *)(out + lVar4) =\n           CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                    [(*(byte *)(in + uVar6) & 3) << 4],\n                    \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                    [*(byte *)(in + uVar6) >> 2]);\n      *(undefined2 *)(out + 2 + lVar4) = 0x3d3d;\n      return lVar4 + 4;\n    }\n    if (len == 2) {\n      uVar2 = (uint)*(byte *)(in + 1 + uVar6) << 8;\n      *(ushort *)(out + lVar4) =\n           CONCAT11(\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                    [(uVar2 | (uint)*(byte *)(in + uVar6) << 0x10) >> 0xc & 0x3f],\n                    \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"\n                    [*(byte *)(in + uVar6) >> 2]);\n      *(char *)(out + 2 + lVar4) =\n           \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar2 & 0xf00) >> 6];\n      *(undefined1 *)(out + lVar4 + 3) = 0x3d;\n      return lVar4 + 4;\n    }\n  }\n  return lVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x5eb.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d3d.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e5.",
+   "asserted_values": [
+    "0x51e5"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "8",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is 1.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 1",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "9",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is 2.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 2",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "11",
+   "type": "CF",
+   "text": "Uses a loop to process the input data.",
+   "asserted_values": [
+    "loop"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "10",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1].",
+   "asserted_values": [
+    "out[0..len-1]"
+   ],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

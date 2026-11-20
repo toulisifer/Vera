@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if out_cap is less than (len + 2) / 3 << 2, and if so, it returns -1.", "seconds": 1.5}

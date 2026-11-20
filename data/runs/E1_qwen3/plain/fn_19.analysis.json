@@ -1,0 +1,204 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 331 column 13 (char 9498)"
+   ],
+   "seconds": 72.6,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "4ca881e44d24b4ddd0136df90fca5b115e073587e707df3d7aab4c82636b7fa5"
+  },
+  {
+   "errors": [],
+   "seconds": 17.5,
+   "cached": false,
+   "eval_count": 743,
+   "cache_key": "cd2e295c7ed44560849f421406453b36ff3f8496ade9fdc9052a2935bad3525e"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input data using a bitwise transformation and writes the result to the output buffer. It returns the length of the processed data or an error code if the output buffer is too small.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "_1",
+    "type": "IO",
+    "text": "Returns len when out_cap >= len.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap >= len",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "_2",
+    "type": "SIDE",
+    "text": "Writes transformed data to out[0..len-1].",
+    "asserted_values": [
+     "0",
+     "len-1"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_3",
+    "type": "CF",
+    "text": "Iterates over each byte in the input data.",
+    "asserted_values": [
+     "i"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_4",
+    "type": "CONST",
+    "text": "Uses the constant 7 in bitwise operations.",
+    "asserted_values": [
+     "7"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_5",
+    "type": "CF",
+    "text": "Performs bitwise operations on each byte of the input data.",
+    "asserted_values": [
+     "i",
+     "arg"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_6",
+    "type": "SIDE",
+    "text": "Does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_7",
+    "type": "CF",
+    "text": "Uses a loop to process each byte of the input data.",
+    "asserted_values": [
+     "i"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar1 = (uint8_t)(arg >> ((i & 7) << 3));\n    uint8_t bVar2 = (i & 7);\n    out[i] = in[i] ^ ((uint8_t)((int)bVar1 >> (-bVar2 & 7)) | bVar1 << bVar2) ^ (uint8_t)i;\n  }\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "_0",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "IO",
+   "text": "Returns len when out_cap >= len.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "_2",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [
+    "0",
+    "len-1"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_3",
+   "type": "CF",
+   "text": "Iterates over each byte in the input data.",
+   "asserted_values": [
+    "i"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_4",
+   "type": "CONST",
+   "text": "Uses the constant 7 in bitwise operations.",
+   "asserted_values": [
+    "7"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_5",
+   "type": "CF",
+   "text": "Performs bitwise operations on each byte of the input data.",
+   "asserted_values": [
+    "i",
+    "arg"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_6",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_7",
+   "type": "CF",
+   "text": "Uses a loop to process each byte of the input data.",
+   "asserted_values": [
+    "i"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

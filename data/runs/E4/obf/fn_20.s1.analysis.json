@@ -1,0 +1,130 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 25.8,
+   "cached": false,
+   "eval_count": 1257,
+   "cache_key": "2310d0027a459f18dd73787cb4648d90968b15752332a2ae0b32e54f65dc43bb"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom encryption algorithm that rearranges and copies data from an input buffer to an output buffer.",
+  "proposed_name": "fn_20",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x706050403020100.",
+    "asserted_values": [
+     "0x706050403020100"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "The function contains a do-while loop that iterates until param_2 equals uVar6.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Writes to out[0..uVar6].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 is greater than param_5.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Does not write to out when param_2 is greater than param_5.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "NAME",
+    "type": "NAME",
+    "text": "The function appears to be implementing a custom encryption algorithm that rearranges and copies data from an input buffer to an output buffer.",
+    "asserted_values": [],
+    "confidence": 0.7
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar6 = 0xffffffffffffffff;\n  if (len <= out_cap) {\n    uVar6 = len + 7;\n    uint64_t local_18 = 0x706050403020100;\n    do {\n      uint64_t uVar5 = (1 - len) + uVar6;\n      uint64_t uVar4 = arg / uVar5;\n      arg = arg % uVar5;\n      if ((((int)uVar6 + 1) * (int)uVar6 & 1U) != 0) || (DAT_00104018 != 0)) {\n        uVar4 = (uint64_t)DAT_00104010 + (uVar6 << 7 ^ uVar4) * 0x2d6b;\n        uVar4 = uVar4 >> 0xb ^ uVar4;\n      }\n      uint8_t uVar1 = *(uint8_t *)((long)&local_18 + uVar6 + (-0x18 - len) + 0x18);\n      *(uint8_t *)((long)&local_18 + uVar6 + (-0x18 - len) + 0x18) = *(uint8_t *)((long)&local_18 + arg);\n      uVar6 = uVar6 - 1;\n      *(uint8_t *)((long)&local_18 + arg) = uVar1;\n      arg = uVar4;\n    } while (len != uVar6);\n    uint64_t uVar5 = 8;\n    uint64_t uVar4 = 0;\n    if (7 < uVar6) {\n      do {\n        uint64_t uVar3 = uVar5 - 8;\n        do {\n          while ((uVar4 = uVar3, (uint)uVar4 | 1, (uVar4 * uVar4 & 7) != 1 || (DAT_00104010 != 0x3c71))) {\n            uVar3 = uVar4 + 1;\n            if (uVar5 == uVar4 + 1) goto LAB_00101258;\n          }\n          *(uint8_t *)(out + uVar4) = *(uint8_t *)(in + (uVar5 - 8) + (uint)*(uint8_t *)((long)&local_10 + (uVar4 - uVar5)));\n          uVar3 = uVar4 + 1;\n        } while (uVar5 != uVar4 + 1);\nLAB_00101258:\n        uVar4 = uVar4 + 1;\n        uVar5 = uVar5 + 8;\n      } while (uVar5 <= uVar6);\n    }\n    if (uVar4 < uVar6) {\n      do {\n        *(uint8_t *)(out + uVar4) = *(uint8_t *)(in + uVar4);\n        uVar4 = uVar4 + 1;\n      } while (uVar4 != uVar6);\n    }\n  }\n  return uVar6;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x706050403020100.",
+   "asserted_values": [
+    "0x706050403020100"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "The function contains a do-while loop that iterates until param_2 equals uVar6.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 is greater than param_5.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Does not write to out when param_2 is greater than param_5.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes to out[0..uVar6].",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "NAME",
+   "type": "NAME",
+   "text": "The function appears to be implementing a custom encryption algorithm that rearranges and copies data from an input buffer to an output buffer.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

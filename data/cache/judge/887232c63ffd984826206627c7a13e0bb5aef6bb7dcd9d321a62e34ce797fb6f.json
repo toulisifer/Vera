@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The code does not return 0xFFFFFFFFFFFFFFFF when the input length is less than 3; instead, it returns lVar4, which is initialized to -1 and modified based on the input.", "seconds": 1.4}

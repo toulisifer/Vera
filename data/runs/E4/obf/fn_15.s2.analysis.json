@@ -1,0 +1,111 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 16.7,
+   "cached": false,
+   "eval_count": 816,
+   "cache_key": "21856eed96ed91cfefa1d57440372c76afe10c26299e97668d817909cc457294"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom checksum or hash function with specific behaviors based on the input parameters.",
+  "proposed_name": "custom_checksum",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": ":0",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input string (param_1).",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": ":1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the output buffer capacity (param_5) is less than the computed checksum.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": ":2",
+    "type": "SIDE",
+    "text": "Writes the computed checksum to the output buffer (param_4).",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": ":3",
+    "type": "CF",
+    "text": "The function contains a nested loop that iterates over the input string to calculate the checksum.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": ":4",
+    "type": "ALG",
+    "text": "Implements an unknown algorithm that appears to be a custom checksum or hash function.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len == 0) {\n        return 0;\n    }\n\n    uint64_t checksum = 0;\n    size_t i = 0;\n\n    while (i < len) {\n        size_t j = 1;\n        while (j < len && in[i + j] == in[j]) {\n            j++;\n        }\n\n        if (((j * j & 1) != 0) || (arg != 0)) {\n            checksum = (uint64_t)arg + (j << 7 ^ checksum) * 0x2d6b;\n            checksum = checksum >> 0xb ^ checksum;\n        }\n        checksum = checksum + 2;\n        i = j;\n    }\n\n    if (out_cap < checksum) {\n        return VERA_ERR;\n    }\n\n    i = 1;\n    size_t j = 0;\n\n    while (j < len) {\n        size_t k = 1;\n        while (k < len && in[j] == in[j + k]) {\n            k++;\n        }\n\n        out[i] = (uint8_t)k;\n        uint32_t temp = (uint32_t)k | 1;\n\n        if (((temp * temp & 7) == 1) && (arg == 0x3c71)) {\n            out[i + 1] = in[j];\n            i += 2;\n        } else {\n            i = i + 0x51e4 ^ k * 0x1f9;\n        }\n\n        if (len <= k) {\n            return checksum;\n        }\n\n        j = k + 1;\n    }\n\n    return checksum;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": ":0",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input string (param_1).",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": ":1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the output buffer capacity (param_5) is less than the computed checksum.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": ":2",
+   "type": "SIDE",
+   "text": "Writes the computed checksum to the output buffer (param_4).",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": ":3",
+   "type": "CF",
+   "text": "The function contains a nested loop that iterates over the input string to calculate the checksum.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": ":4",
+   "type": "ALG",
+   "text": "Implements an unknown algorithm that appears to be a custom checksum or hash function.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

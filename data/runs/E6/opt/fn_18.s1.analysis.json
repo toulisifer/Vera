@@ -1,0 +1,35 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": false,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting ',' delimiter: line 376 column 24 (char 9296)"
+   ],
+   "seconds": 64.1,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "cb5f0ce8a8b5afdb6e8b428ffdd4841bc6fd26fa4a45475573425fa4cc1b910b"
+  },
+  {
+   "errors": [
+    "JSON lỗi: Expecting value: line 378 column 1 (char 9297)"
+   ],
+   "seconds": 63.9,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "970b2c18a5e2ffb336bc51b1f8abedeab99e48ab00e480d73482f29313086fac"
+  }
+ ],
+ "output": null,
+ "config": "opt"
+}

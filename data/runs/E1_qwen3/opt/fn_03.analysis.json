@@ -1,0 +1,165 @@
+{
+ "fn": "fn_03",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.3,
+   "cached": false,
+   "eval_count": 832,
+   "cache_key": "23f44a52093061b84dbfa64602517ae57f824af0fe47ffdb09335623c397fe2d"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_03 processes an input buffer and returns a 64-bit value based on a custom algorithm involving two 16-bit values computed from the input data.",
+  "proposed_name": "fn_03",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "_0001",
+    "type": "CF",
+    "text": "A loop is executed when the input length is non-zero.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0002",
+    "type": "CF",
+    "text": "The loop iterates over the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0003",
+    "type": "CF",
+    "text": "The loop condition checks if the current pointer has reached the end of the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0004",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0005",
+    "type": "IO",
+    "text": "Returns 1 when the input length is zero.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0006",
+    "type": "IO",
+    "text": "Returns a 64-bit value when the input length is non-zero.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0007",
+    "type": "ALG",
+    "text": "Implements a custom algorithm involving two 16-bit values computed from the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0008",
+    "type": "CONST",
+    "text": "The algorithm uses the constant 0xfff1.",
+    "asserted_values": [
+     "0xfff1"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_0009",
+    "type": "NAME",
+    "text": "The function processes an input buffer and returns a 64-bit value based on a custom algorithm.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_03(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 1;\n  }\n  uint32_t uVar3 = 1;\n  uint32_t uVar2 = 0;\n  const uint8_t *pbVar4 = in + len;\n  const uint8_t *param_1 = in;\n  while (pbVar4 != param_1) {\n    uint8_t bVar1 = *param_1;\n    param_1 = param_1 + 1;\n    uVar3 = (uVar3 + bVar1) % 0xfff1;\n    uVar2 = (uVar2 + uVar3) % 0xfff1;\n  }\n  return (uint64_t)(uVar2 << 0x10) | (uint64_t)uVar3;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "CF",
+   "text": "A loop is executed when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0002",
+   "type": "CF",
+   "text": "The loop iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0003",
+   "type": "CF",
+   "text": "The loop condition checks if the current pointer has reached the end of the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0004",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0005",
+   "type": "IO",
+   "text": "Returns 1 when the input length is zero.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0006",
+   "type": "IO",
+   "text": "Returns a 64-bit value when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0007",
+   "type": "ALG",
+   "text": "Implements a custom algorithm involving two 16-bit values computed from the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "The algorithm uses the constant 0xfff1.",
+   "asserted_values": [
+    "0xfff1"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_0009",
+   "type": "NAME",
+   "text": "The function processes an input buffer and returns a 64-bit value based on a custom algorithm.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

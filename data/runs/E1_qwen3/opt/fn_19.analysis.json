@@ -1,0 +1,211 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 20.3,
+   "cached": false,
+   "eval_count": 854,
+   "cache_key": "4de00b7667c9c9f0f79146879a8807c5c3fc9a3c72a01e49f0f6d0cbcc9999b6"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input data using a bitwise transformation and returns the length of the input if it fits within the output capacity, otherwise returns an error.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "io_1",
+    "type": "IO",
+    "text": "Returns len when len <= out_cap.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len <= out_cap",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "io_2",
+    "type": "IO",
+    "text": "Returns ERR when len > out_cap.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len > out_cap",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "side_1",
+    "type": "SIDE",
+    "text": "Writes transformed data to out[0..len-1].",
+    "asserted_values": [
+     "0",
+     "len-1"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "cf_1",
+    "type": "CF",
+    "text": "Processes input in a loop for len iterations.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "const_1",
+    "type": "CONST",
+    "text": "Uses the constant 7.",
+    "asserted_values": [
+     "0x7"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "const_2",
+    "type": "CONST",
+    "text": "Uses the constant 8.",
+    "asserted_values": [
+     "0x8"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "const_3",
+    "type": "CONST",
+    "text": "Uses the constant 0x01.",
+    "asserted_values": [
+     "0x1"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "const_4",
+    "type": "CONST",
+    "text": "Uses the constant 0x08.",
+    "asserted_values": [
+     "0x8"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "name_1",
+    "type": "NAME",
+    "text": "Performs a bitwise transformation on input data.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len <= out_cap) {\n    if (len != 0) {\n      uint64_t uVar2 = 0;\n      do {\n        uint8_t bVar1 = (uint8_t)(uVar2 & 7);\n        uint8_t bVar3 = (uint8_t)((arg >> (bVar1 * 8)) & 0xff);\n        out[uVar2] = ((bVar3 << bVar1) | (bVar3 >> (8 - bVar1))) ^ in[uVar2] ^ (uint8_t)uVar2;\n        uVar2 = uVar2 + 1;\n      } while (len != uVar2);\n    }\n    return (uint64_t)len;\n  }\n  return VERA_ERR;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns len when len <= out_cap.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len <= out_cap",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "io_2",
+   "type": "IO",
+   "text": "Returns ERR when len > out_cap.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len > out_cap",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "side_1",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [
+    "0",
+    "len-1"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Processes input in a loop for len iterations.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "Uses the constant 7.",
+   "asserted_values": [
+    "0x7"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "const_2",
+   "type": "CONST",
+   "text": "Uses the constant 8.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "const_3",
+   "type": "CONST",
+   "text": "Uses the constant 0x01.",
+   "asserted_values": [
+    "0x1"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "const_4",
+   "type": "CONST",
+   "text": "Uses the constant 0x08.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "name_1",
+   "type": "NAME",
+   "text": "Performs a bitwise transformation on input data.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

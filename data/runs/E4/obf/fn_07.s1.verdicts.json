@@ -1,0 +1,153 @@
+{
+ "fn": "fn_07",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input buffer length is less than 3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len < 3",
+    "returns": "ERR"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 3",
+     "returns": "ERR",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0x0000000000000000"
+    }
+   }
+  },
+  {
+   "id": "claim2",
+   "type": "IO",
+   "text": "Returns the length of the encoded data when the input buffer length is less than 3.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len < 3",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len < 3",
+     "returns": "len",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "ret 0x0000000000000004"
+    }
+   }
+  },
+  {
+   "id": "claim3",
+   "type": "IO",
+   "text": "Returns the length of the encoded data when the input buffer length is 3.",
+   "asserted_values": [
+    "6"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 3",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "len == 3",
+     "returns": "len",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v02",
+     "tag": "len3",
+     "observed": "ret 0x0000000000000004"
+    }
+   }
+  },
+  {
+   "id": "claim4",
+   "type": "IO",
+   "text": "Returns the length of the encoded data when the input buffer length is 4.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 4",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không vector nào thỏa 'len == 4'"
+   }
+  },
+  {
+   "id": "claim6",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim7",
+   "type": "ALG",
+   "text": "Implements a Base64-like encoding algorithm.",
+   "asserted_values": [
+    "Base64"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "supported",
+     "method": "V3",
+     "fingerprint": [
+      {
+       "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+       "form": "string"
+      }
+     ]
+    },
+    "label": "supported",
+    "method": "V3",
+    "variant_claim": true
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 2,
+  "contradicted": 3
+ },
+ "n_claims": 6,
+ "explanation_clean": false
+}

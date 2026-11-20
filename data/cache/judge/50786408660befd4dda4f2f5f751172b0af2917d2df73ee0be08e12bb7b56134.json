@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function uses a different polynomial and hashing mechanism than CRC-32.", "seconds": 0.8}

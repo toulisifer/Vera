@@ -1,0 +1,135 @@
+{
+ "fn": "fn_11",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "CF",
+   "text": "A loop iterates over the input bytes.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_2",
+   "type": "CF",
+   "text": "The loop condition checks if the current pointer has reached the end of the input.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "CF",
+   "text": "The loop body updates the result by adding the current byte to the product of the result and 0x29.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_4",
+   "type": "IO",
+   "text": "Returns 0x1d35 when the input length is zero.",
+   "asserted_values": [
+    "0x1d35"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_5",
+   "type": "IO",
+   "text": "Returns the computed value when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_6",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "claim_7",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "claim_8",
+   "type": "CONST",
+   "text": "The code uses the constant 0x29.",
+   "asserted_values": [
+    "0x29"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "claim_9",
+   "type": "CONST",
+   "text": "The code uses the constant 0x1d35.",
+   "asserted_values": [
+    "0x1d35"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1d35",
+      "form": "imm",
+      "detail": "0x1D35 (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 1,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

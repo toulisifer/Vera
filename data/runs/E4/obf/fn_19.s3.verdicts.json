@@ -1,0 +1,92 @@
+{
+ "fn": "fn_19",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": ":1",
+   "type": "IO",
+   "text": "Returns VERA_ERR (0xffffffffffffffff) when param_5 < param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < param_2",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": ":2",
+   "type": "IO",
+   "text": "Does not write to out when param_2 == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": ":3",
+   "type": "IO",
+   "text": "Writes data to out when param_2 > 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > 0",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": ":4",
+   "type": "CF",
+   "text": "Loops over param_2 times when param_2 > 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": ":5",
+   "type": "SIDE",
+   "text": "Writes to out[param_4 + uVar4] based on encoded data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

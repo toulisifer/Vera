@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function encodes input data using a Base64-like encoding scheme, mapping 3 bytes to 4 characters and padding with '=' as necessary.", "seconds": 1.6}

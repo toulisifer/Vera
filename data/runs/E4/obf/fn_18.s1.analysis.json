@@ -1,0 +1,150 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 12.8,
+   "cached": false,
+   "eval_count": 621,
+   "cache_key": "b1a2db34df13f5c82f29c083214e381abc90e9dc6d5540bd3202f4fec1ec01c7"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be a custom parser or filter function that processes a byte stream based on certain rules and conditions.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "001",
+    "type": "IO",
+    "text": "Returns 0 when the input length is 0.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "len == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "002",
+    "type": "IO",
+    "text": "Returns an error when the input length is greater than the output capacity.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "003",
+    "type": "SIDE",
+    "text": "Writes to out[0..len-1].",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "004",
+    "type": "CF",
+    "text": "Uses a loop that iterates over the input length.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "005",
+    "type": "SIDE",
+    "text": "Modifies the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "006",
+    "type": "ALG",
+    "text": "Implements a custom algorithm that appears to involve bitwise operations, polynomial hashing, and state transitions based on specific characters.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len == 0) return 0;\n    if (out_cap < len) return VERA_ERR;\n    for (size_t i = 0; i < len; i++) {\n        uint8_t b = in[i];\n        // Custom state transitions and processing based on b\n        // Example: state transitions based on b\n        // Example: polynomial hashing\n        // Example: writing to out\n    }\n    return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "001",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "002",
+   "type": "IO",
+   "text": "Returns an error when the input length is greater than the output capacity.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "004",
+   "type": "CF",
+   "text": "Uses a loop that iterates over the input length.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "005",
+   "type": "SIDE",
+   "text": "Modifies the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "003",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1].",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "006",
+   "type": "ALG",
+   "text": "Implements a custom algorithm that appears to involve bitwise operations, polynomial hashing, and state transitions based on specific characters.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

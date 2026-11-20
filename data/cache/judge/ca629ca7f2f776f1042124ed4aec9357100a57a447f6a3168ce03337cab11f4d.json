@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a conditional branch based on the value of iVar5, as seen in the 'if' statement and the 'goto LAB_0010120c' instruction.", "seconds": 1.3}

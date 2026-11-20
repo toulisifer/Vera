@@ -1,0 +1,120 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 8.1,
+   "cached": false,
+   "eval_count": 373,
+   "cache_key": "6fdeb5f4670faf5e9866b7bf6daa7cf5c4beef61576e7aa8bd2e604797945175"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_04` does nothing and always returns.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "NAME",
+    "text": "Purpose is to do nothing and always return.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "Does not contain any loop or branch structure.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Always returns VERA_ERR.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "always",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "Does not use any specific constant or string.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "NAME",
+   "text": "Purpose is to do nothing and always return.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Does not contain any loop or branch structure.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Always returns VERA_ERR.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "VERA_ERR"
+   },
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "Does not use any specific constant or string.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

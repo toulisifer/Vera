@@ -1,0 +1,225 @@
+{
+ "fn": "fn_03",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 31.8,
+   "cached": false,
+   "eval_count": 1340,
+   "cache_key": "e5a6dd3ef043994cabe7ad7178835639ecaa278ff7c849e9a73b798bf1b234e6"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom hash function with a mix of bitwise operations, modular arithmetic, and possibly a CRC-like algorithm.",
+  "proposed_name": "fn_03",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "const_01",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const_02",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const_03",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const_04",
+    "type": "CONST",
+    "text": "The function uses the constant 0xfff1.",
+    "asserted_values": [
+     "0xfff1"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const_05",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const_06",
+    "type": "CONST",
+    "text": "The function uses the constant 0xb.",
+    "asserted_values": [
+     "0xb"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "cf_01",
+    "type": "CF",
+    "text": "The function uses a loop that iterates len times.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "cf_02",
+    "type": "CF",
+    "text": "The function uses an inner loop that iterates DAT_00104010 times.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "side_01",
+    "type": "SIDE",
+    "text": "The function does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "side_02",
+    "type": "SIDE",
+    "text": "The function may modify in.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "io_01",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "VERA_ERR",
+     "writes_out": false
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_03(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1;\n  ulong uVar2;\n  uint uVar3;\n  ulong uVar4;\n  long lVar5;\n  uint uVar6;\n\n  if (len == 0) {\n    uVar2 = 1;\n    uVar4 = 0;\n  }\n  else {\n    uVar4 = 0;\n    uVar6 = 0;\n    lVar5 = 0;\n    uVar2 = 1;\n    do {\n      uVar3 = (uint)uVar4;\n      uVar1 = (uint)lVar5 | 1;\n      if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n        uVar1 = ((int)uVar2 + (uint)*(byte *)(in + lVar5)) % 0xfff1;\n      }\n      else {\n        uVar1 = (int)uVar2 + 0x51e3U ^ uVar6;\n      }\n      uVar2 = (ulong)uVar1;\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n        uVar3 = (uVar3 ^ (uint)(len << 7)) * 0x2d6b + DAT_00104008;\n        uVar3 = uVar3 ^ uVar3 >> 0xb;\n      }\n      lVar5 = lVar5 + 1;\n      uVar6 = uVar6 + 0x1f9;\n      uVar4 = (ulong)((uVar3 + uVar1) % 0xfff1);\n    } while (len != lVar5);\n    uVar4 = uVar4 << 0x10;\n  }\n  if (DAT_00104010 != 0) {\n    uVar6 = 0;\n    do {\n      uVar2 = (ulong)((uint)(uVar2 >> 5) ^ (int)uVar2 * 8 ^ uVar6);\n      uVar6 = uVar6 + 1;\n    } while (uVar6 < DAT_00104010);\n  }\n  return uVar2 | uVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "const_01",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const_02",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const_03",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const_04",
+   "type": "CONST",
+   "text": "The function uses the constant 0xfff1.",
+   "asserted_values": [
+    "0xfff1"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const_05",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const_06",
+   "type": "CONST",
+   "text": "The function uses the constant 0xb.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "cf_01",
+   "type": "CF",
+   "text": "The function uses a loop that iterates len times.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "cf_02",
+   "type": "CF",
+   "text": "The function uses an inner loop that iterates DAT_00104010 times.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "side_01",
+   "type": "SIDE",
+   "text": "The function does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "io_01",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "VERA_ERR",
+    "writes_out": false
+   }
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "side_02",
+   "type": "SIDE",
+   "text": "The function may modify in.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

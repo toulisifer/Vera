@@ -1,0 +1,30 @@
+{
+ "fn": "fn_16",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: unsigned int fn_16(unsigned char *data, unsigned long len, unsigned int seed) ← chữ ký chung",
+ "raw": "unsigned int fn_16(unsigned char *data, unsigned long len, unsigned int seed)\n{\n    unsigned long i;\n    unsigned int hash = seed;\n\n    for (i = 0; i < len; i++)\n    {\n        hash ^= data[i];\n        hash = (hash << 7) | (hash >> 25);\n        hash += data[i] * 167;\n    }\n\n    hash ^= hash >> 15;\n    hash *= 61;\n    hash ^= hash >> 13;\n    hash *= 97;\n    hash ^= hash >> 16;\n\n    return hash;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 7.4,
+   "cached": false,
+   "eval_count": 157,
+   "cache_key": "d3e935fadbc26ebfcdd1260e389bfe8923f879303e44a065666e077ab19389a4"
+  }
+ ],
+ "output": {
+  "recovered_c": "unsigned int vera_inner(unsigned char *data, unsigned long len, unsigned int seed)\n{\n    unsigned long i;\n    unsigned int hash = seed;\n\n    for (i = 0; i < len; i++)\n    {\n        hash ^= data[i];\n        hash = (hash << 7) | (hash >> 25);\n        hash += data[i] * 167;\n    }\n\n    hash ^= hash >> 15;\n    hash *= 61;\n    hash ^= hash >> 13;\n    hash *= 97;\n    hash ^= hash >> 16;\n\n    return hash;\n}\nuint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((unsigned char *)(in), (unsigned long)(len), (unsigned int)(arg)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

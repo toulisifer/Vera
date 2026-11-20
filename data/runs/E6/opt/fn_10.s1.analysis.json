@@ -1,0 +1,141 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.9,
+   "cached": false,
+   "eval_count": 532,
+   "cache_key": "81597c57e477022406984993d7401136d3692b8ac2118c4fcb5094336134de81"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_10 computes a checksum using a custom algorithm.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 1 when len == 0.",
+    "asserted_values": [
+     "1"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "1"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len > 0.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len > 0",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes the computed checksum to out[0..1].",
+    "asserted_values": [
+     "out[0..1]"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function uses a loop to process each byte of the input.",
+    "asserted_values": [
+     "loop"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 1;\n  }\n  uint16_t checksum = 0xffef;\n  for (size_t i = 0; i < len; i++) {\n    checksum = (checksum + in[i]) % 0xffef;\n  }\n  out[0] = (checksum >> 8) & 0xff;\n  out[1] = checksum & 0xff;\n  return 0;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 1 when len == 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "1"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len > 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len > 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes the computed checksum to out[0..1].",
+   "asserted_values": [
+    "out[0..1]"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte of the input.",
+   "asserted_values": [
+    "loop"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

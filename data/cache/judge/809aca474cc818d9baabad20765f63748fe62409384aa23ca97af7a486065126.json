@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if len (param_2) is not equal to 0 before proceeding with any operations. If len is 0, the function returns 0 immediately.", "seconds": 1.4}

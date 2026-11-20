@@ -1,0 +1,244 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns -1 when (param_2 + 2) / 3 << 2 > param_5.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "(param_2 + 2) / 3 << 2 > param_5",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0 when param_2 < 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes two bytes to out[0..1] when param_2 == 2.",
+   "asserted_values": [
+    "out[0..1]"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes three bytes to out[0..2] when param_2 == 1.",
+   "asserted_values": [
+    "out[0..2]"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Loops until uVar6 + 3 <= param_2, incrementing uVar6 by 3 each iteration.",
+   "asserted_values": [
+    "uVar6 + 3 <= param_2"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes two bytes to out[lVar4] and out[lVar4 + 2] for each iteration of the loop.",
+   "asserted_values": [
+    "out[lVar4]",
+    "out[lVar4 + 2]"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes one byte to out[lVar4 + 3] when param_2 == 2.",
+   "asserted_values": [
+    "out[lVar4 + 3]"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "Writes one byte to out[lVar4 + 2] when param_2 == 1.",
+   "asserted_values": [
+    "out[lVar4 + 2]"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "9",
+   "type": "SIDE",
+   "text": "Writes one byte to out[lVar4 + 1] when param_2 == 1.",
+   "asserted_values": [
+    "out[lVar4 + 1]"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "10",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "11",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "12",
+   "type": "CONST",
+   "text": "Uses the constant 0x5eb.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x5eb",
+      "form": "imm",
+      "detail": "0x5EB (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "13",
+   "type": "CONST",
+   "text": "Uses the constant 0x3d3d.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3d3d",
+      "form": "imm",
+      "detail": "0x3D3D (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "14",
+   "type": "CONST",
+   "text": "Uses the constant 0x3d.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 6,
+  "supported": 4,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 14,
+ "explanation_clean": true
+}

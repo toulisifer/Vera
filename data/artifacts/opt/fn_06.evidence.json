@@ -1,0 +1,263 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_06",
+ "n_instructions": 113,
+ "immediates": [
+  {
+   "addr": 4392,
+   "insn": "sub rsp, 0x120",
+   "value": 288,
+   "size": 8
+  },
+  {
+   "addr": 4421,
+   "insn": "jb 0x12da",
+   "value": 4826,
+   "size": 8
+  },
+  {
+   "addr": 4451,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4458,
+   "insn": "add ecx, 8",
+   "value": 8,
+   "size": 4
+  },
+  {
+   "addr": 4467,
+   "insn": "jne 0x1160",
+   "value": 4448,
+   "size": 8
+  },
+  {
+   "addr": 4540,
+   "insn": "add rax, 0x10",
+   "value": 16,
+   "size": 8
+  },
+  {
+   "addr": 4649,
+   "insn": "jne 0x11b8",
+   "value": 4536,
+   "size": 8
+  },
+  {
+   "addr": 4662,
+   "insn": "add ecx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4665,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4669,
+   "insn": "and esi, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4706,
+   "insn": "cmp ecx, 0x100",
+   "value": 256,
+   "size": 4
+  },
+  {
+   "addr": 4712,
+   "insn": "jne 0x1230",
+   "value": 4656,
+   "size": 8
+  },
+  {
+   "addr": 4717,
+   "insn": "je 0x12bb",
+   "value": 4795,
+   "size": 8
+  },
+  {
+   "addr": 4728,
+   "insn": "add edx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4786,
+   "insn": "add rsi, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4793,
+   "insn": "jne 0x1278",
+   "value": 4728,
+   "size": 8
+  },
+  {
+   "addr": 4812,
+   "insn": "jne 0x12e3",
+   "value": 4835,
+   "size": 8
+  },
+  {
+   "addr": 4814,
+   "insn": "add rsp, 0x120",
+   "value": 288,
+   "size": 8
+  },
+  {
+   "addr": 4826,
+   "insn": "mov r10, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4833,
+   "insn": "jmp 0x12bb",
+   "value": 4795,
+   "size": 8
+  },
+  {
+   "addr": 4835,
+   "insn": "call 0x1050",
+   "value": 4176,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4399,
+   "value": 40
+  },
+  {
+   "addr": 4408,
+   "value": 280
+  },
+  {
+   "addr": 4433,
+   "value": 16
+  },
+  {
+   "addr": 4441,
+   "value": 8
+  },
+  {
+   "addr": 4461,
+   "value": 18446744073709551615
+  },
+  {
+   "addr": 4485,
+   "value": 272
+  },
+  {
+   "addr": 4642,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4672,
+   "value": 8
+  },
+  {
+   "addr": 4688,
+   "value": 16
+  },
+  {
+   "addr": 4697,
+   "value": 18446744073709551615
+  },
+  {
+   "addr": 4701,
+   "value": 16
+  },
+  {
+   "addr": 4734,
+   "value": 16
+  },
+  {
+   "addr": 4748,
+   "value": 16
+  },
+  {
+   "addr": 4757,
+   "value": 16
+  },
+  {
+   "addr": 4761,
+   "value": 16
+  },
+  {
+   "addr": 4766,
+   "value": 16
+  },
+  {
+   "addr": 4773,
+   "value": 16
+  },
+  {
+   "addr": 4795,
+   "value": 280
+  },
+  {
+   "addr": 4803,
+   "value": 40
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4469,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4477,
+   "target": 8240,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4496,
+   "target": 8256,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4504,
+   "target": 8272,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4512,
+   "target": 8208,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4521,
+   "target": 8224,
+   "section": ".rodata"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".rodata",
+   "addr": 8192,
+   "hex": "000000000100000002000000030000001000000010000000100000001000000004000000040000000400000004000000080000000800000008000000080000000c0000000c0000000c0000000c000000ff00ff00ff00ff00ff00ff00ff00ff00"
+  },
+  {
+   "name": ".data",
+   "addr": 16392,
+   "hex": "0840000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__",
+  "__stack_chk_fail"
+ ]
+}

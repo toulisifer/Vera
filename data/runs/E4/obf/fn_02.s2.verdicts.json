@@ -1,0 +1,108 @@
+{
+ "fn": "fn_02",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The initial hash value uses the constant 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Iterates over the input data in a loop.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the computed hash value when the loop completes.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": false
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

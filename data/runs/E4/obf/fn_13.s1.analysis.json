@@ -1,0 +1,229 @@
+{
+ "fn": "fn_13",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 28.4,
+   "cached": false,
+   "eval_count": 1300,
+   "cache_key": "71816ee8a5d46f316f8b3090d95b3af742db0d3d2f985ca6962cdecc7695dda6"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a specific algorithm on input data. It involves bitwise operations, memory shuffling, and possibly encryption or hash functions. The function also has a stack canary check at the end.",
+  "proposed_name": "fn_13",
+  "algorithm": "unknown",
+  "self_confidence": 0.7,
+  "claims": [
+   {
+    "id": "claim1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "claim2",
+    "type": "SIDE",
+    "text": "Writes to out[0..15] and out[16..31].",
+    "asserted_values": [
+     "out[0..15]",
+     "out[16..31]"
+    ],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim3",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the input data.",
+    "asserted_values": [
+     "local_128"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 <= param_5",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim4",
+    "type": "ALG",
+    "text": "Implements a custom encryption algorithm.",
+    "asserted_values": [
+     "custom encryption algorithm"
+    ],
+    "confidence": 0.6
+   },
+   {
+    "id": "claim5",
+    "type": "CONST",
+    "text": "Uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim6",
+    "type": "CONST",
+    "text": "Uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim7",
+    "type": "CONST",
+    "text": "Uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim8",
+    "type": "CF",
+    "text": "Contains a conditional branch based on the value of param_4.",
+    "asserted_values": [
+     "param_4"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "claim9",
+    "type": "IO",
+    "text": "Returns the value of param_2 when param_2 <= param_5.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 <= param_5",
+     "returns": "len"
+    }
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_13(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len <= 0) {\n    return VERA_ERR;\n  }\n\n  uint8_t local_130[8];\n  uint8_t local_128[264];\n\n  for (size_t i = 0; i < 8; i++) {\n    local_130[i] = (arg >> (i * 8)) & 0x3F;\n  }\n\n  for (size_t i = 0; i < 264; i += 16) {\n    uint16_t *auVar18 = (uint16_t *)&DAT_00102000;\n    uint16_t auVar34[16];\n\n    for (size_t j = 0; j < 16; j++) {\n      auVar34[j] = auVar18[j] + 0x10;\n    }\n\n    for (size_t j = 0; j < 16; j++) {\n      out[i + j] = (auVar34[j] & 0x3F) < 0x100 ? (auVar34[j] & 0x3F) : 0xFF;\n    }\n  }\n\n  for (size_t i = 0; i < 256; i++) {\n    uint8_t temp = in[i % len];\n    uint8_t local_128_copy[264];\n\n    for (size_t j = 0; j < 264; j++) {\n      local_128_copy[j] = local_128[j];\n    }\n\n    for (size_t j = 0; j < 264; j++) {\n      uint8_t bVar1 = local_128_copy[j];\n      uint8_t bVar2 = local_128_copy[(bVar1 + local_128_copy[j / 256]) % 264];\n\n      out[j % out_cap] = bVar2 ^ in[j % len];\n      local_128_copy[j] = bVar2;\n    }\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "claim2",
+   "type": "SIDE",
+   "text": "Writes to out[0..15] and out[16..31].",
+   "asserted_values": [
+    "out[0..15]",
+    "out[16..31]"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim3",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input data.",
+   "asserted_values": [
+    "local_128"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= param_5",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim4",
+   "type": "ALG",
+   "text": "Implements a custom encryption algorithm.",
+   "asserted_values": [
+    "custom encryption algorithm"
+   ],
+   "confidence": 0.6
+  },
+  {
+   "id": "claim5",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim6",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim7",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim8",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of param_4.",
+   "asserted_values": [
+    "param_4"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "claim9",
+   "type": "IO",
+   "text": "Returns the value of param_2 when param_2 <= param_5.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= param_5",
+    "returns": "len"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

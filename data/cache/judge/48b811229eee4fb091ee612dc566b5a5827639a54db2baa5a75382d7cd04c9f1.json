@@ -1,0 +1,1 @@
+{"verdict": "UNCLEAR", "reason": "The code does not clearly show how or if the function writes to out[0..15].", "seconds": 1.3}

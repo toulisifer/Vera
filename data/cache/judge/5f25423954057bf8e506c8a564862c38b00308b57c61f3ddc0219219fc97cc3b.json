@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function uses the constant 0x3c71 in the condition `(uVar1 * uVar1 & 7) == 1`.", "seconds": 1.3}

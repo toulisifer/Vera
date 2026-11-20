@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if `param_2` (which corresponds to `len`) is 0 at the beginning and returns 0 if it is.", "seconds": 1.4}

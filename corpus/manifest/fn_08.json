@@ -1,0 +1,47 @@
+{
+  "id": "fn_08",
+  "group": "near_miss",
+  "algorithm_label": "near-miss của CRC-32",
+  "pair_of": "fn_01",
+  "difference_from_standard": "Đa thức reflected 0xF7179BF5 thay cho 0xEDB88320; init/xorout giữ nguyên.",
+  "oracle": null,
+  "source": "corpus/src/fn_08.c",
+  "description": "Tính một CRC 32-bit kiểu reflected giống hệt CRC-32 về cấu trúc (init 0xFFFFFFFF, dịch phải từng bit, xorout 0xFFFFFFFF) nhưng dùng đa thức 0xF7179BF5 không chuẩn. Vì vậy kết quả khác CRC-32 và khác mọi CRC-32 có tên trong catalogue. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [
+    {
+      "value": "0xF7179BF5",
+      "width": 32,
+      "role": "đa thức tự chọn",
+      "encodings": {
+        "imm": "0xF7179BF5",
+        "le_bytes": "f59b17f7",
+        "neg": "0x08E8640B",
+        "signed": "-149447691",
+        "sext64": "0xFFFFFFFFF7179BF5",
+        "hi16": "0xF717",
+        "lo16": "0x9BF5"
+      }
+    },
+    {
+      "value": "0xFFFFFFFF",
+      "width": 32,
+      "role": "init và xorout",
+      "encodings": {
+        "imm": "0xFFFFFFFF",
+        "le_bytes": "ffffffff",
+        "neg": "0x00000001",
+        "signed": "-1",
+        "sext64": "0xFFFFFFFFFFFFFFFF",
+        "hi16": "0xFFFF",
+        "lo16": "0xFFFF"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

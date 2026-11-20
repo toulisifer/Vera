@@ -1,0 +1,147 @@
+{
+ "fn": "fn_02",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 16.5,
+   "cached": false,
+   "eval_count": 712,
+   "cache_key": "0de1b5349834e3cb924eba8c76a32b6deffdfb8f7eabd4fbce05a85f88c72d33"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_02 computes a hash of the input data using a polynomial-based algorithm, and returns the result as a 64-bit unsigned integer. It does not modify the input buffer and does not write to the output buffer.",
+  "proposed_name": "fn_02",
+  "algorithm": "MurmurHash3 64-bit",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "ALG",
+    "text": "Implements MurmurHash3 64-bit.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Iterates over the input data using a do-while loop.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "IO",
+    "text": "Returns 0xcbf29ce484222325 when len == 0.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "Returns the hash value when len > 0.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "CONST",
+    "text": "Uses the constant 0xcbf29ce484222325 as the initial seed.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "Uses the constant 0x100000001b3 as the multiplier.",
+    "asserted_values": [
+     "0x100000001b3"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_02(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t hash = 0xcbf29ce484222325;\n  if (len > 0) {\n    const uint8_t *ptr = in;\n    while (ptr < in + len) {\n      hash ^= *ptr;\n      hash *= 0x100000001b3;\n      ptr++;\n    }\n  }\n  return hash;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Iterates over the input data using a do-while loop.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when len == 0.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns the hash value when len > 0.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0xcbf29ce484222325 as the initial seed.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "Uses the constant 0x100000001b3 as the multiplier.",
+   "asserted_values": [
+    "0x100000001b3"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "Implements MurmurHash3 64-bit.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code returns 0xffffffffffffffff when param_2 > param_5 as per the condition check.", "seconds": 1.0}

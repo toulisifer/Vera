@@ -1,0 +1,169 @@
+{
+ "fn": "fn_13",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "recovered_c không định nghĩa fn_13"
+   ],
+   "seconds": 20.7,
+   "cached": false,
+   "eval_count": 816,
+   "cache_key": "2d36e9e7cac4a89dda894161784b477791f03c17e98e1b3e22867c313b473c55"
+  },
+  {
+   "errors": [],
+   "seconds": 18.4,
+   "cached": false,
+   "eval_count": 846,
+   "cache_key": "c79b011dc19eb237b6c6cad2a3802b5e8b42a0070ba116f19e7204fccbd7be7b"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom encryption or mixing function, possibly based on a bit-level transformation and permutation of input data.",
+  "proposed_name": "fn_13",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "claim_1",
+    "type": "IO",
+    "text": "Returns VERA_ERR when param_2 is greater than param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "claim_2",
+    "type": "SIDE",
+    "text": "Writes to out[0..15] when out_cap is at least 16.",
+    "asserted_values": [
+     "16"
+    ],
+    "confidence": 0.8,
+    "io": {
+     "when": "out_cap >= 16",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "claim_3",
+    "type": "CF",
+    "text": "Uses a loop that iterates len times.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim_4",
+    "type": "CF",
+    "text": "Uses a nested loop structure.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "claim_5",
+    "type": "SIDE",
+    "text": "Writes to local_128[0..255].",
+    "asserted_values": [],
+    "confidence": 0.7
+   },
+   {
+    "id": "claim_6",
+    "type": "SIDE",
+    "text": "Writes to local_130[0..7].",
+    "asserted_values": [],
+    "confidence": 0.7
+   },
+   {
+    "id": "claim_7",
+    "type": "SIDE",
+    "text": "Writes to the memory pointed to by param_4.",
+    "asserted_values": [],
+    "confidence": 0.6
+   }
+  ],
+  "recovered_c": "uint64_t fn_13(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len > out_cap) {\n        return VERA_ERR;\n    }\n\n    uint8_t local_130[8];\n    for (size_t i = 0; i < len; i++) {\n        local_130[i % 8] = (in[i] >> (i % 6)) & 0x3f;\n    }\n\n    uint8_t local_128[256];\n    for (size_t i = 0; i < len; i++) {\n        local_128[i] = 0;\n    }\n\n    for (size_t i = 0; i < len; i++) {\n        uint8_t b = local_130[i % 8];\n        uint8_t index = (local_128[index] ^ i) + (uint)local_128[i] & 0xff;\n        uint8_t temp = local_128[index];\n        local_128[index] = local_128[b];\n        local_128[b] = temp;\n        out[i] = local_128[(b + local_128[index]) ^ i] ^ in[i];\n    }\n\n    return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_2 is greater than param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "claim_2",
+   "type": "SIDE",
+   "text": "Writes to out[0..15] when out_cap is at least 16.",
+   "asserted_values": [
+    "16"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "out_cap >= 16",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "CF",
+   "text": "Uses a loop that iterates len times.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim_4",
+   "type": "CF",
+   "text": "Uses a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "claim_7",
+   "type": "SIDE",
+   "text": "Writes to the memory pointed to by param_4.",
+   "asserted_values": [],
+   "confidence": 0.6
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "claim_5",
+   "type": "SIDE",
+   "text": "Writes to local_128[0..255].",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "claim_6",
+   "type": "SIDE",
+   "text": "Writes to local_130[0..7].",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

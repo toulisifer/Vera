@@ -1,0 +1,213 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 42.5,
+   "cached": false,
+   "eval_count": 1945,
+   "cache_key": "b1b21353219458635a88aee606bcc9c18139d8b12e9163cb624dbafc1ec2b12f"
+  }
+ ],
+ "output": {
+  "summary": "The function encodes a binary input into a Base64-like string.",
+  "proposed_name": "fn_07",
+  "algorithm": "Unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "0",
+    "type": "CONST",
+    "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+    "asserted_values": [
+     "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "1",
+    "type": "CF",
+    "text": "The function contains nested loops and conditional branches.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "SIDE",
+    "text": "Writes to out[0..<length>].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns -1 when param_2 + 2) / 3 << 2 > param_5.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 + 2) / 3 << 2 > param_5",
+     "returns": "-1"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0 when param_2 < 3.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < 3",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns lVar4 + 4 when param_2 == 1.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 1",
+     "returns": "lVar4 + 4"
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns lVar4 + 4 when param_2 == 2.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 2",
+     "returns": "lVar4 + 4"
+    }
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Does not write to out when param_2 < 3.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "SIDE",
+    "text": "Writes 2 characters to out when param_2 == 1.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "9",
+    "type": "SIDE",
+    "text": "Writes 4 characters to out when param_2 == 2.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint uVar1;\n    uint uVar2;\n    ulong uVar3;\n    long lVar4;\n    ulong uVar5;\n    ulong uVar6;\n    ulong uVar7;\n\n    lVar4 = -1;\n    if ((len + 2) / 3 << 2 <= out_cap) {\n        if (len < 3) {\n            uVar6 = 0;\n            lVar4 = 0;\n        } else {\n            uVar5 = 0;\n            lVar4 = 0;\n            uVar3 = 3;\n            uVar7 = len;\n            do {\n                uVar6 = uVar3;\n                uVar2 = (uint)*(byte *)(in + -3 + uVar6) << 0x10 |\n                        (uint)*(byte *)(in + -2 + uVar6) << 8 | (uint)*(byte *)(in + -1 + uVar6);\n                if (((((int)uVar7 + 1) * (int)uVar7 & 1U) != 0) || (arg != 0)) {\n                    uVar2 = ((uint)(uVar7 << 7) ^ uVar2) * 0x2d6b + arg;\n                    uVar2 = uVar2 >> 0xb ^ uVar2;\n                }\n                uVar1 = (int)uVar6 - 3U | 1;\n                *(ushort *)(out + lVar4) =\n                     CONCAT11(\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[uVar2 >> 0xc & 0x3f],\n                              \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[uVar2 >> 0x12 & 0x3f]);\n                if (((uVar1 * uVar1 & 7) == 1) && (arg == 0x3c71)) {\n                    uVar3 = lVar4 + 3;\n                    *(char *)(out + 2 + lVar4) =\n                         \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[uVar2 >> 6 & 0x3f]\n                    ;\n                } else {\n                    uVar3 = lVar4 + 0x51e5U ^ uVar5;\n                }\n                lVar4 = uVar3 + 1;\n                uVar7 = uVar7 + 3;\n                uVar5 = uVar5 + 0x5eb;\n                *(char *)(out + uVar3) =\n                     \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[uVar2 & 0x3f];\n                uVar3 = uVar6 + 3;\n            } while (uVar6 + 3 <= len);\n            len = len - uVar6;\n        }\n        if (len == 1) {\n            *(ushort *)(out + lVar4) =\n                 CONCAT11(\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(*(byte *)(in + uVar6) & 3) << 4],\n                          \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[*(byte *)(in + uVar6) >> 2]);\n            *(undefined2 *)(out + 2 + lVar4) = 0x3d3d;\n            return lVar4 + 4;\n        }\n        if (len == 2) {\n            uVar2 = (uint)*(byte *)(in + 1 + uVar6) << 8;\n            *(ushort *)(out + lVar4) =\n                 CONCAT11(\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uVar2 | (uint)*(byte *)(in + uVar6) << 0x10) >> 0xc & 0x3f],\n                          \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[*(byte *)(in + uVar6) >> 2]);\n            *(char *)(out + 2 + lVar4) =\n                 \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uVar2 & 0xf00) >> 6];\n            *(undefined1 *)(out + lVar4 + 3) = 0x3d;\n            return lVar4 + 4;\n        }\n    }\n    return lVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "0",
+   "type": "CONST",
+   "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+   "asserted_values": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "1",
+   "type": "CF",
+   "text": "The function contains nested loops and conditional branches.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns -1 when param_2 + 2) / 3 << 2 > param_5.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 + 2) / 3 << 2 > param_5",
+    "returns": "-1"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0 when param_2 < 3.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 3",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns lVar4 + 4 when param_2 == 1.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 1",
+    "returns": "lVar4 + 4"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns lVar4 + 4 when param_2 == 2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 2",
+    "returns": "lVar4 + 4"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Does not write to out when param_2 < 3.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "Writes 2 characters to out when param_2 == 1.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "9",
+   "type": "SIDE",
+   "text": "Writes 4 characters to out when param_2 == 2.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes to out[0..<length>].",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

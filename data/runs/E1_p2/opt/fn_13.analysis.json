@@ -1,0 +1,165 @@
+{
+ "fn": "fn_13",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 28.0,
+   "cached": false,
+   "eval_count": 866,
+   "cache_key": "58722a306799b059a3e029f6b45dd95c3d85428779874ab09f2f9324cce626fc"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom encryption or transformation function. It takes an input buffer, a length, an argument, and an output buffer. It performs a series of bitwise operations and permutations on the input data, and stores the result in the output buffer.",
+  "proposed_name": "fn_13",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses a constant array of 16 elements.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "The function returns the input length when the input length is 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "The function writes the transformed data to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over a constant array.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "The function modifies the input buffer during the transformation process.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "8",
+    "type": "SIDE",
+    "text": "The function modifies the output buffer during the transformation process.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "9",
+    "type": "CF",
+    "text": "The function contains a conditional check to ensure the stack canary is valid.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_13(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len == 0) {\n        return len;\n    }\n\n    uint8_t local_120[8] = {0};\n    uint8_t abStack_118[256] = {0};\n\n    for (size_t i = 0; i < len; i++) {\n        local_120[i % 8] = (in[i] >> (i % 6)) & 0x3f;\n    }\n\n    // Perform some bitwise and permutation operations\n    // This part is highly speculative and based on the decompiled code structure\n    for (size_t i = 0; i < 16; i++) {\n        // Example operation: XOR with a constant and shift\n        abStack_118[i] = local_120[i] ^ 0x55;\n    }\n\n    // Copy the transformed data to the output buffer\n    for (size_t i = 0; i < len; i++) {\n        out[i] = abStack_118[i % 256];\n    }\n\n    return len;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses a constant array of 16 elements.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function returns the input length when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function writes the transformed data to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over a constant array.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "The function modifies the input buffer during the transformation process.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "The function modifies the output buffer during the transformation process.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "The function contains a conditional check to ensure the stack canary is valid.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

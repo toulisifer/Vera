@@ -1,0 +1,269 @@
+{
+ "fn": "fn_12",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 38.5,
+   "cached": false,
+   "eval_count": 1541,
+   "cache_key": "d3be8b0143eeda7f000c5e5080d22270ded2257f7d6c67e63dd552c402579a18"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_12 appears to be implementing a custom hash function.",
+  "proposed_name": "fn_12",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x714851d1.",
+    "asserted_values": [
+     "0x714851d1"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x290a3a20.",
+    "asserted_values": [
+     "0x290a3a20"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 < 0x18 or param_5 < 8.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < 0x18 or param_5 < 8",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 8 when the function completes successfully.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "always",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Writes the hash value to *param_4.",
+    "asserted_values": [
+     "*param_4"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Contains a loop that iterates based on the value of param_2.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "Contains a conditional branch based on the value of iVar5.",
+    "asserted_values": [
+     "iVar5"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "NAME",
+    "type": "NAME",
+    "text": "The function appears to be implementing a custom hash function.",
+    "asserted_values": [
+     "custom hash function"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_12(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len < 0x18) || (out_cap < 8)) {\n    return VERA_ERR;\n  }\n  uint uVar1;\n  uint uVar2;\n  uint uVar3;\n  uint uVar4;\n  int iVar5;\n  uint uVar6;\n  uVar6 = (int)len * 0x1f9;\n  uVar3 = *(uint *)in;\n  uVar2 = *(uint *)(in + 4);\n  iVar5 = 0;\n  do {\n    uVar4 = len + 1;\n    iVar5 = iVar5 + -0x714851d1;\n    if ((((uint)len * (int)uVar4 & 1) != 0) || (DAT_00104010 != 0)) {\n      uVar3 = ((uint)(len << 7) ^ uVar3) * 0x2d6b + DAT_00104008;\n      uVar3 = uVar3 >> 0xb ^ uVar3;\n    }\n    uVar1 = (uint)len | 1;\n    uVar3 = uVar3 + (uVar2 * 0x10 + *(uint *)(in + 8) ^ (uVar2 >> 5) + *(uint *)(in + 12) ^ iVar5 + uVar2);\n    len = uVar4;\n    if (((uVar1 * uVar1 & 7) != 1) || (DAT_00104008 != 0x3c71)) break;\n    uVar6 = uVar6 + 0x1f9;\n    uVar2 = uVar2 + (uVar3 * 0x10 + *(uint *)(in + 16) ^ (uVar3 >> 5) + *(uint *)(in + 20) ^ iVar5 + uVar3);\n    if (iVar5 == -0x290a3a20) goto LAB_0010120c;\n  } while (iVar5 != -0x290a3a20);\nLAB_0010120c:\n  *out = (((((((uint)(uVar2 >> 0x18) << 8 | (uint)(uVar2 >> 0x10 & 0xff)) << 8 |\n                 (uint)(uVar2 >> 8 & 0xff)) << 8 | (uint)(uVar2 & 0xff)) << 8 |\n               (uint)(uVar3 >> 0x18)) << 8 | (uint)(uVar3 >> 0x10 & 0xff)) << 8 |\n             (uint)(uVar3 >> 8 & 0xff)) << 8 | (uint)(uVar3 & 0xff));\n  return 8;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x714851d1.",
+   "asserted_values": [
+    "0x714851d1"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x290a3a20.",
+   "asserted_values": [
+    "0x290a3a20"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 < 0x18 or param_5 < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 0x18 or param_5 < 8",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 8 when the function completes successfully.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes the hash value to *param_4.",
+   "asserted_values": [
+    "*param_4"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a loop that iterates based on the value of param_2.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "Contains a conditional branch based on the value of iVar5.",
+   "asserted_values": [
+    "iVar5"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "NAME",
+   "type": "NAME",
+   "text": "The function appears to be implementing a custom hash function.",
+   "asserted_values": [
+    "custom hash function"
+   ],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

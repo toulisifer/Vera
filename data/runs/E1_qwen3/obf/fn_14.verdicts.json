@@ -1,0 +1,131 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "name",
+   "type": "NAME",
+   "text": "Processes input data and generates an output string based on a fixed set of characters and some bitwise operations.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg",
+   "type": "ALG",
+   "text": "Implements an unknown algorithm based on bitwise operations and fixed string lookup.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "const",
+   "type": "CONST",
+   "text": "Uses the constant \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\".",
+   "asserted_values": [
+    "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "io",
+   "type": "IO",
+   "text": "Returns len when len == 3.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io",
+   "type": "IO",
+   "text": "Returns len when len == 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io",
+   "type": "IO",
+   "text": "Returns len when len == 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io",
+   "type": "IO",
+   "text": "Returns len when (param_2 + 2) / 3 << 2 <= param_5.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "cf",
+   "type": "CF",
+   "text": "Contains a loop that processes input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "cf",
+   "type": "CF",
+   "text": "Contains conditional branches for handling input lengths of 1, 2, and 3.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 8,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

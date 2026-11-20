@@ -1,0 +1,65 @@
+{
+ "fn": "fn_15",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": ":0",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input string (param_1).",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": ":1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the output buffer capacity (param_5) is less than the computed checksum.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": ":2",
+   "type": "SIDE",
+   "text": "Writes the computed checksum to the output buffer (param_4).",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": ":3",
+   "type": "CF",
+   "text": "The function contains a nested loop that iterates over the input string to calculate the checksum.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

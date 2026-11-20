@@ -1,0 +1,124 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_09",
+ "n_instructions": 29,
+ "immediates": [
+  {
+   "addr": 4373,
+   "insn": "movabs rax, 0xcbf29ce484222325",
+   "value": 14695981039346656037,
+   "size": 8
+  },
+  {
+   "addr": 4387,
+   "insn": "mov qword ptr [rbp - 8], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4395,
+   "insn": "jmp 0x115d",
+   "value": 4445,
+   "size": 8
+  },
+  {
+   "addr": 4422,
+   "insn": "movabs rdx, 0x100000001b5",
+   "value": 1099511628213,
+   "size": 8
+  },
+  {
+   "addr": 4440,
+   "insn": "add qword ptr [rbp - 8], 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4453,
+   "insn": "jb 0x112d",
+   "value": 4397,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4353,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4357,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4361,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4365,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4369,
+   "value": 18446744073709551560
+  },
+  {
+   "addr": 4383,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4387,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4397,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4401,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4414,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4418,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4436,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4440,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4445,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4449,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4455,
+   "value": 18446744073709551600
+  }
+ ],
+ "data_refs": [],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

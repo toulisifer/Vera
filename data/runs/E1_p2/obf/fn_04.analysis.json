@@ -1,0 +1,91 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 8.5,
+   "cached": false,
+   "eval_count": 346,
+   "cache_key": "5daa495b9c1c2b2aac0f9b6b40cbac1f0795a1a72f4f54caa1cb99de9197e697"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_04 does not perform any meaningful operations and always returns without modifying any input or output parameters.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CF",
+    "text": "The function contains a loop that increments a counter until it reaches a value stored in DAT_00104010.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function contains another loop that increments a counter until it equals the value of param_2.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "The function does not read from or write to any input or output parameters.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "The function always returns without modifying any input or output parameters.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "void fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CF",
+   "text": "The function contains a loop that increments a counter until it reaches a value stored in DAT_00104010.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function contains another loop that increments a counter until it equals the value of param_2.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function does not read from or write to any input or output parameters.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "The function always returns without modifying any input or output parameters.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

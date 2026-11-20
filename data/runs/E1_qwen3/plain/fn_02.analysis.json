@@ -1,0 +1,127 @@
+{
+ "fn": "fn_02",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.0,
+   "cached": false,
+   "eval_count": 592,
+   "cache_key": "cbc7daa9fcba1dc1faa0ea89f796fb142367bdbb19640ce762e880f7a6bc0e9c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_02 computes a hash of the input buffer using a custom algorithm and returns the result as a 64-bit unsigned integer. It does not modify the input buffer or write to the output buffer.",
+  "proposed_name": "fn_02",
+  "algorithm": "custom hash",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "claim_0",
+    "type": "ALG",
+    "text": "Implements a custom hash algorithm.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_1",
+    "type": "CF",
+    "text": "Uses a for loop to iterate over the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_2",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_3",
+    "type": "IO",
+    "text": "Returns the computed hash value when the input length is valid.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_4",
+    "type": "CONST",
+    "text": "Uses the constant 0xcbf29ce484222325 as the initial hash value.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_5",
+    "type": "CONST",
+    "text": "Uses the constant 0x100000001b3 as the multiplier in the hash computation.",
+    "asserted_values": [
+     "0x100000001b3"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_02(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t h = 0xcbf29ce484222325;\n  for (size_t i = 0; i < len; i++) {\n    h = (h ^ in[i]) * 0x100000001b3;\n  }\n  return h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "claim_0",
+   "type": "ALG",
+   "text": "Implements a custom hash algorithm.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_1",
+   "type": "CF",
+   "text": "Uses a for loop to iterate over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_3",
+   "type": "IO",
+   "text": "Returns the computed hash value when the input length is valid.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_4",
+   "type": "CONST",
+   "text": "Uses the constant 0xcbf29ce484222325 as the initial hash value.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x100000001b3 as the multiplier in the hash computation.",
+   "asserted_values": [
+    "0x100000001b3"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

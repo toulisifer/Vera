@@ -1,0 +1,11 @@
+{
+ "fn": "fn_20",
+ "config": "obf",
+ "compiled": false,
+ "fepr": 0.0,
+ "n_vectors": 50,
+ "n_match": 0,
+ "failures": [],
+ "sandbox_image": "python:3.12-slim",
+ "compile_error": "recovered.c:14:54: error: expected expression before ‘||’ token"
+}

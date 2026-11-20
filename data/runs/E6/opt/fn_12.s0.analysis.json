@@ -1,0 +1,151 @@
+{
+ "fn": "fn_12",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 22.9,
+   "cached": true,
+   "eval_count": 927,
+   "cache_key": "110d86095ddc4474d7f5f395b9e412328c44ec67d02ba7606ba99c0669b73c3e"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_12 implements a custom hash function.",
+  "proposed_name": "fn_12",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x714851d1.",
+    "asserted_values": [
+     "0x714851d1"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x290a3a20.",
+    "asserted_values": [
+     "0x290a3a20"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 < 0x17 or param_5 < 7.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < 0x17 or param_5 < 7",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 8 when param_2 >= 0x17 and param_5 >= 7.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 >= 0x17 and param_5 >= 7",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Writes the hash value to param_4.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "The function contains a loop that iterates until the loop variable equals 0x290a3a20.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_12(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1;\n  uint uVar2;\n  int iVar3;\n\n  if ((0x17 < len) && (7 < out_cap)) {\n    uVar2 = *in;\n    iVar3 = 0;\n    uVar1 = in[1];\n    do {\n      iVar3 = iVar3 + -0x714851d1;\n      uVar2 = uVar2 + (uVar1 * 0x10 + in[2] ^ (uVar1 >> 5) + in[3] ^ iVar3 + uVar1);\n      uVar1 = uVar1 + (uVar2 * 0x10 + in[4] ^ (uVar2 >> 5) + in[5] ^ iVar3 + uVar2);\n    } while (iVar3 != -0x290a3a20);\n    *out = (((((((uint)(uVar1 >> 0x18) << 8 | (uint)(uVar1 >> 0x10 & 0xff)) << 8 |\n                   (uint)(uVar1 >> 8 & 0xff)) << 8 |\n                 (uint)(uVar1 & 0xff)) << 8 |\n                 (uint)(uVar2 >> 0x18)) << 8 | (uint)(uVar2 >> 0x10 & 0xff)) << 8 |\n               (uint)(uVar2 >> 8 & 0xff)) << 8 | (uint)(uVar2 & 0xff);\n    return 8;\n  }\n  return 0xffffffffffffffff;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x714851d1.",
+   "asserted_values": [
+    "0x714851d1"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x290a3a20.",
+   "asserted_values": [
+    "0x290a3a20"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 < 0x17 or param_5 < 7.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 0x17 or param_5 < 7",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 8 when param_2 >= 0x17 and param_5 >= 7.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 >= 0x17 and param_5 >= 7",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes the hash value to param_4.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "The function contains a loop that iterates until the loop variable equals 0x290a3a20.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

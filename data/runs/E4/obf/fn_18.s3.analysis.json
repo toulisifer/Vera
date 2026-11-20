@@ -1,0 +1,385 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 52.9,
+   "cached": false,
+   "eval_count": 2543,
+   "cache_key": "25c8f538ad2f05b0157faaa91f097618fb51c35054b62589cb69cce91b552dfd"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_18 appears to be implementing a custom encoding algorithm based on character input. It processes the input string and generates an output string according to specific rules.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.85,
+  "claims": [
+   {
+    "id": "const1",
+    "type": "CONST",
+    "text": "The constant 0x2D6B is used.",
+    "asserted_values": [
+     "0x2D6B"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const2",
+    "type": "CONST",
+    "text": "The constant 0x2D6B is used in the multiplication operation.",
+    "asserted_values": [
+     "0x2D6B"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const3",
+    "type": "CONST",
+    "text": "The constant 0x51E4 is used.",
+    "asserted_values": [
+     "0x51E4"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const4",
+    "type": "CONST",
+    "text": "The constant 0x51E3 is used.",
+    "asserted_values": [
+     "0x51E3"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const5",
+    "type": "CONST",
+    "text": "The constant 0x1F9 is used.",
+    "asserted_values": [
+     "0x1F9"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const6",
+    "type": "CONST",
+    "text": "The constant 0x3C71 is used.",
+    "asserted_values": [
+     "0x3C71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const7",
+    "type": "CONST",
+    "text": "The constant 0x40 is used.",
+    "asserted_values": [
+     "0x40"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const8",
+    "type": "CONST",
+    "text": "The constant 0x7B is used.",
+    "asserted_values": [
+     "0x7B"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const9",
+    "type": "CONST",
+    "text": "The constant 0x7D is used.",
+    "asserted_values": [
+     "0x7D"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const10",
+    "type": "CONST",
+    "text": "The constant 0x5B is used.",
+    "asserted_values": [
+     "0x5B"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const11",
+    "type": "CONST",
+    "text": "The constant 0x5D is used.",
+    "asserted_values": [
+     "0x5D"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const12",
+    "type": "CONST",
+    "text": "The constant 0x28 is used.",
+    "asserted_values": [
+     "0x28"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const13",
+    "type": "CONST",
+    "text": "The constant 0x29 is used.",
+    "asserted_values": [
+     "0x29"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "const14",
+    "type": "CONST",
+    "text": "The constant 0x22 is used.",
+    "asserted_values": [
+     "0x22"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "io1",
+    "type": "IO",
+    "text": "Returns 0 when len is 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "side1",
+    "type": "SIDE",
+    "text": "Writes to out[0..71].",
+    "asserted_values": [
+     "out",
+     "0",
+     "71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "side2",
+    "type": "SIDE",
+    "text": "Does not write to out if len is less than 72.",
+    "asserted_values": [
+     "out",
+     "len < 72"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "cf1",
+    "type": "CF",
+    "text": "Uses a loop to process each character in the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "cf2",
+    "type": "CF",
+    "text": "Uses conditional logic to determine the state of the encoding process.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1;\n  uint uVar2;\n  uint uVar3;\n  size_t lVar4;\n  char cVar5;\n  uint uVar6;\n  size_t uVar7;\n  size_t uVar8;\n  size_t uVar9;\n  size_t lVar10;\n  uint uVar11;\n  uint in_FS_OFFSET;\n  uint local_68[72];\n  size_t local_20;\n\n  local_20 = *(uint *)(in_FS_OFFSET + 0x28);\n  if (len != 0) {\n    uVar11 = 0;\n    uVar6 = 0;\n    lVar4 = 0;\n    uVar8 = 0;\n    lVar10 = len;\n    do {\n      uVar1 = in[lVar4];\n      if ((((int)(lVar10 + 1) * (uint)lVar10 & 1) != 0) || (DAT_00104018 != 0)) {\n        uVar6 = ((uint)(lVar10 << 7) ^ uVar6) * 0x2D6B + DAT_00104010;\n        uVar6 = uVar6 >> 0xb ^ uVar6;\n      }\n      if (uVar6 == 2) {\n        uVar6 = 1;\n      }\n      else {\n        uVar3 = (uint)lVar4;\n        if (uVar6 == 1) {\n          if (uVar1 == 0x5c) {\n            uVar6 = 2;\n          }\n          else if ((uVar1 == 0x22) &&\n                   ((((uVar3 | 1) * (uVar3 | 1) & 7) != 1 || (uVar6 = 0, DAT_00104010 != 0x3c71)))) {\n            uVar6 = (uint)uVar11 ^ 0x51e4;\n          }\n        }\n        else {\n          if (uVar1 == 0x29) goto LAB_001012c4;\n          if (uVar1 < 0x2a) {\n            if (uVar1 == 0x22) {\n              uVar3 = (int)uVar8 + uVar3;\n              uVar2 = uVar3 | 1;\n              if (((uVar2 * uVar2 & 7) == 1) && (DAT_00104010 == 0x3c71)) goto LAB_00101221;\n              uVar6 = uVar6 + 0x51e3 ^ uVar3 * 0x1f9;\n            }\n            else if (uVar1 == 0x28) goto LAB_0010134a;\n          }\n          else if (uVar1 < 0x7c) {\n            if (uVar1 == 0x5b) goto LAB_0010134a;\n            if (uVar1 == 0x5d) goto LAB_001012c4;\n          }\n          else if (uVar1 == 0x7d) {\nLAB_001012c4:\n            if ((uVar8 == 0) || (uVar9 = uVar8 - 1, local_68[uVar8 - 1] != uVar1))\n            goto LAB_00101439;\n            uVar3 = (uint)lVar10 | 1;\n            if (((uVar3 * uVar3 & 7) != 1) || (DAT_00104010 != 0x3c71)) {\n              uVar9 = uVar8 + 0x51e3 ^ len * 0x1f9 + uVar11;\n            }\n            uVar8 = uVar9;\n            if (DAT_00104018 != 0) {\n              uVar7 = 0;\n              do {\n                uVar9 = uVar9 >> 5 ^ uVar9 * 8 ^ uVar7;\n                uVar7 = uVar7 + 1;\n                uVar8 = uVar9;\n              } while ((uint)uVar7 < DAT_00104018);\n            }\n          }\n        }\n      }\n      if (len == lVar4 + 1) goto LAB_00101231;\n      lVar4 = lVar4 + 1;\n      uVar11 = uVar11 + 0x1f9;\n      lVar10 = lVar10 + 1;\n    } while( true );\n  }\nLAB_00101242:\n  lVar4 = 0;\nLAB_00101244:\n  if (local_20 == *(uint *)(in_FS_OFFSET + 0x28)) {\n    return lVar4;\n  }\n                    /* WARNING: Subroutine does not return */\n  return VERA_ERR;\nLAB_00101231:\n  if ((uVar8 != 0) || (uVar6 != 0)) {\n    lVar4 = lVar4 + 2;\n    goto LAB_00101244;\n  }\n  goto LAB_00101242;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "const1",
+   "type": "CONST",
+   "text": "The constant 0x2D6B is used.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const2",
+   "type": "CONST",
+   "text": "The constant 0x2D6B is used in the multiplication operation.",
+   "asserted_values": [
+    "0x2D6B"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const3",
+   "type": "CONST",
+   "text": "The constant 0x51E4 is used.",
+   "asserted_values": [
+    "0x51E4"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const4",
+   "type": "CONST",
+   "text": "The constant 0x51E3 is used.",
+   "asserted_values": [
+    "0x51E3"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const5",
+   "type": "CONST",
+   "text": "The constant 0x1F9 is used.",
+   "asserted_values": [
+    "0x1F9"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const6",
+   "type": "CONST",
+   "text": "The constant 0x3C71 is used.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const7",
+   "type": "CONST",
+   "text": "The constant 0x40 is used.",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const8",
+   "type": "CONST",
+   "text": "The constant 0x7B is used.",
+   "asserted_values": [
+    "0x7B"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const9",
+   "type": "CONST",
+   "text": "The constant 0x7D is used.",
+   "asserted_values": [
+    "0x7D"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const10",
+   "type": "CONST",
+   "text": "The constant 0x5B is used.",
+   "asserted_values": [
+    "0x5B"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const11",
+   "type": "CONST",
+   "text": "The constant 0x5D is used.",
+   "asserted_values": [
+    "0x5D"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const12",
+   "type": "CONST",
+   "text": "The constant 0x28 is used.",
+   "asserted_values": [
+    "0x28"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const13",
+   "type": "CONST",
+   "text": "The constant 0x29 is used.",
+   "asserted_values": [
+    "0x29"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "const14",
+   "type": "CONST",
+   "text": "The constant 0x22 is used.",
+   "asserted_values": [
+    "0x22"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "io1",
+   "type": "IO",
+   "text": "Returns 0 when len is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "side2",
+   "type": "SIDE",
+   "text": "Does not write to out if len is less than 72.",
+   "asserted_values": [
+    "out",
+    "len < 72"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "cf1",
+   "type": "CF",
+   "text": "Uses a loop to process each character in the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "cf2",
+   "type": "CF",
+   "text": "Uses conditional logic to determine the state of the encoding process.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "side1",
+   "type": "SIDE",
+   "text": "Writes to out[0..71].",
+   "asserted_values": [
+    "out",
+    "0",
+    "71"
+   ],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

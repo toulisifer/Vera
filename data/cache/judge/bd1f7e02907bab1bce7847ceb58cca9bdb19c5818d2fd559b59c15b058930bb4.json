@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function computes a hash value using the input data and returns it when len > 0.", "seconds": 0.7}

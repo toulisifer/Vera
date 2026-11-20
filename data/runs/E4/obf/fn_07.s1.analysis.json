@@ -1,0 +1,197 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.4,
+   "cached": false,
+   "eval_count": 1136,
+   "cache_key": "0207302c2b4d2a993cdf1473e461431961c2e643d48bb6de63ee5b6fe572dae2"
+  }
+ ],
+ "output": {
+  "summary": "fn_07 appears to be an encoding function that takes an input buffer and encodes it into a Base64-like format. It handles different lengths of input and outputs the encoded data to an output buffer.",
+  "proposed_name": "fn_07",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "claim1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input buffer length is less than 3.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len < 3",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "claim2",
+    "type": "IO",
+    "text": "Returns the length of the encoded data when the input buffer length is less than 3.",
+    "asserted_values": [
+     "3"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len < 3",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "claim3",
+    "type": "IO",
+    "text": "Returns the length of the encoded data when the input buffer length is 3.",
+    "asserted_values": [
+     "6"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 3",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "claim4",
+    "type": "IO",
+    "text": "Returns the length of the encoded data when the input buffer length is 4.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 4",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "claim5",
+    "type": "SIDE",
+    "text": "Writes to out[<first>..<last>].",
+    "asserted_values": [
+     "first",
+     "last"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim6",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the input buffer in chunks of 3 bytes.",
+    "asserted_values": [
+     "3"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "claim7",
+    "type": "ALG",
+    "text": "Implements a Base64-like encoding algorithm.",
+    "asserted_values": [
+     "Base64"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len < 3) {\n    if (len == 1) {\n      *out = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[0] & 3) << 4];\n      *(out + 1) = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[in[0] >> 2];\n      return 2;\n    } else if (len == 2) {\n      *out = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[1] << 8) | (in[0] << 2) >> 4];\n      *(out + 1) = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[1] << 8) | (in[0] << 2) & 0xf00] >> 6;\n      *(out + 2) = '=';\n      return 3;\n    } else {\n      return 0xFFFFFFFFFFFFFFFF;\n    }\n  } else {\n    for (size_t i = 0; i < len; i += 3) {\n      uint32_t chunk = (in[i] << 16) | (i + 1 < len ? in[i + 1] << 8 : 0) | (i + 2 < len ? in[i + 2] : 0);\n      *out = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[chunk >> 18];\n      *(out + 1) = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(chunk >> 12) & 0x3f];\n      if (i + 2 < len) {\n        *(out + 2) = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(chunk >> 6) & 0x3f];\n      } else {\n        *(out + 2) = '=';\n      }\n      *(out + 3) = '=';\n      out += 4;\n    }\n    return (len + 2) / 3 * 4;\n  }\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input buffer length is less than 3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len < 3",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "claim2",
+   "type": "IO",
+   "text": "Returns the length of the encoded data when the input buffer length is less than 3.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len < 3",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "claim3",
+   "type": "IO",
+   "text": "Returns the length of the encoded data when the input buffer length is 3.",
+   "asserted_values": [
+    "6"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 3",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "claim4",
+   "type": "IO",
+   "text": "Returns the length of the encoded data when the input buffer length is 4.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 4",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "claim6",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "claim7",
+   "type": "ALG",
+   "text": "Implements a Base64-like encoding algorithm.",
+   "asserted_values": [
+    "Base64"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "claim5",
+   "type": "SIDE",
+   "text": "Writes to out[<first>..<last>].",
+   "asserted_values": [
+    "first",
+    "last"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

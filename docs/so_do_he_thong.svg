@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 1030" width="1320" height="1030" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5568"/>
+    </marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/>
+    </marker>
+    <style>
+      .t{font-size:15px;font-weight:600;fill:#1a202c}
+      .s{font-size:12.5px;fill:#2d3748}
+      .lay{font-size:13px;font-weight:700;fill:#fff}
+      .e{stroke:#4a5568;stroke-width:1.6;fill:none;marker-end:url(#a)}
+      .ed{stroke:#b7791f;stroke-width:1.6;fill:none;stroke-dasharray:6 4;marker-end:url(#ad)}
+      .cl{stroke:#6b46c1;stroke-width:2;fill:none} .vl{stroke:#2b6cb0;stroke-width:2;fill:none} .bl{stroke:#2c7a7b;stroke-width:2;fill:none}
+      .ca{stroke:#6b46c1;stroke-width:2;fill:none;marker-end:url(#ac)} .va{stroke:#2b6cb0;stroke-width:2;fill:none;marker-end:url(#av)} .ba{stroke:#2c7a7b;stroke-width:2;fill:none;marker-end:url(#ab)}
+      .lbl{font-size:11.5px;fill:#4a5568;font-style:italic}
+    </style>
+    <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6b46c1"/></marker>
+    <marker id="av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2b6cb0"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2c7a7b"/></marker>
+  </defs>
+  <rect width="1320" height="1030" fill="#ffffff"/>
+
+  <text x="40" y="42" font-size="24" font-weight="700" fill="#1a202c">VeRA — kiến trúc hệ thống</text>
+  <text x="40" y="66" class="s">Kiểm chứng lời giải thích của AI về một hàm nhị phân: tách thành từng claim, kiểm từng claim bằng bằng chứng lấy từ chính binary</text>
+
+  <!-- Đề thi -->
+  <rect x="300" y="88" width="520" height="66" rx="10" fill="#edf2f7" stroke="#718096"/>
+  <text x="560" y="114" text-anchor="middle" class="t">Đề thi do nhóm tự viết</text>
+  <text x="560" y="136" text-anchor="middle" class="s">20 hàm C (7 kinh điển · 7 near-miss · 6 tự thiết kế) + đáp án manifest, khóa tag git</text>
+
+  <!-- Layer labels -->
+  <rect x="40" y="190" width="110" height="96" rx="8" fill="#2b6cb0"/><text x="95" y="234" text-anchor="middle" class="lay">L0</text><text x="95" y="254" text-anchor="middle" class="lay">Corpus</text>
+  <rect x="40" y="320" width="110" height="96" rx="8" fill="#2c7a7b"/><text x="95" y="364" text-anchor="middle" class="lay">L1</text><text x="95" y="384" text-anchor="middle" class="lay">Trích xuất</text>
+  <rect x="40" y="450" width="110" height="96" rx="8" fill="#6b46c1"/><text x="95" y="494" text-anchor="middle" class="lay">L2</text><text x="95" y="514" text-anchor="middle" class="lay">AI phân tích</text>
+  <rect x="40" y="608" width="110" height="170" rx="8" fill="#c53030"/><text x="95" y="686" text-anchor="middle" class="lay">L3</text><text x="95" y="706" text-anchor="middle" class="lay">Kiểm chứng</text>
+  <rect x="40" y="818" width="110" height="96" rx="8" fill="#2f855a"/><text x="95" y="862" text-anchor="middle" class="lay">L4</text><text x="95" y="882" text-anchor="middle" class="lay">Báo cáo</text>
+
+  <!-- L0 -->
+  <rect x="180" y="190" width="380" height="96" rx="10" fill="#ebf4ff" stroke="#2b6cb0"/>
+  <text x="370" y="220" text-anchor="middle" class="t">GCC 13.3.0 biên dịch</text>
+  <text x="370" y="244" text-anchor="middle" class="s">60 binary = 20 hàm × 3 cấu hình</text>
+  <text x="370" y="266" text-anchor="middle" class="s">plain (-O0 -g) · opt (-O2, strip) · obf (+ làm rối)</text>
+  <rect x="620" y="190" width="380" height="96" rx="10" fill="#ebf4ff" stroke="#2b6cb0"/>
+  <text x="810" y="220" text-anchor="middle" class="t">runner.c chạy hàm gốc</text>
+  <text x="810" y="244" text-anchor="middle" class="s">1.000 bộ dữ liệu thử (50 / hàm) + đáp án đúng</text>
+  <text x="810" y="266" text-anchor="middle" class="s">len 0/1/8/64, toàn 0x00/0xFF, out_cap thiếu…</text>
+
+  <!-- L1 -->
+  <rect x="180" y="320" width="380" height="96" rx="10" fill="#e6fffa" stroke="#2c7a7b"/>
+  <text x="370" y="350" text-anchor="middle" class="t">Ghidra 12.1.4 (headless)</text>
+  <text x="370" y="374" text-anchor="middle" class="s">dịch ngược binary → mã giả C</text>
+  <text x="370" y="396" text-anchor="middle" class="s">thứ DUY NHẤT AI được xem</text>
+  <rect x="620" y="320" width="380" height="96" rx="10" fill="#e6fffa" stroke="#2c7a7b"/>
+  <text x="810" y="350" text-anchor="middle" class="t">capstone + pyelftools</text>
+  <text x="810" y="374" text-anchor="middle" class="s">bằng chứng lấy thẳng từ binary:</text>
+  <text x="810" y="396" text-anchor="middle" class="s">hằng trong lệnh máy, bảng .rodata, chuỗi, import</text>
+
+  <!-- L2 -->
+  <rect x="180" y="450" width="380" height="96" rx="10" fill="#faf5ff" stroke="#6b46c1"/>
+  <text x="370" y="480" text-anchor="middle" class="t">AI: qwen2.5-coder:7b (Ollama)</text>
+  <text x="370" y="504" text-anchor="middle" class="s">prompt cố định p3, temperature 0, JSON theo schema</text>
+  <text x="370" y="526" text-anchor="middle" class="s">chạy trên GPU Windows · cache 481 câu trả lời</text>
+  <rect x="620" y="450" width="380" height="96" rx="10" fill="#faf5ff" stroke="#6b46c1"/>
+  <text x="810" y="480" text-anchor="middle" class="t">Câu trả lời của AI</text>
+  <text x="810" y="504" text-anchor="middle" class="s">claim nhỏ: ALG · CONST · IO · SIDE · CF · NAME</text>
+  <text x="810" y="526" text-anchor="middle" class="s">+ recovered_c (code C AI viết lại)</text>
+
+    <!-- L3 verifiers (V1, IO/SIDE, V1b, V3) -->
+  <rect x="180" y="608" width="196" height="118" rx="10" fill="#fff5f5" stroke="#c53030"/>
+  <text x="278" y="634" text-anchor="middle" class="t">V1 — Docker</text>
+  <text x="278" y="656" text-anchor="middle" class="s">chạy code AI viết, cách ly</text>
+  <text x="278" y="676" text-anchor="middle" class="s">(không mạng, chỉ đọc)</text>
+  <text x="278" y="704" text-anchor="middle" class="s">FEPR = khớp / 50</text>
+  <rect x="388" y="608" width="196" height="118" rx="10" fill="#fff5f5" stroke="#c53030"/>
+  <text x="486" y="634" text-anchor="middle" class="t">IO / SIDE</text>
+  <text x="486" y="656" text-anchor="middle" class="s">chạy binary trên vector,</text>
+  <text x="486" y="676" text-anchor="middle" class="s">so giá trị trả, bộ nhớ out</text>
+  <text x="486" y="704" text-anchor="middle" class="s">claim IO, SIDE</text>
+  <rect x="596" y="608" width="196" height="118" rx="10" fill="#fff5f5" stroke="#c53030"/>
+  <text x="694" y="634" text-anchor="middle" class="t">V1b — 20 oracle</text>
+  <text x="694" y="656" text-anchor="middle" class="s">chạy thuật toán chuẩn</text>
+  <text x="694" y="676" text-anchor="middle" class="s">AI nêu, so với binary</text>
+  <text x="694" y="704" text-anchor="middle" class="s">claim ALG</text>
+  <rect x="804" y="608" width="196" height="118" rx="10" fill="#fff5f5" stroke="#c53030"/>
+  <text x="902" y="634" text-anchor="middle" class="t">V3</text>
+  <text x="902" y="656" text-anchor="middle" class="s">tìm hằng trong binary</text>
+  <text x="902" y="676" text-anchor="middle" class="s">(kể cả dạng biến đổi)</text>
+  <text x="902" y="704" text-anchor="middle" class="s">claim CONST, ALG</text>
+  <rect x="180" y="738" width="820" height="40" rx="8" fill="#fed7d7"/>
+  <text x="590" y="763" text-anchor="middle" class="t">Mỗi claim: ✓ verified · ◆ supported · ? unsupported · ✕ contradicted (chỉ ✕ là "bịa")</text>
+
+  <!-- L4 -->
+  <rect x="180" y="818" width="820" height="96" rx="10" fill="#f0fff4" stroke="#2f855a"/>
+  <text x="590" y="848" text-anchor="middle" class="t">Tính metric và trình bày</text>
+  <text x="590" y="872" text-anchor="middle" class="s">HR_strict / HR_loose · khoảng tin cậy Wilson, bootstrap · McNemar · AUROC · bảng chéo E2</text>
+  <text x="590" y="894" text-anchor="middle" class="s">→ results.json, data/SUMMARY.md, trang web demo (xem kết quả + chạy trực tiếp)</text>
+
+  <!-- Right column -->
+  <rect x="1070" y="190" width="230" height="226" rx="10" fill="#fffaf0" stroke="#b7791f"/>
+  <text x="1185" y="216" text-anchor="middle" class="t">Thí nghiệm</text>
+  <text x="1086" y="242" class="s">E0  chọn prompt, model</text>
+  <text x="1086" y="264" class="s">E1  lượt chính 60 item</text>
+  <text x="1086" y="286" class="s">E2  V1 × V3 (RQ2)</text>
+  <text x="1086" y="308" class="s">E3  near-miss (RQ5)</text>
+  <text x="1086" y="330" class="s">E4  hỏi 5 lần (RQ3)</text>
+  <text x="1086" y="352" class="s">E5  gold set (RQ4)</text>
+  <text x="1086" y="374" class="s">E6  độ ổn định</text>
+  <text x="1086" y="398" class="s">+ qwen3, LLM4Decompile, p2</text>
+  <rect x="1070" y="450" width="230" height="96" rx="10" fill="#fffaf0" stroke="#b7791f"/>
+  <text x="1185" y="476" text-anchor="middle" class="t">Mỗi thí nghiệm chạy</text>
+  <text x="1185" y="498" text-anchor="middle" class="s">L2 → L3 → L4 với cấu hình</text>
+  <text x="1185" y="518" text-anchor="middle" class="s">model / prompt riêng</text>
+
+  <rect x="1070" y="608" width="230" height="82" rx="10" fill="#fffaf0" stroke="#b7791f"/>
+  <text x="1185" y="634" text-anchor="middle" class="t">Self-test V3</text>
+  <text x="1185" y="656" text-anchor="middle" class="s">20 hằng biết trước:</text>
+  <text x="1185" y="676" text-anchor="middle" class="s">bỏ sót 5% · nhầm 0/1.290</text>
+  <rect x="1070" y="704" width="230" height="100" rx="10" fill="#fffaf0" stroke="#b7791f"/>
+  <text x="1185" y="730" text-anchor="middle" class="t">Gold set — người chấm</text>
+  <text x="1185" y="752" text-anchor="middle" class="s">120 claim, 2 người + phân xử</text>
+  <text x="1185" y="772" text-anchor="middle" class="s">kappa 0,93 · precision 88%</text>
+  <text x="1185" y="792" text-anchor="middle" class="s">→ HR hiệu chỉnh 26,2%</text>
+  <rect x="1070" y="818" width="230" height="96" rx="10" fill="#edf2f7" stroke="#718096"/>
+  <text x="1185" y="844" text-anchor="middle" class="t">Tái lập: repro/run.sh</text>
+  <text x="1185" y="866" text-anchor="middle" class="s">Ubuntu sạch trong Docker,</text>
+  <text x="1185" y="886" text-anchor="middle" class="s">phát lại cache AI, so kết quả</text>
+
+  <!-- Main flow -->
+  <path class="e" d="M440,154 L380,188"/>
+  <path class="e" d="M680,154 L760,188"/>
+  <path class="e" d="M560,238 L618,238"/><text x="566" y="230" class="lbl">binary</text>
+  <path class="e" d="M370,286 L370,318"/>
+  <path class="e" d="M520,286 L700,318"/>
+  <path class="e" d="M370,416 L370,448"/><text x="378" y="438" class="lbl">mã giả</text>
+  <path class="e" d="M560,498 L618,498"/>
+
+  <!-- Lane tím: claim + recovered_c -->
+  <path class="cl" d="M810,546 L810,556 M240,556 L864,556"/>
+  <path class="ca" d="M240,556 L240,606"/><path class="ca" d="M448,556 L448,606"/><path class="ca" d="M656,556 L656,606"/><path class="ca" d="M864,556 L864,606"/>
+  <!-- Lane xanh dương: vector + đáp án -->
+  <path class="vl" d="M1000,238 L1022,238 L1022,570 L316,570"/>
+  <path class="va" d="M316,570 L316,606"/><path class="va" d="M524,570 L524,606"/><path class="va" d="M732,570 L732,606"/>
+  <text x="1030" y="250" class="lbl" style="fill:#2b6cb0" transform="rotate(90 1030 250)">50 vector + đáp án</text>
+  <!-- Lane xanh ngọc: bằng chứng -> V3 -->
+  <path class="bl" d="M1000,368 L1044,368 L1044,586 L940,586"/>
+  <path class="ba" d="M940,586 L940,606"/>
+  <text x="1052" y="420" class="lbl" style="fill:#2c7a7b" transform="rotate(90 1052 420)">bằng chứng</text>
+
+  <!-- L3 -> L4 và kiểm chính bộ kiểm chứng -->
+  <path class="e" d="M590,778 L590,816"/>
+  <path class="ed" d="M1070,649 L1002,649"/>
+  <path class="ed" d="M1070,780 L1002,850"/>
+
+  <text x="40" y="962" class="s">Làn màu vào L3 — tím: câu trả lời AI · xanh dương: 50 bộ dữ liệu thử + đáp án · xanh ngọc: bằng chứng tĩnh từ binary.</text>
+  <text x="40" y="984" class="s">Nét đứt vàng: kiểm tra chính bộ kiểm chứng (self-test cho V3, gold set cho toàn bộ nhãn).</text>
+  <text x="40" y="1006" class="s">Mã nguồn: corpus/ (L0) · vera/extract/ (L1) · vera/llm/ (L2) · vera/verify/, vera/oracles.py (L3) · vera/report/ (L4) · vera/gold/ · repro/</text>
+</svg>

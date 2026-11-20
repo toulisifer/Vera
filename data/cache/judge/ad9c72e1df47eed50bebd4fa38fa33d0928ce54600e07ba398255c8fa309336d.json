@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not implement CRC-32; it uses a different polynomial and does not handle input/output buffers as CRC-32 typically does.", "seconds": 1.1}

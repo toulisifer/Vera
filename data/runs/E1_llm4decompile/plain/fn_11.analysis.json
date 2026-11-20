@@ -1,0 +1,30 @@
+{
+ "fn": "fn_11",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: uint32_t fn_11(uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "uint32_t fn_11(uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 61333;\n  for (size_t i = 0; i < len; i++) {\n    h = h * 6589 + in[i];\n  }\n  return h;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 4.7,
+   "cached": false,
+   "eval_count": 105,
+   "cache_key": "be03f80d589e22afd5bef99957ff4d7e9e8e1e7f7f405dce75a240d839156214"
+  }
+ ],
+ "output": {
+  "recovered_c": "uint32_t vera_inner(uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 61333;\n  for (size_t i = 0; i < len; i++) {\n    h = h * 6589 + in[i];\n  }\n  return h;\n}\nuint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((uint8_t *)(in), (size_t)(len), (uint32_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

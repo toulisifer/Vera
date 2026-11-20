@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function writes the remaining bytes of 'in' to 'out' in the same order if the length of 'in' is not a multiple of 8.", "seconds": 6.9}

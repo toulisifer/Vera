@@ -1,0 +1,26 @@
+{
+ "kappa": 0.9288572698977323,
+ "n": 120,
+ "disagreements": 4,
+ "precision_contradicted": 0.88,
+ "precision_contradicted_ci": [
+  0.75,
+  1.0
+ ],
+ "recall_contradicted": 0.5238095238095238,
+ "recall_contradicted_ci": [
+  0.3695652173913043,
+  0.6739130434782609
+ ],
+ "precision_supported": 0.8333333333333334,
+ "precision_supported_ci": [
+  0.717391304347826,
+  0.9333333333333333
+ ],
+ "hr_strict_raw": 0.06426735218508997,
+ "hr_corrected": 0.26249266745902966,
+ "hr_corrected_ci": [
+  0.18324149213077498,
+  0.34660387519299946
+ ]
+}

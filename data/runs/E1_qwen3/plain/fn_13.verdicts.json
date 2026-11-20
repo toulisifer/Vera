@@ -1,0 +1,176 @@
+{
+ "fn": "fn_13",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "C1",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array 'k' from the 'arg' parameter.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "C2",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array 's' with sequential values.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "C3",
+   "type": "CF",
+   "text": "Uses a loop to perform a permutation on the 's' array based on the 'k' array and the index 'i'.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "C4",
+   "type": "CF",
+   "text": "Uses a loop to process each byte of the input data and apply a transformation to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "C5",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "C6",
+   "type": "IO",
+   "text": "Returns len when the stack overflow check passes.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "C7",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the stack overflow check fails.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "C8",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "C9",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer 'in'.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "C10",
+   "type": "CONST",
+   "text": "Uses the constant 0x100 in a loop condition.",
+   "asserted_values": [
+    "0x100"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x100"
+     }
+    ]
+   }
+  },
+  {
+   "id": "C11",
+   "type": "CONST",
+   "text": "Uses the constant 0xff in bitwise operations.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "C12",
+   "type": "CONST",
+   "text": "Uses the constant 0x28 in the stack overflow check.",
+   "asserted_values": [
+    "0x28"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 10,
+  "contradicted": 0
+ },
+ "n_claims": 12,
+ "explanation_clean": true
+}

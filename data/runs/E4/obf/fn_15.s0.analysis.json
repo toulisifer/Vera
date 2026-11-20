@@ -1,0 +1,141 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 22.6,
+   "cached": false,
+   "eval_count": 1095,
+   "cache_key": "fb7ffa46d33f1b95673fb03b593020416f233e5cee6f172826f061be47d9aee8"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom hash function.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "claim1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim2",
+    "type": "CONST",
+    "text": "The function uses the constant 0xb.",
+    "asserted_values": [
+     "0xb"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim3",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim4",
+    "type": "CF",
+    "text": "The function contains a nested loop that iterates over the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim5",
+    "type": "SIDE",
+    "text": "The function writes to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim6",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when out_cap < len.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim7",
+    "type": "IO",
+    "text": "Returns len when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stddef.h>\n#include <stdint.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len == 0) {\n        return 0;\n    }\n\n    uint64_t hash = 0;\n    for (size_t i = 0; i < len; ++i) {\n        size_t match_len = 0;\n        if (i + 1 < len && in[i] == in[i + 1]) {\n            for (match_len = 2; match_len < len - i; ++match_len) {\n                if (in[i + match_len] != in[i]) {\n                    break;\n                }\n                if (match_len == 0xFF) {\n                    match_len = 0xFFFFFFFF;\n                    break;\n                }\n            }\n        }\n        if ((match_len + 1) * match_len % 2 != 0 || arg != 0) {\n            hash = (DAT_00104008 + (match_len << 7 ^ hash) * 0x2d6b) >> 0xb ^ hash;\n        }\n        hash += 2;\n    }\n\n    if (out_cap < hash) {\n        return VERA_ERR;\n    }\n\n    size_t output_pos = 0;\n    if (len < 2) {\n        goto LAB_00101250;\n    }\n\n    for (size_t i = 0; i < len; ++i) {\n        size_t match_len = 1;\n        for (size_t j = i + 1; j < len; ++j) {\n            if (in[j] != in[i]) {\n                break;\n            }\n            if (match_len == 0xFF) {\n                match_len = 0xFFFFFFFF;\n                break;\n            }\n            ++match_len;\n        }\n        out[output_pos] = (uint8_t)match_len;\n        size_t match_len_mod_7 = match_len * match_len % 7;\n        if (match_len_mod_7 == 1 && arg == 0x3C71) {\n            out[output_pos + 1] = in[i];\n            output_pos += 2;\n        } else {\n            output_pos += 0x51E4 ^ match_len * 0x1F9;\n        }\n        if (len <= match_len) {\n            return hash;\n        }\n        i = match_len;\n    }\n\nLAB_00101250:\n    return hash;\n}\n\nuint64_t DAT_00104008 = 0;\nuint8_t DAT_00104010 = 0;\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "claim1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim2",
+   "type": "CONST",
+   "text": "The function uses the constant 0xb.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim3",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim4",
+   "type": "CF",
+   "text": "The function contains a nested loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim5",
+   "type": "SIDE",
+   "text": "The function writes to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim6",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when out_cap < len.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim7",
+   "type": "IO",
+   "text": "Returns len when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

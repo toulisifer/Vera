@@ -1,0 +1,137 @@
+{
+ "fn": "fn_09",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 25.0,
+   "cached": false,
+   "eval_count": 862,
+   "cache_key": "fb8cf4283927f2d1f45568bb9179b46335bf3221ce6a72fc20b4ea387b1c1d07"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_09 appears to be implementing a custom hash function based on the input data.",
+  "proposed_name": "fn_09",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0xcbf29ce484222325.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xcbf29ce484222325 when len is 0.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "0xcbf29ce484222325"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the final hash value to out[0] and out[1] only.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function uses a loop to process each byte of the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function uses conditional logic to modify the hash value based on certain conditions.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "NAME",
+    "text": "The function appears to be implementing a custom hash function.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t hash = 0xcbf29ce484222325;\n  if (len != 0) {\n    for (size_t i = 0; i < len; i++) {\n      hash = in[i] ^ hash;\n      uint32_t uVar1 = (uint32_t)i | 1;\n      if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n        hash = hash * 0x100000001b5;\n      } else {\n        hash = hash + 0x51e3 ^ hash;\n      }\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n        hash = (uint64_t)DAT_00104008 + (hash ^ len << 7) * 0x2d6b;\n        hash = hash >> 0xb ^ hash;\n      }\n    }\n  }\n  if (DAT_00104010 != 0) {\n    for (size_t i = 0; i < DAT_00104010; i++) {\n      hash = hash * 8 ^ hash >> 5 ^ i;\n    }\n  }\n  return hash;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when len is 0.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0xcbf29ce484222325"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the final hash value to out[0] and out[1] only.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte of the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function uses conditional logic to modify the hash value based on certain conditions.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "6",
+   "type": "NAME",
+   "text": "The function appears to be implementing a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

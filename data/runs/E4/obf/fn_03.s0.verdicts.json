@@ -1,0 +1,157 @@
+{
+ "fn": "fn_03",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST1",
+   "type": "CONST",
+   "text": "The code uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST2",
+   "type": "CONST",
+   "text": "The code uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST3",
+   "type": "CONST",
+   "text": "The code uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST4",
+   "type": "CONST",
+   "text": "The code uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST5",
+   "type": "CONST",
+   "text": "The code uses the constant 0xfff1.",
+   "asserted_values": [
+    "0xfff1"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xfff1",
+      "form": "imm",
+      "detail": "0xFFF1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO1",
+   "type": "IO",
+   "text": "Returns 1 when param_2 is 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "CF1",
+   "type": "CF",
+   "text": "A do-while loop that iterates over the input data.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "CF2",
+   "type": "CF",
+   "text": "A do-while loop that performs additional bit manipulation.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 5,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

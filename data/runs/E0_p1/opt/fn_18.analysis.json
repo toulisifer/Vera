@@ -1,0 +1,266 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p1",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 33.4,
+   "cached": false,
+   "eval_count": 1615,
+   "cache_key": "c0ec31cf20607ea96be863da29087a9a290d665c2adc08ba8fabece4ccfc7ddd"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a parser for a specific format, likely a simple string parser that handles nested structures and escape sequences.",
+  "proposed_name": "parse_nested_structure",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x22 ('\"') as a delimiter.",
+    "asserted_values": [
+     "0x22"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x28 ('(') as a delimiter.",
+    "asserted_values": [
+     "0x28"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x29 (')') as a delimiter.",
+    "asserted_values": [
+     "0x29"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x5b ('[') as a delimiter.",
+    "asserted_values": [
+     "0x5b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x5d (']') as a delimiter.",
+    "asserted_values": [
+     "0x5d"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x7b ('{') as a delimiter.",
+    "asserted_values": [
+     "0x7b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x7d ('}') as a delimiter.",
+    "asserted_values": [
+     "0x7d"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "8",
+    "type": "CONST",
+    "text": "The function uses the ASCII character 0x5c ('\\') as an escape character.",
+    "asserted_values": [
+     "0x5c"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "9",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input string.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "10",
+    "type": "CF",
+    "text": "The function contains conditional branches based on the characters in the input string.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "11",
+    "type": "SIDE",
+    "text": "The function reads from the input string but does not modify it.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "12",
+    "type": "SIDE",
+    "text": "The function writes to the local buffer `local_58`.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "13",
+    "type": "IO",
+    "text": "The function returns the length of the input string when it is successfully parsed.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "14",
+    "type": "IO",
+    "text": "The function returns VERA_ERR (0xFFFFFFFFFFFFFFFF) when the input string is not properly formatted.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len == 0) {\n        return 0;\n    }\n\n    char local_58[72];\n    size_t lVar2 = 0;\n    bool bVar6 = false;\n    size_t lVar3 = 0;\n\n    while (lVar2 < len) {\n        uint8_t bVar4 = in[lVar2];\n\n        if (bVar4 == 0x22) {\n            lVar2++;\n            if (lVar2 == len) {\n                return VERA_ERR;\n            }\n            bVar4 = in[lVar2];\n        }\n\n        if (bVar4 == 0x28) {\n            if (lVar3 == 0x40) {\n                return VERA_ERR;\n            }\n            local_58[lVar3++] = ')';\n        } else if (bVar4 == 0x5b) {\n            if (lVar3 != 0x40) {\n                local_58[lVar3++] = bVar4 + 2;\n            }\n        } else if (bVar4 == 0x7b) {\n            if (lVar3 != 0x40) {\n                local_58[lVar3++] = bVar4 + 2;\n            }\n        } else if (bVar4 == 0x29 || bVar4 == 0x5d || bVar4 == 0x7d) {\n            if (lVar3 == 0 || local_58[--lVar3] != bVar4) {\n                return VERA_ERR;\n            }\n        } else if (bVar4 == 0x5c) {\n            lVar2++;\n            if (lVar2 == len) {\n                return VERA_ERR;\n            }\n        } else {\n            if (bVar4 < 0x2a) {\n                if (bVar4 == 0x22) {\n                    lVar2++;\n                    if (lVar2 != len) {\n                        bVar4 = in[lVar2];\n                        break;\n                    }\n                } else if (bVar4 != 0x28) {\n                    return VERA_ERR;\n                }\n            } else if (bVar4 < 0x7c) {\n                if (bVar4 == 0x5b) {\n                    continue;\n                } else if (bVar4 == 0x5d) {\n                    return VERA_ERR;\n                }\n            } else if (bVar4 == 0x7d) {\n                return VERA_ERR;\n            }\n        }\n\n        lVar2++;\n    }\n\n    if (lVar3 == 0) {\n        if (!bVar6) {\n            return 0;\n        }\n    }\n\n    return len;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x22 ('\"') as a delimiter.",
+   "asserted_values": [
+    "0x22"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x28 ('(') as a delimiter.",
+   "asserted_values": [
+    "0x28"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x29 (')') as a delimiter.",
+   "asserted_values": [
+    "0x29"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x5b ('[') as a delimiter.",
+   "asserted_values": [
+    "0x5b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x5d (']') as a delimiter.",
+   "asserted_values": [
+    "0x5d"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x7b ('{') as a delimiter.",
+   "asserted_values": [
+    "0x7b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x7d ('}') as a delimiter.",
+   "asserted_values": [
+    "0x7d"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "The function uses the ASCII character 0x5c ('\\') as an escape character.",
+   "asserted_values": [
+    "0x5c"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input string.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "10",
+   "type": "CF",
+   "text": "The function contains conditional branches based on the characters in the input string.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "11",
+   "type": "SIDE",
+   "text": "The function reads from the input string but does not modify it.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "12",
+   "type": "SIDE",
+   "text": "The function writes to the local buffer `local_58`.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "13",
+   "type": "IO",
+   "text": "The function returns the length of the input string when it is successfully parsed.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "14",
+   "type": "IO",
+   "text": "The function returns VERA_ERR (0xFFFFFFFFFFFFFFFF) when the input string is not properly formatted.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": []
+}

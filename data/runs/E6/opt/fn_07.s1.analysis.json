@@ -1,0 +1,121 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 23.7,
+   "cached": false,
+   "eval_count": 1144,
+   "cache_key": "4ed942275158fac429f2a2048875dae3ccda59c9c0fd5ef53daa8c887995a18c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_07 appears to be encoding a binary input into a Base64-encoded string.",
+  "proposed_name": "fn_07",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+    "asserted_values": [
+     "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns -1 when param_5 < (param_2 + 2) / 3 << 2.",
+    "asserted_values": [
+     "FFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_5 < (param_2 + 2) / 3 << 2",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function has a loop that processes the input in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes the Base64-encoded string to out[0..<lVar7>].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "The function encodes a binary input into a Base64-encoded string.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len * 4 / 3 + 4) {\n    return VERA_ERR;\n  }\n  size_t lVar7 = 0;\n  for (size_t i = 0; i < len; i += 3) {\n    uint32_t uVar4 = (i + 1 < len ? (uint)in[i + 1] << 16 : 0) | (i + 2 < len ? (uint)in[i + 2] << 8 : 0) | in[i];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uVar4 >> 18) & 0x3f];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uVar4 >> 12) & 0x3f];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(uVar4 >> 6) & 0x3f];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[uVar4 & 0x3f];\n  }\n  if (len % 3 == 1) {\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[len - 1] >> 2) & 0x3f];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[len - 1] << 4) & 0x3f];\n    out[lVar7++] = '=';\n    out[lVar7++] = '=';\n  } else if (len % 3 == 2) {\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[len - 2] >> 2) & 0x3f];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[((in[len - 2] << 4) | (in[len - 1] >> 4)) & 0x3f];\n    out[lVar7++] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(in[len - 1] << 2) & 0x3f];\n    out[lVar7++] = '=';\n  }\n  return lVar7;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+   "asserted_values": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns -1 when param_5 < (param_2 + 2) / 3 << 2.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < (param_2 + 2) / 3 << 2",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function has a loop that processes the input in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes the Base64-encoded string to out[0..<lVar7>].",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "The function encodes a binary input into a Base64-encoded string.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

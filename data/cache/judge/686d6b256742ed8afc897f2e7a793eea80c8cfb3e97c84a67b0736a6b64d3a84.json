@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function uses a polynomial of 0xEDB88320, which is the standard CRC-32 polynomial.", "seconds": 1.0}

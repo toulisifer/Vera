@@ -1,0 +1,113 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 13.7,
+   "cached": false,
+   "eval_count": 455,
+   "cache_key": "5ac17974f5174d90a97c4ddc7e1016a340cede855d4d18bf027a6e22922196a1"
+  }
+ ],
+ "output": {
+  "summary": "The function computes a hash value using a simple linear hash function.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0x1505.",
+    "asserted_values": [
+     "0x1505"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The loop increments the hash value by multiplying the current hash by 0x21 and adding the current byte.",
+    "asserted_values": [
+     "0x21"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "The function returns the computed hash value as a 64-bit unsigned integer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function does not modify the input or output buffers.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 0x1505;\n  for (size_t i = 0; i < len; i++) {\n    h = (uint)in[i] + h * 0x21;\n  }\n  return (uint64_t)h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0x1505.",
+   "asserted_values": [
+    "0x1505"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The loop increments the hash value by multiplying the current hash by 0x21 and adding the current byte.",
+   "asserted_values": [
+    "0x21"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "The function returns the computed hash value as a 64-bit unsigned integer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function does not modify the input or output buffers.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

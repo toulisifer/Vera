@@ -1,0 +1,30 @@
+{
+ "fn": "fn_11",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: void fn_11(unsigned char *a, size_t b) ← chữ ký chung",
+ "raw": "void fn_11(unsigned char *a, size_t b)\n{\n  size_t i;\n  for (i = 0; i < 10; i++)\n    a[i] = 0;\n  for (i = 0; i < b; i++)\n    a[i] = 0;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 3.8,
+   "cached": false,
+   "eval_count": 77,
+   "cache_key": "3b8fe8ae7ac7fbc4d16a5ac2a3c3c94c6e140d1945f3930ec3d3a4468f9e03f8"
+  }
+ ],
+ "output": {
+  "recovered_c": "void vera_inner(unsigned char *a, size_t b)\n{\n  size_t i;\n  for (i = 0; i < 10; i++)\n    a[i] = 0;\n  for (i = 0; i < b; i++)\n    a[i] = 0;\n}\nuint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    vera_inner((unsigned char *)(in), (size_t)(len));\n    return 0;\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

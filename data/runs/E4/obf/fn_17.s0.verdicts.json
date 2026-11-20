@@ -1,0 +1,177 @@
+{
+ "fn": "fn_17",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "const1",
+   "type": "CONST",
+   "text": "DAT_00104010 uses the constant 0x0000000000000000.",
+   "asserted_values": [
+    "0x0000000000000000"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const2",
+   "type": "CONST",
+   "text": "DAT_00104008 uses the constant 0x3C71.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "return0",
+   "type": "IO",
+   "text": "Returns 0 when param_2 is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "error1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 is less than uVar7 + 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < uVar7 + 2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "error2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 is less than uVar3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < uVar3",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "error3",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap is less than param_2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.7,
+   "io": {
+    "when": "out_cap < param_2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "write_to_out",
+   "type": "SIDE",
+   "text": "Writes *(undefined1 *)(param_4 + param_2) to out[<first>..<last>].",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3C71)",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "loop1",
+   "type": "CF",
+   "text": "A do-while loop that iterates over param_1.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "loop2",
+   "type": "CF",
+   "text": "A do-while loop that iterates over param_2.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "output_value",
+   "type": "IO",
+   "text": "Returns uVar7 when param_5 is less than or equal to uVar5.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "uVar5 <= param_5",
+    "returns": "uVar5 << 0x20 | uVar4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 8,
+  "contradicted": 0
+ },
+ "n_claims": 10,
+ "explanation_clean": true
+}

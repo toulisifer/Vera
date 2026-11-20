@@ -1,0 +1,47 @@
+{
+  "id": "fn_05",
+  "group": "classic",
+  "algorithm_label": "TEA",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": "TEA",
+  "source": "corpus/src/fn_05.c",
+  "description": "Mã hóa một khối 64-bit bằng TEA với 32 vòng. Khối lấy từ in[0..8], khóa 128-bit từ in[8..24] (các từ 32-bit little-endian). Mỗi vòng cộng delta 0x9E3779B9 vào sum và cập nhật v0, v1 bằng dịch trái 4, dịch phải 5, cộng khóa và XOR. Ghi 8 byte bản mã vào out và trả 8; trả VERA_ERR nếu len < 24 hoặc out_cap < 8. Không dùng arg.",
+  "io_semantics": {
+    "returns": "8, hoặc VERA_ERR khi len < 24 hay out_cap < 8",
+    "writes_out": true,
+    "uses_arg": false
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [
+    {
+      "value": "0x9E3779B9",
+      "width": 32,
+      "role": "delta (tỉ lệ vàng)",
+      "encodings": {
+        "imm": "0x9E3779B9",
+        "le_bytes": "b979379e",
+        "neg": "0x61C88647",
+        "signed": "-1640531527",
+        "sext64": "0xFFFFFFFF9E3779B9",
+        "hi16": "0x9E37",
+        "lo16": "0x79B9"
+      }
+    },
+    {
+      "value": "0xC6EF3720",
+      "width": 32,
+      "role": "sum sau 32 vòng (có thể xuất hiện khi compiler tính trước)",
+      "encodings": {
+        "imm": "0xC6EF3720",
+        "le_bytes": "2037efc6",
+        "neg": "0x3910C8E0",
+        "signed": "-957401312",
+        "sext64": "0xFFFFFFFFC6EF3720",
+        "hi16": "0xC6EF",
+        "lo16": "0x3720"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

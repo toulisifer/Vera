@@ -1,0 +1,146 @@
+{
+ "fn": "fn_12",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "DAT_00104010 uses the constant 0x0.",
+   "asserted_values": [
+    "0x0"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "DAT_00104008 uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "DAT_00104008 uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 < 0x18 or param_5 < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 0x18 or param_5 < 8",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Writes a 64-bit value to param_4.",
+   "asserted_values": [
+    "param_4"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "always",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "always",
+     "returns": null,
+     "writes_out": true
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "không ghi out"
+    }
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a nested loop structure.",
+   "asserted_values": [
+    "nested loop"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [
+    "out"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v05",
+     "tag": "len24",
+     "observed": "hàm có ghi out"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 2,
+  "unsupported": 3,
+  "contradicted": 2
+ },
+ "n_claims": 7,
+ "explanation_clean": false
+}

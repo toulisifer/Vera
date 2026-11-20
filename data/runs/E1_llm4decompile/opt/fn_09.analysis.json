@@ -1,0 +1,30 @@
+{
+ "fn": "fn_09",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: uint64_t fn_09(const char *a, size_t length) ← chữ ký chung",
+ "raw": "uint64_t fn_09(const char *a, size_t length) {\n    uint64_t hash = 14695981039346656037ULL;\n    for (size_t i = 0; i < length; i++) {\n        hash ^= a[i];\n        hash *= 1099511628211ULL;\n    }\n    return hash;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 5.1,
+   "cached": false,
+   "eval_count": 111,
+   "cache_key": "d06123ca720da08ccf5fe5bf69fcb135d69031dce64eec21237661808a849bc2"
+  }
+ ],
+ "output": {
+  "recovered_c": "uint64_t vera_inner(const char *a, size_t length) {\n    uint64_t hash = 14695981039346656037ULL;\n    for (size_t i = 0; i < length; i++) {\n        hash ^= a[i];\n        hash *= 1099511628211ULL;\n    }\n    return hash;\n}\nuint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const char *)(in), (size_t)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

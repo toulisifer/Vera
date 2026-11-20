@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The decompiled code shows that the constant 0x51e3 is used in the calculation of uVar1 when param_2 is not zero.", "seconds": 1.3}

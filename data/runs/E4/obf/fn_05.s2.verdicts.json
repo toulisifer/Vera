@@ -1,0 +1,165 @@
+{
+ "fn": "fn_05",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "IO",
+   "text": "Returns 8 when the length of the input buffer is greater than or equal to 24 and the output buffer capacity is at least 8.",
+   "asserted_values": [
+    "8",
+    "0x18",
+    "0x8"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_2",
+   "type": "IO",
+   "text": "Returns VERA_ERR (0xFFFFFFFFFFFFFFFF) when the length of the input buffer is less than 24 or the output buffer capacity is less than 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF",
+    "0x18",
+    "0x8"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "SIDE",
+   "text": "Writes the hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "claim_4",
+   "type": "CF",
+   "text": "Contains a loop that iterates based on the length of the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x61c88647.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x61c88647",
+      "form": "imm",
+      "detail": "0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "claim_6",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "claim_7",
+   "type": "CONST",
+   "text": "Uses the constant 0xb.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "claim_8",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "claim_9",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 4,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

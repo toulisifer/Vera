@@ -1,0 +1,338 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 53.1,
+   "cached": true,
+   "eval_count": 2182,
+   "cache_key": "9b70e8916e8d6cbb529bb283dba1c327ec76dd8af2ccc7c26f09fa18d55075c9"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input bytes and writes transformed data to the output buffer based on a fixed string and bitwise operations.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "IO",
+    "text": "Returns -1 when the out_cap is less than (in_len + 2) / 3 << 2.",
+    "asserted_values": [
+     "-1"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "param_5 < (param_2 + 2) / 3 << 2",
+     "returns": "-1"
+    }
+   },
+   {
+    "id": "user_2",
+    "type": "IO",
+    "text": "Returns the length of the output data when the input length is not 1 or 2.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "param_2 != 1 && param_2 != 2",
+     "returns": "lVar7"
+    }
+   },
+   {
+    "id": "user_3",
+    "type": "IO",
+    "text": "Returns lVar7 + 4 when the input length is 1.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "param_2 == 1",
+     "returns": "lVar7 + 4"
+    }
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "Returns lVar7 + 4 when the input length is 2.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "param_2 == 2",
+     "returns": "lVar7 + 4"
+    }
+   },
+   {
+    "id": "user_5",
+    "type": "SIDE",
+    "text": "Writes transformed data to the output buffer based on the input bytes and a fixed string.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "The fixed string used for transformation is 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'.",
+    "asserted_values": [
+     "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_7",
+    "type": "CF",
+    "text": "The function uses a loop to process input bytes in chunks of 3.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_8",
+    "type": "CF",
+    "text": "The function uses conditional branches to handle different input lengths (1, 2, or other).",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_9",
+    "type": "SIDE",
+    "text": "Writes 4 bytes to the output buffer for each chunk of 3 input bytes.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_10",
+    "type": "SIDE",
+    "text": "Writes 2 bytes to the output buffer for input length 1.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_11",
+    "type": "SIDE",
+    "text": "Writes 2 bytes to the output buffer for input length 2.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_12",
+    "type": "SIDE",
+    "text": "Writes 2 bytes to the output buffer for input length 1.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_13",
+    "type": "SIDE",
+    "text": "Writes 2 bytes to the output buffer for input length 2.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_14",
+    "type": "SIDE",
+    "text": "Writes 2 bytes to the output buffer for input length 1.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "user_15",
+    "type": "SIDE",
+    "text": "Writes 2 bytes to the output buffer for input length 2.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t lVar7 = 0;\n  uint32_t uVar5 = 0;\n  uint32_t uVar4 = 0;\n  uint32_t uVar6 = 0;\n  uint32_t uVar3 = 0;\n  uint8_t bVar1 = 0;\n  uint8_t cVar2 = 0;\n  const char *fixed_str = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\";\n\n  if (out_cap < (len + 2) / 3 << 2) {\n    return VERA_ERR;\n  }\n\n  if (len < 3) {\n    uVar5 = 0;\n    lVar7 = 0;\n  } else {\n    lVar7 = 0;\n    uVar3 = 3;\n    do {\n      uVar5 = uVar3;\n      bVar1 = in[-3 + uVar5];\n      lVar7 += 4;\n      uVar4 = (uint32_t)bVar1 << 0x10 | (uint32_t)in[-2 + uVar5] << 8;\n      uVar6 = (uint32_t)in[-1 + uVar5];\n      *(uint32_t *)(out + -4 + lVar7) = \n        (uint32_t)fixed_str[uVar6 & 0x3f] << 28 |\n        (uint32_t)fixed_str[(uVar6 | uVar4) >> 6 & 0x3f] << 20 |\n        (uint32_t)fixed_str[uVar4 >> 0xc & 0x3f] << 12 |\n        (uint32_t)fixed_str[bVar1 >> 2];\n      uVar3 = uVar5 + 3;\n    } while (uVar5 + 3 <= len);\n    len -= uVar5;\n  }\n\n  if (len != 1) {\n    if (len != 2) {\n      return lVar7;\n    }\n    uVar4 = (uint32_t)in[1 + uVar5] << 8;\n    cVar2 = fixed_str[(uVar4 & 0xf00) >> 6];\n    *(uint16_t *)(out + lVar7) = \n      (uint16_t)fixed_str[(uVar4 | (uint32_t)in[uVar5] << 0x10) >> 0xc & 0x3f] << 8 |\n      (uint16_t)fixed_str[in[uVar5] >> 2];\n    *(uint8_t *)(out + 2 + lVar7) = cVar2;\n    *(uint8_t *)(out + 3 + lVar7) = 0x3d;\n    return lVar7 + 4;\n  }\n  *(uint16_t *)(out + lVar7) = \n    (uint16_t)fixed_str[(in[uVar5] & 3) << 4] << 8 |\n    (uint16_t)fixed_str[in[uVar5] >> 2];\n  *(uint16_t *)(out + 2 + lVar7) = 0x3d3d;\n  return lVar7 + 4;\n}\n"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns -1 when the out_cap is less than (in_len + 2) / 3 << 2.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_5 < (param_2 + 2) / 3 << 2",
+    "returns": "-1"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns the length of the output data when the input length is not 1 or 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 != 1 && param_2 != 2",
+    "returns": "lVar7"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when the input length is 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 == 1",
+    "returns": "lVar7 + 4"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when the input length is 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "param_2 == 2",
+    "returns": "lVar7 + 4"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Writes transformed data to the output buffer based on the input bytes and a fixed string.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "The fixed string used for transformation is 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'.",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_7",
+   "type": "CF",
+   "text": "The function uses a loop to process input bytes in chunks of 3.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_8",
+   "type": "CF",
+   "text": "The function uses conditional branches to handle different input lengths (1, 2, or other).",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_9",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to the output buffer for each chunk of 3 input bytes.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_10",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "user_11",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "user_12",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "drop_reason": "trùng claim khác"
+  },
+  {
+   "id": "user_13",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "drop_reason": "trùng claim khác"
+  },
+  {
+   "id": "user_14",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 1.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "drop_reason": "trùng claim khác"
+  },
+  {
+   "id": "user_15",
+   "type": "SIDE",
+   "text": "Writes 2 bytes to the output buffer for input length 2.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   },
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

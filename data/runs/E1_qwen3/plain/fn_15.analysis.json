@@ -1,0 +1,151 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.5,
+   "cached": false,
+   "eval_count": 821,
+   "cache_key": "0ccf7e8c6f337e548b3fe1917480177800032b0388fa42e21fbb7aa7f0307f06"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_15 processes an input buffer to find repeated sequences of bytes and writes information about these sequences to an output buffer. It returns the number of bytes written or an error code if the output buffer is too small.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0",
+    "type": "CF",
+    "text": "Iterates over the input buffer to find repeated sequences of bytes.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_1",
+    "type": "CF",
+    "text": "Calculates the required output buffer size based on the number of repeated sequences.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_2",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the output buffer capacity is less than the required size.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_3",
+    "type": "IO",
+    "text": "Returns the number of bytes written to the output buffer when the output buffer is sufficient.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_4",
+    "type": "SIDE",
+    "text": "Writes the length of the repeated sequence to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_5",
+    "type": "SIDE",
+    "text": "Writes the first byte of the repeated sequence to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_6",
+    "type": "CONST",
+    "text": "The maximum length of a repeated sequence is 0xff.",
+    "asserted_values": [
+     "0xff"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_7",
+    "type": "NAME",
+    "text": "Identifies repeated sequences of bytes in the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t need = 0;\n  size_t o = 0;\n  size_t i;\n  size_t r;\n\n  for (i = 0; i < len; i = i + r) {\n    r = 1;\n    while (r + i < len && in[i + r] == in[i] && r < 0xff) {\n      r++;\n    }\n    need += 2;\n  }\n\n  if (out_cap < need) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  for (i = 0; i < len; i = i + r) {\n    r = 1;\n    while (r + i < len && in[i + r] == in[i] && r < 0xff) {\n      r++;\n    }\n    out[o] = (uint8_t)r;\n    o += 1;\n    out[o] = in[i];\n    o += 1;\n  }\n\n  return o;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "Iterates over the input buffer to find repeated sequences of bytes.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "Calculates the required output buffer size based on the number of repeated sequences.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the output buffer capacity is less than the required size.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_3",
+   "type": "IO",
+   "text": "Returns the number of bytes written to the output buffer when the output buffer is sufficient.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_4",
+   "type": "SIDE",
+   "text": "Writes the length of the repeated sequence to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_5",
+   "type": "SIDE",
+   "text": "Writes the first byte of the repeated sequence to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The maximum length of a repeated sequence is 0xff.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_7",
+   "type": "NAME",
+   "text": "Identifies repeated sequences of bytes in the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

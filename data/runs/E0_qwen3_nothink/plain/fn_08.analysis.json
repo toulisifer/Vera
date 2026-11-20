@@ -1,0 +1,145 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.8,
+   "cached": true,
+   "eval_count": 668,
+   "cache_key": "a57e6819b8df1e6d8b7a981ebdfea714078ddc6227c7b9504231c84bbb659fbc"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input byte array to compute a 64-bit value based on a series of bitwise operations and returns the inverted result.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "ALG",
+    "text": "Computes a 64-bit value using a series of bitwise operations on the input bytes.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Iterates over each byte in the input array and applies a series of bitwise operations to a 32-bit variable.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "SIDE",
+    "text": "Does not modify the input array.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "SIDE",
+    "text": "Does not modify the output array.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "Returns the inverted 32-bit value as a 64-bit unsigned integer.",
+    "asserted_values": [
+     "0xFFFFFFFF"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "CONST",
+    "text": "Uses the constant 0xf7179bf5 in the bitwise operations.",
+    "asserted_values": [
+     "0xf7179bf5"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "Uses the constant 0xffffffff as the initial value for the 32-bit variable.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 0xffffffff;\n  for (size_t i = 0; i < len; i++) {\n    h ^= in[i];\n    for (uint8_t b = 0; b < 8; b++) {\n      h = -(h & 1) & 0xf7179bf5 ^ (h >> 1);\n    }\n  }\n  return (uint64_t)~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "Computes a 64-bit value using a series of bitwise operations on the input bytes.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Iterates over each byte in the input array and applies a series of bitwise operations to a 32-bit variable.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "Does not modify the input array.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "Does not modify the output array.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns the inverted 32-bit value as a 64-bit unsigned integer.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0xf7179bf5 in the bitwise operations.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff as the initial value for the 32-bit variable.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

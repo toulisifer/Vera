@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function iterates over the input data and applies a transformation using a key and a state array, storing the result in the output buffer 'out'.", "seconds": 1.2}

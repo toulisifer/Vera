@@ -1,0 +1,30 @@
+{
+ "fn": "fn_05",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "size_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint32_t v0, v1, sum, i;\n    uint32_t k0, k1, k2, k3;\n\n    if (len < 24 || out_cap < 8) {\n        return -1;\n    }\n\n    v0 = (in[0] << 24) | (in[1] << 16) | (in[2] << 8) | in[3];\n    v1 = (in[4] << 24) | (in[5] << 16) | (in[6] << 8) | in[7];\n\n    sum = 0;\n    for (i = 0; i < 32; i++) {\n        sum += 0x9e3779b9;\n        v0 += (((v1 << 4) + in[12]) ^ (v1 + sum) ^ ((v1 >> 5) + in[8]));\n        v1 += (((v0 << 4) + in[16]) ^ (v0 + sum) ^ ((v0 >> 5) + in[20]));\n    }\n\n    k0 = v0 & 0xffffffff;\n    k1 = (v0 >> 32) & 0xffffffff;\n    k2 = (v1 & 0xffffffff) << 32;\n    k3 = (v1 >> 32) & 0xffffffff;\n\n    out[0] = k0 & 0xff;\n    out[1] = (k0 >> 8) & 0xff;\n    out[2] = (k0 >> 16) & 0xff;\n    out[3] = (k0 >> 24) & 0xff;\n    out[4] = k1 & 0xff;\n    out[5] = (k1 >> 8) & 0xff;\n    out[6] = (k1 >> 16) & 0xff;\n    out[7] = (k1 >> 24) & 0xff;\n\n    return 8;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 27.0,
+   "cached": false,
+   "eval_count": 542,
+   "cache_key": "44652f667eb1785de659c43c3d057e3e7ce3a9c56191c2c4cf9a6fdb9addbf55"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint32_t v0, v1, sum, i;\n    uint32_t k0, k1, k2, k3;\n\n    if (len < 24 || out_cap < 8) {\n        return -1;\n    }\n\n    v0 = (in[0] << 24) | (in[1] << 16) | (in[2] << 8) | in[3];\n    v1 = (in[4] << 24) | (in[5] << 16) | (in[6] << 8) | in[7];\n\n    sum = 0;\n    for (i = 0; i < 32; i++) {\n        sum += 0x9e3779b9;\n        v0 += (((v1 << 4) + in[12]) ^ (v1 + sum) ^ ((v1 >> 5) + in[8]));\n        v1 += (((v0 << 4) + in[16]) ^ (v0 + sum) ^ ((v0 >> 5) + in[20]));\n    }\n\n    k0 = v0 & 0xffffffff;\n    k1 = (v0 >> 32) & 0xffffffff;\n    k2 = (v1 & 0xffffffff) << 32;\n    k3 = (v1 >> 32) & 0xffffffff;\n\n    out[0] = k0 & 0xff;\n    out[1] = (k0 >> 8) & 0xff;\n    out[2] = (k0 >> 16) & 0xff;\n    out[3] = (k0 >> 24) & 0xff;\n    out[4] = k1 & 0xff;\n    out[5] = (k1 >> 8) & 0xff;\n    out[6] = (k1 >> 16) & 0xff;\n    out[7] = (k1 >> 24) & 0xff;\n\n    return 8;\n}\nuint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len), (uint64_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

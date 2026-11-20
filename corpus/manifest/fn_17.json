@@ -1,0 +1,18 @@
+{
+  "id": "fn_17",
+  "group": "custom",
+  "algorithm_label": "tự thiết kế: parser TLV",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": null,
+  "source": "corpus/src/fn_17.c",
+  "description": "Duyệt chuỗi bản ghi [type:1][n:1][value:n] cho tới hết input hoặc tới type 0x00. Nếu một bản ghi bị cắt cụt, trả VERA_ERR. Nếu out_cap nhỏ hơn số bản ghi, trả VERA_ERR và không ghi. Ngược lại ghi type của từng bản ghi vào out và trả (số bản ghi << 32) | tổng độ dài value. Không dùng arg.",
+  "io_semantics": {
+    "returns": "(count << 32) | total_value_bytes, hoặc VERA_ERR",
+    "writes_out": true,
+    "uses_arg": false
+  },
+  "input_profile": "tlv",
+  "characteristic_constants": [],
+  "characteristic_strings": []
+}

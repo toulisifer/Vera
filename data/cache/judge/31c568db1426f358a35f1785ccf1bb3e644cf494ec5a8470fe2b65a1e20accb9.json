@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function does not have any code that writes to the 'out' parameter.", "seconds": 0.7}

@@ -1,0 +1,233 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.9,
+   "cached": false,
+   "eval_count": 968,
+   "cache_key": "898f1049e9394f9738d812e197034124e1ebae5cc94f1a0a0ab2e7572397a0d9"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom encoding function that processes input data and outputs encoded data. It uses a specific algorithm and constant values.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x5eb.",
+    "asserted_values": [
+     "0x5eb"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3d3d.",
+    "asserted_values": [
+     "0x3d3d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3d.",
+    "asserted_values": [
+     "0x3d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e5.",
+    "asserted_values": [
+     "0x51e5"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 3.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 3",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "8",
+    "type": "IO",
+    "text": "Returns the length of the output when the input length is greater than or equal to 3.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len >= 3",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "9",
+    "type": "SIDE",
+    "text": "Writes to out[0..len-1].",
+    "asserted_values": [
+     "out[0..len-1]"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "10",
+    "type": "CF",
+    "text": "Uses a loop to process the input data.",
+    "asserted_values": [
+     "loop"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len < 3) {\n    return VERA_ERR;\n  }\n\n  size_t i = 0;\n  while (i < len) {\n    uint32_t value = (uint32_t)in[i] << 24 | (uint32_t)in[i + 1] << 16 | (uint32_t)in[i + 2] << 8;\n    if ((len + 1) * len & 1) != 0 || arg != 0) {\n      value = ((len << 7) ^ value) * 0x2d6b + 0x3c71;\n      value = value >> 11 ^ value;\n    }\n\n    out[i * 2] = (uint8_t)(value >> 16);\n    out[i * 2 + 1] = (uint8_t)(value >> 8);\n\n    i += 3;\n  }\n\n  return len * 2;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x5eb.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d3d.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3d.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e5.",
+   "asserted_values": [
+    "0x51e5"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 3.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "8",
+   "type": "IO",
+   "text": "Returns the length of the output when the input length is greater than or equal to 3.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 3",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "10",
+   "type": "CF",
+   "text": "Uses a loop to process the input data.",
+   "asserted_values": [
+    "loop"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "9",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1].",
+   "asserted_values": [
+    "out[0..len-1]"
+   ],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

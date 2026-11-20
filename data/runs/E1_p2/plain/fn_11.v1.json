@@ -1,0 +1,10 @@
+{
+ "fn": "fn_11",
+ "config": "plain",
+ "compiled": true,
+ "fepr": 1.0,
+ "n_vectors": 50,
+ "n_match": 50,
+ "failures": [],
+ "sandbox_image": "python:3.12-slim"
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_02",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: unsigned long long fn_02(unsigned char *buf, unsigned long long len) ← chữ ký chung",
+ "raw": "unsigned long long fn_02(unsigned char *buf, unsigned long long len)\n{\n unsigned long long i, j, k, h;\n\n h = 14695981039346656037ULL;\n\n for (i = 0, j = 0; i < len; i++) {\n  h ^= buf[i];\n  h = (h << 1) | (h >> (8 * sizeof(unsigned long long) - 1));\n  if (((i & 1) == 0) && (h % 17 == 0))\n   h = (h ^ 2870177450315711939ULL) * 2821;\n  else\n   h = (h + 2654435761ULL) ^ (j++ * 2246825069ULL);\n  if ((i & (i + 1)) == 0)\n   h = (h ^ (len << 7)) * 1597334677ULL;\n  h = (h >> 11) ^ h;\n }\n\n for (k = 0; k < len; k++)\n  h = (h << 3) ^ h;\n\n return h;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.0,
+   "cached": false,
+   "eval_count": 303,
+   "cache_key": "2a62c602c128cc93f03a3c344569855e6abce1d3a7ecad5f7dd76bb6154e15eb"
+  }
+ ],
+ "output": {
+  "recovered_c": "unsigned long long vera_inner(unsigned char *buf, unsigned long long len)\n{\n unsigned long long i, j, k, h;\n\n h = 14695981039346656037ULL;\n\n for (i = 0, j = 0; i < len; i++) {\n  h ^= buf[i];\n  h = (h << 1) | (h >> (8 * sizeof(unsigned long long) - 1));\n  if (((i & 1) == 0) && (h % 17 == 0))\n   h = (h ^ 2870177450315711939ULL) * 2821;\n  else\n   h = (h + 2654435761ULL) ^ (j++ * 2246825069ULL);\n  if ((i & (i + 1)) == 0)\n   h = (h ^ (len << 7)) * 1597334677ULL;\n  h = (h >> 11) ^ h;\n }\n\n for (k = 0; k < len; k++)\n  h = (h << 3) ^ h;\n\n return h;\n}\nuint64_t fn_02(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((unsigned char *)(in), (unsigned long long)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

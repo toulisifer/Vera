@@ -1,0 +1,141 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 16.6,
+   "cached": false,
+   "eval_count": 700,
+   "cache_key": "b624ee3fa85a270eb3ff4d0e1d34f734aa72abf1dc30446e64de746a51132ecb"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_10 processes an input buffer and returns a 64-bit value based on a custom algorithm involving two 16-bit variables.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0",
+    "type": "CF",
+    "text": "A loop is executed when param_2 is not zero.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_1",
+    "type": "CF",
+    "text": "The loop continues until param_1 reaches pbVar4.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_2",
+    "type": "IO",
+    "text": "Returns 1 when param_2 is zero.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_3",
+    "type": "IO",
+    "text": "Returns uVar2 << 0x10 | uVar3 when param_2 is not zero.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_4",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_5",
+    "type": "CONST",
+    "text": "The code uses the constant 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_6",
+    "type": "CONST",
+    "text": "The code uses the constant 0x10.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 1;\n  }\n  uint16_t uVar3 = 1;\n  uint16_t uVar2 = 0;\n  const uint8_t *pbVar4 = in + len;\n  const uint8_t *param_1 = in;\n  while (pbVar4 != param_1) {\n    uint8_t bVar1 = *param_1;\n    param_1 = param_1 + 1;\n    uVar3 = (uVar3 + bVar1) % 0xffef;\n    uVar2 = (uVar2 + uVar3) % 0xffef;\n  }\n  return (uint64_t)(uVar2 << 0x10) | (uint64_t)uVar3;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "A loop is executed when param_2 is not zero.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "The loop continues until param_1 reaches pbVar4.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns 1 when param_2 is zero.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_3",
+   "type": "IO",
+   "text": "Returns uVar2 << 0x10 | uVar3 when param_2 is not zero.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_5",
+   "type": "CONST",
+   "text": "The code uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The code uses the constant 0x10.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,178 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 21.0,
+   "cached": false,
+   "eval_count": 894,
+   "cache_key": "d4d7b401fda6d1bf41de9a5920b3696d6deb437ed44bc04ae642a88c49c674e1"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom permutation function that rearranges the input data based on a seed value.",
+  "proposed_name": "fn_20",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffffffffffff.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 > param_5.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes to out[0..7] if param_2 >= 8.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not write to out if param_2 < 8.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": false
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Performs a loop to shuffle the input data based on the seed value.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Performs a loop to copy data from the input to the output if param_2 >= 8.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "Performs a loop to copy data from the input to the output if param_2 < 8.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "8",
+    "type": "NAME",
+    "text": "The function appears to be a custom permutation function.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len <= out_cap) {\n    uint8_t local_18[8] = {0, 1, 2, 3, 4, 5, 6, 7};\n    uint64_t uVar6 = arg;\n    for (size_t i = 0; i < 8; i++) {\n      size_t j = uVar6 % (8 - i);\n      uint8_t temp = local_18[j];\n      local_18[j] = local_18[7 - i];\n      local_18[7 - i] = temp;\n      uVar6 /= (8 - i);\n    }\n    if (len >= 8) {\n      for (size_t i = 0; i < len; i += 8) {\n        for (size_t j = 0; j < 8; j++) {\n          out[i + j] = in[i + local_18[j]];\n        }\n      }\n    }\n    if (len < 8) {\n      for (size_t i = 0; i < len; i++) {\n        out[i] = in[i];\n      }\n    }\n  }\n  return len;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 > param_5.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes to out[0..7] if param_2 >= 8.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to out if param_2 < 8.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": false
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Performs a loop to shuffle the input data based on the seed value.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Performs a loop to copy data from the input to the output if param_2 >= 8.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Performs a loop to copy data from the input to the output if param_2 < 8.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "trùng claim khác"
+  },
+  {
+   "id": "8",
+   "type": "NAME",
+   "text": "The function appears to be a custom permutation function.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

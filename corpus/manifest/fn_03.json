@@ -1,0 +1,32 @@
+{
+  "id": "fn_03",
+  "group": "classic",
+  "algorithm_label": "Adler-32",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": "Adler-32",
+  "source": "corpus/src/fn_03.c",
+  "description": "Tính checksum Adler-32 trên in. Hai tổng a (khởi tạo 1) và b (khởi tạo 0) được cập nhật theo từng byte: a = (a + byte) mod 65521, b = (b + a) mod 65521. Trả về (b << 16) | a. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "text",
+  "characteristic_constants": [
+    {
+      "value": "0xFFF1",
+      "width": 32,
+      "role": "modulus (số nguyên tố lớn nhất < 2^16)",
+      "encodings": {
+        "imm": "0x0000FFF1",
+        "le_bytes": "f1ff0000",
+        "neg": "0xFFFF000F",
+        "hi16": "0x0000",
+        "lo16": "0xFFF1"
+      },
+      "compiler_note": "-O2 thay phép chia/modulo cho hằng bằng phép nhân với số nghịch đảo (magic number); giá trị gốc có thể không xuất hiện dưới dạng immediate."
+    }
+  ],
+  "characteristic_strings": []
+}

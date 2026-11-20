@@ -1,0 +1,223 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 4,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 36.1,
+   "cached": false,
+   "eval_count": 1491,
+   "cache_key": "97f87fac0cc5e006c4c05c64c1ff1d2cc1453799bd3b58a29c957319b079e9bb"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a hash function, likely based on a specific algorithm.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "a1",
+    "type": "CONST",
+    "text": "The operation uses the constant 0x61c88647.",
+    "asserted_values": [
+     "0x61c88647"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "a2",
+    "type": "CONST",
+    "text": "The operation uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "a3",
+    "type": "CONST",
+    "text": "The operation uses the constant 0xb.",
+    "asserted_values": [
+     "0xb"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "a4",
+    "type": "CONST",
+    "text": "The operation uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "a5",
+    "type": "CONST",
+    "text": "The operation uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "a6",
+    "type": "CONST",
+    "text": "The operation uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "a7",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 < 0x18 or param_5 < 8.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len < 0x18 or out_cap < 8",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "a8",
+    "type": "IO",
+    "text": "Returns 8 when param_2 >= 0x18 and param_5 >= 8.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len >= 0x18 and out_cap >= 8",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "a9",
+    "type": "SIDE",
+    "text": "Writes the hash value to *param_4.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "a10",
+    "type": "CF",
+    "text": "Uses a loop with a specific condition and variable updates.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len < 0x18) || (out_cap < 8)) {\n    return 0xffffffffffffffff;\n  }\n  uint uVar1;\n  uint uVar2;\n  uint uVar3;\n  ulong uVar4;\n  int iVar5;\n  uint uVar6;\n\n  uVar6 = (int)len * 0x1f9;\n  uVar3 = *(uint *)in;\n  uVar2 = ((uint *)in)[1];\n  iVar5 = 0;\n  do {\n    while( true ) {\n      uVar4 = len + 1;\n      iVar5 = iVar5 + -0x61c88647;\n      if ((((uint)len * (int)uVar4 & 1) != 0) || (DAT_00104010 != 0)) {\n        uVar3 = ((uint)(len << 7) ^ uVar3) * 0x2d6b + DAT_00104008;\n        uVar3 = uVar3 >> 0xb ^ uVar3;\n      }\n      uVar1 = (uint)len | 1;\n      uVar3 = uVar3 + (uVar2 * 0x10 + ((uint *)in)[2] ^ (uVar2 >> 5) + ((uint *)in)[3] ^ iVar5 + uVar2);\n      len = uVar4;\n      if (((uVar1 * uVar1 & 7) != 1) || (DAT_00104008 != 0x3c71)) break;\n      uVar6 = uVar6 + 0x1f9;\n      uVar2 = uVar2 + (uVar3 * 0x10 + ((uint *)in)[4] ^ (uVar3 >> 5) + ((uint *)in)[5] ^ iVar5 + uVar3);\n      if (iVar5 == -0x3910c8e0) goto LAB_0010120c;\n    }\n    uVar2 = uVar2 + 0x51e3 ^ uVar6;\n    uVar6 = uVar6 + 0x1f9;\n  } while (iVar5 != -0x3910c8e0);\nLAB_0010120c:\n  *out = (((((((ulong)(uVar2 >> 0x18) << 8 | (ulong)(uVar2 >> 0x10 & 0xff)) << 8 |\n                 (ulong)(uVar2 >> 8 & 0xff)) << 8 | (ulong)(uVar2 & 0xff)) << 8 |\n               (ulong)(uVar3 >> 0x18)) << 8 | (ulong)(uVar3 >> 0x10 & 0xff)) << 8 |\n             (ulong)(uVar3 >> 8 & 0xff)) << 8 | (ulong)(uVar3 & 0xff);\n  return 8;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "a1",
+   "type": "CONST",
+   "text": "The operation uses the constant 0x61c88647.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "a2",
+   "type": "CONST",
+   "text": "The operation uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "a3",
+   "type": "CONST",
+   "text": "The operation uses the constant 0xb.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "a4",
+   "type": "CONST",
+   "text": "The operation uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "a5",
+   "type": "CONST",
+   "text": "The operation uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "a6",
+   "type": "CONST",
+   "text": "The operation uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "a7",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 < 0x18 or param_5 < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len < 0x18 or out_cap < 8",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "a8",
+   "type": "IO",
+   "text": "Returns 8 when param_2 >= 0x18 and param_5 >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len >= 0x18 and out_cap >= 8",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "a9",
+   "type": "SIDE",
+   "text": "Writes the hash value to *param_4.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "a10",
+   "type": "CF",
+   "text": "Uses a loop with a specific condition and variable updates.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

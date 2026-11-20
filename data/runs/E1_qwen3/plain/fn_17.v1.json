@@ -1,0 +1,61 @@
+{
+ "fn": "fn_17",
+ "config": "plain",
+ "compiled": true,
+ "fepr": 0.48,
+ "n_vectors": 50,
+ "n_match": 24,
+ "failures": [
+  {
+   "vector": "v10",
+   "tag": "cap_half",
+   "status": "OK",
+   "expected_ret": "0x000000010000000f",
+   "got_ret": "0x000000010000000f",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v12",
+   "tag": "arg0",
+   "status": "OK",
+   "expected_ret": "0x0000000300000026",
+   "got_ret": "0x0000000300000026",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v13",
+   "tag": "argmax",
+   "status": "OK",
+   "expected_ret": "0x0000000500000020",
+   "got_ret": "0x0000000500000020",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v14",
+   "tag": "tlv_empty_value",
+   "status": "OK",
+   "expected_ret": "0x0000000100000000",
+   "got_ret": "0x0000000100000000",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  },
+  {
+   "vector": "v18",
+   "tag": "tlv_max_value",
+   "status": "OK",
+   "expected_ret": "0x00000001000000ff",
+   "got_ret": "0x00000001000000ff",
+   "out_differs": true,
+   "overflow": false,
+   "detail": ""
+  }
+ ],
+ "sandbox_image": "python:3.12-slim"
+}

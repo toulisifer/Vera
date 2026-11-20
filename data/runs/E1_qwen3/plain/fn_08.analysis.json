@@ -1,0 +1,127 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 13.8,
+   "cached": false,
+   "eval_count": 582,
+   "cache_key": "b91e936a60dfc7baf7a6f0bfb4686f8bcb8fd2ae70b89829fe0dd9f281462cfa"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input buffer using a bitwise algorithm and returns a 64-bit value. It does not modify the input buffer and writes nothing to the output buffer.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "claim_0",
+    "type": "ALG",
+    "text": "Implements a bitwise transformation algorithm.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_1",
+    "type": "CF",
+    "text": "Uses a nested loop structure: an outer loop over the input buffer and an inner loop over 8 bits.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_2",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_3",
+    "type": "IO",
+    "text": "Returns a 64-bit value computed from the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_4",
+    "type": "CONST",
+    "text": "Uses the constant 0xffffffff in the initial value of h.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "claim_5",
+    "type": "CONST",
+    "text": "Uses the constant 0xf7179bf5 in the bitwise transformation.",
+    "asserted_values": [
+     "0xf7179bf5"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 0xffffffff;\n  for (size_t i = 0; i < len; i++) {\n    h ^= in[i];\n    for (uint32_t b = 0; b < 8; b++) {\n      h = -(h & 1) & 0xf7179bf5 ^ (h >> 1);\n    }\n  }\n  return (uint64_t)~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "claim_0",
+   "type": "ALG",
+   "text": "Implements a bitwise transformation algorithm.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_1",
+   "type": "CF",
+   "text": "Uses a nested loop structure: an outer loop over the input buffer and an inner loop over 8 bits.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_3",
+   "type": "IO",
+   "text": "Returns a 64-bit value computed from the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_4",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff in the initial value of h.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "claim_5",
+   "type": "CONST",
+   "text": "Uses the constant 0xf7179bf5 in the bitwise transformation.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

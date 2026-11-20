@@ -1,0 +1,347 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 49.1,
+   "cached": true,
+   "eval_count": 2033,
+   "cache_key": "a446a0164aa3a6d9778e6bc041b28bf56f8643499e96eb2971ff144bc3c1599f"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_18 processes a byte stream to extract a 40-byte string of ASCII characters, possibly with some validation, and returns the length of the processed data.",
+  "proposed_name": "Extracts 40-byte ASCII string from input",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0",
+    "type": "IO",
+    "text": "Returns the length of the processed input data.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "always",
+     "returns": "param_2"
+    }
+   },
+   {
+    "id": "_1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len == 0",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "_2",
+    "type": "IO",
+    "text": "Returns the length of the processed input data when the input length is non-zero.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "when": "len != 0",
+     "returns": "param_2"
+    }
+   },
+   {
+    "id": "_3",
+    "type": "SIDE",
+    "text": "Writes 40 bytes of ASCII characters to the local buffer local_58.",
+    "asserted_values": [],
+    "confidence": 0.95,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "_4",
+    "type": "CF",
+    "text": "Processes the input data in a loop, checking for specific byte values and updating the state accordingly.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_5",
+    "type": "CONST",
+    "text": "The function processes up to 40 bytes of data.",
+    "asserted_values": [
+     "0x40"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_6",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x29 (')') in the input.",
+    "asserted_values": [
+     "0x29"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_7",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x22 (\") in the input.",
+    "asserted_values": [
+     "0x22"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_8",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x28 (()) in the input.",
+    "asserted_values": [
+     "0x28"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_9",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x5b ([) in the input.",
+    "asserted_values": [
+     "0x5b"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_10",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x5d (]) in the input.",
+    "asserted_values": [
+     "0x5d"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_11",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x5c (\\) in the input.",
+    "asserted_values": [
+     "0x5c"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_12",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x7b ({) in the input.",
+    "asserted_values": [
+     "0x7b"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_13",
+    "type": "CONST",
+    "text": "The function checks for the byte value 0x7d (}) in the input.",
+    "asserted_values": [
+     "0x7d"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_14",
+    "type": "SIDE",
+    "text": "The function does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_15",
+    "type": "SIDE",
+    "text": "The function does not modify the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_16",
+    "type": "CF",
+    "text": "The function has a stack overflow check and will terminate the program if the stack is corrupted.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t local_10 = 0;\n  uint64_t lVar2 = 0;\n  uint64_t lVar3 = 0;\n  uint8_t bVar4 = 0;\n  uint8_t cVar5 = 0;\n  uint64_t local_58[40];\n  uint64_t local_10 = 0;\n\n  local_10 = 0;\n  lVar2 = 0;\n  if (len == 0) {\n    return 0;\n  }\n  else {\n    bool bVar6 = false;\n    lVar3 = 0;\n    do {\n      while (bVar4 = in[lVar2], !bVar6) {\n        if (bVar4 == 0x29) {\n          goto LAB_001011d9;\n        }\n        if (bVar4 < 0x2a) {\n          if (bVar4 == 0x22) {\n            lVar2 = lVar2 + 1;\n            if (lVar2 != len) {\n              bVar4 = in[lVar2];\n              break;\n            }\n            goto LAB_00101250;\n          }\n          if (bVar4 != 0x28) {\n            goto LAB_001011e7;\n          }\n          if (lVar3 == 0x40) {\n            goto LAB_00101259;\n          }\n          cVar5 = 0x29;\n          local_58[lVar3] = cVar5;\n          lVar3 = lVar3 + 1;\n        }\n        else {\n          if (bVar4 == 0x7b) {\n            goto LAB_00101238;\n          }\n          if (bVar4 < 0x7c) {\n            if (bVar4 == 0x5b) {\n              goto LAB_00101238;\n            }\n            if (bVar4 == 0x5d) {\n              goto LAB_001011d9;\n            }\n          }\n          else if (bVar4 == 0x7d) {\n            goto LAB_001011d9;\n          }\n        }\n      }\n      if (bVar4 == 0x5c) {\n        lVar2 = lVar2 + 1;\n        if (len != lVar2) {\n          bVar6 = true;\n          goto LAB_001011e7;\n        }\n        goto LAB_00101250;\n      }\n      bVar6 = bVar4 != 0x22;\n      lVar2 = lVar2 + 1;\n    } while (len != lVar2);\n    if (lVar3 == 0) {\n      goto LAB_001011a0;\n    }\n    if (!bVar6) {\n      goto LAB_001011a9;\n    }\n    goto LAB_00101250;\n    param_2 = len + 1;\n  }\n  return param_2;\n}\n\n"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "_0",
+   "type": "IO",
+   "text": "Returns the length of the processed input data.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "always",
+    "returns": "param_2"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns the length of the processed input data when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "len != 0",
+    "returns": "param_2"
+   }
+  },
+  {
+   "id": "_3",
+   "type": "SIDE",
+   "text": "Writes 40 bytes of ASCII characters to the local buffer local_58.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "_4",
+   "type": "CF",
+   "text": "Processes the input data in a loop, checking for specific byte values and updating the state accordingly.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_5",
+   "type": "CONST",
+   "text": "The function processes up to 40 bytes of data.",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x29 (')') in the input.",
+   "asserted_values": [
+    "0x29"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_7",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x22 (\") in the input.",
+   "asserted_values": [
+    "0x22"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_8",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x28 (()) in the input.",
+   "asserted_values": [
+    "0x28"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_9",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x5b ([) in the input.",
+   "asserted_values": [
+    "0x5b"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_10",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x5d (]) in the input.",
+   "asserted_values": [
+    "0x5d"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_11",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x5c (\\) in the input.",
+   "asserted_values": [
+    "0x5c"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_12",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x7b ({) in the input.",
+   "asserted_values": [
+    "0x7b"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_13",
+   "type": "CONST",
+   "text": "The function checks for the byte value 0x7d (}) in the input.",
+   "asserted_values": [
+    "0x7d"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_14",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_15",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_16",
+   "type": "CF",
+   "text": "The function has a stack overflow check and will terminate the program if the stack is corrupted.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

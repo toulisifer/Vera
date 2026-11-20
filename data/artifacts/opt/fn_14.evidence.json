@@ -1,0 +1,331 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_14",
+ "n_instructions": 113,
+ "immediates": [
+  {
+   "addr": 4360,
+   "insn": "mov r10, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4367,
+   "insn": "movabs rax, 0xaaaaaaaaaaaaaaab",
+   "value": 12297829382473034411,
+   "size": 8
+  },
+  {
+   "addr": 4380,
+   "insn": "shr rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4383,
+   "insn": "shl rdx, 2",
+   "value": 2,
+   "size": 1
+  },
+  {
+   "addr": 4390,
+   "insn": "jb 0x1218",
+   "value": 4632,
+   "size": 8
+  },
+  {
+   "addr": 4398,
+   "insn": "cmp rsi, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4402,
+   "insn": "jbe 0x1280",
+   "value": 4736,
+   "size": 8
+  },
+  {
+   "addr": 4408,
+   "insn": "mov r8d, 3",
+   "value": 3,
+   "size": 4
+  },
+  {
+   "addr": 4444,
+   "insn": "add r10, 4",
+   "value": 4,
+   "size": 8
+  },
+  {
+   "addr": 4454,
+   "insn": "shl edx, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4457,
+   "insn": "shl eax, 0x10",
+   "value": 16,
+   "size": 1
+  },
+  {
+   "addr": 4467,
+   "insn": "shr eax, 0xc",
+   "value": 12,
+   "size": 1
+  },
+  {
+   "addr": 4472,
+   "insn": "and ebx, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4477,
+   "insn": "shr r11d, 0x12",
+   "value": 18,
+   "size": 1
+  },
+  {
+   "addr": 4481,
+   "insn": "shr ebp, 6",
+   "value": 6,
+   "size": 1
+  },
+  {
+   "addr": 4489,
+   "insn": "and edx, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4492,
+   "insn": "and ebp, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4505,
+   "insn": "shl eax, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4510,
+   "insn": "shl eax, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4520,
+   "insn": "shl eax, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4540,
+   "insn": "jae 0x1150",
+   "value": 4432,
+   "size": 8
+  },
+  {
+   "addr": 4545,
+   "insn": "cmp rsi, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4549,
+   "insn": "je 0x11d8",
+   "value": 4568,
+   "size": 8
+  },
+  {
+   "addr": 4551,
+   "insn": "cmp rsi, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4555,
+   "insn": "je 0x1220",
+   "value": 4640,
+   "size": 8
+  },
+  {
+   "addr": 4583,
+   "insn": "shl eax, 4",
+   "value": 4,
+   "size": 1
+  },
+  {
+   "addr": 4586,
+   "insn": "and eax, 0x30",
+   "value": 48,
+   "size": 4
+  },
+  {
+   "addr": 4589,
+   "insn": "shr esi, 2",
+   "value": 2,
+   "size": 1
+  },
+  {
+   "addr": 4608,
+   "insn": "add r10, 4",
+   "value": 4,
+   "size": 8
+  },
+  {
+   "addr": 4612,
+   "insn": "mov edx, 0x3d3d",
+   "value": 15677,
+   "size": 4
+  },
+  {
+   "addr": 4651,
+   "insn": "shl edx, 8",
+   "value": 8,
+   "size": 1
+  },
+  {
+   "addr": 4654,
+   "insn": "shl esi, 0x10",
+   "value": 16,
+   "size": 1
+  },
+  {
+   "addr": 4668,
+   "insn": "shr esi, 0x12",
+   "value": 18,
+   "size": 1
+  },
+  {
+   "addr": 4673,
+   "insn": "shr eax, 0xc",
+   "value": 12,
+   "size": 1
+  },
+  {
+   "addr": 4683,
+   "insn": "shr eax, 6",
+   "value": 6,
+   "size": 1
+  },
+  {
+   "addr": 4686,
+   "insn": "and esi, 0x3f",
+   "value": 63,
+   "size": 4
+  },
+  {
+   "addr": 4689,
+   "insn": "and eax, 0x3c",
+   "value": 60,
+   "size": 4
+  },
+  {
+   "addr": 4713,
+   "insn": "add r10, 4",
+   "value": 4,
+   "size": 8
+  },
+  {
+   "addr": 4721,
+   "insn": "mov byte ptr [rcx + rsi], 0x3d",
+   "value": 61,
+   "size": 1
+  },
+  {
+   "addr": 4741,
+   "insn": "jmp 0x11c1",
+   "value": 4545,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4356,
+   "value": 2
+  },
+  {
+   "addr": 4432,
+   "value": 18446744073709551613
+  },
+  {
+   "addr": 4438,
+   "value": 18446744073709551614
+  },
+  {
+   "addr": 4448,
+   "value": 18446744073709551615
+  },
+  {
+   "addr": 4525,
+   "value": 18446744073709551612
+  },
+  {
+   "addr": 4533,
+   "value": 3
+  },
+  {
+   "addr": 4598,
+   "value": 2
+  },
+  {
+   "addr": 4640,
+   "value": 1
+  },
+  {
+   "addr": 4695,
+   "value": 3
+  },
+  {
+   "addr": 4708,
+   "value": 2
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4417,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4572,
+   "target": 8192,
+   "section": ".rodata"
+  },
+  {
+   "addr": 4659,
+   "target": 8192,
+   "section": ".rodata"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".rodata",
+   "addr": 8192,
+   "hex": "4166686d644c457233474d786732532f613931555a6e546c484f49354b597a65764643774e512b50347457563763705852624475796b6a4a736f69367138304200"
+  },
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [
+  {
+   "section": ".rodata",
+   "addr": 8192,
+   "text": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B"
+  }
+ ],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

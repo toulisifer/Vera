@@ -1,0 +1,172 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.6,
+   "cached": false,
+   "eval_count": 760,
+   "cache_key": "fa838d7f730c4623b89249bf3790cf58e15f765aac217b444a56b6d09481e22c"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_19` appears to be a custom encoding function that takes an input buffer, an output buffer, and performs a series of bit manipulations to encode the input into the output.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The code uses the constant 'k' (0x6b).",
+    "asserted_values": [
+     "0x6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The code uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_5 < param_2",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "The function contains a do-while loop that iterates param_2 times.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Writes to out[0..param_2-1].",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Does not write to out when param_2 == 0.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Modifies in[0..param_2-1].",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n  if (len == 0) {\n    return len;\n  }\n  for (size_t i = 0; i < len; i++) {\n    uint8_t b3 = (arg >> ((i & 7) << 3)) & 0xFF;\n    if (((i * (i + 1) & 1) != 0) || (arg == 0x3c71)) {\n      b3 = (b3 ^ (i << 7)) * 0x6b + 0x3c71;\n    }\n    out[i] = (b3 << (i & 7) | b3 >> (8 - (i & 7))) ^ in[i] ^ (uint8_t)i;\n  }\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The code uses the constant 'k' (0x6b).",
+   "asserted_values": [
+    "0x6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The code uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_5 < param_2",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "The function contains a do-while loop that iterates param_2 times.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Does not write to out when param_2 == 0.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes to out[0..param_2-1].",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Modifies in[0..param_2-1].",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

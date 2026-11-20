@@ -1,0 +1,43 @@
+{
+  "id": "fn_06",
+  "group": "classic",
+  "algorithm_label": "RC4",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": "RC4",
+  "source": "corpus/src/fn_06.c",
+  "description": "Mã hóa luồng RC4. Khóa 8 byte là arg ở dạng little-endian. KSA khởi tạo S = 0..255 và hoán vị với j = j + S[i] + key[i mod 8]; PRGA sinh keystream và XOR với in, ghi len byte vào out. Trả len; trả VERA_ERR và không ghi gì nếu out_cap < len.",
+  "io_semantics": {
+    "returns": "len, hoặc VERA_ERR khi out_cap < len",
+    "writes_out": true,
+    "uses_arg": true
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [
+    {
+      "value": "0x100",
+      "width": 32,
+      "role": "kích thước S-box",
+      "encodings": {
+        "imm": "0x00000100",
+        "le_bytes": "00010000",
+        "neg": "0xFFFFFF00",
+        "hi16": "0x0000",
+        "lo16": "0x0100"
+      }
+    },
+    {
+      "value": "0xFF",
+      "width": 32,
+      "role": "mask 0xFF",
+      "encodings": {
+        "imm": "0x000000FF",
+        "le_bytes": "ff000000",
+        "neg": "0xFFFFFF01",
+        "hi16": "0x0000",
+        "lo16": "0x00FF"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

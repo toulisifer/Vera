@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not contain a loop that increments a counter until it reaches the value of param_2. The loop condition is based on the value of DAT_00104010, not param_2.", "seconds": 1.3}

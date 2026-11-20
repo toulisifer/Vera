@@ -1,0 +1,107 @@
+{
+ "fn": "fn_11",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 8.1,
+   "cached": false,
+   "eval_count": 336,
+   "cache_key": "eb4bde9c5e1de35a18cd7029d9de747792805673b1d25118e8be7361e242be78"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_11 does not perform any operations and always returns.",
+  "proposed_name": "fn_11",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns 0 when always.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "always",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "2",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "Does not contain any control flow structures.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "Uses the constant 0x00104010.",
+    "asserted_values": [
+     "0x00104010"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return 0; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0 when always.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Does not contain any control flow structures.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "Uses the constant 0x00104010.",
+   "asserted_values": [
+    "0x00104010"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

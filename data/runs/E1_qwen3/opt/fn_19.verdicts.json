@@ -1,0 +1,148 @@
+{
+ "fn": "fn_19",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "io_1",
+   "type": "IO",
+   "text": "Returns len when len <= out_cap.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len <= out_cap",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "io_2",
+   "type": "IO",
+   "text": "Returns ERR when len > out_cap.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len > out_cap",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "side_1",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..len-1].",
+   "asserted_values": [
+    "0",
+    "len-1"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "cf_1",
+   "type": "CF",
+   "text": "Processes input in a loop for len iterations.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "const_1",
+   "type": "CONST",
+   "text": "Uses the constant 7.",
+   "asserted_values": [
+    "0x7"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_2",
+   "type": "CONST",
+   "text": "Uses the constant 8.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_3",
+   "type": "CONST",
+   "text": "Uses the constant 0x01.",
+   "asserted_values": [
+    "0x1"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "const_4",
+   "type": "CONST",
+   "text": "Uses the constant 0x08.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "name_1",
+   "type": "NAME",
+   "text": "Performs a bitwise transformation on input data.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 8,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

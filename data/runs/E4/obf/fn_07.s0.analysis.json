@@ -1,0 +1,161 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 29.2,
+   "cached": false,
+   "eval_count": 1245,
+   "cache_key": "c68af80f2fac3b066909726073b01a23319325076b04483c0b7007379aeafa31"
+  }
+ ],
+ "output": {
+  "summary": "The function encodes a buffer using Base64 encoding.",
+  "proposed_name": "fn_07",
+  "algorithm": "Base64",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "0",
+    "type": "CONST",
+    "text": "The Base64 alphabet uses the constant string 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+    "asserted_values": [
+     "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns -1 when the input length is less than 2.",
+    "asserted_values": [
+     "ffffffffffffffff"
+    ],
+    "confidence": 0.85,
+    "io": {
+     "when": "param_2 < 2",
+     "returns": "ffffffffffffffff"
+    }
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns the input length when the output capacity is less than the input length.",
+    "asserted_values": [
+     "ffffffffffffffff"
+    ],
+    "confidence": 0.85,
+    "io": {
+     "when": "out_cap < param_2",
+     "returns": "ffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the Base64 encoded data to out.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Iterates over the input buffer in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Handles the last byte of the input buffer separately.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Handles the second last byte of the input buffer separately.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if ((len + 2) / 3 << 2 > out_cap) {\n        return VERA_ERR;\n    }\n\n    const char *base64_alphabet = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n    uint64_t encoded_len = 0;\n\n    for (size_t i = 0; i < len; i += 3) {\n        uint32_t chunk = (i + 1 < len ? ((uint32_t)in[i + 1] << 16) : 0) | (i + 2 < len ? ((uint32_t)in[i + 2] << 8) : 0) | in[i];\n        out[encoded_len++] = base64_alphabet[(chunk >> 18) & 0x3F];\n        out[encoded_len++] = base64_alphabet[(chunk >> 12) & 0x3F];\n        if (i + 1 < len) {\n            out[encoded_len++] = base64_alphabet[(chunk >> 6) & 0x3F];\n        }\n        if (i + 2 < len) {\n            out[encoded_len++] = base64_alphabet[chunk & 0x3F];\n        }\n    }\n\n    if (len % 3 == 1) {\n        uint32_t chunk = in[len - 1] << 16;\n        out[encoded_len++] = base64_alphabet[(chunk >> 18) & 0x3F];\n        out[encoded_len++] = base64_alphabet[(chunk >> 12) & 0x3F];\n        out[encoded_len++] = '=';\n    } else if (len % 3 == 2) {\n        uint32_t chunk = (in[len - 2] << 16) | (in[len - 1] << 8);\n        out[encoded_len++] = base64_alphabet[(chunk >> 18) & 0x3F];\n        out[encoded_len++] = base64_alphabet[(chunk >> 12) & 0x3F];\n        out[encoded_len++] = base64_alphabet[(chunk >> 6) & 0x3F];\n        out[encoded_len++] = '=';\n    }\n\n    return encoded_len;\n}\n"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "0",
+   "type": "CONST",
+   "text": "The Base64 alphabet uses the constant string 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.",
+   "asserted_values": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a6162636465666768696a6b6c6d6e6f707172737475767778797a303132333435363738392b2f"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns -1 when the input length is less than 2.",
+   "asserted_values": [
+    "ffffffffffffffff"
+   ],
+   "confidence": 0.85,
+   "io": {
+    "when": "param_2 < 2",
+    "returns": "ffffffffffffffff"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the input length when the output capacity is less than the input length.",
+   "asserted_values": [
+    "ffffffffffffffff"
+   ],
+   "confidence": 0.85,
+   "io": {
+    "when": "out_cap < param_2",
+    "returns": "ffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the Base64 encoded data to out.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Iterates over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Handles the last byte of the input buffer separately.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Handles the second last byte of the input buffer separately.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

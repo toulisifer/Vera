@@ -1,0 +1,125 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 12.4,
+   "cached": false,
+   "eval_count": 523,
+   "cache_key": "2869ad7c1a8c41aeebeb2eff723a38e42c0f78ec15a5e836767cef627d020e21"
+  }
+ ],
+ "output": {
+  "summary": "The function computes a 32-bit hash value based on the input buffer using a simple polynomial-based algorithm.",
+  "proposed_name": "fn_04",
+  "algorithm": "custom polynomial-based hash",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "ALG",
+    "text": "Implements a custom polynomial-based hash.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_1",
+    "type": "CONST",
+    "text": "Uses the constant 0x1505 as the initial hash value.",
+    "asserted_values": [
+     "0x1505"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_2",
+    "type": "CF",
+    "text": "Iterates over the input buffer using a for loop.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_3",
+    "type": "IO",
+    "text": "Returns the hash value as a 64-bit unsigned integer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_4",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_5",
+    "type": "IO",
+    "text": "Returns the hash value as a 64-bit unsigned integer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 0x1505;\n  for (size_t i = 0; i < len; i++) {\n    h = (uint32_t)(in[i] + h * 0x21);\n  }\n  return (uint64_t)h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "Implements a custom polynomial-based hash.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_1",
+   "type": "CONST",
+   "text": "Uses the constant 0x1505 as the initial hash value.",
+   "asserted_values": [
+    "0x1505"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Iterates over the input buffer using a for loop.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns the hash value as a 64-bit unsigned integer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns the hash value as a 64-bit unsigned integer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

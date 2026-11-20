@@ -1,0 +1,30 @@
+{
+ "fn": "fn_06",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "size_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (out_cap < len) return -1;\n    uint8_t s[256];\n    uint8_t k[8];\n    for (int i = 0; i < 8; i++) k[i] = (arg >> (i * 8)) & 0xff;\n    for (int i = 0; i < 256; i++) s[i] = i;\n    for (int i = 0, j = 0; i < 256; i++) {\n        j = (j + s[i] + k[i % 8]) & 0xff;\n        uint8_t t = s[i];\n        s[i] = s[j];\n        s[j] = t;\n    }\n    for (int i = 0, j = 0, n = 0; n < len; n++) {\n        i = (i + 1) & 0xff;\n        j = (j + s[i]) & 0xff;\n        uint8_t t = s[i];\n        s[i] = s[j];\n        s[j] = t;\n        out[n] = in[n] ^ s[(s[i] + s[j]) & 0xff];\n    }\n    return len;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.1,
+   "cached": false,
+   "eval_count": 352,
+   "cache_key": "3b78e2a54b032597cfc295afb707d14406992a86836b9a43ae8a61d055fbe9c1"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (out_cap < len) return -1;\n    uint8_t s[256];\n    uint8_t k[8];\n    for (int i = 0; i < 8; i++) k[i] = (arg >> (i * 8)) & 0xff;\n    for (int i = 0; i < 256; i++) s[i] = i;\n    for (int i = 0, j = 0; i < 256; i++) {\n        j = (j + s[i] + k[i % 8]) & 0xff;\n        uint8_t t = s[i];\n        s[i] = s[j];\n        s[j] = t;\n    }\n    for (int i = 0, j = 0, n = 0; n < len; n++) {\n        i = (i + 1) & 0xff;\n        j = (j + s[i]) & 0xff;\n        uint8_t t = s[i];\n        s[i] = s[j];\n        s[j] = t;\n        out[n] = in[n] ^ s[(s[i] + s[j]) & 0xff];\n    }\n    return len;\n}\nuint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len), (uint64_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

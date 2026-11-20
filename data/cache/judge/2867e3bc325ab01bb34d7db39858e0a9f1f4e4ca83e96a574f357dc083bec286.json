@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code returns 0 when len == 0, as the function checks if param_2 (len) is not zero before executing the loop.", "seconds": 1.1}

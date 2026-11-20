@@ -1,0 +1,155 @@
+{
+ "fn": "fn_01",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 48.9,
+   "cached": true,
+   "eval_count": 716,
+   "cache_key": "7f7d7da1e9bbea03531afc080a2cf572137d44b5f9e4511e363fbd26228cf91a"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input buffer using a bitwise transformation and returns a 64-bit result.",
+  "proposed_name": "fn_01",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "ALG",
+    "text": "The function applies a bitwise transformation to each byte of the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "The function uses a nested loop structure: an outer loop iterates over each byte of the input buffer, and an inner loop processes each bit of the byte.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_2",
+    "type": "SIDE",
+    "text": "The function does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_3",
+    "type": "SIDE",
+    "text": "The function does not modify the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_4",
+    "type": "IO",
+    "text": "The function returns a 64-bit value computed from the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_5",
+    "type": "CONST",
+    "text": "The function uses the constant 0xedb88320 in its bitwise transformation.",
+    "asserted_values": [
+     "0xedb88320"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffff as the initial value for the hash.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "user_7",
+    "type": "IO",
+    "text": "The function returns the bitwise complement of the computed hash value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint32_t h = 0xFFFFFFFF;\n    size_t i;\n    uint32_t b;\n\n    for (i = 0; i < len; i++) {\n        h ^= in[i];\n        for (b = 0; b < 8; b++) {\n            h = -(h & 1) & 0xEDB88320 ^ (h >> 1);\n        }\n    }\n    return (uint64_t)~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "The function applies a bitwise transformation to each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "The function uses a nested loop structure: an outer loop iterates over each byte of the input buffer, and an inner loop processes each bit of the byte.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_2",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "The function returns a 64-bit value computed from the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "The function uses the constant 0xedb88320 in its bitwise transformation.",
+   "asserted_values": [
+    "0xedb88320"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffff as the initial value for the hash.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "user_7",
+   "type": "IO",
+   "text": "The function returns the bitwise complement of the computed hash value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

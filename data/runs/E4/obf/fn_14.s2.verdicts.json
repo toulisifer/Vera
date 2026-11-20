@@ -1,0 +1,141 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_5 is less than (param_2 + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Iterates over the input buffer in chunks of 3 bytes.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len >= 3",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "3",
+   "type": "ALG",
+   "text": "Applies a transformation to each chunk of the input buffer.",
+   "asserted_values": [
+    "unknown"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "len >= 3",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes 4 bytes to out for each chunk of the input buffer.",
+   "asserted_values": [
+    "4"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len >= 3",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "5",
+   "type": "ALG",
+   "text": "Handles the case when the input length is 1 or 2.",
+   "asserted_values": [
+    "unknown"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 1 or len == 2",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the input length is 1 and out_cap is less than 4.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 1 and out_cap < 4",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the input length is 2 and out_cap is less than 4.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 2 and out_cap < 4",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

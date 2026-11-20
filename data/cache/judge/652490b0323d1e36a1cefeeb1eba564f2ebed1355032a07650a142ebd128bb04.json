@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function does not use the out or out_cap parameters, so it does not write to out.", "seconds": 1.0}

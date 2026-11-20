@@ -1,0 +1,30 @@
+{
+ "fn": "fn_04",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: unsigned int fn_04(unsigned char *buf, size_t len) ← chữ ký chung",
+ "raw": "unsigned int fn_04(unsigned char *buf, size_t len)\n{\n    unsigned int hash = 5381;\n    size_t i;\n\n    for (i = 0; i < len; i++)\n        hash = ((hash << 5) + hash) + buf[i];\n\n    return hash;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 3.6,
+   "cached": false,
+   "eval_count": 79,
+   "cache_key": "aaa42470953c962817be1af59eae09fc50be7df68ffa1529853c7cdb3ef13cbe"
+  }
+ ],
+ "output": {
+  "recovered_c": "unsigned int vera_inner(unsigned char *buf, size_t len)\n{\n    unsigned int hash = 5381;\n    size_t i;\n\n    for (i = 0; i < len; i++)\n        hash = ((hash << 5) + hash) + buf[i];\n\n    return hash;\n}\nuint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((unsigned char *)(in), (size_t)(len)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

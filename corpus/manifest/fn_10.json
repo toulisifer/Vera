@@ -1,0 +1,32 @@
+{
+  "id": "fn_10",
+  "group": "near_miss",
+  "algorithm_label": "near-miss của Adler-32",
+  "pair_of": "fn_03",
+  "difference_from_standard": "Modulus 65519 thay cho 65521.",
+  "oracle": null,
+  "source": "corpus/src/fn_10.c",
+  "description": "Checksum kiểu Adler-32 với hai tổng a (khởi tạo 1) và b (khởi tạo 0), nhưng lấy modulo 65519 thay vì 65521. Trả (b << 16) | a. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "text",
+  "characteristic_constants": [
+    {
+      "value": "0xFFEF",
+      "width": 32,
+      "role": "modulus tự chọn",
+      "encodings": {
+        "imm": "0x0000FFEF",
+        "le_bytes": "efff0000",
+        "neg": "0xFFFF0011",
+        "hi16": "0x0000",
+        "lo16": "0xFFEF"
+      },
+      "compiler_note": "-O2 thay phép chia/modulo cho hằng bằng phép nhân với số nghịch đảo (magic number); giá trị gốc có thể không xuất hiện dưới dạng immediate."
+    }
+  ],
+  "characteristic_strings": []
+}

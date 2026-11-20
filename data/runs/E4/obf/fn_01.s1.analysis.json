@@ -1,0 +1,239 @@
+{
+ "fn": "fn_01",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 36.0,
+   "cached": false,
+   "eval_count": 1480,
+   "cache_key": "125c85cec0dac50f318c6a1e5c114b78c7ad03bfc236725e447eb16d6d2c7b45"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a checksum algorithm. Given the presence of bitwise operations and specific constants, it's likely a variant of a CRC algorithm.",
+  "proposed_name": "fn_01",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "A1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffff.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x80.",
+    "asserted_values": [
+     "0x80"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A4",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A5",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A6",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A7",
+    "type": "CF",
+    "text": "The function contains a loop that iterates 'param_2' times.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A8",
+    "type": "CF",
+    "text": "The function contains a nested loop that iterates based on the value of 'param_2'.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "A9",
+    "type": "SIDE",
+    "text": "The function reads from 'in' and writes to 'out'.",
+    "asserted_values": [
+     "in",
+     "out"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "A10",
+    "type": "IO",
+    "text": "The function returns the negation of the initial value when 'param_2' is 0.",
+    "asserted_values": [
+     "param_2",
+     "0"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "A11",
+    "type": "IO",
+    "text": "The function returns the negation of the computed value when 'param_2' is not 0.",
+    "asserted_values": [
+     "param_2",
+     "param_2 != 0"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint uVar1;\n    uint uVar2;\n    long lVar3;\n    uint uVar4;\n    uint uVar5;\n    long lVar6;\n    long lVar7;\n    uint uVar8;\n\n    if (DAT_00104010 == 0) {\n        uVar2 = 0xffffffff;\n    } else {\n        uVar4 = 0;\n        uVar2 = 0xffffffff;\n        do {\n            uVar2 = uVar2 >> 5 ^ uVar2 * 8 ^ uVar4;\n            uVar4 = uVar4 + 1;\n        } while (uVar4 < DAT_00104010);\n    }\n    if (len == 0) {\n        return ~uVar2;\n    }\n    uVar4 = (int)len * 0x1f9;\n    uVar8 = 0;\n    lVar6 = 0;\n    do {\n        uVar2 = uVar2 ^ *(byte *)(in + lVar6);\n        lVar7 = lVar6 + 1;\n        lVar3 = len;\n        uVar5 = uVar4;\n        if ((((int)lVar6 * (int)lVar7 & 1U) != 0) || (DAT_00104010 != 0)) {\n            uVar2 = (uVar2 ^ uVar8) * 0x2d6b + DAT_00104008;\n            uVar2 = uVar2 ^ uVar2 >> 0xb;\n        }\n        do {\n            while ((uVar1 = (uint)lVar3 | 1, (uVar1 * uVar1 & 7) == 1 && (DAT_00104008 == 0x3c71))) {\n                lVar3 = lVar3 + 1;\n                uVar2 = -(uVar2 & 1) & 0xedb88320 ^ uVar2 >> 1;\n                uVar5 = uVar5 + 0x1f9;\n                if (len + 8 == lVar3) goto LAB_00101200;\n            }\n            lVar3 = lVar3 + 1;\n            uVar2 = uVar2 + 0x51e3 ^ uVar5;\n            uVar5 = uVar5 + 0x1f9;\n        } while (len + 8 != lVar3);\nLAB_00101200:\n        uVar8 = uVar8 + 0x80;\n        lVar6 = lVar7;\n        if (lVar7 == len) {\n            return ~uVar2;\n        }\n    } while( true );\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "A1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x80.",
+   "asserted_values": [
+    "0x80"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A6",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A7",
+   "type": "CF",
+   "text": "The function contains a loop that iterates 'param_2' times.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A8",
+   "type": "CF",
+   "text": "The function contains a nested loop that iterates based on the value of 'param_2'.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "A9",
+   "type": "SIDE",
+   "text": "The function reads from 'in' and writes to 'out'.",
+   "asserted_values": [
+    "in",
+    "out"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "A10",
+   "type": "IO",
+   "text": "The function returns the negation of the initial value when 'param_2' is 0.",
+   "asserted_values": [
+    "param_2",
+    "0"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "A11",
+   "type": "IO",
+   "text": "The function returns the negation of the computed value when 'param_2' is not 0.",
+   "asserted_values": [
+    "param_2",
+    "param_2 != 0"
+   ],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

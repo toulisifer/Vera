@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function contains conditional branches based on the input characters and state, as evidenced by the various if-else statements and switch-like structures within the loop.", "seconds": 1.0}

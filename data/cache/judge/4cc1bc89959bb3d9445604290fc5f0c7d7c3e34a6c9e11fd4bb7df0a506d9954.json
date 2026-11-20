@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function contains a loop that processes the input in chunks of 3 bytes.", "seconds": 0.7}

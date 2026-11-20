@@ -1,0 +1,113 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 4,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": false,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 70 column 18 (char 1837)"
+   ],
+   "seconds": 79.0,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "b109ec98ddc19e760b8266ca05daacd33a007ae38401990538af3545e2b0c640"
+  },
+  {
+   "errors": [
+    "recovered_c không định nghĩa fn_06"
+   ],
+   "seconds": 30.4,
+   "cached": false,
+   "eval_count": 1202,
+   "cache_key": "f91b38e209b47a86c941aab284d74dd72137489f5c2bb5c1da5093dec1e2c1d5"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom encryption algorithm, likely a variant of a block cipher or stream cipher, possibly similar to RC4 or a similar algorithm with modifications.",
+  "proposed_name": "fn_custom_cipher",
+  "algorithm": "unknown",
+  "self_confidence": 0.85,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3C71.",
+    "asserted_values": [
+     "3C71"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51E3.",
+    "asserted_values": [
+     "51E3"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1F9.",
+    "asserted_values": [
+     "1F9"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len <= 0.",
+    "asserted_values": [
+     "FFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 0",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Writes to out[0..15] based on the input.",
+    "asserted_values": [
+     "0",
+     "15"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Contains loops to process the input data.",
+    "asserted_values": [
+     "do while",
+     "for"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "Includes conditional logic based on the input parameters.",
+    "asserted_values": [
+     "if",
+     "else"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_custom_cipher(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len <= 0) {\n        return VERA_ERR;\n    }\n\n    uint64_t uVar26 = 0xffffffffffffffff;\n    uint8_t local_130[8];\n    uint8_t local_128[264];\n\n    // Initialize local_130\n    for (size_t i = 0; i < 8; ++i) {\n        local_130[i] = (in[3] >> (i * 8)) & 0x3f;\n    }\n\n    // Process the input data\n    for (size_t i = 0; i < 0x100; ++i) {\n        local_128[i] = 0;\n    }\n\n    for (size_t i = 0; i < 0x100; ++i) {\n        uint8_t bVar24 = local_130[i % 8];\n        uint64_t uVar25 = (uint)bVar24 + (uint)uVar26 & 0xff;\n        uVar26 = uVar25;\n        out[i] = local_128[uVar26];\n        local_128[uVar26] = bVar24;\n    }\n\n    if (len > 0) {\n        uint64_t uVar28 = 0;\n        uint64_t uVar27 = 0;\n        uint64_t uVar29 = len;\n\n        for (size_t i = 0; i < len * 2; ++i) {\n            uVar27 = (uVar27 + 1) & 0xff;\n            uint8_t bVar24 = local_128[uVar27];\n            uVar28 = (uVar28 + bVar24) & 0xff;\n            if (i % (len * 2) == 0 || DAT_00104018 != 0) {\n                uVar28 = ((uVar29 << 7) ^ uVar28) * 0x2d6b + DAT_00104010;\n                uVar28 = uVar28 >> 0xb ^ uVar28;\n            }\n            local_128[uVar27] = local_128[uVar28];\n            local_128[uVar28] = bVar24;\n            out[i] = local_128[(bVar24 + local_128[uVar27]) & 0xff] ^ in[i % len];\n        }\n    }\n\n    return uVar26;\n}"
+ },
+ "config": "obf"
+}

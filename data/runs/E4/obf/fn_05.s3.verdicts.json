@@ -1,0 +1,190 @@
+{
+ "fn": "fn_05",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "const1",
+   "type": "CONST",
+   "text": "The constant 0x61c88647 is used.",
+   "asserted_values": [
+    "61c88647"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x61c88647",
+      "form": "imm",
+      "detail": "0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const2",
+   "type": "CONST",
+   "text": "The constant 0x2d6b is used.",
+   "asserted_values": [
+    "2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ],
+    "missing": [
+     {
+      "value": "2d6b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const3",
+   "type": "CONST",
+   "text": "The constant 0x3c71 is used.",
+   "asserted_values": [
+    "3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ],
+    "missing": [
+     {
+      "value": "3c71"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const4",
+   "type": "CONST",
+   "text": "The constant 0x1f9 is used.",
+   "asserted_values": [
+    "1f9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "const5",
+   "type": "CONST",
+   "text": "The constant 0x51e3 is used.",
+   "asserted_values": [
+    "51e3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ],
+    "missing": [
+     {
+      "value": "51e3"
+     }
+    ]
+   }
+  },
+  {
+   "id": "param_check1",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 < 0x18 or param_5 < 8.",
+   "asserted_values": [
+    "ffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 0x18 or param_5 < 8",
+    "returns": "ffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "param_check2",
+   "type": "IO",
+   "text": "Returns 8 when the input parameters are valid.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 >= 0x18 and param_5 >= 8",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "output",
+   "type": "SIDE",
+   "text": "Writes the 64-bit hash value to param_4.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "control_flow",
+   "type": "CF",
+   "text": "The function uses loops and conditional branches.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 2,
+  "unsupported": 7,
+  "contradicted": 0
+ },
+ "n_claims": 9,
+ "explanation_clean": true
+}

@@ -1,0 +1,193 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 23.5,
+   "cached": false,
+   "eval_count": 992,
+   "cache_key": "4bdd3021c2a5417d1abd07b4d1332288b6f1bc184640c76cdf79e3c0e90770c6"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_20 processes input data using a permutation derived from the argument and writes the result to the output buffer. It returns the length of the processed data or an error if the output buffer is too small.",
+  "proposed_name": "fn_20",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "user_2",
+    "type": "IO",
+    "text": "Returns len when out_cap >= len.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap >= len",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "user_3",
+    "type": "CF",
+    "text": "Uses a loop to initialize an array of 8 bytes with values 0 to 7.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "CF",
+    "text": "Uses a loop to permute the array based on the argument.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "CF",
+    "text": "Uses a loop to copy data from in to out using the permutation for aligned blocks.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "CF",
+    "text": "Uses a loop to copy data from in to out for unaligned bytes.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_7",
+    "type": "SIDE",
+    "text": "Writes data to out[0..len-1].",
+    "asserted_values": [
+     "out[0..len-1]"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_8",
+    "type": "CONST",
+    "text": "Uses the constant 0x28 in a stack canary check.",
+    "asserted_values": [
+     "0x28"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_9",
+    "type": "NAME",
+    "text": "Performs a data permutation and copy based on an argument.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint8_t p[8];\n  uint64_t sd = arg;\n  size_t b;\n  size_t n;\n\n  if (out_cap < len) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  for (n = 0; n < 8; n++) {\n    p[n] = (uint8_t)n;\n  }\n\n  for (n = 7; n != 0; n--) {\n    uint64_t uVar3 = sd % (n + 1);\n    sd = sd / (n + 1);\n    uint8_t uVar1 = p[n];\n    p[n] = p[uVar3];\n    p[uVar3] = uVar1;\n  }\n\n  for (b = 0; b + 8 <= len; b += 8) {\n    for (n = 0; n < 8; n++) {\n      out[b + n] = in[p[n] + b];\n    }\n  }\n\n  for (; b < len; b++) {\n    out[b] = in[b];\n  }\n\n  return len;\n}\n"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns len when out_cap >= len.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Uses a loop to initialize an array of 8 bytes with values 0 to 7.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "Uses a loop to permute the array based on the argument.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "CF",
+   "text": "Uses a loop to copy data from in to out using the permutation for aligned blocks.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "CF",
+   "text": "Uses a loop to copy data from in to out for unaligned bytes.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_7",
+   "type": "SIDE",
+   "text": "Writes data to out[0..len-1].",
+   "asserted_values": [
+    "out[0..len-1]"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_8",
+   "type": "CONST",
+   "text": "Uses the constant 0x28 in a stack canary check.",
+   "asserted_values": [
+    "0x28"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_9",
+   "type": "NAME",
+   "text": "Performs a data permutation and copy based on an argument.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

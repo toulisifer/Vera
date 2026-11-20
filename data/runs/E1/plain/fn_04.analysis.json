@@ -1,0 +1,143 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 13.6,
+   "cached": false,
+   "eval_count": 542,
+   "cache_key": "e24e76a73bf0c1930ce98d8ff58dd2580dfc152efd87768ba70ee6cf5de4b36c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_04 computes a hash value using a simple linear hash function.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "Implements a linear hash function.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The initial hash value is 0x1505.",
+    "asserted_values": [
+     "0x1505"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "Iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns the computed hash value when len > 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len > 0",
+     "returns": "h",
+     "writes_out": false
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "0xFFFFFFFFFFFFFFFF",
+     "writes_out": false
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 0x1505;\n  for (size_t i = 0; i < len; i++) {\n    h = (uint)in[i] + h * 0x21;\n  }\n  return (uint64_t)h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements a linear hash function.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The initial hash value is 0x1505.",
+   "asserted_values": [
+    "0x1505"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the computed hash value when len > 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len > 0",
+    "returns": "h",
+    "writes_out": false
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "0xFFFFFFFFFFFFFFFF",
+    "writes_out": false
+   }
+  }
+ ],
+ "dropped_claims": []
+}

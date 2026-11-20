@@ -1,0 +1,193 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.6,
+   "cached": false,
+   "eval_count": 838,
+   "cache_key": "186ab43f2d42d7a2904114bee3c6ff220baaa39c56579f3e8afdbde3fbdc2ac7"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_19 appears to be a custom encryption or transformation function. It takes an input buffer, its length, an argument, and an output buffer with a capacity. It processes the input buffer and writes the result to the output buffer. The function has specific conditions for returning an error or the length of the processed data.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns len when len != 0.",
+    "asserted_values": [
+     "len"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len != 0",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes transformed data to out[0..<len>].",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Contains a loop that iterates over the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "Uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "Uses the constant 'k'.",
+    "asserted_values": [
+     "'k'"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "Uses the constant 0x4008.",
+    "asserted_values": [
+     "0x4008"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "CONST",
+    "text": "Uses the constant 0x4010.",
+    "asserted_values": [
+     "0x4010"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return 0xffffffffffffffff;\n  }\n\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar3 = (uint8_t)(arg >> ((i & 7) << 3));\n    if ((((i * len & 1U) != 0) || (DAT_00104010 != 0)) {\n      bVar3 = (bVar3 ^ (i << 7)) * 'k' + (char)DAT_00104008;\n    }\n    out[i] = (bVar3 << (i & 7) | bVar3 >> 8 - (i & 7)) ^ in[i] ^ (uint8_t)i;\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns len when len != 0.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len != 0",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..<len>].",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "Uses the constant 'k'.",
+   "asserted_values": [
+    "'k'"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "Uses the constant 0x4008.",
+   "asserted_values": [
+    "0x4008"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "Uses the constant 0x4010.",
+   "asserted_values": [
+    "0x4010"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

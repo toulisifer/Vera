@@ -1,0 +1,1 @@
+{"key": "372860ae7da6c71a35e692182c3e69e218c2b59f9c0803a7a2ebbcffe55e591e", "content": "uint32_t fn_03(const uint8_t *buf, size_t len)\n{\n uint32_t a = 1, b = 0;\n size_t i;\n\n for (i = 0; i < len; i++) {\n  a = (a + buf[i]) % 65553;\n  b = (b + a) % 65553;\n }\n\n return (b << 16) | a;\n}", "seconds": 5.1, "eval_count": 114}

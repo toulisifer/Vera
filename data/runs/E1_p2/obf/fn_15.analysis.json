@@ -1,0 +1,169 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 26.2,
+   "cached": false,
+   "eval_count": 1044,
+   "cache_key": "6aacff029720ed2cb3d0a4550f4d05bc04375652c4ddaff023adf1e6ac4f6c25"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_15 appears to be a custom checksum or hash function. It processes the input data in two main passes and produces a 64-bit output.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b in its computation.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71 in its computation.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e4 in its computation.",
+    "asserted_values": [
+     "0x51e4"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0 when the input length is 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns VERA_ERR when the output capacity is less than the computed hash size.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_5 < uVar5",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes the computed hash to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "The function contains nested loops for processing the input data.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 0;\n  }\n\n  uint64_t hash = 0;\n  size_t i = 0;\n\n  while (i < len) {\n    size_t j = i + 1;\n    if (j < len && in[i] == in[j]) {\n      while (j < len && in[i] == in[j]) {\n        j++;\n      }\n    }\n\n    if ((j * (j + 1) & 1) != 0 || arg != 0) {\n      hash = (uint64_t)arg + (j << 7 ^ hash) * 0x2d6b;\n      hash = hash >> 0xb ^ hash;\n    }\n\n    hash = hash + 2;\n    i = j;\n  }\n\n  if (out_cap < hash) {\n    return VERA_ERR;\n  }\n\n  hash = 0;\n  i = 1;\n  size_t j = 0;\n\n  while (i < len) {\n    size_t k = i;\n    size_t l = 1;\n\n    while (k < len && in[k] == in[j]) {\n      if (l == 0xff) {\n        l = 0xffffffff;\n        break;\n      }\n      k++;\n      l++;\n    }\n\n    out[hash] = (char)l;\n    size_t m = (uint)k | 1;\n\n    if ((m * m & 7) == 1 && arg == 0x3c71) {\n      out[hash + 1] = in[j];\n      hash += 2;\n    } else {\n      hash = hash + 0x51e4 ^ k * 0x1f9;\n    }\n\n    if (len <= k) {\n      return hash;\n    }\n\n    i = k + 1;\n    j = k;\n  }\n\n  return hash;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b in its computation.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71 in its computation.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e4 in its computation.",
+   "asserted_values": [
+    "0x51e4"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the output capacity is less than the computed hash size.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_5 < uVar5",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes the computed hash to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "The function contains nested loops for processing the input data.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": []
+}

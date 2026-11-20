@@ -1,0 +1,127 @@
+{
+ "fn": "fn_16",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.6,
+   "cached": false,
+   "eval_count": 573,
+   "cache_key": "7033583031fae76a0b17c74ebb8eed86ca4cfaaa8b77ee1c7b770650238b07e7"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing a custom hash function based on the input data and an initial argument.",
+  "proposed_name": "fn_16",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x9d in the hash computation.",
+    "asserted_values": [
+     "0x9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3b9d in the final transformation of the hash value.",
+    "asserted_values": [
+     "0x3b9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function iterates over each byte in the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function does not modify the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function writes the final hash value to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "The function returns the hash value as a 64-bit unsigned integer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = (uint)(arg >> 0x20) ^ (uint)arg;\n  for (size_t i = 0; i < len; i++) {\n    h = (h << 7 | h >> 0x19) + (uint)in[i] * 0x9d + (int)i;\n  }\n  uint32_t uVar1 = (h ^ h >> 0xf) * 0x3b9d;\n  return (uint64_t)(uVar1 ^ uVar1 >> 0xd);\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x9d in the hash computation.",
+   "asserted_values": [
+    "0x9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3b9d in the final transformation of the hash value.",
+   "asserted_values": [
+    "0x3b9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function does not modify the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function writes the final hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "The function returns the hash value as a 64-bit unsigned integer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

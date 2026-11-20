@@ -1,0 +1,139 @@
+{
+ "fn": "fn_07",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 29.8,
+   "cached": false,
+   "eval_count": 1105,
+   "cache_key": "af183a47053deb46067a5ad981f9ba6d3ecd6a127a6a4be56133121f91f4086f"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be implementing Base64 encoding.",
+  "proposed_name": "fn_07",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the Base64 character set.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns VERA_ERR when out_cap is less than (len + 2) / 3 << 2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns the number of bytes written to out when len is a multiple of 3.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns the number of bytes written to out when len is 1.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns the number of bytes written to out when len is 2.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes the Base64 encoded data to out.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "7",
+    "type": "NAME",
+    "text": "Purpose is to encode input data using Base64 encoding.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < (len + 2) / 3 << 2) {\n    return VERA_ERR;\n  }\n\n  size_t i = 0;\n  while (i + 3 <= len) {\n    uint32_t w = (uint)in[i] << 16 | (uint)in[i + 1] << 8 | (uint)in[i + 2];\n    out[i / 3 * 4] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[w >> 18];\n    out[i / 3 * 4 + 1] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w >> 12) & 0x3F];\n    out[i / 3 * 4 + 2] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w >> 6) & 0x3F];\n    out[i / 3 * 4 + 3] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[w & 0x3F];\n    i += 3;\n  }\n\n  if (len - i == 1) {\n    uint32_t w = (uint)in[i] << 16;\n    out[i / 3 * 4] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[w >> 18];\n    out[i / 3 * 4 + 1] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w >> 12) & 0x3F];\n    out[i / 3 * 4 + 2] = '=';\n    out[i / 3 * 4 + 3] = '=';\n  } else if (len - i == 2) {\n    uint32_t w = (uint)in[i] << 16 | (uint)in[i + 1] << 8;\n    out[i / 3 * 4] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[w >> 18];\n    out[i / 3 * 4 + 1] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w >> 12) & 0x3F];\n    out[i / 3 * 4 + 2] = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"[(w >> 6) & 0x3F];\n    out[i / 3 * 4 + 3] = '=';\n  }\n\n  return i / 3 * 4;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns VERA_ERR when out_cap is less than (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns the number of bytes written to out when len is a multiple of 3.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns the number of bytes written to out when len is 1.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the number of bytes written to out when len is 2.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes the Base64 encoded data to out.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "7",
+   "type": "NAME",
+   "text": "Purpose is to encode input data using Base64 encoding.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the Base64 character set.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_19",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_19(const unsigned char *src, size_t src_len, uint64_t key, unsigned char *dst, size_t dst_len) ← chữ ký chung",
+ "raw": "size_t fn_19(const unsigned char *src, size_t src_len, uint64_t key, unsigned char *dst, size_t dst_len)\n{\n    size_t i;\n    if (src_len > dst_len)\n        return (size_t)-1;\n    for (i = 0; i < src_len; i++)\n    {\n        unsigned char b = (key >> (i & 7) * 8) & 0xff;\n        dst[i] = src[i] ^ i ^ ((b << 0) | (b >> 8 - 0));\n    }\n    return src_len;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 8.2,
+   "cached": false,
+   "eval_count": 162,
+   "cache_key": "1d1dbebd4ea52dc011697fdbb49fb57991afa161492af1445b21a49dbb00d48d"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const unsigned char *src, size_t src_len, uint64_t key, unsigned char *dst, size_t dst_len)\n{\n    size_t i;\n    if (src_len > dst_len)\n        return (size_t)-1;\n    for (i = 0; i < src_len; i++)\n    {\n        unsigned char b = (key >> (i & 7) * 8) & 0xff;\n        dst[i] = src[i] ^ i ^ ((b << 0) | (b >> 8 - 0));\n    }\n    return src_len;\n}\nuint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (size_t)(len), (uint64_t)(arg), (unsigned char *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

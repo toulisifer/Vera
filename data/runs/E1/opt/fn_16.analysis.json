@@ -1,0 +1,143 @@
+{
+ "fn": "fn_16",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.5,
+   "cached": false,
+   "eval_count": 678,
+   "cache_key": "b6c75cceb6684a1c092e79a067af4cae2f43c5e3c64787b102c099b0e31213dd"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_16 computes a checksum using a custom algorithm.",
+  "proposed_name": "fn_16",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x9d.",
+    "asserted_values": [
+     "0x9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3b9d.",
+    "asserted_values": [
+     "0x3b9d"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function uses a loop to process each byte of the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function does not write to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns the computed checksum when len is not zero.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len != 0",
+     "returns": "computed checksum"
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns VERA_ERR when len is zero.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "len == 0",
+     "returns": "VERA_ERR"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar2;\n  int iVar3;\n  size_t lVar4;\n\n  uVar2 = (uint)((ulong)arg >> 0x20) ^ (uint)arg;\n  if (len != 0) {\n    lVar4 = 0;\n    do {\n      uint8_t *pbVar1 = (uint8_t *)(in + lVar4);\n      iVar3 = (int)lVar4;\n      lVar4 = lVar4 + 1;\n      uVar2 = (uint)*pbVar1 * 0x9d + iVar3 + (uVar2 << 7 | uVar2 >> 0x19);\n    } while (len != lVar4);\n  }\n  uVar2 = (uVar2 >> 0xf ^ uVar2) * 0x3b9d;\n  return uVar2 >> 0xd ^ uVar2;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x9d.",
+   "asserted_values": [
+    "0x9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3b9d.",
+   "asserted_values": [
+    "0x3b9d"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte of the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the computed checksum when len is not zero.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len != 0",
+    "returns": "computed checksum"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns VERA_ERR when len is zero.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "len == 0",
+    "returns": "VERA_ERR"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

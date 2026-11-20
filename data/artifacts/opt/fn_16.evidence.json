@@ -1,0 +1,77 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_16",
+ "n_instructions": 25,
+ "immediates": [
+  {
+   "addr": 4359,
+   "insn": "shr rax, 0x20",
+   "value": 32,
+   "size": 1
+  },
+  {
+   "addr": 4368,
+   "insn": "je 0x1134",
+   "value": 4404,
+   "size": 8
+  },
+  {
+   "addr": 4376,
+   "insn": "rol eax, 7",
+   "value": 7,
+   "size": 1
+  },
+  {
+   "addr": 4385,
+   "insn": "imul eax, eax, 0x9d",
+   "value": 157,
+   "size": 4
+  },
+  {
+   "addr": 4393,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4402,
+   "insn": "jne 0x1118",
+   "value": 4376,
+   "size": 8
+  },
+  {
+   "addr": 4406,
+   "insn": "shr edx, 0xf",
+   "value": 15,
+   "size": 1
+  },
+  {
+   "addr": 4411,
+   "insn": "imul edx, edx, 0x3b9d",
+   "value": 15261,
+   "size": 4
+  },
+  {
+   "addr": 4419,
+   "insn": "shr eax, 0xd",
+   "value": 13,
+   "size": 1
+  }
+ ],
+ "displacements": [],
+ "data_refs": [],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

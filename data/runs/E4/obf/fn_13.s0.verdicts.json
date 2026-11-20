@@ -1,0 +1,87 @@
+{
+ "fn": "fn_13",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "claim_1",
+   "type": "IO",
+   "text": "Returns VERA_ERR when param_2 is greater than param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "VERA_ERR"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "claim_2",
+   "type": "SIDE",
+   "text": "Writes to out[0..15] when out_cap is at least 16.",
+   "asserted_values": [
+    "16"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "out_cap >= 16",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "claim_3",
+   "type": "CF",
+   "text": "Uses a loop that iterates len times.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_4",
+   "type": "CF",
+   "text": "Uses a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "claim_7",
+   "type": "SIDE",
+   "text": "Writes to the memory pointed to by param_4.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

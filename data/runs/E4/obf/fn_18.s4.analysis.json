@@ -1,0 +1,282 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 4,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.6,
+   "cached": false,
+   "eval_count": 945,
+   "cache_key": "b816fe546c6be8d60a53af270dfba7cd9cff38fccd06e1ec5ff10f28cae71f1a"
+  }
+ ],
+ "output": {
+  "summary": "This function appears to be a custom parser or state machine that processes input bytes and generates an output value based on certain rules. It uses a series of conditional checks and arithmetic operations to determine the output.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "The function may be implementing a custom parsing algorithm.",
+    "asserted_values": [],
+    "confidence": 0.6,
+    "io": {}
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns the value of 2 when the input length is 0.",
+    "asserted_values": [
+     "2"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 0",
+     "returns": "2"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns the value of 0 when the input length is not 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len != 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function contains nested loops and conditional branches.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Writes characters to the output buffer 'out' when the input character is a certain value.",
+    "asserted_values": [],
+    "confidence": 0.7,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "8",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "9",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e4.",
+    "asserted_values": [
+     "0x51e4"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "10",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "11",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "12",
+    "type": "CONST",
+    "text": "The function uses the constant 0x40.",
+    "asserted_values": [
+     "0x40"
+    ],
+    "confidence": 0.9,
+    "io": {}
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 2;\n  } else {\n    return 0;\n  }\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the value of 2 when the input length is 0.",
+   "asserted_values": [
+    "2"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 0",
+    "returns": "2"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns the value of 0 when the input length is not 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len != 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains nested loops and conditional branches.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes characters to the output buffer 'out' when the input character is a certain value.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "8",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "9",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e4.",
+   "asserted_values": [
+    "0x51e4"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "10",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "11",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "12",
+   "type": "CONST",
+   "text": "The function uses the constant 0x40.",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 0.9,
+   "io": {}
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "The function may be implementing a custom parsing algorithm.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {},
+   "drop_reason": "rào đón"
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.9,
+   "io": {},
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

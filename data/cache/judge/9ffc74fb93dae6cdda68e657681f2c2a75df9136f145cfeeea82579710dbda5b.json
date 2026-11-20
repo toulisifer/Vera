@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function implements a hash function based on a polynomial, not CRC-32.", "seconds": 0.8}

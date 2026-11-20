@@ -1,0 +1,108 @@
+{
+ "fn": "fn_10",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "DAT_00104008 uses the constant 0x3c71.",
+   "asserted_values": [
+    "3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ],
+    "missing": [
+     {
+      "value": "3c71"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "DAT_00104010 uses the constant 0x10101010.",
+   "asserted_values": [
+    "10101010"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x9a2112"
+     },
+     {
+      "value": "0x10101010"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0 when param_2 is 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains a loop that iterates param_2 times.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "ALG",
+   "text": "Implements a hash function.",
+   "asserted_values": [
+    "hash function"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

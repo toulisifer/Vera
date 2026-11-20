@@ -1,0 +1,227 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 27.4,
+   "cached": false,
+   "eval_count": 1338,
+   "cache_key": "7c45881b08e0c73454751813a78e12cc8fec9154ddc176807cd5f4d21a42f03e"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_10` appears to be a custom hash function that processes input data and returns a 64-bit hash value. It uses bitwise operations, conditional logic, and a loop to compute the hash. The function does not rely on any external library functions, global state, or I/O operations.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "0x2d6b"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns 1 when len == 0.",
+    "asserted_values": [
+     "1"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "len == 0",
+     "returns": "1"
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input data causes an overflow.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Writes the computed hash value to out[0..7].",
+    "asserted_values": [
+     "out[0..7]"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "8",
+    "type": "CF",
+    "text": "Loops over each byte in the input data.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "9",
+    "type": "CF",
+    "text": "Applies a series of bitwise operations and conditional logic inside the loop.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "10",
+    "type": "NAME",
+    "text": "The function implements a custom hash algorithm based on bitwise operations and conditional logic.",
+    "asserted_values": [
+     "custom hash"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint uVar1;\n  ulong uVar2;\n  uint uVar3;\n  ulong uVar4;\n  long lVar5;\n  uint uVar6;\n\n  if (len == 0) {\n    uVar2 = 1;\n    uVar4 = 0;\n  } else {\n    uVar4 = 0;\n    uVar6 = 0;\n    lVar5 = 0;\n    uVar2 = 1;\n    do {\n      uVar3 = (uint)uVar4;\n      uVar1 = (uint)lVar5 | 1;\n      if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n        uVar1 = ((int)uVar2 + (uint)*(byte *)(in + lVar5)) % 0xffef;\n      } else {\n        uVar1 = (int)uVar2 + 0x51e3U ^ uVar6;\n      }\n      uVar2 = (ulong)uVar1;\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n        uVar3 = (uVar3 ^ (uint)(len << 7)) * 0x2d6b + DAT_00104008;\n        uVar3 = uVar3 ^ uVar3 >> 0xb;\n      }\n      lVar5 = lVar5 + 1;\n      uVar6 = uVar6 + 0x1f9;\n      uVar4 = (ulong)((uVar3 + uVar1) % 0xffef);\n    } while (len != lVar5);\n    uVar4 = uVar4 << 0x10;\n  }\n  if (DAT_00104010 != 0) {\n    uVar6 = 0;\n    do {\n      uVar2 = (ulong)((uint)(uVar2 >> 5) ^ (int)uVar2 * 8 ^ uVar6);\n      uVar6 = uVar6 + 1;\n    } while (uVar6 < DAT_00104010);\n  }\n  return uVar2 | uVar4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns 1 when len == 0.",
+   "asserted_values": [
+    "1"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "len == 0",
+    "returns": "1"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input data causes an overflow.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes the computed hash value to out[0..7].",
+   "asserted_values": [
+    "out[0..7]"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Loops over each byte in the input data.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Applies a series of bitwise operations and conditional logic inside the loop.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "10",
+   "type": "NAME",
+   "text": "The function implements a custom hash algorithm based on bitwise operations and conditional logic.",
+   "asserted_values": [
+    "custom hash"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

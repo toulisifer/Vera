@@ -1,0 +1,137 @@
+{
+ "fn": "fn_09",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.1,
+   "cached": false,
+   "eval_count": 560,
+   "cache_key": "0deba26ce12f64247ed153d0db11b46a2e2d2d0c1e08431d2a09b1032e09eeda"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_09 computes a hash value using a specific algorithm.",
+  "proposed_name": "fn_09",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0xcbf29ce484222325.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The loop increments the index by 1 in each iteration.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The loop continues until all bytes in the input buffer have been processed.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "The function does not modify the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "The function returns the computed hash value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t h = 0xcbf29ce484222325;\n  for (size_t i = 0; i < len; i++) {\n    h = (h ^ in[i]) * 0x100000001b5;\n  }\n  return h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The loop increments the index by 1 in each iteration.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The loop continues until all bytes in the input buffer have been processed.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "The function returns the computed hash value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

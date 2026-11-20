@@ -1,0 +1,137 @@
+{
+ "fn": "fn_02",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 20.5,
+   "cached": false,
+   "eval_count": 822,
+   "cache_key": "505a1c33c6a5c0042687028c18a30d8b6a68dc51d3df9da774055a1b58e2c3cb"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be implementing a custom hash function or checksum algorithm.",
+  "proposed_name": "fn_02",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0xcbf29ce484222325.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the final hash value to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function uses a loop to process each byte of the input.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function applies different transformations based on the length of the input and the values of global variables.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "6",
+    "type": "NAME",
+    "text": "The function appears to be a custom hash function or checksum algorithm.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_02(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t hash = 0xcbf29ce484222325;\n  if (len != 0) {\n    for (size_t i = 0; i < len; i++) {\n      hash = in[i] ^ hash;\n      uint32_t uVar1 = (uint32_t)i | 1;\n      if (((uVar1 * uVar1 & 7) == 1) && (DAT_00104008 == 0x3c71)) {\n        hash = hash * 0x100000001b3;\n      } else {\n        hash = hash + 0x51e3 ^ hash;\n      }\n      if (((((int)len + 1) * (int)len & 1U) != 0) || (DAT_00104010 != 0)) {\n        hash = (uint64_t)DAT_00104008 + (hash ^ len << 7) * 0x2d6b;\n        hash = hash >> 0xb ^ hash;\n      }\n    }\n  }\n  if (DAT_00104010 != 0) {\n    for (size_t i = 0; i < DAT_00104010; i++) {\n      hash = hash * 8 ^ hash >> 5 ^ i;\n    }\n  }\n  return hash;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is 0.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the final hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte of the input.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function applies different transformations based on the length of the input and the values of global variables.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "6",
+   "type": "NAME",
+   "text": "The function appears to be a custom hash function or checksum algorithm.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains multiple conditional branches based on input characters (like 0x5c, 0x22, 0x29, etc.) and state variables (like uVar6, uVar8, etc.).", "seconds": 1.5}

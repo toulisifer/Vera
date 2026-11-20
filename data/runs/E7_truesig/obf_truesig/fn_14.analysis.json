@@ -1,0 +1,199 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 44.1,
+   "cached": false,
+   "eval_count": 1856,
+   "cache_key": "7d9512050807962b48053d83f20aa0d3ead55ef506e3bf88a84cfad59d174fde"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be encoding input data into a specific format, possibly Base64 or a similar encoding scheme.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffffffffffff.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when (len + 2) / 3 << 2 > out_cap.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "(len + 2) / 3 << 2 > out_cap",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0 when len < 3.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 3",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Writes 2 bytes to out[0..1] when len == 1.",
+    "asserted_values": [
+     "2"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 1",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Writes 3 bytes to out[0..2] when len == 2.",
+    "asserted_values": [
+     "3"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "len == 2",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "Iterates over the input data in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Writes to out[0..len-1] based on the input data.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "8",
+    "type": "NAME",
+    "text": "Encodes input data into a specific format.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((len + 2) / 3 << 2 > out_cap) {\n    return VERA_ERR;\n  }\n  if (len < 3) {\n    return 0;\n  }\n  size_t i = 0;\n  while (i + 3 <= len) {\n    uint32_t value = (uint32_t)in[i] << 16 | (uint32_t)in[i + 1] << 8 | (uint32_t)in[i + 2];\n    if (((((int)len + 1) * (int)len & 1U) != 0) || (arg != 0)) {\n      value = ((uint)(len << 7) ^ value) * 0x2d6b + arg;\n      value = value >> 0xb ^ value;\n    }\n    out[i / 3 * 4] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value >> 0xc & 0x3f)];\n    out[i / 3 * 4 + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value >> 0x12 & 0x3f)];\n    if (((i / 3 * 4 * i / 3 * 4 & 7) == 1) && (arg == 0x3c71)) {\n      out[i / 3 * 4 + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value >> 6 & 0x3f)];\n    } else {\n      out[i / 3 * 4 + 2] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[value & 0x3f];\n    }\n    i += 3;\n  }\n  if (len == 1) {\n    out[i / 3 * 4] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(in[i] & 3) << 4];\n    out[i / 3 * 4 + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[in[i] >> 2];\n    out[i / 3 * 4 + 2] = '=';\n    out[i / 3 * 4 + 3] = '=';\n    return i / 3 * 4 + 4;\n  }\n  if (len == 2) {\n    uint32_t value = (uint32_t)in[i] << 16 | (uint32_t)in[i + 1] << 8;\n    if (((((int)len + 1) * (int)len & 1U) != 0) || (arg != 0)) {\n      value = ((uint)(len << 7) ^ value) * 0x2d6b + arg;\n      value = value >> 0xb ^ value;\n    }\n    out[i / 3 * 4] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value >> 0xc & 0x3f)];\n    out[i / 3 * 4 + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value >> 0x12 & 0x3f)];\n    out[i / 3 * 4 + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(value >> 6 & 0x3f)];\n    out[i / 3 * 4 + 3] = '=';\n    return i / 3 * 4 + 4;\n  }\n  return i / 3 * 4;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when (len + 2) / 3 << 2 > out_cap.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "(len + 2) / 3 << 2 > out_cap",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0 when len < 3.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 3",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Writes 2 bytes to out[0..1] when len == 1.",
+   "asserted_values": [
+    "2"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 1",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Writes 3 bytes to out[0..2] when len == 2.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "len == 2",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "Iterates over the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes to out[0..len-1] based on the input data.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "8",
+   "type": "NAME",
+   "text": "Encodes input data into a specific format.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

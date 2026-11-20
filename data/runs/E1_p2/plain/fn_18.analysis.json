@@ -1,0 +1,116 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 381 column 7 (char 11962)"
+   ],
+   "seconds": 63.5,
+   "cached": true,
+   "eval_count": 3072,
+   "cache_key": "8ca7061a78ef8220d30e1a831a5243abc81a87daa40c2f47b9c71e90c82ea475"
+  },
+  {
+   "errors": [],
+   "seconds": 16.0,
+   "cached": true,
+   "eval_count": 784,
+   "cache_key": "235b3b7bf90f7326ecf5c750b6989d7f1c689efe3c5e9fe557d8c2fed649bc5c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_18 appears to be a parser that checks if the input string contains balanced parentheses, square brackets, and curly braces. It returns the index of the first unbalanced character or the length of the input if all characters are balanced.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the ASCII values of characters for comparison.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns the index of the first unbalanced character or the length of the input if all characters are balanced.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Does not modify the input or output buffers.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Uses a loop to iterate through the input string.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "Purpose is to check for balanced parentheses, square brackets, and curly braces in the input string.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t d = 0;\n  size_t q = 0;\n  size_t i = 0;\n  uint8_t st[64];\n\n  while (i < len) {\n    uint8_t uVar3 = in[i];\n\n    if (q == 2) {\n      q = 1;\n    } else if (q == 1) {\n      if (uVar3 == '\\') {\n        q = 2;\n      } else if (uVar3 == '\"') {\n        q = 0;\n      }\n    } else if (uVar3 == '\"') {\n      q = 1;\n    } else if (((uVar3 == '(') || (uVar3 == '[')) || (uVar3 == '{')) {\n      if (d == 64) {\n        return i + 1;\n      }\n      if (uVar3 == '(') {\n        uVar3 = ')';\n      } else {\n        uVar3 = uVar3 + 2;\n      }\n      st[d] = uVar3;\n      d++;\n    } else if (((uVar3 == ')') || (uVar3 == ']')) || (uVar3 == '}')) {\n      if ((d == 0) || (uVar3 != st[d - 1])) {\n        return i + 1;\n      }\n      d--;\n    }\n    i++;\n  }\n\n  if (d == 0 && q == 0) {\n    return 0;\n  } else {\n    return len + 1;\n  }\n}\n"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns the index of the first unbalanced character or the length of the input if all characters are balanced.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Does not modify the input or output buffers.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Uses a loop to iterate through the input string.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "Purpose is to check for balanced parentheses, square brackets, and curly braces in the input string.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the ASCII values of characters for comparison.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

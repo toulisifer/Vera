@@ -1,0 +1,120 @@
+{
+ "fn": "fn_17",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "a1",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input string until a null terminator is encountered.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "a2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when the input length is 0.",
+   "asserted_values": [
+    "0",
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "a3",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when the input length is less than 2.",
+   "asserted_values": [
+    "0",
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 < 2",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "a4",
+   "type": "SIDE",
+   "text": "Writes 0 to out[0..1] if the length of in is odd and a specific global variable is non-zero.",
+   "asserted_values": [
+    "0",
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.8,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "a5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input string and updates a state variable.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "a6",
+   "type": "IO",
+   "text": "Writes the computed value to out if the length of in is less than or equal to out_cap.",
+   "asserted_values": [
+    "out"
+   ],
+   "confidence": 0.6,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "a7",
+   "type": "IO",
+   "text": "Returns the computed value if the length of in is less than or equal to out_cap.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.6,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 0,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

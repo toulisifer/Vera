@@ -1,0 +1,30 @@
+{
+ "fn": "fn_16",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: uint64_t fn_16(const uint8_t *in, size_t len, uint64_t seed) ← chữ ký chung",
+ "raw": "uint64_t fn_16(const uint8_t *in, size_t len, uint64_t seed) {\n  uint32_t h = seed & 0xffffffff;\n  uint32_t h2 = seed >> 32;\n  size_t i;\n\n  for (i = 0; i < len; i++) {\n    h = (h << 7) | (h >> 25);\n    h += (uint32_t)in[i] * 167 + (uint32_t)i;\n    h2 = (h2 << 7) | (h2 >> 25);\n    h2 += (uint32_t)in[i] * 169 + (uint32_t)i;\n  }\n\n  h ^= h2;\n  h2 = (h2 ^ (h2 >> 15)) * 11400714785074694087ULL;\n  h = (h ^ (h >> 13)) * 6364136223846793005ULL;\n  h = (h ^ (h >> 16));\n  return h + h2;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.0,
+   "cached": false,
+   "eval_count": 301,
+   "cache_key": "6e7d253efcf00b2fb90566f3834202cd45f5c781bff5d9a59027d38978ca05c2"
+  }
+ ],
+ "output": {
+  "recovered_c": "uint64_t vera_inner(const uint8_t *in, size_t len, uint64_t seed) {\n  uint32_t h = seed & 0xffffffff;\n  uint32_t h2 = seed >> 32;\n  size_t i;\n\n  for (i = 0; i < len; i++) {\n    h = (h << 7) | (h >> 25);\n    h += (uint32_t)in[i] * 167 + (uint32_t)i;\n    h2 = (h2 << 7) | (h2 >> 25);\n    h2 += (uint32_t)in[i] * 169 + (uint32_t)i;\n  }\n\n  h ^= h2;\n  h2 = (h2 ^ (h2 >> 15)) * 11400714785074694087ULL;\n  h = (h ^ (h >> 13)) * 6364136223846793005ULL;\n  h = (h ^ (h >> 16));\n  return h + h2;\n}\nuint64_t fn_16(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len), (uint64_t)(arg)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

@@ -1,0 +1,95 @@
+{
+ "fn": "fn_03",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "name",
+   "type": "NAME",
+   "text": "Computes a 64-bit value based on a custom algorithm involving two 32-bit variables.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg",
+   "type": "ALG",
+   "text": "Implements an unknown algorithm.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "const",
+   "type": "CONST",
+   "text": "Uses the constant 0xfff1.",
+   "asserted_values": [
+    "0xfff1"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xfff1",
+      "form": "imm",
+      "detail": "0xFFF1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cf",
+   "type": "CF",
+   "text": "Uses a for loop to iterate over the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "io",
+   "type": "IO",
+   "text": "Returns the computed 64-bit value when the input length is valid.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "side",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

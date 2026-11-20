@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function uses the constant 0x3d in the lines where it sets padding characters in the output buffer.", "seconds": 1.4}

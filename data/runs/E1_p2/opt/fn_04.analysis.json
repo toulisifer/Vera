@@ -1,0 +1,137 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.2,
+   "cached": false,
+   "eval_count": 550,
+   "cache_key": "b853483661c2dea13f3b8174944d238eca77c118695764a515c3c70ba6fc3cab"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_04 computes a hash value using a simple polynomial hash algorithm.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0x1505.",
+    "asserted_values": [
+     "0x1505"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0x1505 when the input length is 0.",
+    "asserted_values": [
+     "0x1505"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0x1505"
+    }
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function uses a loop to iterate over each byte of the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function reads each byte of the input and updates the hash value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function does not write to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "NAME",
+    "text": "The function appears to be implementing a simple polynomial hash algorithm.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len == 0) {\n    return 0x1505;\n  }\n  uint64_t hash = 0x1505;\n  for (size_t i = 0; i < len; i++) {\n    hash = hash * 0x21 + in[i];\n  }\n  return hash;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0x1505.",
+   "asserted_values": [
+    "0x1505"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0x1505 when the input length is 0.",
+   "asserted_values": [
+    "0x1505"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0x1505"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function uses a loop to iterate over each byte of the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function reads each byte of the input and updates the hash value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function does not write to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "6",
+   "type": "NAME",
+   "text": "The function appears to be implementing a simple polynomial hash algorithm.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

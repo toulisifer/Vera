@@ -1,0 +1,113 @@
+{
+ "fn": "fn_15",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "Iterates over the input buffer to find repeated sequences of bytes.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "Calculates the required output buffer size based on the number of repeated sequences.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the output buffer capacity is less than the required size.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_3",
+   "type": "IO",
+   "text": "Returns the number of bytes written to the output buffer when the output buffer is sufficient.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_4",
+   "type": "SIDE",
+   "text": "Writes the length of the repeated sequence to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_5",
+   "type": "SIDE",
+   "text": "Writes the first byte of the repeated sequence to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The maximum length of a repeated sequence is 0xff.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_7",
+   "type": "NAME",
+   "text": "Identifies repeated sequences of bytes in the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 2,
+  "supported": 0,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

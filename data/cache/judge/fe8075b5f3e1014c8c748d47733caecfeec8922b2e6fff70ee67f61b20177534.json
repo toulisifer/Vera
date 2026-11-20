@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code checks if param_2 (len) is 0 and returns 0 immediately, confirming the claim.", "seconds": 4.1}

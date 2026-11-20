@@ -1,0 +1,181 @@
+{
+ "fn": "fn_17",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 23.9,
+   "cached": false,
+   "eval_count": 1111,
+   "cache_key": "8de99081ab74abc848e0d410c0cf548ecf5027ce0c1813e6b25774324c496a78"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_17 processes a string input and returns a 64-bit value based on the input length and content.",
+  "proposed_name": "fn_17",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffffffffffff.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 is 0.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 is less than uVar1 + 2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < uVar1 + 2",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_2 is less than uVar1.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 < uVar1",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input string.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes the first uVar6 elements of the input string to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "Returns uVar6 << 0x20 | uVar7 when uVar6 is less than or equal to param_5 and uVar6 is not 0.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "(uVar6 <= param_5) && (uVar1 = uVar6 << 0x20 | uVar7, uVar6 != 0)",
+     "returns": "uVar6 << 0x20 | uVar7"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_17(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar1;\n  uint8_t *puVar2;\n  uint8_t *puVar3;\n  size_t lVar4;\n  uint64_t uVar5;\n  uint64_t uVar6;\n  uint64_t uVar7;\n\n  uVar7 = 0;\n  uVar6 = 0;\n  uVar1 = 0;\n  if (len == 0) {\n    return 0;\n  }\n  do {\n    if (in[uVar1] == '\\0') break;\n    if (len < uVar1 + 2) {\n      return 0xffffffffffffffff;\n    }\n    uVar5 = (uint64_t)in[1 + uVar1];\n    uVar1 = uVar1 + 2 + uVar5;\n    if (len < uVar1) {\n      return 0xffffffffffffffff;\n    }\n    uVar7 = uVar7 + uVar5;\n    uVar6 = uVar6 + 1;\n  } while (uVar1 < len);\n  uint64_t uVar1 = 0xffffffffffffffff;\n  if ((uVar6 <= out_cap) && (uVar1 = uVar6 << 0x20 | uVar7, uVar6 != 0)) {\n    lVar4 = 0;\n    puVar2 = out;\n    do {\n      puVar3 = puVar2 + 1;\n      *puVar2 = in[lVar4];\n      lVar4 = (uint64_t)in[1 + lVar4] + 2 + lVar4;\n      puVar2 = puVar3;\n    } while (puVar3 != out + uVar6);\n    return uVar1;\n  }\n  return uVar1;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 is 0.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 is less than uVar1 + 2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < uVar1 + 2",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 is less than uVar1.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < uVar1",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input string.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes the first uVar6 elements of the input string to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "Returns uVar6 << 0x20 | uVar7 when uVar6 is less than or equal to param_5 and uVar6 is not 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "(uVar6 <= param_5) && (uVar1 = uVar6 << 0x20 | uVar7, uVar6 != 0)",
+    "returns": "uVar6 << 0x20 | uVar7"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

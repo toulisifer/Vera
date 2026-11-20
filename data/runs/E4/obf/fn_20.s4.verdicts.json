@@ -1,0 +1,77 @@
+{
+ "fn": "fn_20",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x706050403020100.",
+   "asserted_values": [
+    "0x706050403020100"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x706050403020100",
+      "form": "table",
+      "detail": "byte LE 0001020304050607 trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_2 > param_5.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a do-while loop that iterates from uVar6 down to 0.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a nested do-while loop that iterates from uVar5 down to uVar4.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

@@ -1,0 +1,702 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_18",
+ "n_instructions": 187,
+ "immediates": [
+  {
+   "addr": 4390,
+   "insn": "sub rsp, 0x58",
+   "value": 88,
+   "size": 8
+  },
+  {
+   "addr": 4413,
+   "insn": "je 0x1242",
+   "value": 4674,
+   "size": 8
+  },
+  {
+   "addr": 4431,
+   "insn": "shl rax, 6",
+   "value": 6,
+   "size": 1
+  },
+  {
+   "addr": 4451,
+   "insn": "jmp 0x11d3",
+   "value": 4563,
+   "size": 8
+  },
+  {
+   "addr": 4456,
+   "insn": "cmp ecx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4459,
+   "insn": "je 0x1260",
+   "value": 4704,
+   "size": 8
+  },
+  {
+   "addr": 4465,
+   "insn": "cmp bpl, 0x29",
+   "value": 41,
+   "size": 1
+  },
+  {
+   "addr": 4469,
+   "insn": "je 0x12c4",
+   "value": 4804,
+   "size": 8
+  },
+  {
+   "addr": 4475,
+   "insn": "ja 0x12a0",
+   "value": 4768,
+   "size": 8
+  },
+  {
+   "addr": 4481,
+   "insn": "cmp bpl, 0x22",
+   "value": 34,
+   "size": 1
+  },
+  {
+   "addr": 4485,
+   "insn": "jne 0x1340",
+   "value": 4928,
+   "size": 8
+  },
+  {
+   "addr": 4498,
+   "insn": "or rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4506,
+   "insn": "and edx, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4509,
+   "insn": "cmp rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4513,
+   "insn": "je 0x13a0",
+   "value": 5024,
+   "size": 8
+  },
+  {
+   "addr": 4519,
+   "insn": "imul r8d, r8d, 0x1f9",
+   "value": 505,
+   "size": 4
+  },
+  {
+   "addr": 4526,
+   "insn": "add ecx, 0x51e3",
+   "value": 20963,
+   "size": 4
+  },
+  {
+   "addr": 4548,
+   "insn": "add r9, 0x1f9",
+   "value": 505,
+   "size": 8
+  },
+  {
+   "addr": 4558,
+   "insn": "je 0x1231",
+   "value": 4657,
+   "size": 8
+  },
+  {
+   "addr": 4566,
+   "insn": "add rdi, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4582,
+   "insn": "and edx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4585,
+   "insn": "jne 0x11f5",
+   "value": 4597,
+   "size": 8
+  },
+  {
+   "addr": 4595,
+   "insn": "je 0x1213",
+   "value": 4627,
+   "size": 8
+  },
+  {
+   "addr": 4600,
+   "insn": "shl rdx, 7",
+   "value": 7,
+   "size": 1
+  },
+  {
+   "addr": 4612,
+   "insn": "imul edx, edx, 0x2d6b",
+   "value": 11627,
+   "size": 4
+  },
+  {
+   "addr": 4622,
+   "insn": "shr ecx, 0xb",
+   "value": 11,
+   "size": 1
+  },
+  {
+   "addr": 4627,
+   "insn": "cmp ecx, 2",
+   "value": 2,
+   "size": 4
+  },
+  {
+   "addr": 4630,
+   "insn": "jne 0x1168",
+   "value": 4456,
+   "size": 8
+  },
+  {
+   "addr": 4636,
+   "insn": "mov ecx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4645,
+   "insn": "add r9, 0x1f9",
+   "value": 505,
+   "size": 8
+  },
+  {
+   "addr": 4655,
+   "insn": "jne 0x11d0",
+   "value": 4560,
+   "size": 8
+  },
+  {
+   "addr": 4660,
+   "insn": "jne 0x1410",
+   "value": 5136,
+   "size": 8
+  },
+  {
+   "addr": 4668,
+   "insn": "jne 0x1410",
+   "value": 5136,
+   "size": 8
+  },
+  {
+   "addr": 4690,
+   "insn": "jne 0x1442",
+   "value": 5186,
+   "size": 8
+  },
+  {
+   "addr": 4696,
+   "insn": "add rsp, 0x58",
+   "value": 88,
+   "size": 8
+  },
+  {
+   "addr": 4704,
+   "insn": "cmp bpl, 0x5c",
+   "value": 92,
+   "size": 1
+  },
+  {
+   "addr": 4708,
+   "insn": "je 0x1380",
+   "value": 4992,
+   "size": 8
+  },
+  {
+   "addr": 4714,
+   "insn": "cmp bpl, 0x22",
+   "value": 34,
+   "size": 1
+  },
+  {
+   "addr": 4718,
+   "insn": "jne 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4727,
+   "insn": "or rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4735,
+   "insn": "and edx, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4738,
+   "insn": "cmp rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4742,
+   "insn": "je 0x1420",
+   "value": 5152,
+   "size": 8
+  },
+  {
+   "addr": 4751,
+   "insn": "xor ecx, 0x51e4",
+   "value": 20964,
+   "size": 4
+  },
+  {
+   "addr": 4757,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4768,
+   "insn": "cmp bpl, 0x7b",
+   "value": 123,
+   "size": 1
+  },
+  {
+   "addr": 4772,
+   "insn": "je 0x134a",
+   "value": 4938,
+   "size": 8
+  },
+  {
+   "addr": 4778,
+   "insn": "ja 0x1390",
+   "value": 5008,
+   "size": 8
+  },
+  {
+   "addr": 4784,
+   "insn": "cmp bpl, 0x5b",
+   "value": 91,
+   "size": 1
+  },
+  {
+   "addr": 4788,
+   "insn": "je 0x134a",
+   "value": 4938,
+   "size": 8
+  },
+  {
+   "addr": 4794,
+   "insn": "cmp bpl, 0x5d",
+   "value": 93,
+   "size": 1
+  },
+  {
+   "addr": 4798,
+   "insn": "jne 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4807,
+   "insn": "je 0x1439",
+   "value": 5177,
+   "size": 8
+  },
+  {
+   "addr": 4822,
+   "insn": "jne 0x1439",
+   "value": 5177,
+   "size": 8
+  },
+  {
+   "addr": 4828,
+   "insn": "or r8, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4836,
+   "insn": "and r8d, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4840,
+   "insn": "cmp r8, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4844,
+   "insn": "je 0x13f0",
+   "value": 5104,
+   "size": 8
+  },
+  {
+   "addr": 4850,
+   "insn": "add rsi, 0x51e3",
+   "value": 20963,
+   "size": 8
+  },
+  {
+   "addr": 4872,
+   "insn": "je 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4888,
+   "insn": "shr rsi, 5",
+   "value": 5,
+   "size": 1
+  },
+  {
+   "addr": 4905,
+   "insn": "add rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4912,
+   "insn": "jb 0x1310",
+   "value": 4880,
+   "size": 8
+  },
+  {
+   "addr": 4914,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4928,
+   "insn": "cmp bpl, 0x28",
+   "value": 40,
+   "size": 1
+  },
+  {
+   "addr": 4932,
+   "insn": "jne 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4938,
+   "insn": "cmp rsi, 0x40",
+   "value": 64,
+   "size": 8
+  },
+  {
+   "addr": 4942,
+   "insn": "je 0x1439",
+   "value": 5177,
+   "size": 8
+  },
+  {
+   "addr": 4951,
+   "insn": "or rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4959,
+   "insn": "and edx, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4962,
+   "insn": "cmp rdx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4966,
+   "insn": "je 0x13c0",
+   "value": 5056,
+   "size": 8
+  },
+  {
+   "addr": 4968,
+   "insn": "add rsi, 0x51e3",
+   "value": 20963,
+   "size": 8
+  },
+  {
+   "addr": 4978,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 4992,
+   "insn": "mov ecx, 2",
+   "value": 2,
+   "size": 4
+  },
+  {
+   "addr": 4997,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 5008,
+   "insn": "cmp bpl, 0x7d",
+   "value": 125,
+   "size": 1
+  },
+  {
+   "addr": 5012,
+   "insn": "je 0x12c4",
+   "value": 4804,
+   "size": 8
+  },
+  {
+   "addr": 5018,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 5030,
+   "insn": "cmp edx, 0x3c71",
+   "value": 15473,
+   "size": 4
+  },
+  {
+   "addr": 5036,
+   "insn": "jne 0x11a7",
+   "value": 4519,
+   "size": 8
+  },
+  {
+   "addr": 5042,
+   "insn": "mov ecx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 5047,
+   "insn": "jmp 0x1221",
+   "value": 4641,
+   "size": 8
+  },
+  {
+   "addr": 5062,
+   "insn": "cmp edx, 0x3c71",
+   "value": 15473,
+   "size": 4
+  },
+  {
+   "addr": 5068,
+   "insn": "jne 0x1368",
+   "value": 4968,
+   "size": 8
+  },
+  {
+   "addr": 5070,
+   "insn": "cmp bpl, 0x28",
+   "value": 40,
+   "size": 1
+  },
+  {
+   "addr": 5077,
+   "insn": "mov r8d, 0x29",
+   "value": 41,
+   "size": 4
+  },
+  {
+   "addr": 5090,
+   "insn": "add rsi, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 5094,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 5111,
+   "insn": "cmp r8d, 0x3c71",
+   "value": 15473,
+   "size": 4
+  },
+  {
+   "addr": 5118,
+   "insn": "jne 0x12f2",
+   "value": 4850,
+   "size": 8
+  },
+  {
+   "addr": 5127,
+   "insn": "jmp 0x1300",
+   "value": 4864,
+   "size": 8
+  },
+  {
+   "addr": 5136,
+   "insn": "add rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 5140,
+   "insn": "jmp 0x1244",
+   "value": 4676,
+   "size": 8
+  },
+  {
+   "addr": 5160,
+   "insn": "cmp edx, 0x3c71",
+   "value": 15473,
+   "size": 4
+  },
+  {
+   "addr": 5166,
+   "insn": "jne 0x128c",
+   "value": 4748,
+   "size": 8
+  },
+  {
+   "addr": 5172,
+   "insn": "jmp 0x11c0",
+   "value": 4544,
+   "size": 8
+  },
+  {
+   "addr": 5177,
+   "insn": "add rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 5181,
+   "insn": "jmp 0x1244",
+   "value": 4676,
+   "size": 8
+  },
+  {
+   "addr": 5186,
+   "insn": "call 0x1050",
+   "value": 4176,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4394,
+   "value": 40
+  },
+  {
+   "addr": 4403,
+   "value": 72
+  },
+  {
+   "addr": 4544,
+   "value": 1
+  },
+  {
+   "addr": 4641,
+   "value": 1
+  },
+  {
+   "addr": 4676,
+   "value": 72
+  },
+  {
+   "addr": 4681,
+   "value": 40
+  },
+  {
+   "addr": 4813,
+   "value": 18446744073709551615
+  },
+  {
+   "addr": 4817,
+   "value": 18446744073709551615
+  },
+  {
+   "addr": 5074,
+   "value": 2
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4587,
+   "target": 16408,
+   "section": null
+  },
+  {
+   "addr": 4606,
+   "target": 16400,
+   "section": ".data"
+  },
+  {
+   "addr": 4864,
+   "target": 16408,
+   "section": null
+  },
+  {
+   "addr": 4895,
+   "target": 16408,
+   "section": null
+  },
+  {
+   "addr": 5024,
+   "target": 16400,
+   "section": ".data"
+  },
+  {
+   "addr": 5056,
+   "target": 16400,
+   "section": ".data"
+  },
+  {
+   "addr": 5104,
+   "target": 16400,
+   "section": ".data"
+  },
+  {
+   "addr": 5152,
+   "target": 16400,
+   "section": ".data"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16392,
+   "hex": "0840000000000000713c0000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__",
+  "__stack_chk_fail"
+ ]
+}

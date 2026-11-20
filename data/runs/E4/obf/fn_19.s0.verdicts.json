@@ -1,0 +1,99 @@
+{
+ "fn": "fn_19",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The code uses the constant 'k' (0x6b).",
+   "asserted_values": [
+    "0x6b"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The code uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_5 < param_2",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "The function contains a do-while loop that iterates param_2 times.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Does not write to out when param_2 == 0.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "hàm có ghi out"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 5,
+ "explanation_clean": false
+}

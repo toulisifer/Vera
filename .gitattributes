@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.so binary
+*.cmd text eol=crlf
+# GitHub language stats: the demo page is generated, data is not code
+data/** linguist-generated
+demo/web/*.html linguist-documentation
+docs/** linguist-documentation

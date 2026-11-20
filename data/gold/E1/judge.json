@@ -1,0 +1,53 @@
+{
+ "verifier": {
+  "flagged": 25,
+  "precision": 0.88,
+  "recall_unweighted": 0.5238095238095238,
+  "recall_weighted": 0.2154546657258776
+ },
+ "qwen2.5-coder:7b": {
+  "flagged": 21,
+  "precision": 0.9047619047619048,
+  "recall_unweighted": 0.4523809523809524,
+  "recall_weighted": 0.3386013847239372,
+  "kappa_vs_human": 0.481074481074481,
+  "verdicts": {
+   "TRUE": 99,
+   "FALSE": 21
+  },
+  "union_with_verifier": {
+   "flagged": 31,
+   "precision": 0.8387096774193549,
+   "recall_unweighted": 0.6190476190476191,
+   "recall_weighted": 0.4071551420003528
+  },
+  "recall_weighted_ci": [
+   0.18402405742096162,
+   0.5227303385943612
+  ],
+  "ollama": "0.40.13"
+ },
+ "qwen3:8b (no think)": {
+  "flagged": 35,
+  "precision": 0.7142857142857143,
+  "recall_unweighted": 0.5952380952380952,
+  "recall_weighted": 0.578180675604163,
+  "kappa_vs_human": 0.5021691973969632,
+  "verdicts": {
+   "TRUE": 82,
+   "FALSE": 35,
+   "UNCLEAR": 3
+  },
+  "union_with_verifier": {
+   "flagged": 44,
+   "precision": 0.75,
+   "recall_unweighted": 0.7857142857142857,
+   "recall_weighted": 0.6565278267772093
+  },
+  "recall_weighted_ci": [
+   0.3942324484239022,
+   0.7661632024386288
+  ],
+  "ollama": "0.40.13"
+ }
+}

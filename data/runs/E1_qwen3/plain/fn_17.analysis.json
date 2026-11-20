@@ -1,0 +1,195 @@
+{
+ "fn": "fn_17",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 21.0,
+   "cached": false,
+   "eval_count": 882,
+   "cache_key": "a1a817e4b341fea433a2a423c80a6619aa6ed7a6cf427fdeb7807c65c22cf210"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input data to compute a value based on specific rules involving input and output buffers.",
+  "proposed_name": "fn_17",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0",
+    "type": "CF",
+    "text": "A while loop is used to process input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_1",
+    "type": "CF",
+    "text": "An inner for loop is used to copy data from input to output.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_2",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < cnt.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_3",
+    "type": "IO",
+    "text": "Returns cnt << 0x20 | total when out_cap >= cnt.",
+    "asserted_values": [
+     "0x20"
+    ],
+    "confidence": 1
+   },
+   {
+    "id": "_4",
+    "type": "SIDE",
+    "text": "Writes data from input to output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_5",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is insufficient for processing.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_6",
+    "type": "CONST",
+    "text": "The code uses the constant 0x20.",
+    "asserted_values": [
+     "0x20"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_7",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input is empty or contains a null byte.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_8",
+    "type": "SIDE",
+    "text": "Does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_9",
+    "type": "CF",
+    "text": "A break statement is used to exit the loop when input is insufficient.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_17(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t i = 0;\n  size_t cnt = 0;\n  size_t total = 0;\n  size_t c;\n\n  while (1) {\n    if ((len <= i) || (in[i] == 0)) {\n      if (out_cap < cnt) {\n        return 0xFFFFFFFFFFFFFFFF;\n      } else {\n        for (c = 0; c < cnt; c++) {\n          out[c] = in[i];\n          i = i + in[i + 1] + 2;\n        }\n        return (uint64_t)(cnt << 0x20) | total;\n      }\n    }\n    if ((len < i + 2) || (len < i + in[i + 1] + 2)) break;\n    total += in[i + 1];\n    cnt++;\n    i += in[i + 1] + 2;\n  }\n  return 0xFFFFFFFFFFFFFFFF;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "A while loop is used to process input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "An inner for loop is used to copy data from input to output.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < cnt.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_3",
+   "type": "IO",
+   "text": "Returns cnt << 0x20 | total when out_cap >= cnt.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 1
+  },
+  {
+   "id": "_4",
+   "type": "SIDE",
+   "text": "Writes data from input to output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_5",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is insufficient for processing.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_6",
+   "type": "CONST",
+   "text": "The code uses the constant 0x20.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_7",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input is empty or contains a null byte.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_8",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_9",
+   "type": "CF",
+   "text": "A break statement is used to exit the loop when input is insufficient.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

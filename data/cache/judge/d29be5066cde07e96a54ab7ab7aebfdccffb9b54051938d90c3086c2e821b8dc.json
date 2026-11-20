@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code returns 1 when len == 0, as shown by the condition where param_2 == 0 and uVar2 is set to 1.", "seconds": 1.2}

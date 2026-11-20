@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is less than 3.", "seconds": 0.7}

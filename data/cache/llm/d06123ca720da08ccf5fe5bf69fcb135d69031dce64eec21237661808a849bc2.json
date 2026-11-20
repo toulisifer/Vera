@@ -1,0 +1,1 @@
+{"key": "d06123ca720da08ccf5fe5bf69fcb135d69031dce64eec21237661808a849bc2", "content": "uint64_t fn_09(const char *a, size_t length) {\n    uint64_t hash = 14695981039346656037ULL;\n    for (size_t i = 0; i < length; i++) {\n        hash ^= a[i];\n        hash *= 1099511628211ULL;\n    }\n    return hash;\n}", "seconds": 5.1, "eval_count": 111}

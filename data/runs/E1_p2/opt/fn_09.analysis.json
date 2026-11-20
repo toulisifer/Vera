@@ -1,0 +1,159 @@
+{
+ "fn": "fn_09",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.1,
+   "cached": false,
+   "eval_count": 681,
+   "cache_key": "b3a937f18464ca39aa719fc092b024fbbcd9117e2bf6a2a810e854ee9b731220"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_09 computes a hash value using a polynomial and returns it.",
+  "proposed_name": "fn_09",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The initial hash value is 0xcbf29ce484222325.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xcbf29ce484222325 when len is 0.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0xcbf29ce484222325"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes the hash value to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The loop continues until all bytes in the input buffer have been processed.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "The polynomial used in the hash computation is 0x100000001b5.",
+    "asserted_values": [
+     "0x100000001b5"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t hash = 0xcbf29ce484222325;\n  if (len != 0) {\n    for (size_t i = 0; i < len; i++) {\n      hash = (hash ^ in[i]) * 0x100000001b5;\n    }\n  }\n  return hash;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The initial hash value is 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when len is 0.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xcbf29ce484222325"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes the hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The loop continues until all bytes in the input buffer have been processed.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "The polynomial used in the hash computation is 0x100000001b5.",
+   "asserted_values": [
+    "0x100000001b5"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,1 @@
+{"key": "be03f80d589e22afd5bef99957ff4d7e9e8e1e7f7f405dce75a240d839156214", "content": "uint32_t fn_11(uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 61333;\n  for (size_t i = 0; i < len; i++) {\n    h = h * 6589 + in[i];\n  }\n  return h;\n}", "seconds": 4.7, "eval_count": 105}

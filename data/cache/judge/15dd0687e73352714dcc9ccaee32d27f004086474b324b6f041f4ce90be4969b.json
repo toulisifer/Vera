@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a conditional branch based on the value of param_2, specifically checking if param_2 == 0.", "seconds": 1.0}

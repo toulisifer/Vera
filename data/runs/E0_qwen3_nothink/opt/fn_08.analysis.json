@@ -1,0 +1,145 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 17.1,
+   "cached": true,
+   "eval_count": 734,
+   "cache_key": "c69cc991fefd6d86abebdcea30731f6d322e94f0071287f1918de8d36906aa97"
+  }
+ ],
+ "output": {
+  "summary": "The function processes an input byte array and returns a 32-bit value based on a series of bitwise operations.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "ALG",
+    "text": "The function performs a bitwise transformation on the input bytes using a series of operations involving XOR, bit shifting, and masking.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFF when the input length is non-zero.",
+    "asserted_values": [
+     "0xFFFFFFFF"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "IO",
+    "text": "Returns 0 when the input length is zero.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "CF",
+    "text": "Processes each byte in the input array sequentially.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "CF",
+    "text": "Applies a bitwise transformation to each byte using a fixed mask and a series of operations.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "SIDE",
+    "text": "Does not modify the input array.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_6",
+    "type": "CONST",
+    "text": "The function uses the mask 0xf7179bf5 in its bitwise operations.",
+    "asserted_values": [
+     "0xf7179bf5"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t result = 0;\n  uint32_t uVar1 = 0xffffffff;\n  int iVar2;\n  const uint8_t *pbVar3;\n\n  if (len != 0) {\n    pbVar3 = in + len;\n    uVar1 = 0xffffffff;\n    do {\n      uVar1 = uVar1 ^ *in;\n      iVar2 = 8;\n      do {\n        uVar1 = -(uVar1 & 1) & 0xf7179bf5 ^ uVar1 >> 1;\n        iVar2 = iVar2 + -1;\n      } while (iVar2 != 0);\n      in = in + 1;\n    } while (in != pbVar3);\n    result = ~uVar1;\n  }\n  return result;\n}\n"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "ALG",
+   "text": "The function performs a bitwise transformation on the input bytes using a series of operations involving XOR, bit shifting, and masking.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFF when the input length is non-zero.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns 0 when the input length is zero.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Processes each byte in the input array sequentially.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "Applies a bitwise transformation to each byte using a fixed mask and a series of operations.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "SIDE",
+   "text": "Does not modify the input array.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "The function uses the mask 0xf7179bf5 in its bitwise operations.",
+   "asserted_values": [
+    "0xf7179bf5"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_15",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_15(const char *s, size_t n, int a1, char *r, size_t m) ← chữ ký chung",
+ "raw": "size_t fn_15(const char *s, size_t n, int a1, char *r, size_t m) {\n  size_t i = 0, j = 0;\n  while (i + 1 < n && s[i] == s[i + 1]) {\n    size_t count = 2;\n    while (i + count < n && s[i] == s[i + count] && count < 255)\n      count++;\n    if (j + 2 > m)\n      return -1;\n    r[j++] = count;\n    r[j++] = s[i];\n    i += count;\n  }\n  while (i < n) {\n    size_t count = 1;\n    while (i + count < n && s[i] == s[i + count] && count < 255)\n      count++;\n    if (j + 2 > m)\n      return -1;\n    r[j++] = count;\n    r[j++] = s[i];\n    i += count;\n  }\n  return j;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 13.6,
+   "cached": false,
+   "eval_count": 262,
+   "cache_key": "6c7c9918e3001bfc2221ac6c4e227f43ec13c6f5de64277f7c30ed8fd7f30205"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const char *s, size_t n, int a1, char *r, size_t m) {\n  size_t i = 0, j = 0;\n  while (i + 1 < n && s[i] == s[i + 1]) {\n    size_t count = 2;\n    while (i + count < n && s[i] == s[i + count] && count < 255)\n      count++;\n    if (j + 2 > m)\n      return -1;\n    r[j++] = count;\n    r[j++] = s[i];\n    i += count;\n  }\n  while (i < n) {\n    size_t count = 1;\n    while (i + count < n && s[i] == s[i + count] && count < 255)\n      count++;\n    if (j + 2 > m)\n      return -1;\n    r[j++] = count;\n    r[j++] = s[i];\n    i += count;\n  }\n  return j;\n}\nuint64_t fn_15(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const char *)(in), (size_t)(len), (int)(arg), (char *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

@@ -1,0 +1,107 @@
+{
+ "fn": "fn_04",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 8.6,
+   "cached": false,
+   "eval_count": 349,
+   "cache_key": "cbf89ca83fd3c97a5de2a9ecd1ca50b9d09c05d1588553a478835467928b6575"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_04 does not perform any operations on the input parameters and simply returns.",
+  "proposed_name": "fn_04",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CF",
+    "text": "The function contains a loop that increments a counter until it reaches the value of DAT_00104010.",
+    "asserted_values": [
+     "DAT_00104010"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function contains another loop that increments a counter until it reaches the value of param_2.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "The function does not return any value.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function does not write to any output.",
+    "asserted_values": [
+     "none"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "void fn_04(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CF",
+   "text": "The function contains a loop that increments a counter until it reaches the value of DAT_00104010.",
+   "asserted_values": [
+    "DAT_00104010"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function contains another loop that increments a counter until it reaches the value of param_2.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function does not return any value.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function does not write to any output.",
+   "asserted_values": [
+    "none"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

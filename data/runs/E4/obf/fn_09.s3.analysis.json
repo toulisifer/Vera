@@ -1,0 +1,157 @@
+{
+ "fn": "fn_09",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.7,
+   "cached": false,
+   "eval_count": 916,
+   "cache_key": "2a21152a08cf3591382ec49aae464a5ff85ac1c651c1e2418f44289f94f74ccc"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_09 appears to be a custom hash function that takes an input buffer and calculates a hash value based on the input data and some internal state.",
+  "proposed_name": "fn_09",
+  "algorithm": "unknown",
+  "self_confidence": 0.85,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "Implements a custom hash function.",
+    "asserted_values": [],
+    "confidence": 0.85,
+    "io": {}
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "Uses a do-while loop to process each byte of the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {}
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the final hash value to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.75,
+    "io": {
+     "when": "always",
+     "returns": "uVar2",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0xcbf29ce484222325 when the input length is 0.",
+    "asserted_values": [
+     "0xcbf29ce484222325"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 == 0",
+     "returns": "0xcbf29ce484222325"
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Uses conditional statements to modify the hash value based on internal state and input length.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {}
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Modifies the input buffer by XORing each byte with the hash value.",
+    "asserted_values": [],
+    "confidence": 0.6,
+    "io": {
+     "when": "always",
+     "returns": "none",
+     "writes_out": true
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_09(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { uint uVar1; ulong uVar2; long lVar3; ulong uVar4; uVar2 = 0xcbf29ce484222325; if (len != 0) { lVar3 = 0; uVar4 = 0; do { uVar2 = *(byte *)(in + lVar3) ^ uVar2; uVar1 = (uint)lVar3 | 1; if (((uVar1 * uVar1 & 7) == 1) && (arg == 0x3c71)) { uVar2 = uVar2 * 0x100000001b5; } else { uVar2 = uVar2 + 0x51e3 ^ uVar4; } if (((((int)len + 1) * (int)len & 1U) != 0) || (arg != 0)) { uVar2 = (ulong)arg + (uVar2 ^ len << 7) * 0x2d6b; uVar2 = uVar2 >> 0xb ^ uVar2; } lVar3 = lVar3 + 1; uVar4 = uVar4 + 0x1f9; } while (len != lVar3); } if (arg != 0) { uVar4 = 0; do { uVar2 = uVar2 * 8 ^ uVar2 >> 5 ^ uVar4; uVar4 = uVar4 + 1; } while ((uint)uVar4 < arg); } return uVar2; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.85,
+   "io": {}
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Uses a do-while loop to process each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {}
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the final hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.75,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when the input length is 0.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xcbf29ce484222325"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Uses conditional statements to modify the hash value based on internal state and input length.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {}
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Modifies the input buffer by XORing each byte with the hash value.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "always",
+    "returns": "none",
+    "writes_out": true
+   }
+  }
+ ],
+ "dropped_claims": []
+}

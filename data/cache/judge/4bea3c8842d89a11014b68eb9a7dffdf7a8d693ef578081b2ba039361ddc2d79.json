@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function returns h, which is 0x1505 when len is 0, not 0xFFFFFFFFFFFFFFFF.", "seconds": 1.0}

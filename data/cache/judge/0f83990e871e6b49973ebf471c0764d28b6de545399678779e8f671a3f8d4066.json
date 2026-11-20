@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The code returns 0xffffffffffffffff when param_2 is less than uVar1 + 2, but the claim is not precise as it does not account for the loop condition and other checks.", "seconds": 1.6}

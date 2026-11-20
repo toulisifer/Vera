@@ -1,0 +1,107 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 13.8,
+   "cached": false,
+   "eval_count": 541,
+   "cache_key": "2df2ff506ede44c5aefbdf15a5aeef5a02022ea052b35b3b3c735ef804c9088c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_19 takes an input buffer, a length, an argument, and an output buffer. It performs a transformation on the input buffer and writes the result to the output buffer. If the output buffer capacity is less than the input length, it returns an error value.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "2",
+    "type": "SIDE",
+    "text": "Writes transformed data to out[0..<len>].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "Iterates over each byte in the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "Uses the constant 0x0000000000000000.",
+    "asserted_values": [
+     "0x0000000000000000"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar1 = (uint8_t)(arg >> ((int)i & 7) << 3);\n    uint8_t bVar2 = (uint8_t)i & 7;\n    out[i] = in[i] ^ ((bVar1 >> (-bVar2 & 7)) | (bVar1 << bVar2)) ^ (uint8_t)i;\n  }\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "2",
+   "type": "SIDE",
+   "text": "Writes transformed data to out[0..<len>].",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "Iterates over each byte in the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "Uses the constant 0x0000000000000000.",
+   "asserted_values": [
+    "0x0000000000000000"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

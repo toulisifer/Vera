@@ -1,0 +1,30 @@
+{
+ "fn": "fn_04",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: void fn_04(void) ← chữ ký chung",
+ "raw": "void fn_04(void) {\n  unsigned int i;\n  for (i = 0; i < 10; i++) {\n    ;\n  }\n  for (i = 0; i < 10; i++) {\n    ;\n  }\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 3.4,
+   "cached": false,
+   "eval_count": 64,
+   "cache_key": "04e059b0c6d2bb74d1e5f9248ff176d5df3ac756ba3b1ca338e219c2fbaff0e3"
+  }
+ ],
+ "output": {
+  "recovered_c": "void vera_inner(void) {\n  unsigned int i;\n  for (i = 0; i < 10; i++) {\n    ;\n  }\n  for (i = 0; i < 10; i++) {\n    ;\n  }\n}\nuint64_t fn_04(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    vera_inner();\n    return 0;\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

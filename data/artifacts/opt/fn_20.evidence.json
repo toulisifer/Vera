@@ -1,0 +1,198 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_20",
+ "n_instructions": 68,
+ "immediates": [
+  {
+   "addr": 4392,
+   "insn": "sub rsp, 0x10",
+   "value": 16,
+   "size": 8
+  },
+  {
+   "addr": 4412,
+   "insn": "mov rdx, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4422,
+   "insn": "jb 0x11fd",
+   "value": 4605,
+   "size": 8
+  },
+  {
+   "addr": 4444,
+   "insn": "mov ebx, 1",
+   "value": 1,
+   "size": 4
+  },
+  {
+   "addr": 4470,
+   "insn": "sub rcx, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4497,
+   "insn": "jne 0x1170",
+   "value": 4464,
+   "size": 8
+  },
+  {
+   "addr": 4499,
+   "insn": "cmp r10, 7",
+   "value": 7,
+   "size": 8
+  },
+  {
+   "addr": 4503,
+   "insn": "jbe 0x11d7",
+   "value": 4567,
+   "size": 8
+  },
+  {
+   "addr": 4508,
+   "insn": "mov r8d, 8",
+   "value": 8,
+   "size": 4
+  },
+  {
+   "addr": 4539,
+   "insn": "add rax, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4543,
+   "insn": "cmp rax, 8",
+   "value": 8,
+   "size": 8
+  },
+  {
+   "addr": 4547,
+   "insn": "jne 0x11b0",
+   "value": 4528,
+   "size": 8
+  },
+  {
+   "addr": 4553,
+   "insn": "add rcx, 8",
+   "value": 8,
+   "size": 8
+  },
+  {
+   "addr": 4560,
+   "insn": "jb 0x11e0",
+   "value": 4576,
+   "size": 8
+  },
+  {
+   "addr": 4565,
+   "insn": "jmp 0x11a8",
+   "value": 4520,
+   "size": 8
+  },
+  {
+   "addr": 4579,
+   "insn": "jae 0x11fa",
+   "value": 4602,
+   "size": 8
+  },
+  {
+   "addr": 4593,
+   "insn": "add r8, 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4600,
+   "insn": "jne 0x11e8",
+   "value": 4584,
+   "size": 8
+  },
+  {
+   "addr": 4619,
+   "insn": "jne 0x1216",
+   "value": 4630,
+   "size": 8
+  },
+  {
+   "addr": 4621,
+   "insn": "add rsp, 0x10",
+   "value": 16,
+   "size": 8
+  },
+  {
+   "addr": 4630,
+   "insn": "call 0x1050",
+   "value": 4176,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4396,
+   "value": 40
+  },
+  {
+   "addr": 4405,
+   "value": 8
+  },
+  {
+   "addr": 4452,
+   "value": 7
+  },
+  {
+   "addr": 4477,
+   "value": 1
+  },
+  {
+   "addr": 4486,
+   "value": 1
+  },
+  {
+   "addr": 4522,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4549,
+   "value": 8
+  },
+  {
+   "addr": 4605,
+   "value": 8
+  },
+  {
+   "addr": 4610,
+   "value": 40
+  }
+ ],
+ "data_refs": [
+  {
+   "addr": 4428,
+   "target": 8192,
+   "section": ".rodata"
+  }
+ ],
+ "sections": [
+  {
+   "name": ".rodata",
+   "addr": 8192,
+   "hex": "0001020304050607"
+  },
+  {
+   "name": ".data",
+   "addr": 16392,
+   "hex": "0840000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__",
+  "__stack_chk_fail"
+ ]
+}

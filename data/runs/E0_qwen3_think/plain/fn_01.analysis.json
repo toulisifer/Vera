@@ -1,0 +1,120 @@
+{
+ "fn": "fn_01",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 12288,
+  "num_predict": 8192
+ },
+ "think": true,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting value: line 1 column 1 (char 0)"
+   ],
+   "seconds": 400.3,
+   "cached": false,
+   "eval_count": 8192,
+   "cache_key": "0d40ccc8a9c42807d1dc9088456326af739d42d99dd724bcea0f4a841a1c21a6"
+  },
+  {
+   "errors": [],
+   "seconds": 304.2,
+   "cached": false,
+   "eval_count": 6684,
+   "cache_key": "beea812707b4f6ef5097ae58fbdaa09561ed8ce10a7b8cd387cd555bf7621fb2"
+  }
+ ],
+ "output": {
+  "summary": "The function computes a CRC-32 checksum of the input buffer, inverts the result, and returns it as a 64-bit unsigned integer. It does not use the 'arg', 'out', or 'out_cap' parameters.",
+  "proposed_name": "CRC-32 Inverter",
+  "algorithm": "CRC-32",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "A1",
+    "type": "ALG",
+    "text": "Computes CRC-32 with polynomial 0xEDB88320 and initial value 0xFFFFFFFF.",
+    "asserted_values": [
+     "0xEDB88320",
+     "0xFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "A2",
+    "type": "IO",
+    "text": "Returns the bitwise NOT of the computed CRC-32 value as a 64-bit unsigned integer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A3",
+    "type": "SIDE",
+    "text": "Does not write to the 'out' buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A4",
+    "type": "IO",
+    "text": "Does not use the 'out_cap' parameter.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A5",
+    "type": "IO",
+    "text": "Does not use the 'arg' parameter.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_01(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint32_t h = 0xFFFFFFFF;\n    for (size_t i = 0; i < len; i++) {\n        h ^= in[i];\n        for (int b = 0; b < 8; b++) {\n            h = (-(h & 1) & 0xedb88320) ^ (h >> 1);\n        }\n    }\n    return (uint64_t)~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "A1",
+   "type": "ALG",
+   "text": "Computes CRC-32 with polynomial 0xEDB88320 and initial value 0xFFFFFFFF.",
+   "asserted_values": [
+    "0xEDB88320",
+    "0xFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "A2",
+   "type": "IO",
+   "text": "Returns the bitwise NOT of the computed CRC-32 value as a 64-bit unsigned integer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A3",
+   "type": "SIDE",
+   "text": "Does not write to the 'out' buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A4",
+   "type": "IO",
+   "text": "Does not use the 'out_cap' parameter.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A5",
+   "type": "IO",
+   "text": "Does not use the 'arg' parameter.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

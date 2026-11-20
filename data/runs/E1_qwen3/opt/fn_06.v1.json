@@ -1,0 +1,11 @@
+{
+ "fn": "fn_06",
+ "config": "opt",
+ "compiled": false,
+ "fepr": null,
+ "n_vectors": 0,
+ "n_match": 0,
+ "failures": [],
+ "sandbox_image": "python:3.12-slim",
+ "error": "schema không hợp lệ"
+}

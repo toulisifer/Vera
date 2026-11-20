@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code writes the remaining bytes of in to out in the same order when out_cap >= len.", "seconds": 45.1}

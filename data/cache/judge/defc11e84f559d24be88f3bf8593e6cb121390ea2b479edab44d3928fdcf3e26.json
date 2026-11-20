@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function calculates a hash value and stores it in the memory location pointed to by out[0..7].", "seconds": 1.0}

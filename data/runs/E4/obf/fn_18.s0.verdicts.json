@@ -1,0 +1,99 @@
+{
+ "fn": "fn_18",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0 when len == 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "IO",
+    "io": {
+     "when": "len == 0",
+     "returns": "0",
+     "writes_out": null
+    },
+    "detail": "đúng trên 1 vector thỏa điều kiện"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns len when out_cap < len.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 0.7,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "out_cap < len",
+     "returns": "len",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v09",
+     "tag": "cap0",
+     "observed": "ret 0x000000000000000b"
+    }
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Has a loop that iterates over each character in the input.",
+   "asserted_values": [
+    "loop"
+   ],
+   "confidence": 0.9,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 1,
+  "contradicted": 1
+ },
+ "n_claims": 4,
+ "explanation_clean": false
+}

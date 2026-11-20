@@ -1,0 +1,250 @@
+{
+ "fn": "fn_06",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 52.6,
+   "cached": false,
+   "eval_count": 2065,
+   "cache_key": "b00c67ceb7f378b6775f408cc08099112dc09935ffb0e54ca999291adea33385"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be implementing a complex algorithm with multiple steps involving bit manipulation, arithmetic, and swapping elements in an array.",
+  "proposed_name": "fn_06",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "0x51e3"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1f9.",
+    "asserted_values": [
+     "0x1f9"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function contains nested loops.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Writes to out[0..15].",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes to local_128[0..255].",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Does not write to out[16..255].",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "8",
+    "type": "SIDE",
+    "text": "Writes to out[0..255] if out_cap >= len.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "9",
+    "type": "IO",
+    "text": "Returns VERA_ERR when len > 256.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.8,
+    "io": {
+     "when": "len > 256",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "10",
+    "type": "IO",
+    "text": "Returns VERA_ERR when out_cap < len.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.8,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "11",
+    "type": "IO",
+    "text": "Returns len when len <= 256 and out_cap >= len.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "len <= 256 && out_cap >= len",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "12",
+    "type": "IO",
+    "text": "Writes to out[0..len-1] if len <= 256 and out_cap >= len.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\n#define VERA_ERR 0xFFFFFFFFFFFFFFFF\n\nuint64_t fn_06(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len > 256 || out_cap < len) {\n        return VERA_ERR;\n    }\n\n    uint64_t uVar26 = 0xffffffffffffffff;\n\n    if (len <= 256) {\n        uint8_t local_130[8] = {0};\n        uint8_t local_128[256] = {0};\n\n        for (size_t i = 0; i < len; i++) {\n            local_130[i % 8] = (uint8_t)((arg >> (i * 8)) & 0x3f);\n            local_128[i] = local_130[i % 8];\n        }\n\n        for (size_t i = 0; i < 256; i += 16) {\n            uint16_t sVar2 = local_128[i] * 2;\n            uint16_t sVar3 = local_128[i + 2] * 2;\n            uint16_t sVar4 = local_128[i + 4] * 2;\n            uint16_t sVar5 = local_128[i + 6] * 2;\n            uint16_t sVar6 = local_128[i + 8] * 2;\n            uint16_t sVar7 = local_128[i + 10] * 2;\n            uint16_t sVar8 = local_128[i + 12] * 2;\n            uint16_t sVar9 = local_128[i + 14] * 2;\n            uint16_t sVar10 = local_128[i + 16] * 2;\n            uint16_t sVar11 = local_128[i + 18] * 2;\n            uint16_t sVar12 = local_128[i + 20] * 2;\n            uint16_t sVar13 = local_128[i + 22] * 2;\n            uint16_t sVar14 = local_128[i + 24] * 2;\n            uint16_t sVar15 = local_128[i + 26] * 2;\n            uint16_t sVar16 = local_128[i + 28] * 2;\n            uint16_t sVar17 = local_128[i + 30] * 2;\n\n            out[i] = (sVar2 < 0x100) * sVar2 - (0xff < sVar2);\n            out[i + 1] = (sVar3 < 0x100) * sVar3 - (0xff < sVar3);\n            out[i + 2] = (sVar4 < 0x100) * sVar4 - (0xff < sVar4);\n            out[i + 3] = (sVar5 < 0x100) * sVar5 - (0xff < sVar5);\n            out[i + 4] = (sVar6 < 0x100) * sVar6 - (0xff < sVar6);\n            out[i + 5] = (sVar7 < 0x100) * sVar7 - (0xff < sVar7);\n            out[i + 6] = (sVar8 < 0x100) * sVar8 - (0xff < sVar8);\n            out[i + 7] = (sVar9 < 0x100) * sVar9 - (0xff < sVar9);\n            out[i + 8] = (sVar10 < 0x100) * sVar10 - (0xff < sVar10);\n            out[i + 9] = (sVar11 < 0x100) * sVar11 - (0xff < sVar11);\n            out[i + 10] = (sVar12 < 0x100) * sVar12 - (0xff < sVar12);\n            out[i + 11] = (sVar13 < 0x100) * sVar13 - (0xff < sVar13);\n            out[i + 12] = (sVar14 < 0x100) * sVar14 - (0xff < sVar14);\n            out[i + 13] = (sVar15 < 0x100) * sVar15 - (0xff < sVar15);\n            out[i + 14] = (sVar16 < 0x100) * sVar16 - (0xff < sVar16);\n            out[i + 15] = (sVar17 < 0x100) * sVar17 - (0xff < sVar17);\n        }\n    }\n\n    return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains nested loops.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Does not write to out[16..255].",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "8",
+   "type": "SIDE",
+   "text": "Writes to out[0..255] if out_cap >= len.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "9",
+   "type": "IO",
+   "text": "Returns VERA_ERR when len > 256.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "len > 256",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "10",
+   "type": "IO",
+   "text": "Returns VERA_ERR when out_cap < len.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.8,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "11",
+   "type": "IO",
+   "text": "Returns len when len <= 256 and out_cap >= len.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len <= 256 && out_cap >= len",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "12",
+   "type": "IO",
+   "text": "Writes to out[0..len-1] if len <= 256 and out_cap >= len.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes to out[0..15].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes to local_128[0..255].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

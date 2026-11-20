@@ -1,0 +1,157 @@
+{
+ "fn": "fn_15",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Uses a loop to iterate over input data.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Uses a nested loop to compare consecutive bytes in input data.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Uses a loop to write data to output memory.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns 0 when input length is zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns -1 when input length is greater than output capacity.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Returns the number of bytes written to output when successful.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "SIDE",
+   "text": "Writes two bytes to output for each matching pattern found.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "SIDE",
+   "text": "Does not modify input data.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "CONST",
+   "text": "Uses the constant 0xff as a maximum value for a counter.",
+   "asserted_values": [
+    "0xff"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_10",
+   "type": "CONST",
+   "text": "Uses the constant 0xffffffff as a maximum value for a counter.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xffffffff",
+      "form": "imm",
+      "detail": "0xFFFFFFFF (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_11",
+   "type": "NAME",
+   "text": "Processes input data to find matching patterns and writes results to output memory.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 9,
+  "contradicted": 0
+ },
+ "n_claims": 11,
+ "explanation_clean": true
+}

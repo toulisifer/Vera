@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function writes the first 8 bytes of 'in' to 'out' in a specific order based on the value of 'arg'.", "seconds": 0.9}

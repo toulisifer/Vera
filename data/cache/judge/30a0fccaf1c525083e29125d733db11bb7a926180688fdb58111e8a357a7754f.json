@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function checks if param_2 is 0 and if so, it returns param_2.", "seconds": 0.7}

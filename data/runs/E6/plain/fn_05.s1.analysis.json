@@ -1,0 +1,143 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 1,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 18.2,
+   "cached": false,
+   "eval_count": 884,
+   "cache_key": "195939c390795093090741d9d1962174dfa07f910de9dd225b72831e135042bd"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 implements a custom hash function that takes an input buffer, processes it using a specific algorithm, and writes the resulting hash to an output buffer.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x9e3779b9.",
+    "asserted_values": [
+     "0x9e3779b9"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when len < 0x18 or out_cap < 8.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 0x18 or out_cap < 8",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Writes 8 bytes to out when len >= 0x18 and out_cap >= 8.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len >= 0x18 and out_cap >= 8",
+     "writes_out": true
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes the first 4 bytes of the input to out.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "Iterates 0x20 times to process the input.",
+    "asserted_values": [
+     "0x20"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_05(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar1;\n  if ((len < 0x18) || (out_cap < 8)) {\n    uVar1 = 0xffffffffffffffff;\n  } else {\n    uint32_t v0 = *(uint32_t *)in;\n    uint32_t v1 = *(uint32_t *)(in + 4);\n    for (size_t r = 0; r < 0x20; r++) {\n      v0 = v0 + (*(int *)(in + 0xc) + (v1 >> 5) ^ v1 * 0x10 + *(int *)(in + 8) ^ s + v1);\n      v1 = v1 + (*(int *)(in + 0x14) + (v0 >> 5) ^ v0 * 0x10 + *(int *)(in + 0x10) ^ s + v0);\n    }\n    *out = (uint8_t)v0;\n    out[1] = (uint8_t)(v0 >> 8);\n    out[2] = (uint8_t)(v0 >> 0x10);\n    out[3] = (uint8_t)(v0 >> 0x18);\n    out[4] = (uint8_t)v1;\n    out[5] = (uint8_t)(v1 >> 8);\n    out[6] = (uint8_t)(v1 >> 0x10);\n    out[7] = (uint8_t)(v1 >> 0x18);\n    uVar1 = 8;\n  }\n  return uVar1;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x9e3779b9.",
+   "asserted_values": [
+    "0x9e3779b9"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x18 or out_cap < 8",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Writes 8 bytes to out when len >= 0x18 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 0x18 and out_cap >= 8",
+    "writes_out": true
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes the first 4 bytes of the input to out.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Iterates 0x20 times to process the input.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

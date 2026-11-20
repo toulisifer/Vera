@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly initializes uVar2 with the constant 0xcbf29ce484222325.", "seconds": 1.3}

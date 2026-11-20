@@ -1,0 +1,187 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 17.4,
+   "cached": false,
+   "eval_count": 852,
+   "cache_key": "79b9bc6d43bd6da4af5168e07f2376e8a38c9843161f93bbe993e20e7217412d"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_19` appears to be a custom encryption or transformation function. It takes an input buffer, its length, a transformation key, an output buffer, and the output buffer's capacity as parameters. It processes the input buffer according to a specific algorithm and writes the result to the output buffer. If the output buffer's capacity is insufficient, it returns an error value.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3c71.",
+    "asserted_values": [
+     "0x3c71"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x6b.",
+    "asserted_values": [
+     "0x6b"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_5 < param_2",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns param_2 when param_5 >= param_2.",
+    "asserted_values": [
+     "param_2"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "param_5 >= param_2",
+     "returns": "param_2"
+    }
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Writes data to out[0..param_2-1].",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "writes_out": true
+    }
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes data to out[0..param_2-1].",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "Contains a loop that iterates over param_2 elements.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "CF",
+    "text": "Contains conditional logic to handle different cases based on the values of param_4 and param_5.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n\n  for (size_t i = 0; i < len; i++) {\n    uint64_t key = arg >> ((i & 7) << 3);\n    if ((i * (i + 1) & 1) != 0 || arg != 0x3c71) {\n      key = (key ^ (i << 7)) * 0x6b + 0x3c71;\n    }\n    key = (key << (i & 7) | key >> (8 - (i & 7))) ^ in[i] ^ i;\n    out[i] = key;\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x6b.",
+   "asserted_values": [
+    "0x6b"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when param_5 < param_2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < param_2",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns param_2 when param_5 >= param_2.",
+   "asserted_values": [
+    "param_2"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 >= param_2",
+    "returns": "param_2"
+   }
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Writes data to out[0..param_2-1].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "writes_out": true
+   }
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Contains a loop that iterates over param_2 elements.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Contains conditional logic to handle different cases based on the values of param_4 and param_5.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes data to out[0..param_2-1].",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not write to the 'out' parameter. It only returns a computed checksum as a 64-bit value.", "seconds": 1.0}

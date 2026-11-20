@@ -1,0 +1,111 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 17.6,
+   "cached": true,
+   "eval_count": 847,
+   "cache_key": "978c842e92cd2327fec2d87b5a981b332638ef69cf7060898d4f84e016bc0223"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 appears to be a custom hash function that takes an input buffer, a length, an argument, and an output buffer. It computes a hash value and stores it in the output buffer. If the input length is less than 24 or the output buffer capacity is less than 8, it returns VERA_ERR. Otherwise, it computes a hash using a custom algorithm and stores the result in the output buffer.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function returns VERA_ERR when the input length is less than 24 or the output buffer capacity is less than 8.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "The function writes 8 bytes to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "The function writes the hash value to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function has a loop that iterates 32 times.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "The function appears to be a custom hash function.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar1;\n  if ((len < 0x18) || (out_cap < 8)) {\n    uVar1 = 0xffffffffffffffff;\n  } else {\n    uint32_t v0 = *(uint32_t *)in;\n    uint32_t v1 = *(uint32_t *)(in + 4);\n    for (size_t r = 0; r < 0x20; r++) {\n      uint32_t s = 0x9e3779b9;\n      v0 += (*(int *)(in + 0xc) + (v1 >> 5) ^ v1 * 0x10 + *(int *)(in + 8) ^ s + v1);\n      v1 += (*(int *)(in + 0x14) + (v0 >> 5) ^ v0 * 0x10 + *(int *)(in + 0x10) ^ s + v0);\n    }\n    out[0] = (uint8_t)v0;\n    out[1] = (uint8_t)(v0 >> 8);\n    out[2] = (uint8_t)(v0 >> 0x10);\n    out[3] = (uint8_t)(v0 >> 0x18);\n    out[4] = (uint8_t)v1;\n    out[5] = (uint8_t)(v1 >> 8);\n    out[6] = (uint8_t)(v1 >> 0x10);\n    out[7] = (uint8_t)(v1 >> 0x18);\n    uVar1 = 8;\n  }\n  return uVar1;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function returns VERA_ERR when the input length is less than 24 or the output buffer capacity is less than 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function writes 8 bytes to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function writes the hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function has a loop that iterates 32 times.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "The function appears to be a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

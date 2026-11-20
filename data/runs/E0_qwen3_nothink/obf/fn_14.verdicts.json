@@ -1,0 +1,341 @@
+{
+ "fn": "fn_14",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "The function uses a loop that iterates over the input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "The loop condition checks if the current chunk index plus 3 is less than or equal to the input length.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "The loop body processes each chunk of 3 bytes and writes 2 bytes to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "The function handles the case where the remaining input length is 1 byte separately.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CF",
+   "text": "The function handles the case where the remaining input length is 2 bytes separately.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Writes 2 bytes to the output buffer for each 3-byte chunk processed.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "always",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "always",
+     "returns": null,
+     "writes_out": true
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "không ghi out"
+    }
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "IO",
+   "text": "Returns the number of bytes written to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "always",
+     "returns": "len",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "ret 0x0000000000000004"
+    }
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "SIDE",
+   "text": "Modifies the input buffer by reading bytes from it.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "CONST",
+   "text": "The function uses a fixed string for lookup operations.",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_10",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x5eb in an arithmetic operation.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x5eb",
+      "form": "imm",
+      "detail": "0x5EB (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_11",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3d3d in an output operation.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3d3d",
+      "form": "imm",
+      "detail": "0x3D3D (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_12",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3d in an output operation.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_13",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x51e5 in an arithmetic operation.",
+   "asserted_values": [
+    "0x51e5"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e5",
+      "form": "imm",
+      "detail": "0x51E5 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_14",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x2d6b in an arithmetic operation.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_15",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3c71 in a conditional check.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_16",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0xb in a bitwise operation.",
+   "asserted_values": [
+    "0xb"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_17",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x10 in a bitwise operation.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_18",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x8 in a bitwise operation.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_19",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x3f in a bitwise operation.",
+   "asserted_values": [
+    "0x3f"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "user_20",
+   "type": "CONST",
+   "text": "The function uses a fixed value of 0x12 in a bitwise operation.",
+   "asserted_values": [
+    "0x12"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 6,
+  "unsupported": 12,
+  "contradicted": 2
+ },
+ "n_claims": 20,
+ "explanation_clean": false
+}

@@ -1,0 +1,90 @@
+{
+ "fn": "fn_04",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "C0",
+   "type": "CONST",
+   "text": "The function uses the constant 0x00104010.",
+   "asserted_values": [
+    "0x00104010"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "found": [],
+    "missing": [
+     {
+      "value": "0x104010"
+     }
+    ]
+   }
+  },
+  {
+   "id": "C1",
+   "type": "IO",
+   "text": "Returns 0 when len == 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.85,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "C3",
+   "type": "IO",
+   "text": "Does not write to out.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "C4",
+   "type": "CF",
+   "text": "A loop that increments a counter without any side effects.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "C5",
+   "type": "CF",
+   "text": "A conditional check to see if a global variable is non-zero.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 5,
+ "explanation_clean": true
+}

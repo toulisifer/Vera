@@ -1,0 +1,122 @@
+{
+ "fn": "fn_12",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "CONST3",
+   "type": "CONST",
+   "text": "The function uses the constant 0x714851d1.",
+   "asserted_values": [
+    "0x714851d1"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x714851d1",
+      "form": "imm",
+      "detail": "0x714851D1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO1",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when (param_2 < 0x18) or (param_5 < 8).",
+   "asserted_values": [
+    "0xffffffffffffffff",
+    "0x18",
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "(param_2 < 0x18) || (param_5 < 8)",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "SIDE1",
+   "type": "SIDE",
+   "text": "Writes a 64-bit value to *param_4.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  },
+  {
+   "id": "CF1",
+   "type": "CF",
+   "text": "Includes a nested loop structure.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 3,
+  "unsupported": 3,
+  "contradicted": 0
+ },
+ "n_claims": 6,
+ "explanation_clean": true
+}

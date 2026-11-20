@@ -1,0 +1,1 @@
+{"key": "2c5fd1b0a8995c8f956784d58c51701fcd10557752193566fef4257673c43864", "content": "unsigned int fn_11(unsigned char *buf, size_t len)\n{\n    unsigned int hash = 6517;\n    size_t i;\n\n    for (i = 0; i < len; i++)\n        hash = hash * 66 + buf[i];\n\n    return hash;\n}", "seconds": 3.9, "eval_count": 76}

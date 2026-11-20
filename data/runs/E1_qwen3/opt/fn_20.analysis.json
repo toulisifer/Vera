@@ -1,0 +1,35 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": false,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting value: line 268 column 14 (char 7434)"
+   ],
+   "seconds": 73.6,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "0600bf291d2443c0b46e728996ff1977577358a02f218ad4e57bfb3f727d89e1"
+  },
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 304 column 7 (char 8174)"
+   ],
+   "seconds": 73.1,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "aaad35c287dc8d77d2c963f39c1d92a7dd3a9ad1a14b5aea4c4cf91e2bc577f2"
+  }
+ ],
+ "output": null,
+ "config": "opt"
+}

@@ -1,0 +1,264 @@
+{
+ "fn": "fn_12",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 < 0x18 or param_5 < 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 < 0x18 or param_5 < 8",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Enters a loop that continues until iVar5 == -0x290a3a20.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Contains a loop that iterates while a condition involving param_2 and uVar4 is true.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "SIDE",
+   "text": "Writes to out[0..7] based on the final value of uVar2 and uVar3.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant 0x1f9.",
+   "asserted_values": [
+    "0x1f9"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x1f9",
+      "form": "imm",
+      "detail": "0x1F9 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CONST",
+   "text": "Uses the constant 0x714851d1.",
+   "asserted_values": [
+    "0x714851d1"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x714851d1",
+      "form": "imm",
+      "detail": "0x714851D1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "CONST",
+   "text": "Uses the constant 0x51e3.",
+   "asserted_values": [
+    "0x51e3"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x51e3",
+      "form": "imm",
+      "detail": "0x51E3 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_10",
+   "type": "CF",
+   "text": "Contains a conditional branch to LAB_0010120c when iVar5 == -0x290a3a20.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_11",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v05",
+     "tag": "len24",
+     "observed": "hàm có ghi out"
+    }
+   }
+  },
+  {
+   "id": "user_12",
+   "type": "IO",
+   "text": "Returns 8 when the function completes successfully.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "always",
+    "returns": "8"
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "IO",
+    "io": {
+     "when": "always",
+     "returns": "8",
+     "writes_out": null
+    },
+    "counterexample": {
+     "vector": "v00",
+     "tag": "len0",
+     "observed": "ret 0xffffffffffffffff"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 5,
+  "unsupported": 4,
+  "contradicted": 2
+ },
+ "n_claims": 12,
+ "explanation_clean": false
+}

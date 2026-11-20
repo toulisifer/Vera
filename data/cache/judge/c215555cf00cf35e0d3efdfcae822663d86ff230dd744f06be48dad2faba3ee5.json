@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code writes in[i] to out[cnt] when out_cap >= cnt.", "seconds": 0.8}

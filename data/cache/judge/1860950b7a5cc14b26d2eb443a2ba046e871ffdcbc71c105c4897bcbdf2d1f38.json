@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not return param_2 when len == 0; it returns param_2 only after processing the input data.", "seconds": 1.0}

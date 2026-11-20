@@ -1,0 +1,202 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_19",
+ "n_instructions": 62,
+ "immediates": [
+  {
+   "addr": 4381,
+   "insn": "jae 0x112b",
+   "value": 4395,
+   "size": 8
+  },
+  {
+   "addr": 4383,
+   "insn": "mov rax, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4390,
+   "insn": "jmp 0x11c1",
+   "value": 4545,
+   "size": 8
+  },
+  {
+   "addr": 4395,
+   "insn": "mov qword ptr [rbp - 8], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4403,
+   "insn": "jmp 0x11af",
+   "value": 4527,
+   "size": 8
+  },
+  {
+   "addr": 4409,
+   "insn": "and eax, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4412,
+   "insn": "shl eax, 3",
+   "value": 3,
+   "size": 1
+  },
+  {
+   "addr": 4434,
+   "insn": "and eax, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4466,
+   "insn": "and eax, 7",
+   "value": 7,
+   "size": 4
+  },
+  {
+   "addr": 4522,
+   "insn": "add qword ptr [rbp - 8], 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4535,
+   "insn": "jb 0x1135",
+   "value": 4405,
+   "size": 8
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4353,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4357,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4361,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4365,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4369,
+   "value": 18446744073709551560
+  },
+  {
+   "addr": 4373,
+   "value": 18446744073709551560
+  },
+  {
+   "addr": 4377,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4395,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4405,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4415,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4427,
+   "value": 18446744073709551606
+  },
+  {
+   "addr": 4430,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4437,
+   "value": 18446744073709551607
+  },
+  {
+   "addr": 4440,
+   "value": 18446744073709551606
+  },
+  {
+   "addr": 4444,
+   "value": 18446744073709551607
+  },
+  {
+   "addr": 4456,
+   "value": 18446744073709551606
+  },
+  {
+   "addr": 4460,
+   "value": 18446744073709551607
+  },
+  {
+   "addr": 4477,
+   "value": 18446744073709551606
+  },
+  {
+   "addr": 4480,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4484,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4494,
+   "value": 18446744073709551606
+  },
+  {
+   "addr": 4499,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4505,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4509,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4522,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4527,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4531,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4541,
+   "value": 18446744073709551584
+  }
+ ],
+ "data_refs": [],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

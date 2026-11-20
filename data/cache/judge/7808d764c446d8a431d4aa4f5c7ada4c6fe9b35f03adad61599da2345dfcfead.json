@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not check if len is zero and always returns a value, even when len is zero.", "seconds": 0.8}

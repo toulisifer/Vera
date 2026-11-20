@@ -1,0 +1,115 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p1",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 29.2,
+   "cached": false,
+   "eval_count": 1404,
+   "cache_key": "3f705af98ba22308a7cc3f2c86d617fca959ed52d9bb08b1d8378c7ab8cd0c4c"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be encoding a byte array into a Base64-like format.",
+  "proposed_name": "base64_encode",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses a specific Base64-like encoding table.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns VERA_ERR when out_cap is smaller than len + 2 / 3 * 4.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "when": "out_cap < (len + 2) / 3 << 2",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes exactly len bytes to out and never modifies in.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function processes the input in chunks of 3 bytes and handles the remaining 1 or 2 bytes separately.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "The function uses a specific set of characters for encoding.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < (len + 2) / 3 << 2) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  size_t i = 0;\n  while (i + 3 <= len) {\n    uint uVar4 = (uint)in[i] << 0x10 | (uint)in[i + 1] << 8;\n    uint8_t bVar2 = in[i + 2];\n    out[i / 3 * 4] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[in[i] >> 2];\n    out[i / 3 * 4 + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(uVar4 & 0x3f000) >> 0xc];\n    out[i / 3 * 4 + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(bVar2 | uVar4) >> 6 & 0x3f];\n    out[i / 3 * 4 + 3] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[bVar2 & 0x3f];\n    i += 3;\n  }\n\n  if (len - i == 1) {\n    uint8_t bVar2 = in[i];\n    out[i / 3 * 4] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[bVar2 >> 2];\n    out[i / 3 * 4 + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[(bVar2 & 3) << 4];\n    out[i / 3 * 4 + 2] = '=';\n    out[i / 3 * 4 + 3] = '=';\n  } else if (len - i == 2) {\n    uint8_t bVar2 = in[i];\n    uint8_t bVar3 = in[i + 1];\n    out[i / 3 * 4] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[bVar2 >> 2];\n    out[i / 3 * 4 + 1] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[((uint)bVar3 << 8 | (uint)bVar2 << 0x10) >> 0xc & 0x3f];\n    out[i / 3 * 4 + 2] = \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\"[((uint)bVar3 << 8 & 0xfc0) >> 6];\n    out[i / 3 * 4 + 3] = '=';\n  }\n\n  return i / 3 * 4;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns VERA_ERR when out_cap is smaller than len + 2 / 3 * 4.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes exactly len bytes to out and never modifies in.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function processes the input in chunks of 3 bytes and handles the remaining 1 or 2 bytes separately.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses a specific Base64-like encoding table.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "CONST không nêu giá trị"
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses a specific set of characters for encoding.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

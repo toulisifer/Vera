@@ -1,0 +1,220 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p3",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting property name enclosed in double quotes: line 359 column 6 (char 8788)"
+   ],
+   "seconds": 72.6,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "957e8a5295c810277ea8f78342fa3d29966c77db13d2ce2c420b1b11426df901"
+  },
+  {
+   "errors": [],
+   "seconds": 29.1,
+   "cached": false,
+   "eval_count": 1247,
+   "cache_key": "9af03e50f4df6a144caa1714142695179833149a251e8e1f6811a737719ba350"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 processes input data using a custom algorithm involving bitwise operations and a loop, and returns a 64-bit value based on the computed result.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "user_0",
+    "type": "CF",
+    "text": "Executes a loop with a fixed number of iterations.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_1",
+    "type": "CF",
+    "text": "Exits the loop when iVar3 equals -0x3910c8e0.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_2",
+    "type": "CF",
+    "text": "Uses a fixed constant -0x61c88647 in the loop.",
+    "asserted_values": [
+     "-0x61c88647"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_3",
+    "type": "CF",
+    "text": "Uses a fixed constant -0x3910c8e0 as the loop condition.",
+    "asserted_values": [
+     "-0x3910c8e0"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_4",
+    "type": "CONST",
+    "text": "Uses the constant 0x10 in bitwise operations.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_5",
+    "type": "IO",
+    "text": "Returns 8 when 0x17 < param_2 and 7 < param_5.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "0x17 < param_2 && 7 < param_5",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "user_6",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when 0x17 >= param_2 or 7 >= param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "0x17 >= param_2 || 7 >= param_5",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "user_7",
+    "type": "SIDE",
+    "text": "Writes to param_4 based on the computed values of uVar1 and uVar2.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_8",
+    "type": "SIDE",
+    "text": "Does not modify the input data pointed to by param_1.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "user_9",
+    "type": "NAME",
+    "text": "Processes input data using a custom algorithm involving bitwise operations and a loop.",
+    "asserted_values": [],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t uVar1;\n  uint32_t uVar2;\n  int iVar3;\n\n  if ((0x17 < (size_t)len) && (7 < out_cap)) {\n    uVar2 = in[0];\n    iVar3 = 0;\n    uVar1 = in[1];\n    do {\n      iVar3 = iVar3 + -0x61c88647;\n      uVar2 = uVar2 + (uVar1 * 0x10 + in[2] ^ (uVar1 >> 5) + in[3] ^ iVar3 + uVar1);\n      uVar1 = uVar1 + (uVar2 * 0x10 + in[4] ^ (uVar2 >> 5) + in[5] ^ iVar3 + uVar2);\n    } while (iVar3 != -0x3910c8e0);\n    out[0] = (uint8_t)((uVar1 >> 0x18) << 8 | (uVar1 >> 0x10 & 0xff));\n    out[1] = (uint8_t)((uVar1 >> 8 & 0xff));\n    out[2] = (uint8_t)(uVar1 & 0xff);\n    out[3] = (uint8_t)((uVar2 >> 0x18) << 8 | (uVar2 >> 0x10 & 0xff));\n    out[4] = (uint8_t)((uVar2 >> 8 & 0xff));\n    out[5] = (uint8_t)(uVar2 & 0xff);\n    return 8;\n  }\n  return VERA_ERR;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "CF",
+   "text": "Executes a loop with a fixed number of iterations.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_1",
+   "type": "CF",
+   "text": "Exits the loop when iVar3 equals -0x3910c8e0.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_2",
+   "type": "CF",
+   "text": "Uses a fixed constant -0x61c88647 in the loop.",
+   "asserted_values": [
+    "-0x61c88647"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_3",
+   "type": "CF",
+   "text": "Uses a fixed constant -0x3910c8e0 as the loop condition.",
+   "asserted_values": [
+    "-0x3910c8e0"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_4",
+   "type": "CONST",
+   "text": "Uses the constant 0x10 in bitwise operations.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_5",
+   "type": "IO",
+   "text": "Returns 8 when 0x17 < param_2 and 7 < param_5.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 < param_2 && 7 < param_5",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when 0x17 >= param_2 or 7 >= param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 >= param_2 || 7 >= param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "SIDE",
+   "text": "Writes to param_4 based on the computed values of uVar1 and uVar2.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_8",
+   "type": "SIDE",
+   "text": "Does not modify the input data pointed to by param_1.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "user_9",
+   "type": "NAME",
+   "text": "Processes input data using a custom algorithm involving bitwise operations and a loop.",
+   "asserted_values": [],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": []
+}

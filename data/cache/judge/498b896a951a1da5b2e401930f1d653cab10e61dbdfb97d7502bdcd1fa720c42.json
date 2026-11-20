@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code explicitly uses the constant 0x2d6b in the line uVar3 = ((uint)(param_2 << 7) ^ uVar3) * 0x2d6b + DAT_00104008.", "seconds": 2.0}

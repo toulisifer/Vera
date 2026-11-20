@@ -1,0 +1,179 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 3,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 27.7,
+   "cached": false,
+   "eval_count": 1345,
+   "cache_key": "08cf8d6fd0b943ae1ee7df2309e3468ddb4e36a46de050c94077d41a4fe128e3"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be implementing a custom algorithm or permutation function.",
+  "proposed_name": "fn_20",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "C1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x706050403020100.",
+    "asserted_values": [
+     "0x706050403020100"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C2",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "C3",
+    "type": "CF",
+    "text": "The function contains a do-while loop that iterates from param_2 to 0.",
+    "asserted_values": [
+     "0"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C4",
+    "type": "SIDE",
+    "text": "Writes to out[0..uVar6-1].",
+    "asserted_values": [
+     "out[0..uVar6-1]"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C5",
+    "type": "SIDE",
+    "text": "Does not write to out when uVar6 == 0.",
+    "asserted_values": [
+     "out"
+    ],
+    "confidence": 0.8
+   },
+   {
+    "id": "C6",
+    "type": "IO",
+    "text": "Does not return when local_10 != *(long *)(in_FS_OFFSET + 0x28).",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "local_10 != *(long *)(in_FS_OFFSET + 0x28)",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "C7",
+    "type": "ALG",
+    "text": "Implements an unknown algorithm.",
+    "asserted_values": [
+     "unknown"
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint64_t uVar6 = 0xFFFFFFFFFFFFFFFF;\n    if (len <= out_cap) {\n        uVar6 = len + 7;\n        uint64_t local_18 = 0x706050403020100;\n        do {\n            uint64_t uVar5 = (1 - len) + uVar6;\n            uint64_t uVar4 = arg / uVar5;\n            arg = arg % uVar5;\n            if (((((int)uVar6 + 1) * (int)uVar6 & 1U) != 0) || (DAT_00104018 != 0)) {\n                uVar4 = (uint64_t)DAT_00104010 + (uVar6 << 7 ^ uVar4) * 0x2d6b;\n                uVar4 = uVar4 >> 0xb ^ uVar4;\n            }\n            *(undefined1 *)((long)&local_18 + uVar6 + (-0x18 - len) + 0x18) =\n                 *(undefined1 *)((long)&local_18 + param_3);\n            *(undefined1 *)((long)&local_18 + param_3) = uVar1;\n            param_3 = uVar4;\n            uVar6 = uVar6 - 1;\n        } while (len != uVar6);\n        uint64_t uVar5 = 8;\n        uint64_t uVar4 = 0;\n        if (7 < uVar6) {\n            do {\n                uint64_t uVar3 = uVar5 - 8;\n                do {\n                    while ((uVar4 = uVar3, uVar2 = (uint)uVar4 | 1, (uVar2 * uVar2 & 7) != 1 ||\n                           (DAT_00104010 != 0x3c71))) {\n                        uVar3 = uVar4 + 1;\n                        if (uVar5 == uVar4 + 1) goto LAB_00101258;\n                      }\n                      *(undefined1 *)(out + uVar4) =\n                           *(undefined1 *)\n                            (in + (uVar5 - 8) + (ulong)*(byte *)((long)&local_10 + (uVar4 - uVar5)));\n                      uVar3 = uVar4 + 1;\n                    } while (uVar5 != uVar4 + 1);\nLAB_00101258:\n                    uVar4 = uVar4 + 1;\n                    uVar5 = uVar5 + 8;\n                } while (uVar5 <= uVar6);\n            } while (uVar5 <= uVar6);\n        }\n        if (uVar4 < uVar6) {\n            do {\n                *(undefined1 *)(out + uVar4) = *(undefined1 *)(in + uVar4);\n                uVar4 = uVar4 + 1;\n            } while (uVar4 != uVar6);\n        }\n    }\n    return uVar6;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "C1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x706050403020100.",
+   "asserted_values": [
+    "0x706050403020100"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "C2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when param_2 > param_5.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "C3",
+   "type": "CF",
+   "text": "The function contains a do-while loop that iterates from param_2 to 0.",
+   "asserted_values": [
+    "0"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "C5",
+   "type": "SIDE",
+   "text": "Does not write to out when uVar6 == 0.",
+   "asserted_values": [
+    "out"
+   ],
+   "confidence": 0.8
+  },
+  {
+   "id": "C6",
+   "type": "IO",
+   "text": "Does not return when local_10 != *(long *)(in_FS_OFFSET + 0x28).",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "local_10 != *(long *)(in_FS_OFFSET + 0x28)",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "C7",
+   "type": "ALG",
+   "text": "Implements an unknown algorithm.",
+   "asserted_values": [
+    "unknown"
+   ],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "C4",
+   "type": "SIDE",
+   "text": "Writes to out[0..uVar6-1].",
+   "asserted_values": [
+    "out[0..uVar6-1]"
+   ],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  }
+ ]
+}

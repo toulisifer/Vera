@@ -1,0 +1,21 @@
+{
+ "fn": "fn_08",
+ "config": "plain",
+ "compiled": true,
+ "fepr": 0.98,
+ "n_vectors": 50,
+ "n_match": 49,
+ "failures": [
+  {
+   "vector": "v00",
+   "tag": "len0",
+   "status": "OK",
+   "expected_ret": "0x0000000000000000",
+   "got_ret": "0xffffffffffffffff",
+   "out_differs": false,
+   "overflow": false,
+   "detail": ""
+  }
+ ],
+ "sandbox_image": "python:3.12-slim"
+}

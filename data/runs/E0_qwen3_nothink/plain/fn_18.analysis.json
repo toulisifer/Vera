@@ -1,0 +1,296 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Unterminated string starting at: line 369 column 7 (char 11288)"
+   ],
+   "seconds": 72.9,
+   "cached": true,
+   "eval_count": 3072,
+   "cache_key": "25451f15c4cc17cc8c7838343499b236c303f9ebee8f455ba3f6c96971722803"
+  },
+  {
+   "errors": [],
+   "seconds": 33.5,
+   "cached": true,
+   "eval_count": 1435,
+   "cache_key": "b7c79f5397242ec16a798605a3f1c32ed3fb733f37bba465563bfefc048e1f7b"
+  }
+ ],
+ "output": {
+  "summary": "The function processes a byte stream, tracking matching parentheses, brackets, and braces, and returns an error code if there is a mismatch or if the input is malformed.",
+  "proposed_name": "Validate balanced parentheses/brackets/braces",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0",
+    "type": "CF",
+    "text": "The function uses a loop to process each byte in the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_1",
+    "type": "CF",
+    "text": "The loop terminates when the input length is exhausted or an error is detected.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_2",
+    "type": "CF",
+    "text": "The function uses a state machine to track the current parsing mode (e.g., inside a string, inside a bracket, etc.).",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_3",
+    "type": "CF",
+    "text": "The function uses a stack-like structure to track opening brackets, parentheses, and braces.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_4",
+    "type": "CF",
+    "text": "The function skips processing if the current byte is a quote (\"), and enters a string mode.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_5",
+    "type": "CF",
+    "text": "The function processes opening brackets, parentheses, and braces by pushing them onto the stack.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_6",
+    "type": "CF",
+    "text": "The function processes closing brackets, parentheses, and braces by popping from the stack and checking for a match.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_7",
+    "type": "CF",
+    "text": "The function returns an error code if the stack is empty when a closing bracket is encountered.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_8",
+    "type": "CF",
+    "text": "The function returns an error code if the closing bracket does not match the corresponding opening bracket.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_9",
+    "type": "CF",
+    "text": "The function returns an error code if the input length is zero and the stack is not empty.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_10",
+    "type": "CF",
+    "text": "The function returns an error code if the input length is zero and the stack is not empty.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_11",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when a mismatch is detected.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_12",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is zero and the stack is not empty.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "_13",
+    "type": "IO",
+    "text": "Returns the current index + 1 when a mismatch is detected.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_14",
+    "type": "SIDE",
+    "text": "The function does not modify the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_15",
+    "type": "SIDE",
+    "text": "The function does not modify the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "_16",
+    "type": "CONST",
+    "text": "The maximum depth of the stack is 0x40 (64).",
+    "asserted_values": [
+     "0x40"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t d = 0;\n  uint q = 0;\n  size_t i = 0;\n  uint8_t st[64];\n\n  while (i < len) {\n    uint8_t c = in[i];\n\n    if (q == 2) {\n      q = 1;\n    }\n    else if (q == 1) {\n      if (c == '\\') {\n        q = 2;\n      }\n      else if (c == '\"') {\n        q = 0;\n      }\n    }\n    else if (c == '\"') {\n      q = 1;\n    }\n    else if ((c == '(') || (c == '[') || (c == '{')) {\n      if (d == 64) {\n        return 0xFFFFFFFFFFFFFFFF;\n      }\n      if (c == '(') {\n        c = ')';\n      }\n      else {\n        c += 2;\n      }\n      st[d++] = c;\n    }\n    else if ((c == ')') || (c == ']') || (c == '}')) {\n      if (d == 0 || (c != st[d - 1])) {\n        return 0xFFFFFFFFFFFFFFFF;\n      }\n      d--;\n    }\n    i++;\n  }\n\n  if (d != 0) {\n    return 0xFFFFFFFFFFFFFFFF;\n  }\n\n  return 0;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "_0",
+   "type": "CF",
+   "text": "The function uses a loop to process each byte in the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_1",
+   "type": "CF",
+   "text": "The loop terminates when the input length is exhausted or an error is detected.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_2",
+   "type": "CF",
+   "text": "The function uses a state machine to track the current parsing mode (e.g., inside a string, inside a bracket, etc.).",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_3",
+   "type": "CF",
+   "text": "The function uses a stack-like structure to track opening brackets, parentheses, and braces.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_4",
+   "type": "CF",
+   "text": "The function skips processing if the current byte is a quote (\"), and enters a string mode.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_5",
+   "type": "CF",
+   "text": "The function processes opening brackets, parentheses, and braces by pushing them onto the stack.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_6",
+   "type": "CF",
+   "text": "The function processes closing brackets, parentheses, and braces by popping from the stack and checking for a match.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_7",
+   "type": "CF",
+   "text": "The function returns an error code if the stack is empty when a closing bracket is encountered.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_8",
+   "type": "CF",
+   "text": "The function returns an error code if the closing bracket does not match the corresponding opening bracket.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_9",
+   "type": "CF",
+   "text": "The function returns an error code if the input length is zero and the stack is not empty.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_11",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when a mismatch is detected.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_12",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is zero and the stack is not empty.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "_13",
+   "type": "IO",
+   "text": "Returns the current index + 1 when a mismatch is detected.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_14",
+   "type": "SIDE",
+   "text": "The function does not modify the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_15",
+   "type": "SIDE",
+   "text": "The function does not modify the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "_16",
+   "type": "CONST",
+   "text": "The maximum depth of the stack is 0x40 (64).",
+   "asserted_values": [
+    "0x40"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "_10",
+   "type": "CF",
+   "text": "The function returns an error code if the input length is zero and the stack is not empty.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

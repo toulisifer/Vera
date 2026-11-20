@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not write to out[0..<len>], but instead writes to out[0..<len>] with a complex transformation that depends on arg and the index.", "seconds": 1.3}

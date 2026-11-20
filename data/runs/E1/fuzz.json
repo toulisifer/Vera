@@ -1,0 +1,134 @@
+{
+ "run": "E1",
+ "n_per_item": 2000,
+ "items": 14,
+ "items_all_match": 14,
+ "results": [
+  {
+   "fn": "fn_01",
+   "config": "opt",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_02",
+   "config": "opt",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_08",
+   "config": "opt",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_16",
+   "config": "opt",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_19",
+   "config": "opt",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_02",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_03",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_04",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_05",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_08",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_09",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_12",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_13",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  },
+  {
+   "fn": "fn_17",
+   "config": "plain",
+   "n": 2000,
+   "ref_not_ok": 0,
+   "n_compared": 2000,
+   "n_match": 2000,
+   "counterexamples": []
+  }
+ ]
+}

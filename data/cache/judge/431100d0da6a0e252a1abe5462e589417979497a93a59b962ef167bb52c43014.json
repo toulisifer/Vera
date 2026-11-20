@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function iterates over the input data, updating two variables in a way that resembles a checksum calculation.", "seconds": 0.9}

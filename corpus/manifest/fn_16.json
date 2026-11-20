@@ -1,0 +1,31 @@
+{
+  "id": "fn_16",
+  "group": "custom",
+  "algorithm_label": "tự thiết kế: checksum cuộn",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": null,
+  "source": "corpus/src/fn_16.c",
+  "description": "Checksum cuộn 32-bit: h khởi tạo bằng XOR hai nửa của arg; với byte thứ i, xoay trái h 7 bit rồi cộng byte * 0x9D + i. Cuối cùng trộn h ^= h >> 15, h *= 0x3B9D, h ^= h >> 13. Trả h (32-bit). Không ghi out.",
+  "io_semantics": {
+    "returns": "checksum 32-bit",
+    "writes_out": false,
+    "uses_arg": true
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [
+    {
+      "value": "0x3B9D",
+      "width": 32,
+      "role": "hệ số trộn cuối",
+      "encodings": {
+        "imm": "0x00003B9D",
+        "le_bytes": "9d3b0000",
+        "neg": "0xFFFFC463",
+        "hi16": "0x0000",
+        "lo16": "0x3B9D"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

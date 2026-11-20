@@ -1,0 +1,530 @@
+{
+ "n_claims": 389,
+ "population": {
+  "unsupported": 230,
+  "verified": 53,
+  "supported": 81,
+  "contradicted": 25
+ },
+ "M1": {
+  "recall_unweighted": 0.5238095238095238,
+  "recall_weighted": 0.2154546657258776,
+  "recall_weighted_ci_claim": [
+   0.1566,
+   0.3134
+  ],
+  "recall_weighted_ci_cluster_fn": [
+   0.144,
+   0.3361
+  ],
+  "est_false_claims": 102.10964764156253,
+  "est_false_by_label": {
+   "unsupported": 58.723404255319146,
+   "verified": 9.814814814814815,
+   "supported": 11.571428571428571,
+   "contradicted": 22.0
+  },
+  "hr_corrected": 0.26249266745902966,
+  "hr_corrected_ci_claim": [
+   0.1832,
+   0.3466
+  ],
+  "hr_corrected_ci_cluster_fn": [
+   0.1677,
+   0.3508
+  ],
+  "gold_functions": 20
+ },
+ "M2": {
+  "verified": {
+   "true": 22,
+   "n": 27,
+   "precision": 0.8148148148148148,
+   "ci": [
+    0.6562,
+    0.9524
+   ]
+  },
+  "supported": {
+   "true": 18,
+   "n": 21,
+   "precision": 0.8571428571428571,
+   "ci": [
+    0.6957,
+    1.0
+   ]
+  },
+  "verified_or_supported": {
+   "true": 40,
+   "n": 48,
+   "precision": 0.8333333333333334,
+   "ci": [
+    0.7179,
+    0.9333
+   ]
+  },
+  "by_type_positive": {
+   "ALG": {
+    "n": 2,
+    "false": 0
+   },
+   "CONST": {
+    "n": 21,
+    "false": 3
+   },
+   "IO": {
+    "n": 6,
+    "false": 0
+   },
+   "SIDE": {
+    "n": 19,
+    "false": 5
+   }
+  },
+  "by_type_contradicted": {
+   "ALG": {
+    "n": 7,
+    "false": 7
+   },
+   "IO": {
+    "n": 11,
+    "false": 8
+   },
+   "SIDE": {
+    "n": 7,
+    "false": 7
+   }
+  },
+  "est_false_positive_labelled": 21.386243386243386,
+  "positive_false_examples": [
+   {
+    "id": "g011",
+    "fn": "fn_17",
+    "cfg": "plain",
+    "type": "SIDE",
+    "label": "verified",
+    "text": "Writes in[i] to out[cnt] when out_cap >= cnt."
+   },
+   {
+    "id": "g013",
+    "fn": "fn_20",
+    "cfg": "plain",
+    "type": "SIDE",
+    "label": "verified",
+    "text": "Writes the first 8 bytes of in to out in a specific order."
+   },
+   {
+    "id": "g016",
+    "fn": "fn_05",
+    "cfg": "opt",
+    "type": "SIDE",
+    "label": "verified",
+    "text": "Writes the hash value to out[0..7]."
+   },
+   {
+    "id": "g019",
+    "fn": "fn_17",
+    "cfg": "opt",
+    "type": "SIDE",
+    "label": "verified",
+    "text": "Writes the first uVar6 elements of the input string to out."
+   },
+   {
+    "id": "g027",
+    "fn": "fn_05",
+    "cfg": "opt",
+    "type": "CONST",
+    "label": "supported",
+    "text": "The function uses the constant 0x3910c8e0."
+   },
+   {
+    "id": "g029",
+    "fn": "fn_15",
+    "cfg": "opt",
+    "type": "CONST",
+    "label": "supported",
+    "text": "The function uses the constant 0xffffffff."
+   },
+   {
+    "id": "g031",
+    "fn": "fn_15",
+    "cfg": "opt",
+    "type": "SIDE",
+    "label": "verified",
+    "text": "Writes the encoded result to out[0..<len>]."
+   },
+   {
+    "id": "g042",
+    "fn": "fn_12",
+    "cfg": "obf",
+    "type": "CONST",
+    "label": "supported",
+    "text": "The function uses the constant 0x290a3a20."
+   }
+  ]
+ },
+ "M3": {
+  "e2_vs_human": {
+   "contradicted/v1_fail": {
+    "items": 15,
+    "items_with_gold_claims": 15,
+    "items_with_human_false": 15,
+    "gold_claims": 37,
+    "human_false_claims": 16
+   },
+   "clean/v1_fail": {
+    "items": 29,
+    "items_with_gold_claims": 23,
+    "items_with_human_false": 9,
+    "gold_claims": 47,
+    "human_false_claims": 13
+   },
+   "clean/v1_pass": {
+    "items": 6,
+    "items_with_gold_claims": 6,
+    "items_with_human_false": 4,
+    "gold_claims": 12,
+    "human_false_claims": 4
+   },
+   "contradicted/v1_pass": {
+    "items": 8,
+    "items_with_gold_claims": 8,
+    "items_with_human_false": 8,
+    "gold_claims": 24,
+    "human_false_claims": 9
+   }
+  },
+  "io_dsl": {
+   "k": 24,
+   "n": 102,
+   "rate": 0.23529411764705882,
+   "ci95": [
+    0.1635198113173856,
+    0.3262838197690682
+   ]
+  },
+  "unresolved_share": 0.6555269922879178,
+  "claims_without_checker": 110
+ },
+ "M5": {
+  "all": {
+   "k": 25,
+   "n": 389,
+   "rate": 0.06426735218508997,
+   "ci_cluster_fn": [
+    0.0399,
+    0.0916
+   ]
+  },
+  "plain": {
+   "k": 9,
+   "n": 117,
+   "rate": 0.07692307692307693,
+   "ci_cluster_fn": [
+    0.04,
+    0.1161
+   ]
+  },
+  "opt": {
+   "k": 6,
+   "n": 118,
+   "rate": 0.05084745762711865,
+   "ci_cluster_fn": [
+    0.0177,
+    0.0928
+   ]
+  },
+  "obf": {
+   "k": 10,
+   "n": 154,
+   "rate": 0.06493506493506493,
+   "ci_cluster_fn": [
+    0.0286,
+    0.1069
+   ]
+  },
+  "obf_minus_plain_ci_cluster_fn": [
+   -0.062,
+   0.0371
+  ],
+  "mcnemar": {
+   "plain_vs_opt": {
+    "only_first_hallucinates": 3,
+    "only_second_hallucinates": 1,
+    "mcnemar_p": 0.625
+   },
+   "opt_vs_obf": {
+    "only_first_hallucinates": 4,
+    "only_second_hallucinates": 6,
+    "mcnemar_p": 0.75390625
+   },
+   "plain_vs_obf": {
+    "only_first_hallucinates": 5,
+    "only_second_hallucinates": 5,
+    "mcnemar_p": 1.0
+   }
+  }
+ },
+ "minor": {
+  "dropped": {
+   "plain": {
+    "valid_items": 20,
+    "dropped_total": 11,
+    "retained": 117
+   },
+   "opt": {
+    "valid_items": 19,
+    "dropped_total": 12,
+    "retained": 118
+   },
+   "obf": {
+    "valid_items": 19,
+    "dropped_total": 27,
+    "retained": 154
+   }
+  },
+  "invalid_items": [
+   "opt/fn_13",
+   "obf/fn_13"
+  ],
+  "auroc_T0": 0.5339010989010989,
+  "auroc_T0_ci_cluster_fn": [
+   0.4693,
+   0.6135
+  ],
+  "auroc_T0_n_pos": 25,
+  "conf_share_1": 0.8534704370179949,
+  "alg_claims": [
+   {
+    "fn": "fn_01",
+    "cfg": "plain",
+    "group": "classic",
+    "label": "verified",
+    "text": "The function implements CRC-32."
+   },
+   {
+    "fn": "fn_02",
+    "cfg": "plain",
+    "group": "classic",
+    "label": "contradicted",
+    "text": "The function implements CRC-32."
+   },
+   {
+    "fn": "fn_03",
+    "cfg": "plain",
+    "group": "classic",
+    "label": "unsupported",
+    "text": "Implements a custom checksum using a linear congruential generator (LCG) algorithm."
+   },
+   {
+    "fn": "fn_04",
+    "cfg": "plain",
+    "group": "classic",
+    "label": "unsupported",
+    "text": "Implements a linear hash function."
+   },
+   {
+    "fn": "fn_07",
+    "cfg": "plain",
+    "group": "classic",
+    "label": "verified",
+    "text": "The function implements Base64 encoding."
+   },
+   {
+    "fn": "fn_08",
+    "cfg": "plain",
+    "group": "near_miss",
+    "label": "unsupported",
+    "text": "Implements a checksum algorithm."
+   },
+   {
+    "fn": "fn_09",
+    "cfg": "plain",
+    "group": "near_miss",
+    "label": "contradicted",
+    "text": "The function implements CRC-32."
+   },
+   {
+    "fn": "fn_10",
+    "cfg": "plain",
+    "group": "near_miss",
+    "label": "unsupported",
+    "text": "Implements a custom checksum algorithm."
+   },
+   {
+    "fn": "fn_11",
+    "cfg": "plain",
+    "group": "near_miss",
+    "label": "unsupported",
+    "text": "Implements a linear hash function."
+   },
+   {
+    "fn": "fn_13",
+    "cfg": "plain",
+    "group": "near_miss",
+    "label": "contradicted",
+    "text": "The function implements RC4."
+   },
+   {
+    "fn": "fn_14",
+    "cfg": "plain",
+    "group": "near_miss",
+    "label": "contradicted",
+    "text": "The function implements Base64 encoding."
+   },
+   {
+    "fn": "fn_01",
+    "cfg": "opt",
+    "group": "classic",
+    "label": "verified",
+    "text": "The function implements CRC-32."
+   },
+   {
+    "fn": "fn_02",
+    "cfg": "opt",
+    "group": "classic",
+    "label": "contradicted",
+    "text": "The function implements ALG: CRC-32."
+   },
+   {
+    "fn": "fn_03",
+    "cfg": "opt",
+    "group": "classic",
+    "label": "unsupported",
+    "text": "Implements a custom checksum algorithm."
+   },
+   {
+    "fn": "fn_04",
+    "cfg": "opt",
+    "group": "classic",
+    "label": "unsupported",
+    "text": "Implements a simple polynomial hash algorithm."
+   },
+   {
+    "fn": "fn_08",
+    "cfg": "opt",
+    "group": "near_miss",
+    "label": "contradicted",
+    "text": "The function implements CRC-16/XMODEM."
+   },
+   {
+    "fn": "fn_09",
+    "cfg": "opt",
+    "group": "near_miss",
+    "label": "contradicted",
+    "text": "The function implements CRC-32."
+   },
+   {
+    "fn": "fn_11",
+    "cfg": "opt",
+    "group": "near_miss",
+    "label": "unsupported",
+    "text": "Implements a simple polynomial hash algorithm."
+   }
+  ]
+ },
+ "M5c": {
+  "random_intercept": {
+   "converged": true,
+   "sd_function": 0.0001021668559632869,
+   "terms": {
+    "opt": {
+     "OR": 0.7175749560288024,
+     "ci": [
+      0.24367493031793816,
+      2.1131177378316965
+     ],
+     "p": 0.5469922514027162
+    },
+    "obf": {
+     "OR": 0.7824480601476208,
+     "ci": [
+      0.3039074235971169,
+      2.014511391601896
+     ],
+     "p": 0.6111385729150521
+    },
+    "near_miss": {
+     "OR": 2.017515172117002,
+     "ci": [
+      0.8150970731198449,
+      4.993721121022629
+     ],
+     "p": 0.12904975752352488
+    },
+    "custom": {
+     "OR": 0.3888970003858885,
+     "ci": [
+      0.10049879523244556,
+      1.5049023877284684
+     ],
+     "p": 0.17131925424245942
+    }
+   }
+  },
+  "cluster_robust": {
+   "opt": {
+    "OR": 0.7175754769016395,
+    "ci": [
+     0.38633356414164244,
+     1.3328237897078778
+    ],
+    "p": 0.2934632236686917
+   },
+   "obf": {
+    "OR": 0.7824483965060055,
+    "ci": [
+     0.35357372562227063,
+     1.7315356001561923
+    ],
+    "p": 0.544954618484772
+   },
+   "near_miss": {
+    "OR": 2.0175157507630774,
+    "ci": [
+     0.849792715206566,
+     4.789838429701868
+    ],
+    "p": 0.1116009231172745
+   },
+   "custom": {
+    "OR": 0.3888971022657759,
+    "ci": [
+     0.11161549704061352,
+     1.3550175393268673
+    ],
+    "p": 0.13808689245963954
+   }
+  },
+  "n_claims": 389,
+  "n_functions": 20
+ },
+ "M2b": {
+  "original": {
+   "verified": {
+    "n": 27,
+    "true": 22,
+    "precision": 0.8148148148148148
+   },
+   "supported": {
+    "n": 21,
+    "true": 18,
+    "precision": 0.8571428571428571
+   }
+  },
+  "side_write_as_supported": {
+   "verified": {
+    "n": 15,
+    "true": 15,
+    "precision": 1.0
+   },
+   "supported": {
+    "n": 33,
+    "true": 25,
+    "precision": 0.7575757575757576
+   }
+  },
+  "e1_verified_side_writes": 22,
+  "e1_verified_total": 53
+ }
+}

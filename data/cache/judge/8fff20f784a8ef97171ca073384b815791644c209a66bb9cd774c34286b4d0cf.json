@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a loop that iterates over the input buffer using a do-while loop with a condition checking against param_2 (the length).", "seconds": 1.2}

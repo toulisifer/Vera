@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The code does not directly return VERA_ERR when out_cap < len, but checks for param_5 < uVar5 and returns VERA_ERR in that case, which is not the same as out_cap < len.", "seconds": 1.6}

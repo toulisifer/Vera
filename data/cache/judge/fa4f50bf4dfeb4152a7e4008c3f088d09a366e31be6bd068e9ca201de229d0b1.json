@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a loop that iterates over the input data through the variable lVar6, which is incremented and used to access bytes from the input.", "seconds": 1.2}

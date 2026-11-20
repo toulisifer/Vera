@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The decompiled code contains a nested loop that compares characters.", "seconds": 0.6}

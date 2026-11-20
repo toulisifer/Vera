@@ -1,0 +1,1 @@
+{"key": "3b8fe8ae7ac7fbc4d16a5ac2a3c3c94c6e140d1945f3930ec3d3a4468f9e03f8", "content": "void fn_11(unsigned char *a, size_t b)\n{\n  size_t i;\n  for (i = 0; i < 10; i++)\n    a[i] = 0;\n  for (i = 0; i < b; i++)\n    a[i] = 0;\n}", "seconds": 3.8, "eval_count": 77}

@@ -1,0 +1,123 @@
+{
+ "fn": "fn_14",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns len when out_cap >= (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "len"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= (len + 2) / 3 << 2",
+    "returns": "len"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "SIDE",
+   "text": "Writes base64-encoded data to out[0..len].",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "CF",
+   "text": "Processes input in chunks of 3 bytes, then handles remaining bytes (1 or 2).",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_5",
+   "type": "CONST",
+   "text": "Uses the constant \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\" for base64 encoding.",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements Base64.",
+   "asserted_values": [],
+   "confidence": 0.99,
+   "source": "algorithm_field",
+   "raw_algorithm": "Base64",
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "unsupported",
+     "method": "V3",
+     "reason": "thiếu hằng đặc trưng của Base64"
+    },
+    "label": "contradicted",
+    "method": "V1b",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "expected_ret": "0x0000000000000004",
+     "oracle_ret": "0x0000000000000004"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 6,
+ "explanation_clean": false
+}

@@ -1,0 +1,159 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.0,
+   "cached": false,
+   "eval_count": 926,
+   "cache_key": "45e32775bc3bb9bb4466da02249c51c600bc04f72b541577dc310f42343ed8e9"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 implements a custom hash function.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x61c88647.",
+    "asserted_values": [
+     "0x61c88647"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CONST",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3910c8e0.",
+    "asserted_values": [
+     "0x3910c8e0"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when len < 0x17 or out_cap < 8.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 0x17 or out_cap < 8",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "IO",
+    "type": "IO",
+    "text": "Returns 8 when len >= 0x17 and out_cap >= 8.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len >= 0x17 and out_cap >= 8",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "SIDE",
+    "type": "SIDE",
+    "text": "Writes the hash value to out[0..7].",
+    "asserted_values": [
+     "out[0..7]"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "CF",
+    "type": "CF",
+    "text": "The function contains a loop that iterates until a specific condition is met.",
+    "asserted_values": [
+     "while (iVar3 != -0x3910c8e0)"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((0x17 < len) && (7 < out_cap)) {\n    uint uVar1 = in[0];\n    uint uVar2 = in[1];\n    int iVar3 = 0;\n    do {\n      iVar3 = iVar3 + -0x61c88647;\n      uVar1 = uVar1 + (uVar2 * 0x10 + in[2] ^ (uVar2 >> 5) + in[3] ^ iVar3 + uVar2);\n      uVar2 = uVar2 + (uVar1 * 0x10 + in[4] ^ (uVar1 >> 5) + in[5] ^ iVar3 + uVar1);\n    } while (iVar3 != -0x3910c8e0);\n    out[0] = (uVar1 >> 0x18) & 0xff;\n    out[1] = (uVar1 >> 0x10) & 0xff;\n    out[2] = (uVar1 >> 8) & 0xff;\n    out[3] = uVar1 & 0xff;\n    out[4] = (uVar2 >> 0x18) & 0xff;\n    out[5] = (uVar2 >> 0x10) & 0xff;\n    out[6] = (uVar2 >> 8) & 0xff;\n    out[7] = uVar2 & 0xff;\n    return 8;\n  }\n  return VERA_ERR;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x61c88647.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3910c8e0.",
+   "asserted_values": [
+    "0x3910c8e0"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len < 0x17 or out_cap < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x17 or out_cap < 8",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 8 when len >= 0x17 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 0x17 and out_cap >= 8",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes the hash value to out[0..7].",
+   "asserted_values": [
+    "out[0..7]"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "CF",
+   "type": "CF",
+   "text": "The function contains a loop that iterates until a specific condition is met.",
+   "asserted_values": [
+    "while (iVar3 != -0x3910c8e0)"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

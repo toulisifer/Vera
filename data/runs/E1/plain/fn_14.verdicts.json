@@ -1,0 +1,82 @@
+{
+ "fn": "fn_14",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when out_cap < (len + 2) / 3 << 2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < (len + 2) / 3 << 2",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Loops over input in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Handles cases where len is not a multiple of 3.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements Base64 encoding.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "source": "algorithm_field",
+   "raw_algorithm": "Base64 encoding",
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "unsupported",
+     "method": "V3",
+     "reason": "thiếu hằng đặc trưng của Base64"
+    },
+    "label": "contradicted",
+    "method": "V1b",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "expected_ret": "0x0000000000000004",
+     "oracle_ret": "0x0000000000000004"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 3,
+  "contradicted": 1
+ },
+ "n_claims": 4,
+ "explanation_clean": false
+}

@@ -1,0 +1,30 @@
+{
+ "fn": "fn_08",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: uint32_t fn_08(const uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "uint32_t fn_08(const uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap)\n{\n    uint32_t h = 0xFFFFFFFF;\n    size_t i;\n    for (i = 0; i < len; i++) {\n        h ^= in[i];\n        uint8_t b;\n        for (b = 0; b < 8; b++) {\n            h = (h >> 1) ^ (-(h & 1) & 0xEDB88320);\n        }\n    }\n    return ~h;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 7.6,
+   "cached": false,
+   "eval_count": 161,
+   "cache_key": "f6e58d6eead432461a831df0f0f07442909dc3a09f7e58950ab56439e559f436"
+  }
+ ],
+ "output": {
+  "recovered_c": "uint32_t vera_inner(const uint8_t *in, size_t len, uint32_t arg, uint8_t *out, size_t out_cap)\n{\n    uint32_t h = 0xFFFFFFFF;\n    size_t i;\n    for (i = 0; i < len; i++) {\n        h ^= in[i];\n        uint8_t b;\n        for (b = 0; b < 8; b++) {\n            h = (h >> 1) ^ (-(h & 1) & 0xEDB88320);\n        }\n    }\n    return ~h;\n}\nuint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const uint8_t *)(in), (size_t)(len), (uint32_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

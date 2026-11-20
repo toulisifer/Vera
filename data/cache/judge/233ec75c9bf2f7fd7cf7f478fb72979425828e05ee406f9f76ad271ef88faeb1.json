@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function encodes the input data using Base64 and writes the encoded string to the output buffer.", "seconds": 1.2}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function sets the return value to 0xFFFFFFFFFFFFFFFF (VERA_ERR) when the output capacity is insufficient.", "seconds": 0.8}

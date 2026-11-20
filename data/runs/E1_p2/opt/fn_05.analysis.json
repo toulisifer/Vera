@@ -1,0 +1,151 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 19.3,
+   "cached": true,
+   "eval_count": 944,
+   "cache_key": "a04b710312e5cc93ef9190427b578368a6a72e98d26846b5227a884f02aaa431"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 appears to be a custom hash function that processes an input buffer and produces a 64-bit hash value.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0x61c88647 in its computation.",
+    "asserted_values": [
+     "0x61c88647"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3910c8e0 in its computation.",
+    "asserted_values": [
+     "0x3910c8e0"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 0x17 or the output capacity is less than 7.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < 0x17 or out_cap < 7",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 8 when the input length is at least 0x17 and the output capacity is at least 7.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len >= 0x17 and out_cap >= 7",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Writes the 8-byte hash value to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function contains a loop that iterates until a specific condition is met.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if ((0x17 < len) && (7 < out_cap)) {\n    uint32_t uVar1 = in[0];\n    uint32_t uVar2 = in[1];\n    int iVar3 = 0;\n    do {\n      iVar3 = iVar3 + -0x61c88647;\n      uVar1 = uVar1 + (uVar2 * 0x10 + in[2] ^ (uVar2 >> 5) + in[3] ^ iVar3 + uVar2);\n      uVar2 = uVar2 + (uVar1 * 0x10 + in[4] ^ (uVar1 >> 5) + in[5] ^ iVar3 + uVar1);\n    } while (iVar3 != -0x3910c8e0);\n    out[0] = (uVar1 >> 0x18) & 0xff;\n    out[1] = (uVar1 >> 0x10) & 0xff;\n    out[2] = (uVar1 >> 8) & 0xff;\n    out[3] = uVar1 & 0xff;\n    out[4] = (uVar2 >> 0x18) & 0xff;\n    out[5] = (uVar2 >> 0x10) & 0xff;\n    out[6] = (uVar2 >> 8) & 0xff;\n    out[7] = uVar2 & 0xff;\n    return 8;\n  }\n  return 0xFFFFFFFFFFFFFFFF;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0x61c88647 in its computation.",
+   "asserted_values": [
+    "0x61c88647"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3910c8e0 in its computation.",
+   "asserted_values": [
+    "0x3910c8e0"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than 0x17 or the output capacity is less than 7.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x17 or out_cap < 7",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 8 when the input length is at least 0x17 and the output capacity is at least 7.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len >= 0x17 and out_cap >= 7",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes the 8-byte hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a loop that iterates until a specific condition is met.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

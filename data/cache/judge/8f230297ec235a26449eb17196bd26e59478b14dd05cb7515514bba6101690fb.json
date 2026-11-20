@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function does not implement CRC-32. It appears to be implementing a different hash function.", "seconds": 0.8}

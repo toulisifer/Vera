@@ -1,0 +1,291 @@
+{
+ "false_alarm": [
+  {
+   "case": "mul32",
+   "opt": "-O0",
+   "value": "0x5BD1E995",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "xor32",
+   "opt": "-O0",
+   "value": "0xDEADBEEF",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "add32_hi",
+   "opt": "-O0",
+   "value": "0x9E3779B1",
+   "supported": true,
+   "form": "neg"
+  },
+  {
+   "case": "add32",
+   "opt": "-O0",
+   "value": "0x2545F491",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mask31",
+   "opt": "-O0",
+   "value": "0x7FFFFFFF",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mask_alt",
+   "opt": "-O0",
+   "value": "0x00FF00FF",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mask_hi",
+   "opt": "-O0",
+   "value": "0xFFFF0000",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "cmp32",
+   "opt": "-O0",
+   "value": "0x12345678",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "cmp16",
+   "opt": "-O0",
+   "value": "0xABCD",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mul64",
+   "opt": "-O0",
+   "value": "0xC6A4A7935BD1E995",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "xor64",
+   "opt": "-O0",
+   "value": "0x87C37B91114253D5",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mod_prime",
+   "opt": "-O0",
+   "value": "65537",
+   "supported": false,
+   "form": null
+  },
+  {
+   "case": "mod_small",
+   "opt": "-O0",
+   "value": "10007",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "div",
+   "opt": "-O0",
+   "value": "1000003",
+   "supported": true,
+   "form": "magic"
+  },
+  {
+   "case": "table",
+   "opt": "-O0",
+   "value": "0x1F2E3D4C",
+   "supported": true,
+   "form": "table"
+  },
+  {
+   "case": "table64",
+   "opt": "-O0",
+   "value": "0xA5A5A5A55A5A5A5A",
+   "supported": true,
+   "form": "table"
+  },
+  {
+   "case": "neg_dec",
+   "opt": "-O0",
+   "value": "-12345",
+   "supported": true,
+   "form": "neg"
+  },
+  {
+   "case": "store",
+   "opt": "-O0",
+   "value": "0x0BADF00D",
+   "supported": true,
+   "form": "bytes"
+  },
+  {
+   "case": "mul_pow2",
+   "opt": "-O0",
+   "value": "4096",
+   "supported": true,
+   "form": "shift"
+  },
+  {
+   "case": "string",
+   "opt": "-O0",
+   "value": "VeRA-selftest-key",
+   "supported": true,
+   "form": "string"
+  },
+  {
+   "case": "mul32",
+   "opt": "-O2",
+   "value": "0x5BD1E995",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "xor32",
+   "opt": "-O2",
+   "value": "0xDEADBEEF",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "add32_hi",
+   "opt": "-O2",
+   "value": "0x9E3779B1",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "add32",
+   "opt": "-O2",
+   "value": "0x2545F491",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mask31",
+   "opt": "-O2",
+   "value": "0x7FFFFFFF",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mask_alt",
+   "opt": "-O2",
+   "value": "0x00FF00FF",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mask_hi",
+   "opt": "-O2",
+   "value": "0xFFFF0000",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "cmp32",
+   "opt": "-O2",
+   "value": "0x12345678",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "cmp16",
+   "opt": "-O2",
+   "value": "0xABCD",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mul64",
+   "opt": "-O2",
+   "value": "0xC6A4A7935BD1E995",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "xor64",
+   "opt": "-O2",
+   "value": "0x87C37B91114253D5",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mod_prime",
+   "opt": "-O2",
+   "value": "65537",
+   "supported": false,
+   "form": null
+  },
+  {
+   "case": "mod_small",
+   "opt": "-O2",
+   "value": "10007",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "div",
+   "opt": "-O2",
+   "value": "1000003",
+   "supported": true,
+   "form": "magic"
+  },
+  {
+   "case": "table",
+   "opt": "-O2",
+   "value": "0x1F2E3D4C",
+   "supported": true,
+   "form": "table"
+  },
+  {
+   "case": "table64",
+   "opt": "-O2",
+   "value": "0xA5A5A5A55A5A5A5A",
+   "supported": true,
+   "form": "table"
+  },
+  {
+   "case": "neg_dec",
+   "opt": "-O2",
+   "value": "-12345",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "store",
+   "opt": "-O2",
+   "value": "0x0BADF00D",
+   "supported": true,
+   "form": "imm"
+  },
+  {
+   "case": "mul_pow2",
+   "opt": "-O2",
+   "value": "4096",
+   "supported": true,
+   "form": "shift"
+  },
+  {
+   "case": "string",
+   "opt": "-O2",
+   "value": "VeRA-selftest-key",
+   "supported": true,
+   "form": "string"
+  }
+ ],
+ "false_alarm_rate": {
+  "-O0": 0.05,
+  "-O2": 0.05
+ },
+ "false_support": [],
+ "false_support_trials": 1290,
+ "gate_passed": true
+}

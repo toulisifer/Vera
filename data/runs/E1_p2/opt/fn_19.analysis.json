@@ -1,0 +1,127 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.1,
+   "cached": false,
+   "eval_count": 613,
+   "cache_key": "7aeebff1445280f8a4095a2308d649781f8ddbdddeeae0606abeeb60a44203b1"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_19 appears to be a custom encryption or transformation function. It takes an input buffer, a length, an argument, an output buffer, and an output capacity. It performs a bitwise transformation on the input buffer and stores the result in the output buffer.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.9,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses a bitwise transformation involving shifts and XOR operations.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is greater than the output capacity.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > param_5",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "The function returns the input length when the input length is less than or equal to the output capacity.",
+    "asserted_values": [],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 <= param_5",
+     "returns": "param_2"
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function writes the transformed data to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len <= out_cap) {\n    if (len != 0) {\n      for (size_t i = 0; i < len; i++) {\n        uint8_t bVar1 = (i & 7);\n        uint8_t bVar3 = (arg >> bVar1 * 8) & 0xFF;\n        out[i] = (bVar3 << bVar1 | bVar3 >> 8 - bVar1) ^ in[i] ^ (uint8_t)i;\n      }\n    }\n    return len;\n  }\n  return VERA_ERR;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is greater than the output capacity.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function returns the input length when the input length is less than or equal to the output capacity.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= param_5",
+    "returns": "param_2"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function writes the transformed data to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses a bitwise transformation involving shifts and XOR operations.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function implements the RC4 algorithm, which is a stream cipher that uses a pseudo-random keystream to encrypt data.", "seconds": 0.8}

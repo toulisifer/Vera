@@ -1,0 +1,79 @@
+{
+ "fn": "fn_12",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST",
+   "type": "CONST",
+   "text": "The function uses the constant 0x8eb7ae2f.",
+   "asserted_values": [
+    "0x8eb7ae2f"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x8eb7ae2f",
+      "form": "neg",
+      "detail": "-0x8EB7AE2F xuất hiện dạng 0x714851D1 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "IO",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < 0x18 or out_cap < 8",
+    "returns": "0xffffffffffffffff"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "SIDE",
+   "type": "SIDE",
+   "text": "Writes 8 bytes to out[0..7].",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "NAME",
+   "type": "NAME",
+   "text": "Purpose is to compute a hash of the input data and store the result in the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại NAME ngoài vùng phủ kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 2,
+  "contradicted": 0
+ },
+ "n_claims": 4,
+ "explanation_clean": true
+}

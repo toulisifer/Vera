@@ -1,0 +1,20 @@
+{
+  "id": "fn_14",
+  "group": "near_miss",
+  "algorithm_label": "near-miss của Base64 encode",
+  "pair_of": "fn_07",
+  "difference_from_standard": "Bảng chữ cái 64 ký tự bị xáo trộn (seed 20260924); cơ chế đệm '=' giữ nguyên.",
+  "oracle": null,
+  "source": "corpus/src/fn_14.c",
+  "description": "Mã hóa kiểu Base64 (3 byte thành 4 ký tự, đệm '=') nhưng dùng một hoán vị tự chọn của bảng chữ cái chuẩn. Kỹ thuật này hay gặp trong malware để che chuỗi. Ghi 4*ceil(len/3) byte vào out, trả số byte đó; VERA_ERR nếu out_cap không đủ.",
+  "io_semantics": {
+    "returns": "4*ceil(len/3), hoặc VERA_ERR khi out_cap không đủ",
+    "writes_out": true,
+    "uses_arg": false
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [],
+  "characteristic_strings": [
+    "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B"
+  ]
+}

@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The code contains a loop that increments a counter (lVar1) until it reaches the value of param_2.", "seconds": 1.0}

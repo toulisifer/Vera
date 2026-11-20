@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The function returns 1 when len is 0, as shown in the first branch of the if statement.", "seconds": 0.8}

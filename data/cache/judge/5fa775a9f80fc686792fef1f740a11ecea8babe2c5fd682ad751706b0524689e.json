@@ -1,0 +1,1 @@
+{"verdict": "TRUE", "reason": "The decompiled code shows a loop that iterates over the input buffer.", "seconds": 0.7}

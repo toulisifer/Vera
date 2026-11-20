@@ -1,0 +1,20 @@
+{
+  "id": "fn_07",
+  "group": "classic",
+  "algorithm_label": "Base64 encode",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": "Base64",
+  "source": "corpus/src/fn_07.c",
+  "description": "Mã hóa Base64 chuẩn (RFC 4648) với bảng chữ cái A-Z a-z 0-9 + / và đệm '='. Mỗi nhóm 3 byte thành 4 ký tự; nhóm cuối 1 hoặc 2 byte được đệm. Ghi 4*ceil(len/3) byte vào out (không có NUL) và trả số byte đó; trả VERA_ERR nếu out_cap không đủ. Không dùng arg.",
+  "io_semantics": {
+    "returns": "4*ceil(len/3), hoặc VERA_ERR khi out_cap không đủ",
+    "writes_out": true,
+    "uses_arg": false
+  },
+  "input_profile": "bytes",
+  "characteristic_constants": [],
+  "characteristic_strings": [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+  ]
+}

@@ -1,0 +1,226 @@
+{
+ "fn": "fn_05",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": false,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 30.3,
+   "cached": true,
+   "eval_count": 1294,
+   "cache_key": "74c061201c344df0209bd1b38c3b13d21344c941c01ebbd61f71cc5279941bd8"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_05 processes input data using a custom algorithm and returns a 64-bit result. It returns 0xFFFFFFFFFFFFFFFF if the input length or output capacity is invalid.",
+  "proposed_name": "fn_05",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "_0001",
+    "type": "CF",
+    "text": "The function contains a loop that runs until iVar3 equals -0x3910c8e0.",
+    "asserted_values": [
+     "-0x3910c8e0"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0002",
+    "type": "CF",
+    "text": "The loop body performs arithmetic operations on uVar1 and uVar2 using constants and input data.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0003",
+    "type": "IO",
+    "text": "Returns 8 when the input length is greater than 0x17 and the output capacity is greater than 7.",
+    "asserted_values": [
+     "8"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "0x17 < param_2 && 7 < param_5",
+     "returns": "8"
+    }
+   },
+   {
+    "id": "_0004",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than or equal to 0x17 or the output capacity is less than or equal to 7.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.95,
+    "io": {
+     "when": "0x17 >= param_2 || 7 >= param_5",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "_0005",
+    "type": "SIDE",
+    "text": "Writes a 64-bit value to the output buffer based on uVar1 and uVar2.",
+    "asserted_values": [],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0006",
+    "type": "CONST",
+    "text": "The function uses the constant -0x61c88647 in its calculations.",
+    "asserted_values": [
+     "-0x61c88647"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0007",
+    "type": "CONST",
+    "text": "The function uses the constant 0x10 in its calculations.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0008",
+    "type": "CONST",
+    "text": "The function uses the constant 0x18 in its calculations.",
+    "asserted_values": [
+     "0x18"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0009",
+    "type": "CONST",
+    "text": "The function uses the constant 0x10 in its calculations.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "id": "_0010",
+    "type": "CONST",
+    "text": "The function uses the constant 0x10 in its calculations.",
+    "asserted_values": [
+     "0x10"
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_05(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t uVar1;\n  uint32_t uVar2;\n  int iVar3;\n\n  if ((0x17 < (size_t)len) && (7 < out_cap)) {\n    uVar2 = *in;\n    iVar3 = 0;\n    uVar1 = *(in + 1);\n    do {\n      iVar3 = iVar3 + -0x61c88647;\n      uVar2 = uVar2 + (uVar1 * 0x10 + *(in + 2) ^ (uVar1 >> 5) + *(in + 3) ^ iVar3 + uVar1);\n      uVar1 = uVar1 + (uVar2 * 0x10 + *(in + 4) ^ (uVar2 >> 5) + *(in + 5) ^ iVar3 + uVar2);\n    } while (iVar3 != -0x3910c8e0);\n    *out = (((((((uint64_t)(uVar1 >> 0x18) << 8 | (uint64_t)(uVar1 >> 0x10 & 0xff)) << 8 |\n                   (uint64_t)(uVar1 >> 8 & 0xff)) << 8 | (uint64_t)(uVar1 & 0xff)) << 8 |\n                 (uint64_t)(uVar2 >> 0x18)) << 8 | (uint64_t)(uVar2 >> 0x10 & 0xff)) << 8 |\n               (uint64_t)(uVar2 >> 8 & 0xff);\n    return 8;\n  }\n  return VERA_ERR;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "CF",
+   "text": "The function contains a loop that runs until iVar3 equals -0x3910c8e0.",
+   "asserted_values": [
+    "-0x3910c8e0"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_0002",
+   "type": "CF",
+   "text": "The loop body performs arithmetic operations on uVar1 and uVar2 using constants and input data.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_0003",
+   "type": "IO",
+   "text": "Returns 8 when the input length is greater than 0x17 and the output capacity is greater than 7.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 < param_2 && 7 < param_5",
+    "returns": "8"
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when the input length is less than or equal to 0x17 or the output capacity is less than or equal to 7.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.95,
+   "io": {
+    "when": "0x17 >= param_2 || 7 >= param_5",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "SIDE",
+   "text": "Writes a 64-bit value to the output buffer based on uVar1 and uVar2.",
+   "asserted_values": [],
+   "confidence": 0.95
+  },
+  {
+   "id": "_0006",
+   "type": "CONST",
+   "text": "The function uses the constant -0x61c88647 in its calculations.",
+   "asserted_values": [
+    "-0x61c88647"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_0007",
+   "type": "CONST",
+   "text": "The function uses the constant 0x10 in its calculations.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "The function uses the constant 0x18 in its calculations.",
+   "asserted_values": [
+    "0x18"
+   ],
+   "confidence": 0.95
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "_0009",
+   "type": "CONST",
+   "text": "The function uses the constant 0x10 in its calculations.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95,
+   "drop_reason": "trùng claim khác"
+  },
+  {
+   "id": "_0010",
+   "type": "CONST",
+   "text": "The function uses the constant 0x10 in its calculations.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 0.95,
+   "drop_reason": "trùng claim khác"
+  }
+ ]
+}

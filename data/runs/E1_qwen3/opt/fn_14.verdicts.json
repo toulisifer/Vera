@@ -1,0 +1,171 @@
+{
+ "fn": "fn_14",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns -1 when param_5 < (param_2 + 2) / 3 << 2.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < (param_2 + 2) / 3 << 2",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns lVar7 when param_2 != 1 and param_2 != 2.",
+   "asserted_values": [
+    "lVar7"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 != 1 and param_2 != 2",
+    "returns": "lVar7"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when param_2 == 1.",
+   "asserted_values": [
+    "lVar7 + 4"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 1",
+    "returns": "lVar7 + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_4",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when param_2 == 2.",
+   "asserted_values": [
+    "lVar7 + 4"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 2",
+    "returns": "lVar7 + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CF",
+   "text": "Implements a loop that processes input data in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant \"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\".",
+   "asserted_values": [
+    "\"AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B\""
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6",
+      "form": "string",
+      "detail": "'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "CF",
+   "text": "Implements a conditional branch for handling different input lengths.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_9",
+   "type": "CF",
+   "text": "Implements a conditional branch for handling the case when param_2 == 1.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_10",
+   "type": "CF",
+   "text": "Implements a conditional branch for handling the case when param_2 == 2.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_11",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v01",
+     "tag": "len1",
+     "observed": "hàm có ghi out"
+    }
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 1,
+  "unsupported": 8,
+  "contradicted": 1
+ },
+ "n_claims": 10,
+ "explanation_clean": false
+}

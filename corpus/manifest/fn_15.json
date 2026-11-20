@@ -1,0 +1,31 @@
+{
+  "id": "fn_15",
+  "group": "custom",
+  "algorithm_label": "tự thiết kế: run-length encoding",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": null,
+  "source": "corpus/src/fn_15.c",
+  "description": "Nén run-length: mỗi dãy byte giống nhau liên tiếp (tối đa 255) được ghi thành cặp (độ dài, giá trị) vào out. Lượt đầu tính kích thước cần; nếu out_cap không đủ thì trả VERA_ERR và không ghi gì. Trả số byte đã ghi (luôn chẵn). Không dùng arg.",
+  "io_semantics": {
+    "returns": "số byte ghi vào out, hoặc VERA_ERR",
+    "writes_out": true,
+    "uses_arg": false
+  },
+  "input_profile": "runs",
+  "characteristic_constants": [
+    {
+      "value": "0xFF",
+      "width": 32,
+      "role": "độ dài run tối đa",
+      "encodings": {
+        "imm": "0x000000FF",
+        "le_bytes": "ff000000",
+        "neg": "0xFFFFFF01",
+        "hi16": "0x0000",
+        "lo16": "0x00FF"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

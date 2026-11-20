@@ -1,0 +1,30 @@
+{
+ "fn": "fn_17",
+ "config": "plain",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: uint64_t fn_17(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) ← chữ ký chung",
+ "raw": "uint64_t fn_17(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t i = 0;\n  size_t cnt = 0;\n  size_t total = 0;\n  while (i < len && in[i] != 0) {\n    if (i + 2 > len || i + in[i + 1] + 2 > len) {\n      return -1;\n    }\n    total += in[i + 1];\n    cnt++;\n    i += in[i + 1] + 2;\n  }\n  if (cnt > out_cap) {\n    return -1;\n  }\n  i = 0;\n  for (size_t c = 0; c < cnt; c++) {\n    out[c] = in[i];\n    i += in[i + 1] + 2;\n  }\n  return (((uint64_t) cnt) << 32) | total;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 11.7,
+   "cached": false,
+   "eval_count": 252,
+   "cache_key": "6100e8b6376747076922e213c3bbfe9d011c25dce3853c023d71d28e0bb3ad98"
+  }
+ ],
+ "output": {
+  "recovered_c": "uint64_t vera_inner(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t i = 0;\n  size_t cnt = 0;\n  size_t total = 0;\n  while (i < len && in[i] != 0) {\n    if (i + 2 > len || i + in[i + 1] + 2 > len) {\n      return -1;\n    }\n    total += in[i + 1];\n    cnt++;\n    i += in[i + 1] + 2;\n  }\n  if (cnt > out_cap) {\n    return -1;\n  }\n  i = 0;\n  for (size_t c = 0; c < cnt; c++) {\n    out[c] = in[i];\n    i += in[i + 1] + 2;\n  }\n  return (((uint64_t) cnt) << 32) | total;\n}\nuint64_t fn_17(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((uint8_t *)(in), (size_t)(len), (uint64_t)(arg), (uint8_t *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

@@ -1,0 +1,185 @@
+{
+ "fn": "fn_13",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.4,
+   "cached": false,
+   "eval_count": 996,
+   "cache_key": "cb1ce8dce98e4ee76fc4f0fe63a8cd7b92f122511d28b0b57862e03f2cd0ad3c"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_13 implements a variant of the RC4 stream cipher.",
+  "proposed_name": "fn_13",
+  "algorithm": "RC4",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "ALG",
+    "text": "Implements RC4.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CONST",
+    "text": "The RC4 key is derived from the input argument 'arg'.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CONST",
+    "text": "The RC4 state table 's' is initialized with values from 0 to 255.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The RC4 key is XORed with the input data to produce the output.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "IO",
+    "text": "Returns the length of the input data when the output capacity is sufficient.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap >= len",
+     "returns": "len"
+    }
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "Returns VERA_ERR when the output capacity is insufficient.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "7",
+    "type": "SIDE",
+    "text": "Writes the encrypted data to the output buffer 'out'.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "CF",
+    "text": "Uses a loop to initialize the RC4 state table 's'.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "9",
+    "type": "CF",
+    "text": "Uses a loop to generate the RC4 keystream and encrypt the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_13(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n\n  uint8_t k[8];\n  uint8_t s[256];\n  uint8_t j = 0;\n  uint8_t i = 0;\n  uint8_t t;\n\n  for (size_t i = 0; i < 8; i++) {\n    k[i] = (uint8_t)(arg >> ((byte)(i << 3) & 0x3f));\n  }\n\n  for (size_t i = 0; i < 0x100; i++) {\n    s[i] = (uint8_t)i;\n  }\n\n  for (size_t i = 0; i < 0x100; i++) {\n    j = (k[i & 7] ^ i) + s[i] + j & 0xff;\n    t = s[i];\n    s[i] = s[j];\n    s[j] = t;\n  }\n\n  j = 0;\n  for (size_t n = 0; n < len; n++) {\n    i = (i + 1) & 0xff;\n    j = (j + s[i]) & 0xff;\n    t = s[i];\n    s[i] = s[j];\n    s[j] = t;\n    out[n] = in[n] ^ s[(uint)s[j] + (uint)s[i] & 0xff];\n  }\n\n  return len;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "3",
+   "type": "CONST",
+   "text": "The RC4 state table 's' is initialized with values from 0 to 255.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "IO",
+   "text": "Returns the length of the input data when the output capacity is sufficient.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   }
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "Returns VERA_ERR when the output capacity is insufficient.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "7",
+   "type": "SIDE",
+   "text": "Writes the encrypted data to the output buffer 'out'.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Uses a loop to initialize the RC4 state table 's'.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "Uses a loop to generate the RC4 keystream and encrypt the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements RC4.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "2",
+   "type": "CONST",
+   "text": "The RC4 key is derived from the input argument 'arg'.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "CONST không nêu giá trị"
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The RC4 key is XORed with the input data to produce the output.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "drop_reason": "CONST không nêu giá trị"
+  }
+ ]
+}

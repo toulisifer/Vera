@@ -1,0 +1,109 @@
+{
+ "fn": "fn_11",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 7.4,
+   "cached": false,
+   "eval_count": 352,
+   "cache_key": "170aeeda7c3c92872205ffcaf220c5153ab0fbe4f858087880714886a398394b"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_11` does nothing and always returns.",
+  "proposed_name": "fn_11",
+  "algorithm": "unknown",
+  "self_confidence": 1.0,
+  "claims": [
+   {
+    "id": "1",
+    "type": "NAME",
+    "text": "Purpose is to do nothing and always return.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "Does not contain any loop or conditional structure.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Does not return any value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Does not write to any output.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "The function uses the constant value 0xFFFFFFFFFFFFFFFF.",
+    "asserted_values": [
+     "FFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_11(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) { return VERA_ERR; }"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "NAME",
+   "text": "Purpose is to do nothing and always return.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Does not contain any loop or conditional structure.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Does not return any value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Does not write to any output.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant value 0xFFFFFFFFFFFFFFFF.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

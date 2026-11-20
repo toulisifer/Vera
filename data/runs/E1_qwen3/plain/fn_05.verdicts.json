@@ -1,0 +1,135 @@
+{
+ "fn": "fn_05",
+ "config": "plain",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when len < 0x18 or out_cap < 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0002",
+   "type": "IO",
+   "text": "Returns 8 when len >= 0x18 and out_cap >= 8.",
+   "asserted_values": [
+    "8"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0003",
+   "type": "SIDE",
+   "text": "Writes 8 bytes to out[0..7].",
+   "asserted_values": [
+    "0",
+    "7"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "CF",
+   "text": "Contains a loop that runs 0x20 times.",
+   "asserted_values": [
+    "0x20"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "CF",
+   "text": "Contains a conditional branch based on len and out_cap.",
+   "asserted_values": [
+    "len",
+    "out_cap"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0006",
+   "type": "CONST",
+   "text": "Uses the constant 0x9e3779b9.",
+   "asserted_values": [
+    "0x9e3779b9"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x9e3779b9",
+      "form": "neg",
+      "detail": "-0x9E3779B9 xuất hiện dạng 0x61C88647 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0007",
+   "type": "CONST",
+   "text": "Uses the constant 0x18.",
+   "asserted_values": [
+    "0x18"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "_0008",
+   "type": "CONST",
+   "text": "Uses the constant 0x10.",
+   "asserted_values": [
+    "0x10"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

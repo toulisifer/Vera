@@ -1,0 +1,30 @@
+{
+ "fn": "fn_07",
+ "config": "opt",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_07(const unsigned char *in, size_t inlen,\n                    const unsigned char *, size_t,\n                    size_t outlen) ← chữ ký chung",
+ "raw": "size_t fn_07(const unsigned char *in, size_t inlen,\n                    const unsigned char *, size_t,\n                    size_t outlen)\n{\n    size_t i, j;\n    unsigned int a, b, c, triple;\n    unsigned char *out;\n    static const char base64[] =\n        \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n\n    if (outlen < (((inlen + 2) / 3) * 4))\n        return (size_t)-1;\n\n    out = (unsigned char *)outlen;\n    outlen -= (((inlen + 2) / 3) * 4);\n\n    for (i = j = 0; j < inlen; i += 3, j += 4) {\n        a = in[i];\n        b = i + 1 < inlen ? in[i + 1] : 0;\n        c = i + 2 < inlen ? in[i + 2] : 0;\n\n        triple = (a << 0x10) | (b << 0x08) | c;\n\n        out[j] = base64[(triple >> 18) & 0x3F];\n        out[j + 1] = base64[(triple >> 12) & 0x3F];\n        out[j + 2] = base64[(triple >> 6) & 0x3F];\n        out[j + 3] = base64[triple & 0x3F];\n    }\n\n    switch (inlen % 3) {\n    case 1:\n        triple = in[i] << 16;\n        out[j] = base64[(triple >> 18) & 0x3F];\n        out[j + 1] = base64[(triple >> 12) & 0x3F];\n        out[j + 2] = '=';\n        out[j + 3] = '=';\n        break;\n\n    case 2:\n        a = in[i];\n        b = in[i + 1];\n        triple = (a << 16) | (b << 8);\n\n        out[j] = base64[(triple >> 18) & 0x3F];\n        out[j + 1] = base64[(triple >> 12) & 0x3F];\n        out[j + 2] = base64[(triple >> 6) & 0x3F];\n        out[j + 3] = '=';\n        break;\n    }\n\n    return (size_t)(outlen + (((inlen + 2) / 3) * 4));\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 40.2,
+   "cached": false,
+   "eval_count": 675,
+   "cache_key": "a48a6a8bc6f8035219d880b0c95c75caacc23a85a55142f953e980bda013f8d9"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const unsigned char *in, size_t inlen,\n                    const unsigned char *, size_t,\n                    size_t outlen)\n{\n    size_t i, j;\n    unsigned int a, b, c, triple;\n    unsigned char *out;\n    static const char base64[] =\n        \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n\n    if (outlen < (((inlen + 2) / 3) * 4))\n        return (size_t)-1;\n\n    out = (unsigned char *)outlen;\n    outlen -= (((inlen + 2) / 3) * 4);\n\n    for (i = j = 0; j < inlen; i += 3, j += 4) {\n        a = in[i];\n        b = i + 1 < inlen ? in[i + 1] : 0;\n        c = i + 2 < inlen ? in[i + 2] : 0;\n\n        triple = (a << 0x10) | (b << 0x08) | c;\n\n        out[j] = base64[(triple >> 18) & 0x3F];\n        out[j + 1] = base64[(triple >> 12) & 0x3F];\n        out[j + 2] = base64[(triple >> 6) & 0x3F];\n        out[j + 3] = base64[triple & 0x3F];\n    }\n\n    switch (inlen % 3) {\n    case 1:\n        triple = in[i] << 16;\n        out[j] = base64[(triple >> 18) & 0x3F];\n        out[j + 1] = base64[(triple >> 12) & 0x3F];\n        out[j + 2] = '=';\n        out[j + 3] = '=';\n        break;\n\n    case 2:\n        a = in[i];\n        b = in[i + 1];\n        triple = (a << 16) | (b << 8);\n\n        out[j] = base64[(triple >> 18) & 0x3F];\n        out[j + 1] = base64[(triple >> 12) & 0x3F];\n        out[j + 2] = base64[(triple >> 6) & 0x3F];\n        out[j + 3] = '=';\n        break;\n    }\n\n    return (size_t)(outlen + (((inlen + 2) / 3) * 4));\n}\nuint64_t fn_07(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (size_t)(len), (const unsigned char *)(arg), (long)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

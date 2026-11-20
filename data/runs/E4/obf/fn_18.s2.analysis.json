@@ -1,0 +1,223 @@
+{
+ "fn": "fn_18",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 33.6,
+   "cached": false,
+   "eval_count": 1616,
+   "cache_key": "362a428b197c7afae060f7aefdf67c7fb951be86d87f53a8ecee07200fb4f9f8"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom string parsing and transformation algorithm. It processes input bytes and modifies the output based on specific rules and conditions.",
+  "proposed_name": "fn_18",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "C1",
+    "type": "CF",
+    "text": "The function uses a while loop to process the input bytes.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "C2",
+    "type": "CF",
+    "text": "The function contains several conditional branches based on the input bytes and internal state.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "C3",
+    "type": "SIDE",
+    "text": "The function writes to the output buffer out[0..<out_cap>].",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "C4",
+    "type": "SIDE",
+    "text": "The function reads from the input buffer in[0..<len>].",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "C5",
+    "type": "CONST",
+    "text": "The function uses the constant 0x2d6b.",
+    "asserted_values": [
+     "2d6b"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C6",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e4.",
+    "asserted_values": [
+     "51e4"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C7",
+    "type": "CONST",
+    "text": "The function uses the constant 0x51e3.",
+    "asserted_values": [
+     "51e3"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C8",
+    "type": "CONST",
+    "text": "The function uses the constant 0x1f9.",
+    "asserted_values": [
+     "1f9"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "C9",
+    "type": "IO",
+    "text": "Returns 0 when the input length is 0.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "len == 0",
+     "returns": "0"
+    }
+   },
+   {
+    "id": "C10",
+    "type": "IO",
+    "text": "Returns 0xFFFFFFFFFFFFFFFF when an error occurs.",
+    "asserted_values": [],
+    "confidence": 0.8,
+    "io": {
+     "when": "other errors",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "C11",
+    "type": "NAME",
+    "text": "The function appears to be a custom string parsing and transformation algorithm.",
+    "asserted_values": [],
+    "confidence": 0.7
+   }
+  ],
+  "recovered_c": "uint64_t fn_18(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    if (len == 0) {\n        return 0;\n    }\n    uint64_t result = 0;\n    uint64_t state = 0;\n    uint64_t index = 0;\n    while (index < len) {\n        uint8_t byte = in[index];\n        if ((((int)(index + 1) * (uint)index & 1) != 0) || (arg != 0)) {\n            state = ((uint)(index << 7) ^ state) * 0x2d6b + arg;\n            state = state >> 0xb ^ state;\n        }\n        if (state == 2) {\n            state = 1;\n        } else {\n            if (state == 1) {\n                if (byte == 0x5c) {\n                    state = 2;\n                } else if ((byte == 0x22) &&\n                           ((((index | 1) * (index | 1) & 7) != 1 || (arg != 0x3c71)))) {\n                    state = (uint)state ^ 0x51e4;\n                }\n            } else {\n                if (byte == 0x29) {\n                    // Handle closing parenthesis\n                } else if (byte < 0x2a) {\n                    if (byte == 0x22) {\n                        index = index + (uint)state;\n                        uint32_t temp = index | 1;\n                        if (((temp * temp & 7) == 1) && (arg == 0x3c71)) {\n                            state = 2;\n                        } else {\n                            state = state + 0x51e3 ^ index * 0x1f9;\n                        }\n                    } else if (byte == 0x28) {\n                        // Handle opening parenthesis\n                    }\n                } else if (byte == 0x7b) {\n                    if (state == 0x40) {\n                        // Handle opening brace\n                    }\n                    if ((((index | 1) * (index | 1) & 7) == 1) && (arg == 0x3c71)) {\n                        uint8_t c = byte + 2;\n                        if (byte == 0x28) {\n                            c = ')';\n                        }\n                        out[state] = c;\n                        state = state + 1;\n                    } else {\n                        state = state + 0x51e3 ^ state;\n                    }\n                } else if (byte < 0x7c) {\n                    if (byte == 0x5b) {\n                        // Handle opening bracket\n                    } else if (byte == 0x5d) {\n                        // Handle closing bracket\n                    }\n                } else if (byte == 0x7d) {\n                    if ((state == 0) || (state - 1, out[state - 1] != byte)) {\n                        // Handle closing brace\n                    }\n                    if ((((index | 1) * (index | 1) & 7) != 1) || (arg != 0x3c71)) {\n                        state = state + 0x51e3 ^ len * 0x1f9 + state;\n                    }\n                }\n            }\n        }\n        if (len == index + 1) {\n            break;\n        }\n        index = index + 1;\n        state = state + 0x1f9;\n    }\n    if (state != 0 || state != 1) {\n        result = result + 2;\n    }\n    return result;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "C1",
+   "type": "CF",
+   "text": "The function uses a while loop to process the input bytes.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "C2",
+   "type": "CF",
+   "text": "The function contains several conditional branches based on the input bytes and internal state.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "C3",
+   "type": "SIDE",
+   "text": "The function writes to the output buffer out[0..<out_cap>].",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "C4",
+   "type": "SIDE",
+   "text": "The function reads from the input buffer in[0..<len>].",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "C5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x2d6b.",
+   "asserted_values": [
+    "2d6b"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "C6",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e4.",
+   "asserted_values": [
+    "51e4"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "C7",
+   "type": "CONST",
+   "text": "The function uses the constant 0x51e3.",
+   "asserted_values": [
+    "51e3"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "C8",
+   "type": "CONST",
+   "text": "The function uses the constant 0x1f9.",
+   "asserted_values": [
+    "1f9"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "C9",
+   "type": "IO",
+   "text": "Returns 0 when the input length is 0.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "len == 0",
+    "returns": "0"
+   }
+  },
+  {
+   "id": "C10",
+   "type": "IO",
+   "text": "Returns 0xFFFFFFFFFFFFFFFF when an error occurs.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {
+    "when": "other errors",
+    "returns": "VERA_ERR"
+   }
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "C11",
+   "type": "NAME",
+   "text": "The function appears to be a custom string parsing and transformation algorithm.",
+   "asserted_values": [],
+   "confidence": 0.7,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

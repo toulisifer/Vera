@@ -1,0 +1,31 @@
+{
+  "id": "fn_11",
+  "group": "near_miss",
+  "algorithm_label": "near-miss của djb2",
+  "pair_of": "fn_04",
+  "difference_from_standard": "Khởi tạo 7477 thay cho 5381 và hệ số nhân 41 thay cho 33.",
+  "oracle": null,
+  "source": "corpus/src/fn_11.c",
+  "description": "Băm chuỗi dạng nhân-cộng 32-bit giống djb2: h = h * 41 + byte (mod 2^32), khởi tạo h = 7477. Trả h. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "text",
+  "characteristic_constants": [
+    {
+      "value": "0x1D35",
+      "width": 32,
+      "role": "giá trị khởi tạo tự chọn",
+      "encodings": {
+        "imm": "0x00001D35",
+        "le_bytes": "351d0000",
+        "neg": "0xFFFFE2CB",
+        "hi16": "0x0000",
+        "lo16": "0x1D35"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

@@ -1,0 +1,152 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p1",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 14.2,
+   "cached": false,
+   "eval_count": 690,
+   "cache_key": "8accca2b07028e6e61f9efb402b7ee5cca0b35b151ba845890eb08e4b1a041e4"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_08 computes a hash value using a custom algorithm and returns the inverted hash.",
+  "proposed_name": "fn_08_custom_hash",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function initializes the hash value to 0xffffffff.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The outer loop iterates over each byte in the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The inner loop processes each bit of the current byte.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function does not modify the input data.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function writes the result to the output buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "IO",
+    "text": "The function returns VERA_ERR when the output buffer capacity is smaller than the input length.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "7",
+    "type": "IO",
+    "text": "The function returns the inverted hash value when the output buffer capacity is sufficient.",
+    "asserted_values": [],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap >= len",
+     "returns": "len"
+    }
+   }
+  ],
+  "recovered_c": "uint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n  uint32_t h = 0xffffffff;\n  for (size_t i = 0; i < len; i++) {\n    h = h ^ in[i];\n    for (uint8_t b = 0; b < 8; b++) {\n      h = -(h & 1) & 0xf7179bf5 ^ h >> 1;\n    }\n  }\n  for (size_t i = 0; i < len; i++) {\n    out[i] = h & 0xff;\n    h >>= 8;\n  }\n  return (uint64_t)~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function initializes the hash value to 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The outer loop iterates over each byte in the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The inner loop processes each bit of the current byte.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function does not modify the input data.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function writes the result to the output buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "IO",
+   "text": "The function returns VERA_ERR when the output buffer capacity is smaller than the input length.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "7",
+   "type": "IO",
+   "text": "The function returns the inverted hash value when the output buffer capacity is sufficient.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= len",
+    "returns": "len"
+   }
+  }
+ ],
+ "dropped_claims": []
+}

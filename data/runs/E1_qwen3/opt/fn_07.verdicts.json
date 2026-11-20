@@ -1,0 +1,161 @@
+{
+ "fn": "fn_07",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "user_0",
+   "type": "IO",
+   "text": "Returns -1 when param_5 < (param_2 + 2) / 3 << 2.",
+   "asserted_values": [
+    "-1"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_5 < (param_2 + 2) / 3 << 2",
+    "returns": "-1"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_1",
+   "type": "IO",
+   "text": "Returns lVar7 when param_2 != 1 and param_2 != 2.",
+   "asserted_values": [
+    "lVar7"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 != 1 and param_2 != 2",
+    "returns": "lVar7"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_2",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when param_2 == 1.",
+   "asserted_values": [
+    "lVar7 + 4"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 1",
+    "returns": "lVar7 + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_3",
+   "type": "IO",
+   "text": "Returns lVar7 + 4 when param_2 == 2.",
+   "asserted_values": [
+    "lVar7 + 4"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "param_2 == 2",
+    "returns": "lVar7 + 4"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "user_6",
+   "type": "CF",
+   "text": "Uses a loop to process input bytes in chunks of 3.",
+   "asserted_values": [
+    "3"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "user_7",
+   "type": "CONST",
+   "text": "Uses the constant \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\".",
+   "asserted_values": [
+    "\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\""
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567",
+      "form": "string",
+      "detail": "'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn' trong section dữ liệu"
+     }
+    ]
+   }
+  },
+  {
+   "id": "user_8",
+   "type": "CF",
+   "text": "Handles special cases for input lengths of 1 and 2.",
+   "asserted_values": [
+    "1",
+    "2"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements Base64.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "source": "algorithm_field",
+   "raw_algorithm": "Base64",
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "supported",
+     "method": "V3",
+     "fingerprint": [
+      {
+       "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+       "form": "string"
+      }
+     ]
+    },
+    "label": "verified",
+    "method": "V1b",
+    "detail": "oracle Base64 khớp 50/50 vector"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 1,
+  "unsupported": 6,
+  "contradicted": 0
+ },
+ "n_claims": 8,
+ "explanation_clean": true
+}

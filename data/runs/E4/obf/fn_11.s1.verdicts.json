@@ -1,0 +1,43 @@
+{
+ "fn": "fn_11",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "CONST_1",
+   "type": "CONST",
+   "text": "The code uses the constant 0x0000000000000000.",
+   "asserted_values": [
+    "0x0000000000000000"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  },
+  {
+   "id": "IO_1",
+   "type": "IO",
+   "text": "Returns ERR when param_2 == 0.",
+   "asserted_values": [
+    "ERR"
+   ],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 2,
+  "contradicted": 0
+ },
+ "n_claims": 2,
+ "explanation_clean": true
+}

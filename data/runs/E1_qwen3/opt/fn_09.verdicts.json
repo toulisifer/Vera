@@ -1,0 +1,123 @@
+{
+ "fn": "fn_09",
+ "config": "opt",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0002",
+   "type": "CONST",
+   "text": "Uses the constant 0xcbf29ce484222325.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0xcbf29ce484222325",
+      "form": "imm",
+      "detail": "0xCBF29CE484222325 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0003",
+   "type": "CONST",
+   "text": "Uses the constant 0x100000001b5.",
+   "asserted_values": [
+    "0x100000001b5"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x100000001b5",
+      "form": "imm",
+      "detail": "0x100000001B5 (64-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "CF",
+   "text": "Processes the input buffer in a loop until the end of the buffer is reached.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "SIDE",
+   "text": "Does not write to out.",
+   "asserted_values": [],
+   "confidence": 1.0,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "không vector nào ghi out"
+   }
+  },
+  {
+   "id": "_0006",
+   "type": "IO",
+   "text": "Returns the computed hash value when the input length is non-zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0007",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when the input length is zero.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "alg_field",
+   "type": "ALG",
+   "text": "The function implements MurmurHash3 64-bit.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "source": "algorithm_field",
+   "raw_algorithm": "MurmurHash3 64-bit",
+   "verdict": {
+    "algorithm": "MurmurHash",
+    "v3": {
+     "label": "unsupported",
+     "method": "V3",
+     "reason": "thiếu hằng đặc trưng của MurmurHash"
+    },
+    "label": "unsupported",
+    "method": "V3",
+    "reason_v1b": "không có oracle cho MurmurHash"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 1,
+  "supported": 2,
+  "unsupported": 4,
+  "contradicted": 0
+ },
+ "n_claims": 7,
+ "explanation_clean": true
+}

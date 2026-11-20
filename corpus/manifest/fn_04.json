@@ -1,0 +1,31 @@
+{
+  "id": "fn_04",
+  "group": "classic",
+  "algorithm_label": "djb2",
+  "pair_of": null,
+  "difference_from_standard": null,
+  "oracle": "djb2",
+  "source": "corpus/src/fn_04.c",
+  "description": "Tính băm chuỗi djb2 (Bernstein) 32-bit trên in. Khởi tạo h = 5381; với mỗi byte h = h * 33 + byte (mod 2^32), phép nhân 33 viết dạng (h << 5) + h. Trả về h. Không dùng arg, không ghi out.",
+  "io_semantics": {
+    "returns": "giá trị băm/checksum (zero-extend lên 64 bit)",
+    "writes_out": false,
+    "uses_arg": false
+  },
+  "input_profile": "text",
+  "characteristic_constants": [
+    {
+      "value": "0x1505",
+      "width": 32,
+      "role": "giá trị khởi tạo",
+      "encodings": {
+        "imm": "0x00001505",
+        "le_bytes": "05150000",
+        "neg": "0xFFFFEAFB",
+        "hi16": "0x0000",
+        "lo16": "0x1505"
+      }
+    }
+  ],
+  "characteristic_strings": []
+}

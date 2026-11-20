@@ -1,0 +1,124 @@
+{
+ "fn": "fn_14",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 2,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 30.7,
+   "cached": false,
+   "eval_count": 1488,
+   "cache_key": "39eff96b1630855ed851c13f1457053a209be906f1489ef942f7ea3258133720"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be encoding a string based on a specific pattern and writing the result to the output buffer.",
+  "proposed_name": "fn_14",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'.",
+    "asserted_values": [
+     "4166686d644c457233474d586732532f613931555a6e546c484f49354b597a65764643774e512b503474575637635052624475796b6a4a736f693671383042"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns -1 when out_cap < len.",
+    "asserted_values": [
+     "FFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "ERR"
+    }
+   },
+   {
+    "id": "3",
+    "type": "CF",
+    "text": "The function has a loop that processes the input string in chunks of 3 bytes.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "Writes to out[0..<len].",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "The function appears to be encoding a string based on a specific pattern.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_14(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < (len + 2) / 3 << 2) {\n    return VERA_ERR;\n  }\n  size_t lVar7 = 0;\n  if (len >= 3) {\n    for (size_t uVar3 = 0; uVar3 + 3 <= len; uVar3 += 3) {\n      uint uVar4 = (uint)in[uVar3] << 0x10 | (uint)in[uVar3 + 1] << 8;\n      uint uVar5 = (uint)in[uVar3 + 2];\n      out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[uVar5 & 0x3f];\n      out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(uVar5 | uVar4) >> 6 & 0x3f];\n      out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[uVar4 >> 0xc & 0x3f];\n      out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[in[uVar3] >> 2];\n    }\n    len -= uVar3;\n  }\n  if (len == 1) {\n    out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(in[uVar3] & 3) << 4];\n    out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[in[uVar3] >> 2];\n    out[lVar7++] = '=';\n    out[lVar7++] = '=';\n  } else if (len == 2) {\n    uint uVar4 = (uint)in[uVar3] << 8;\n    out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(uVar4 & 0xf00) >> 6];\n    out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[(uVar4 | (uint)in[uVar3 + 1] << 0x10) >> 0xc & 0x3f];\n    out[lVar7++] = 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'[in[uVar3 + 1] >> 2];\n    out[lVar7++] = '=';\n  }\n  return lVar7;\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 'AfhmdLEr3GMxg2S/a91UZnTlHOI5KYzevFCwNQ+P4tWV7cpXRbDuykjJsoi6q80B'.",
+   "asserted_values": [
+    "4166686d644c457233474d586732532f613931555a6e546c484f49354b597a65764643774e512b503474575637635052624475796b6a4a736f693671383042"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns -1 when out_cap < len.",
+   "asserted_values": [
+    "FFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "ERR"
+   }
+  },
+  {
+   "id": "3",
+   "type": "CF",
+   "text": "The function has a loop that processes the input string in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "Writes to out[0..<len].",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "drop_reason": "quá ngắn, không có hành vi cụ thể"
+  },
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "The function appears to be encoding a string based on a specific pattern.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

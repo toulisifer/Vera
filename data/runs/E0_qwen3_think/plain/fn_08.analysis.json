@@ -1,0 +1,164 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p2",
+ "model": "qwen3:8b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": true,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [
+    "JSON lỗi: Expecting value: line 1 column 1 (char 0)"
+   ],
+   "seconds": 94.9,
+   "cached": false,
+   "eval_count": 3072,
+   "cache_key": "a892a20cf644ab68cfd3cd01760e7acfee582b7a5bd3494f5dd5c9e9df6f1664"
+  },
+  {
+   "errors": [],
+   "seconds": 48.5,
+   "cached": false,
+   "eval_count": 1541,
+   "cache_key": "deec57a943eb15f6793acdd3064e01ce5ea0a3f3ea9de3dbb6b82f2e00063694"
+  }
+ ],
+ "output": {
+  "summary": "The function processes input bytes through a custom transformation and returns the bitwise complement of a computed value. It does not use the 'arg', 'out', or 'out_cap' parameters.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "A1",
+    "type": "CONST",
+    "text": "Initial value of 'h' is 0xFFFFFFFF.",
+    "asserted_values": [
+     "0xFFFFFFFF"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "A2",
+    "type": "CONST",
+    "text": "Magic number used in transformation is 0xF7179BF5.",
+    "asserted_values": [
+     "0xF7179BF5"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "A3",
+    "type": "CF",
+    "text": "Processes each byte in 'in' with a loop that runs exactly 'len' times.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A4",
+    "type": "CF",
+    "text": "Each byte undergoes 8 iterations of a bitwise transformation.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A5",
+    "type": "IO",
+    "text": "Returns bitwise complement of 'h' as uint64_t.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A6",
+    "type": "IO",
+    "text": "Does not use 'arg' parameter.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A7",
+    "type": "IO",
+    "text": "Does not use 'out' or 'out_cap' parameters.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "A8",
+    "type": "SIDE",
+    "text": "No side effects on input or output buffers.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "#include <stdint.h>\n#include <stddef.h>\n\nuint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t h = 0xFFFFFFFF;\n  for (size_t i = 0; i < len; i++) {\n    h ^= in[i];\n    for (uint8_t b = 0; b < 8; b++) {\n      h = -(h & 1) & 0xF7179BF5 ^ (h >> 1);\n    }\n  }\n  return ~h;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "A1",
+   "type": "CONST",
+   "text": "Initial value of 'h' is 0xFFFFFFFF.",
+   "asserted_values": [
+    "0xFFFFFFFF"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "A2",
+   "type": "CONST",
+   "text": "Magic number used in transformation is 0xF7179BF5.",
+   "asserted_values": [
+    "0xF7179BF5"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "A3",
+   "type": "CF",
+   "text": "Processes each byte in 'in' with a loop that runs exactly 'len' times.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A4",
+   "type": "CF",
+   "text": "Each byte undergoes 8 iterations of a bitwise transformation.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A5",
+   "type": "IO",
+   "text": "Returns bitwise complement of 'h' as uint64_t.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A6",
+   "type": "IO",
+   "text": "Does not use 'arg' parameter.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A7",
+   "type": "IO",
+   "text": "Does not use 'out' or 'out_cap' parameters.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "A8",
+   "type": "SIDE",
+   "text": "No side effects on input or output buffers.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

@@ -1,0 +1,123 @@
+{
+ "fn": "fn_15",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 15.4,
+   "cached": false,
+   "eval_count": 625,
+   "cache_key": "c5943ffea2204f1bac24778923b272e6cc472bf6de5adfce2a88c266e5e14532"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_15 processes an input buffer to identify consecutive identical bytes and outputs a new buffer with the count of consecutive bytes followed by the byte itself.",
+  "proposed_name": "fn_15",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffffffffffff.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when out_cap < need.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap < need",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the count of consecutive bytes followed by the byte itself to out.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "The function contains nested loops for processing the input buffer.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "NAME",
+    "text": "The function appears to be implementing a custom encoding algorithm that compresses consecutive identical bytes.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_15(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  size_t need = 0;\n  size_t o = 0;\n  for (size_t i = 0; i < len; i++) {\n    size_t r = 1;\n    while ((i + r < len) && (in[i + r] == in[i]) && (r < 0xff)) {\n      r++;\n    }\n    need += 2;\n  }\n  if (out_cap < need) {\n    return 0xffffffffffffffff;\n  }\n  for (size_t i = 0; i < len; i++) {\n    size_t r = 1;\n    while ((i + r < len) && (in[i + r] == in[i]) && (r < 0xff)) {\n      r++;\n    }\n    out[o++] = (uint8_t)r;\n    out[o++] = in[i];\n  }\n  return o;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when out_cap < need.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap < need",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the count of consecutive bytes followed by the byte itself to out.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "The function contains nested loops for processing the input buffer.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": [
+  {
+   "id": "5",
+   "type": "NAME",
+   "text": "The function appears to be implementing a custom encoding algorithm that compresses consecutive identical bytes.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "drop_reason": "rào đón"
+  }
+ ]
+}

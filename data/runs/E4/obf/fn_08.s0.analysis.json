@@ -1,0 +1,109 @@
+{
+ "fn": "fn_08",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.7,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 21.4,
+   "cached": false,
+   "eval_count": 1042,
+   "cache_key": "10010946158377ae9006acd2786eda1112622e1e97f5b3c8712639646f40272c"
+  }
+ ],
+ "output": {
+  "summary": "The function `fn_08` appears to be implementing a custom hash function based on a series of bitwise operations and shifts.",
+  "proposed_name": "fn_08",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffff.",
+    "asserted_values": [
+     "0xffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns ~uVar2 when len == 0.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes the result to out[0..7].",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "CF",
+    "text": "Contains a do-while loop that iterates based on the length of the input.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "5",
+    "type": "ALG",
+    "text": "Implements a custom hash algorithm.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_08(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n    uint uVar1;\n    uint uVar2;\n    long lVar3;\n    uint uVar4;\n    uint uVar5;\n    long lVar6;\n    long lVar7;\n    uint uVar8;\n\n    if (DAT_00104010 == 0) {\n        uVar2 = 0xffffffff;\n    } else {\n        uVar4 = 0;\n        uVar2 = 0xffffffff;\n        do {\n            uVar2 = uVar2 >> 5 ^ uVar2 * 8 ^ uVar4;\n            uVar4 = uVar4 + 1;\n        } while (uVar4 < DAT_00104010);\n    }\n\n    if (len == 0) {\n        return ~uVar2;\n    }\n\n    uVar4 = (int)len * 0x1f9;\n    uVar8 = 0;\n    lVar6 = 0;\n\n    do {\n        uVar2 = uVar2 ^ *(byte *)(in + lVar6);\n        lVar7 = lVar6 + 1;\n        lVar3 = len;\n        uVar5 = uVar4;\n        if ((((int)lVar6 * (int)lVar7 & 1U) != 0) || (DAT_00104010 != 0)) {\n            uVar2 = (uVar2 ^ uVar8) * 0x2d6b + DAT_00104008;\n            uVar2 = uVar2 ^ uVar2 >> 0xb;\n        }\n\n        do {\n            while ((uVar1 = (uint)lVar3 | 1, (uVar1 * uVar1 & 7) == 1 && (DAT_00104008 == 0x3c71))) {\n                lVar3 = lVar3 + 1;\n                uVar2 = -(uVar2 & 1) & 0xf7179bf5 ^ uVar2 >> 1;\n                uVar5 = uVar5 + 0x1f9;\n                if (len + 8 == lVar3) goto LAB_00101200;\n            }\n            lVar3 = lVar3 + 1;\n            uVar2 = uVar2 + 0x51e3 ^ uVar5;\n            uVar5 = uVar5 + 0x1f9;\n        } while (len + 8 != lVar3);\n\nLAB_00101200:\n        uVar8 = uVar8 + 0x80;\n        lVar6 = lVar7;\n        if (lVar7 == len) {\n            return ~uVar2;\n        }\n    } while( true );\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffff.",
+   "asserted_values": [
+    "0xffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns ~uVar2 when len == 0.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the result to out[0..7].",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "CF",
+   "text": "Contains a do-while loop that iterates based on the length of the input.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "5",
+   "type": "ALG",
+   "text": "Implements a custom hash algorithm.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

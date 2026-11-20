@@ -1,0 +1,356 @@
+{
+ "backend": "capstone+pyelftools",
+ "function": "fn_17",
+ "n_instructions": 91,
+ "immediates": [
+  {
+   "addr": 4373,
+   "insn": "mov qword ptr [rbp - 0x20], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4381,
+   "insn": "mov qword ptr [rbp - 0x18], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4389,
+   "insn": "mov qword ptr [rbp - 0x10], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4397,
+   "insn": "jmp 0x11b4",
+   "value": 4532,
+   "size": 8
+  },
+  {
+   "addr": 4406,
+   "insn": "add rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4414,
+   "insn": "jb 0x1166",
+   "value": 4454,
+   "size": 8
+  },
+  {
+   "addr": 4444,
+   "insn": "add rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4452,
+   "insn": "jae 0x1172",
+   "value": 4466,
+   "size": 8
+  },
+  {
+   "addr": 4454,
+   "insn": "mov rax, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4461,
+   "insn": "jmp 0x1253",
+   "value": 4691,
+   "size": 8
+  },
+  {
+   "addr": 4491,
+   "insn": "add qword ptr [rbp - 0x18], 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4524,
+   "insn": "add rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4540,
+   "insn": "jae 0x11d4",
+   "value": 4564,
+   "size": 8
+  },
+  {
+   "addr": 4558,
+   "insn": "jne 0x1132",
+   "value": 4402,
+   "size": 8
+  },
+  {
+   "addr": 4572,
+   "insn": "jae 0x11e7",
+   "value": 4583,
+   "size": 8
+  },
+  {
+   "addr": 4574,
+   "insn": "mov rax, 0xffffffffffffffff",
+   "value": 18446744073709551615,
+   "size": 8
+  },
+  {
+   "addr": 4581,
+   "insn": "jmp 0x1253",
+   "value": 4691,
+   "size": 8
+  },
+  {
+   "addr": 4583,
+   "insn": "mov qword ptr [rbp - 0x20], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4591,
+   "insn": "mov qword ptr [rbp - 8], 0",
+   "value": 0,
+   "size": 8
+  },
+  {
+   "addr": 4599,
+   "insn": "jmp 0x123d",
+   "value": 4669,
+   "size": 8
+  },
+  {
+   "addr": 4656,
+   "insn": "add rax, 2",
+   "value": 2,
+   "size": 8
+  },
+  {
+   "addr": 4664,
+   "insn": "add qword ptr [rbp - 8], 1",
+   "value": 1,
+   "size": 8
+  },
+  {
+   "addr": 4677,
+   "insn": "jb 0x11f9",
+   "value": 4601,
+   "size": 8
+  },
+  {
+   "addr": 4683,
+   "insn": "shl rax, 0x20",
+   "value": 32,
+   "size": 1
+  }
+ ],
+ "displacements": [
+  {
+   "addr": 4353,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4357,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4361,
+   "value": 18446744073709551560
+  },
+  {
+   "addr": 4365,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4369,
+   "value": 18446744073709551544
+  },
+  {
+   "addr": 4373,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4381,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4389,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4402,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4410,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4416,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4420,
+   "value": 1
+  },
+  {
+   "addr": 4424,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4437,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4448,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4466,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4470,
+   "value": 1
+  },
+  {
+   "addr": 4474,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4487,
+   "value": 18446744073709551600
+  },
+  {
+   "addr": 4491,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4496,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4500,
+   "value": 1
+  },
+  {
+   "addr": 4504,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4517,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4528,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4532,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4536,
+   "value": 18446744073709551568
+  },
+  {
+   "addr": 4542,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4546,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4564,
+   "value": 18446744073709551544
+  },
+  {
+   "addr": 4568,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4583,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4591,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4601,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4605,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4612,
+   "value": 18446744073709551552
+  },
+  {
+   "addr": 4616,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4628,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4632,
+   "value": 1
+  },
+  {
+   "addr": 4636,
+   "value": 18446744073709551576
+  },
+  {
+   "addr": 4649,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4660,
+   "value": 18446744073709551584
+  },
+  {
+   "addr": 4664,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4669,
+   "value": 18446744073709551608
+  },
+  {
+   "addr": 4673,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4679,
+   "value": 18446744073709551592
+  },
+  {
+   "addr": 4687,
+   "value": 18446744073709551600
+  }
+ ],
+ "data_refs": [],
+ "sections": [
+  {
+   "name": ".data",
+   "addr": 16384,
+   "hex": "0040000000000000"
+  }
+ ],
+ "strings": [],
+ "imports": [
+  "_ITM_deregisterTMCloneTable",
+  "_ITM_registerTMCloneTable",
+  "__cxa_finalize",
+  "__gmon_start__"
+ ]
+}

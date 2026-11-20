@@ -1,0 +1,203 @@
+{
+ "fn": "fn_19",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 22.9,
+   "cached": false,
+   "eval_count": 939,
+   "cache_key": "325b1f3131a1906304f73682405efe846ba0d9e742067fb41d88718edd400ec9"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_19 appears to be a custom encryption or transformation function. It takes an input buffer, a length, an argument, and an output buffer. It performs a series of bitwise operations and transformations on the input data and stores the result in the output buffer.",
+  "proposed_name": "fn_19",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "IO",
+    "text": "Returns VERA_ERR (0xFFFFFFFFFFFFFFFF) when the output buffer capacity is less than the input length.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "out_cap < len",
+     "returns": "VERA_ERR"
+    }
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function contains a loop that iterates over the input buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "Writes transformed data from the input buffer to the output buffer.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "4",
+    "type": "CONST",
+    "text": "The function uses the constant 'k' (107) in its calculations.",
+    "asserted_values": [
+     "0x6B"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "CONST",
+    "text": "The function uses the constant 0x3C71 in its calculations.",
+    "asserted_values": [
+     "0x3C71"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CONST",
+    "text": "The function uses the constant 0x4008 in its calculations.",
+    "asserted_values": [
+     "0x4008"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "7",
+    "type": "CONST",
+    "text": "The function uses the constant 0x4010 in its calculations.",
+    "asserted_values": [
+     "0x4010"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "8",
+    "type": "CF",
+    "text": "The function contains conditional logic based on the value of 'param_3'.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "9",
+    "type": "CF",
+    "text": "The function contains conditional logic based on the value of 'param_5'.",
+    "asserted_values": [],
+    "confidence": 0.8
+   },
+   {
+    "id": "10",
+    "type": "CF",
+    "text": "The function contains conditional logic based on the value of 'param_2'.",
+    "asserted_values": [],
+    "confidence": 0.8
+   }
+  ],
+  "recovered_c": "uint64_t fn_19(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (out_cap < len) {\n    return VERA_ERR;\n  }\n\n  for (size_t i = 0; i < len; i++) {\n    uint8_t bVar3 = (arg >> (i & 0x7) << 3)) & 0xFF;\n    if ((i & 1) != 0 || DAT_00104010 != 0) {\n      bVar3 = (bVar3 ^ (i << 7)) * 0x6B + DAT_00104008;\n    }\n    out[i] = (bVar3 << (i & 0x7)) | (bVar3 >> (8 - (i & 0x7))) ^ in[i] ^ i;\n  }\n\n  return len;\n}"
+ },
+ "config": "obf",
+ "claims": [
+  {
+   "id": "1",
+   "type": "IO",
+   "text": "Returns VERA_ERR (0xFFFFFFFFFFFFFFFF) when the output buffer capacity is less than the input length.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "out_cap < len",
+    "returns": "VERA_ERR"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function contains a loop that iterates over the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes transformed data from the input buffer to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "4",
+   "type": "CONST",
+   "text": "The function uses the constant 'k' (107) in its calculations.",
+   "asserted_values": [
+    "0x6B"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "CONST",
+   "text": "The function uses the constant 0x3C71 in its calculations.",
+   "asserted_values": [
+    "0x3C71"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CONST",
+   "text": "The function uses the constant 0x4008 in its calculations.",
+   "asserted_values": [
+    "0x4008"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "7",
+   "type": "CONST",
+   "text": "The function uses the constant 0x4010 in its calculations.",
+   "asserted_values": [
+    "0x4010"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "The function contains conditional logic based on the value of 'param_3'.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "9",
+   "type": "CF",
+   "text": "The function contains conditional logic based on the value of 'param_5'.",
+   "asserted_values": [],
+   "confidence": 0.8
+  },
+  {
+   "id": "10",
+   "type": "CF",
+   "text": "The function contains conditional logic based on the value of 'param_2'.",
+   "asserted_values": [],
+   "confidence": 0.8
+  }
+ ],
+ "dropped_claims": []
+}

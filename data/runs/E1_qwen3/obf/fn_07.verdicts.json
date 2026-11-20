@@ -1,0 +1,245 @@
+{
+ "fn": "fn_07",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "_0001",
+   "type": "ALG",
+   "text": "Implements Base64 encoding with a custom character set.",
+   "asserted_values": [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "algorithm": "Base64",
+    "v3": {
+     "label": "supported",
+     "method": "V3",
+     "fingerprint": [
+      {
+       "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+       "form": "string"
+      }
+     ]
+    },
+    "label": "supported",
+    "method": "V3",
+    "variant_claim": true
+   }
+  },
+  {
+   "id": "_0002",
+   "type": "IO",
+   "text": "Returns len when out_cap >= (len + 2) / 3 * 4.",
+   "asserted_values": [
+    "len",
+    "out_cap >= len"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0003",
+   "type": "IO",
+   "text": "Returns VERA_ERR when out_cap < (len + 2) / 3 * 4.",
+   "asserted_values": [
+    "VERA_ERR",
+    "out_cap < len"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "_0004",
+   "type": "CF",
+   "text": "Processes input in chunks of 3 bytes.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0005",
+   "type": "CF",
+   "text": "Handles remaining bytes (1 or 2 bytes) separately.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "_0006",
+   "type": "SIDE",
+   "text": "Writes 4 base64 characters for each 3-byte chunk to out[<first>..<last>].",
+   "asserted_values": [
+    "out[0..3]",
+    "out[4..7]",
+    "out[8..11]",
+    "out[12..15]"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_0007",
+   "type": "SIDE",
+   "text": "Writes 2 base64 characters for remaining 1-byte input to out[<first>..<last>].",
+   "asserted_values": [
+    "out[0..1]"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_0008",
+   "type": "SIDE",
+   "text": "Writes 3 base64 characters for remaining 2-byte input to out[<first>..<last>].",
+   "asserted_values": [
+    "out[0..2]"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "hàm có ghi out trên vector hợp lệ"
+   }
+  },
+  {
+   "id": "_0009",
+   "type": "SIDE",
+   "text": "Does not modify input buffer.",
+   "asserted_values": [],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "verified",
+    "method": "SIDE",
+    "detail": "in không đổi trên mọi vector (runner kiểm)"
+   }
+  },
+  {
+   "id": "_0010",
+   "type": "CONST",
+   "text": "Uses the constant 0x2d6b in a bitwise operation.",
+   "asserted_values": [
+    "0x2d6b"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x2d6b",
+      "form": "imm",
+      "detail": "0x2D6B (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0011",
+   "type": "CONST",
+   "text": "Uses the constant 0x3c71 in a conditional check.",
+   "asserted_values": [
+    "0x3c71"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3c71",
+      "form": "imm",
+      "detail": "0x3C71 (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0012",
+   "type": "CONST",
+   "text": "Uses the constant 0x5eb in an increment operation.",
+   "asserted_values": [
+    "0x5eb"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x5eb",
+      "form": "imm",
+      "detail": "0x5EB (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0013",
+   "type": "CONST",
+   "text": "Uses the constant 0x3d3d in a write operation.",
+   "asserted_values": [
+    "0x3d3d"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "supported",
+    "method": "V3",
+    "found": [
+     {
+      "value": "0x3d3d",
+      "form": "imm",
+      "detail": "0x3D3D (32-bit)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "_0014",
+   "type": "CONST",
+   "text": "Uses the constant 0x3d in a write operation.",
+   "asserted_values": [
+    "0x3d"
+   ],
+   "confidence": 0.95,
+   "verdict": {
+    "label": "unsupported",
+    "method": "V3",
+    "reason": "không có giá trị đủ điều kiện để kiểm"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 4,
+  "supported": 5,
+  "unsupported": 5,
+  "contradicted": 0
+ },
+ "n_claims": 14,
+ "explanation_clean": true
+}

@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The code performs a permutation of the first 8 bytes of 'in' based on the 'arg' value before writing them to 'out', not a direct write of the first 8 bytes.", "seconds": 1.3}

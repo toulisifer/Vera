@@ -1,0 +1,95 @@
+{
+ "fn": "fn_10",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 10.7,
+   "cached": false,
+   "eval_count": 417,
+   "cache_key": "dba7f1ab57851550a8ec0fb330ad8dc258af086fa957c5f86943a675220b1752"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_10 computes a checksum using a simple linear congruential generator algorithm.",
+  "proposed_name": "fn_10",
+  "algorithm": "unknown",
+  "self_confidence": 0.95,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the modulus 0xffef.",
+    "asserted_values": [
+     "0xffef"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "CF",
+    "text": "The function iterates over each byte in the input array.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "3",
+    "type": "SIDE",
+    "text": "The function writes the computed checksum to the output array.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "The function returns the computed checksum as a 64-bit value.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_10(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint32_t a = 1;\n  uint32_t b = 0;\n  for (size_t i = 0; i < len; i++) {\n    a = (in[i] + a) % 0xffef;\n    b = (b + a) % 0xffef;\n  }\n  return (uint64_t)a | (uint64_t)b << 0x10;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the modulus 0xffef.",
+   "asserted_values": [
+    "0xffef"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "The function iterates over each byte in the input array.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "The function writes the computed checksum to the output array.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "The function returns the computed checksum as a 64-bit value.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

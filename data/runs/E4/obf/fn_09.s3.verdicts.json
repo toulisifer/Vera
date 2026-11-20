@@ -1,0 +1,109 @@
+{
+ "fn": "fn_09",
+ "config": "obf",
+ "schema_valid": true,
+ "claims": [
+  {
+   "id": "1",
+   "type": "ALG",
+   "text": "Implements a custom hash function.",
+   "asserted_values": [],
+   "confidence": 0.85,
+   "io": {},
+   "verdict": {
+    "label": "unsupported",
+    "method": "ALG",
+    "reason": "không nhận ra tên thuật toán trong claim"
+   }
+  },
+  {
+   "id": "2",
+   "type": "CF",
+   "text": "Uses a do-while loop to process each byte of the input buffer.",
+   "asserted_values": [],
+   "confidence": 0.9,
+   "io": {},
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "3",
+   "type": "SIDE",
+   "text": "Writes the final hash value to the output buffer.",
+   "asserted_values": [],
+   "confidence": 0.75,
+   "io": {
+    "when": "always",
+    "returns": "uVar2",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "contradicted",
+    "method": "SIDE",
+    "counterexample": {
+     "vector": "v00",
+     "observed": "không vector hợp lệ nào ghi out"
+    }
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xcbf29ce484222325 when the input length is 0.",
+   "asserted_values": [
+    "0xcbf29ce484222325"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 == 0",
+    "returns": "0xcbf29ce484222325"
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "IO",
+    "reason": "không có trường io đúng DSL"
+   }
+  },
+  {
+   "id": "5",
+   "type": "CF",
+   "text": "Uses conditional statements to modify the hash value based on internal state and input length.",
+   "asserted_values": [],
+   "confidence": 0.8,
+   "io": {},
+   "verdict": {
+    "label": "unsupported",
+    "method": "—",
+    "reason": "loại CF ngoài vùng phủ kiểm tự động"
+   }
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Modifies the input buffer by XORing each byte with the hash value.",
+   "asserted_values": [],
+   "confidence": 0.6,
+   "io": {
+    "when": "always",
+    "returns": "none",
+    "writes_out": true
+   },
+   "verdict": {
+    "label": "unsupported",
+    "method": "SIDE",
+    "reason": "mẫu câu ngoài phạm vi kiểm tự động"
+   }
+  }
+ ],
+ "counts": {
+  "verified": 0,
+  "supported": 0,
+  "unsupported": 5,
+  "contradicted": 1
+ },
+ "n_claims": 6,
+ "explanation_clean": false
+}

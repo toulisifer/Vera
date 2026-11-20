@@ -1,0 +1,187 @@
+{
+ "fn": "fn_17",
+ "prompt_version": "p3",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 24.2,
+   "cached": false,
+   "eval_count": 1026,
+   "cache_key": "aec6b2aec59fe38a11d6174561c9da33319b723e1d29168740ca4755626fd8ba"
+  }
+ ],
+ "output": {
+  "summary": "The function fn_17 processes an input buffer and constructs an output buffer based on specific rules. It returns a 64-bit value indicating the number of processed elements and the total sum of certain values from the input.",
+  "proposed_name": "fn_17",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses the constant 0xffffffffffffffff.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when len <= i or in[i] == '\\0'.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len <= i or in[i] == '\\0'",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "Returns cnt << 0x20 | total when out_cap >= cnt.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "out_cap >= cnt",
+     "returns": "cnt << 0x20 | total"
+    }
+   },
+   {
+    "id": "4",
+    "type": "IO",
+    "text": "Returns 0xffffffffffffffff when len < i + 2 or len < i + in[i + 1] + 2.",
+    "asserted_values": [
+     "0xffffffffffffffff"
+    ],
+    "confidence": 1.0,
+    "io": {
+     "when": "len < i + 2 or len < i + in[i + 1] + 2",
+     "returns": "0xffffffffffffffff"
+    }
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "Writes in[i] to out[cnt] when out_cap >= cnt.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "6",
+    "type": "SIDE",
+    "text": "Writes total to out[cnt + 1] when out_cap >= cnt.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "7",
+    "type": "CF",
+    "text": "Loops until len <= i or in[i] == '\\0'.",
+    "asserted_values": [],
+    "confidence": 1.0
+   },
+   {
+    "id": "8",
+    "type": "CF",
+    "text": "Breaks the loop when len < i + 2 or len < i + in[i + 1] + 2.",
+    "asserted_values": [],
+    "confidence": 1.0
+   }
+  ],
+  "recovered_c": "uint64_t fn_17(uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  uint64_t uVar1;\n  size_t out_cap_local;\n  uint8_t *out_local;\n  uint64_t arg_local;\n  size_t len_local;\n  uint8_t *in_local;\n  size_t i;\n  size_t cnt;\n  size_t total;\n  size_t c;\n\n  i = 0;\n  cnt = 0;\n  total = 0;\n  while( true ) {\n    if ((len <= i) || (in[i] == '\\0')) {\n      if (out_cap < cnt) {\n        uVar1 = 0xffffffffffffffff;\n      }\n      else {\n        i = 0;\n        for (c = 0; c < cnt; c = c + 1) {\n          out[c] = in[i];\n          i = i + in[i + 1] + 2;\n        }\n        uVar1 = cnt << 0x20 | total;\n      }\n      return uVar1;\n    }\n    if ((len < i + 2) || (len < i + in[i + 1] + 2)) break;\n    total = total + in[i + 1];\n    cnt = cnt + 1;\n    i = i + in[i + 1] + 2;\n  }\n  return 0xffffffffffffffff;\n}"
+ },
+ "config": "plain",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses the constant 0xffffffffffffffff.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len <= i or in[i] == '\\0'.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len <= i or in[i] == '\\0'",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "Returns cnt << 0x20 | total when out_cap >= cnt.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "out_cap >= cnt",
+    "returns": "cnt << 0x20 | total"
+   }
+  },
+  {
+   "id": "4",
+   "type": "IO",
+   "text": "Returns 0xffffffffffffffff when len < i + 2 or len < i + in[i + 1] + 2.",
+   "asserted_values": [
+    "0xffffffffffffffff"
+   ],
+   "confidence": 1.0,
+   "io": {
+    "when": "len < i + 2 or len < i + in[i + 1] + 2",
+    "returns": "0xffffffffffffffff"
+   }
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "Writes in[i] to out[cnt] when out_cap >= cnt.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "6",
+   "type": "SIDE",
+   "text": "Writes total to out[cnt + 1] when out_cap >= cnt.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "7",
+   "type": "CF",
+   "text": "Loops until len <= i or in[i] == '\\0'.",
+   "asserted_values": [],
+   "confidence": 1.0
+  },
+  {
+   "id": "8",
+   "type": "CF",
+   "text": "Breaks the loop when len < i + 2 or len < i + in[i + 1] + 2.",
+   "asserted_values": [],
+   "confidence": 1.0
+  }
+ ],
+ "dropped_claims": []
+}

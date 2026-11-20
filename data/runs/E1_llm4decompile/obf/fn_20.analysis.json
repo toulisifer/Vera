@@ -1,0 +1,30 @@
+{
+ "fn": "fn_20",
+ "config": "obf",
+ "model": "hf.co/RichardErkhov/LLM4Binary_-_llm4decompile-6.7b-v2-gguf:Q4_K_M",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 2048
+ },
+ "baseline": true,
+ "schema_valid": true,
+ "adapter_note": "adapter: size_t fn_20(const unsigned char *in, size_t inlen, size_t inoff, unsigned char *out, size_t outlen) ← chữ ký chung",
+ "raw": "size_t fn_20(const unsigned char *in, size_t inlen, size_t inoff, unsigned char *out, size_t outlen)\n{\n size_t i, j, k;\n unsigned char c, *s;\n\n if (inlen < outlen)\n  return -1;\n\n s = alloca(inlen);\n\n for (i = 0; i < inlen; i++)\n  s[i] = i;\n\n for (i = inlen - 1; i >= inlen - 1 - 7; i--) {\n  k = (1 + inlen - 1 - i) * (i & 1 ? 5 : 7);\n  k = (k << 11) ^ k;\n  j = (unsigned char) (inoff / (i + 1) + k) & 255;\n  inoff %= i + 1;\n  c = s[j];\n  s[j] = s[i];\n  s[i] = c;\n }\n\n for (i = 0, j = 8; j <= i; j += 8) {\n  for (k = 0; k < 8; k++) {\n   if (((j + k) & 7) != 1 || (j + k) == 56)\n    continue;\n   out[k] = in[s[j + k]];\n  }\n }\n\n for (; i < inlen - 1 - 7; i++)\n  out[i] = in[i];\n\n return i;\n}",
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 22.5,
+   "cached": false,
+   "eval_count": 367,
+   "cache_key": "1965dfd5390d919b3919caac3b8fff4b2b87dbb283cae9db59b2016211f3df9b"
+  }
+ ],
+ "output": {
+  "recovered_c": "size_t vera_inner(const unsigned char *in, size_t inlen, size_t inoff, unsigned char *out, size_t outlen)\n{\n size_t i, j, k;\n unsigned char c, *s;\n\n if (inlen < outlen)\n  return -1;\n\n s = alloca(inlen);\n\n for (i = 0; i < inlen; i++)\n  s[i] = i;\n\n for (i = inlen - 1; i >= inlen - 1 - 7; i--) {\n  k = (1 + inlen - 1 - i) * (i & 1 ? 5 : 7);\n  k = (k << 11) ^ k;\n  j = (unsigned char) (inoff / (i + 1) + k) & 255;\n  inoff %= i + 1;\n  c = s[j];\n  s[j] = s[i];\n  s[i] = c;\n }\n\n for (i = 0, j = 8; j <= i; j += 8) {\n  for (k = 0; k < 8; k++) {\n   if (((j + k) & 7) != 1 || (j + k) == 56)\n    continue;\n   out[k] = in[s[j + k]];\n  }\n }\n\n for (; i < inlen - 1 - 7; i++)\n  out[i] = in[i];\n\n return i;\n}\nuint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap)\n{\n    (void)in; (void)len; (void)arg; (void)out; (void)out_cap;\n    return (uint64_t)(vera_inner((const unsigned char *)(in), (size_t)(len), (size_t)(arg), (unsigned char *)(out), (size_t)(out_cap)));\n}\n",
+  "algorithm": "unknown",
+  "claims": []
+ },
+ "claims": []
+}

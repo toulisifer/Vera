@@ -1,0 +1,161 @@
+{
+ "fn": "fn_20",
+ "prompt_version": "p2",
+ "model": "qwen2.5-coder:7b",
+ "options": {
+  "temperature": 0.0,
+  "seed": 0,
+  "num_ctx": 8192,
+  "num_predict": 3072
+ },
+ "think": null,
+ "schema_valid": true,
+ "attempts": [
+  {
+   "errors": [],
+   "seconds": 16.1,
+   "cached": false,
+   "eval_count": 633,
+   "cache_key": "c2a25288757bbc1eb354928cdc9904123c73c9d63bb465ef23ec38354b9ca1c8"
+  }
+ ],
+ "output": {
+  "summary": "The function appears to be a custom permutation function that rearranges the input data based on a seed value and then copies the rearranged data to the output buffer.",
+  "proposed_name": "fn_20",
+  "algorithm": "unknown",
+  "self_confidence": 0.8,
+  "claims": [
+   {
+    "id": "1",
+    "type": "CONST",
+    "text": "The function uses a constant array of 8 bytes: [0, 1, 2, 3, 4, 5, 6, 7].",
+    "asserted_values": [
+     "0x0",
+     "0x1",
+     "0x2",
+     "0x3",
+     "0x4",
+     "0x5",
+     "0x6",
+     "0x7"
+    ],
+    "confidence": 0.9
+   },
+   {
+    "id": "2",
+    "type": "IO",
+    "text": "The function returns the length of the input data when the input length is less than or equal to 8.",
+    "asserted_values": [
+     "0x8"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 <= 0x8",
+     "returns": "param_2"
+    }
+   },
+   {
+    "id": "3",
+    "type": "IO",
+    "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is greater than 8.",
+    "asserted_values": [
+     "0xFFFFFFFFFFFFFFFF"
+    ],
+    "confidence": 0.9,
+    "io": {
+     "when": "param_2 > 0x8",
+     "returns": "0xFFFFFFFFFFFFFFFF"
+    }
+   },
+   {
+    "id": "4",
+    "type": "SIDE",
+    "text": "The function writes the rearranged input data to the output buffer when the input length is greater than 8.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "5",
+    "type": "SIDE",
+    "text": "The function does not modify the input data when the input length is less than or equal to 8.",
+    "asserted_values": [],
+    "confidence": 0.9
+   },
+   {
+    "id": "6",
+    "type": "CF",
+    "text": "The function contains a loop that performs a permutation of the constant array based on the seed value.",
+    "asserted_values": [],
+    "confidence": 0.9
+   }
+  ],
+  "recovered_c": "uint64_t fn_20(const uint8_t *in, size_t len, uint64_t arg, uint8_t *out, size_t out_cap) {\n  if (len <= 8) {\n    return len;\n  } else {\n    return VERA_ERR;\n  }\n}"
+ },
+ "config": "opt",
+ "claims": [
+  {
+   "id": "1",
+   "type": "CONST",
+   "text": "The function uses a constant array of 8 bytes: [0, 1, 2, 3, 4, 5, 6, 7].",
+   "asserted_values": [
+    "0x0",
+    "0x1",
+    "0x2",
+    "0x3",
+    "0x4",
+    "0x5",
+    "0x6",
+    "0x7"
+   ],
+   "confidence": 0.9
+  },
+  {
+   "id": "2",
+   "type": "IO",
+   "text": "The function returns the length of the input data when the input length is less than or equal to 8.",
+   "asserted_values": [
+    "0x8"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 <= 0x8",
+    "returns": "param_2"
+   }
+  },
+  {
+   "id": "3",
+   "type": "IO",
+   "text": "The function returns 0xFFFFFFFFFFFFFFFF when the input length is greater than 8.",
+   "asserted_values": [
+    "0xFFFFFFFFFFFFFFFF"
+   ],
+   "confidence": 0.9,
+   "io": {
+    "when": "param_2 > 0x8",
+    "returns": "0xFFFFFFFFFFFFFFFF"
+   }
+  },
+  {
+   "id": "4",
+   "type": "SIDE",
+   "text": "The function writes the rearranged input data to the output buffer when the input length is greater than 8.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "5",
+   "type": "SIDE",
+   "text": "The function does not modify the input data when the input length is less than or equal to 8.",
+   "asserted_values": [],
+   "confidence": 0.9
+  },
+  {
+   "id": "6",
+   "type": "CF",
+   "text": "The function contains a loop that performs a permutation of the constant array based on the seed value.",
+   "asserted_values": [],
+   "confidence": 0.9
+  }
+ ],
+ "dropped_claims": []
+}

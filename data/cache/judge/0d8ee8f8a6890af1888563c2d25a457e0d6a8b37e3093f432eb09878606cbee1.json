@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The function writes to the 'out' parameter, although it does not use the 'out' or 'out_cap' parameters in its computation.", "seconds": 1.1}

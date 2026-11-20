@@ -1,0 +1,1 @@
+{"verdict": "FALSE", "reason": "The code does not show the function writing to an out array or any output buffer.", "seconds": 0.8}
